@@ -2753,6 +2753,11 @@ AS SELECT id_habitacion,MAX_POWER.costo_diario_habitacion(@id_hotel,id_habitacio
 												AND MAX_POWER.habitacion_libre(id_habitacion,	@fecha_inicio,@fecha_fin)=1
 GO
 
+CREATE PROCEDURE [MAX_POWER].baja_reservas_viejas AS
+UPDATE MAX_POWER.Reserva SET id_estado=(SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%no%show%'))
+	WHERE fecha_inicio<GETDATE() AND id_estado != (SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%ingres%'))
+GO
+
 CREATE PROCEDURE [MAX_POWER].proximo_id_reserva AS
 BEGIN
 	DECLARE @proximo_id BIGINT

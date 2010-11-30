@@ -36,8 +36,8 @@ namespace FrbaHotel
             funcionalidadesSistema.Add(5, (owner) => new ABMHabitacion(owner));
             funcionalidadesSistema.Add(6, (owner) => new ABMReservas(owner));
             funcionalidadesSistema.Add(7, (owner) => new RegistrarEstadia(owner));
-            funcionalidadesSistema.Add(8, (owner) => new Facturar(owner));
-            funcionalidadesSistema.Add(9, (owner) => new ListadoEstadistico(owner));
+            funcionalidadesSistema.Add(9, (owner) => new Facturar(owner));
+            funcionalidadesSistema.Add(8, (owner) => new ListadoEstadistico(owner));
             SeleccionFuncionalidad.FuncionalidadesPosibles= funcionalidadesSistema;
             //Excepciones globales
             DatabaseAdapter.Excepciones.Add(-2, new ExcepcionFrbaHoteles("El usuario no existe o fue dado de baja"));

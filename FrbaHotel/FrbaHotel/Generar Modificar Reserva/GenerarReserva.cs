@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FrbaHotel.Forms_genericos;
+using FrbaHotel.Homes;
 
 namespace FrbaHotel.Generar_Modificar_Reserva
 {
@@ -58,9 +59,10 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         private void GenerarReserva_Load(object sender, EventArgs e)
         {
-                _seleccionarRegimen.Enabled = false;
-                bindCombo<Hotel>(_hotel, Sesion.HotelesDisponiblesUsuario);
-                cargarBotonModificarDatos(dataGridView1, "Eliminar");
+            HomeReservas.bajaReservasViejas();
+            _seleccionarRegimen.Enabled = false;
+            bindCombo<Hotel>(_hotel, Sesion.HotelesDisponiblesUsuario);
+            cargarBotonModificarDatos(dataGridView1, "Eliminar");
         }
 
         private void button2_Click(object sender, EventArgs e)

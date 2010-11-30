@@ -48,16 +48,7 @@ namespace FrbaHotel.Listado_Estadistico
         private void button1_Click(object sender, EventArgs e)
         {
             resultados = DatabaseAdapter.traerDataTable(procedureAEjecutar, trimestre, anio);
-
-            if (resultados.Rows.Count.Equals(0))
-            {
-                resultados = new DataTable();
-                resultados.Columns.Add("Lo Sentimos");
-                resultados.Rows.Add(" No hay datos que cumplan este criterio");
-            }
-
             cargarGrilla(dataGridView1, resultados);
-
         }
 
         private void Formato_Load(object sender, EventArgs e)

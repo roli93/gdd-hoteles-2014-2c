@@ -19,6 +19,11 @@ namespace FrbaHotel.Homes
             return id;
         }
 
+        public static void bajaReservasViejas()
+        {
+            DatabaseAdapter.ejecutarProcedure("baja_reservas_viejas");
+        }
+
         public static void buscarReservaPorId(int id, out Hotel hotel, out Regimen regimen, out DateTime fechaInicio, out DateTime fechaFin, out List<Habitacion> habitaciones)
         {
             DataRow reserva = DatabaseAdapter.traerDataTable("buscar_reserva_por_id", id).Rows[0];
