@@ -25,7 +25,6 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         {
             this.accion = accion;
             this.constructorEdicion = constructor;
-            this.FormClosing += ShowOwner;
             InitializeComponent();
         }
 

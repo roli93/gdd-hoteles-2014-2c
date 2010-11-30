@@ -116,11 +116,11 @@ namespace FrbaHotel
                 MessageBox.Show(e.Message,"Error");
                 errorMessage += "  ";
             }
-            catch(SystemException)
+          /*  catch(SystemException)
             {
                 MessageBox.Show("Ha ocurrido un error desconocido. Estamos trabajando para solucionarlo");
                 errorMessage += "  ";
-            }
+            }*/
         }
 
         protected virtual void ExcecuteAndShow(ExceptionableTask task)
@@ -136,11 +136,11 @@ namespace FrbaHotel
                 MessageBox.Show(e.Message,"Error");
                 errorMessage += "  ";
             }
-            catch (SystemException)
+           /* catch (SystemException)
             {
                 MessageBox.Show("Ha ocurrido un error desconocido. Estamos trabajando para solucionarlo");
                 errorMessage += "  ";
-            }
+            }*/
         }
 
     }
