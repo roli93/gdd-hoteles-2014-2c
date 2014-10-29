@@ -48,11 +48,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABM de Cliente\Form1.cs">
+    <Compile Include="ABM de Cliente\AMBCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM de Cliente\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ABM de Cliente\AMBCliente.Designer.cs">
+      <DependentUpon>AMBCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM de Habitacion\Form1.cs">
       <SubType>Form</SubType>
@@ -78,17 +78,21 @@
     <Compile Include="ABM de Usuario\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Administracion Base de Datos\DatabaseAdapter.cs" />
     <Compile Include="Cancelar Reserva\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Cancelar Reserva\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="NavegableForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="PantallaBienvenida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PantallaBienvenida.Designer.cs">
+      <DependentUpon>PantallaBienvenida.cs</DependentUpon>
     </Compile>
     <Compile Include="Generar Modificar Reserva\Form1.cs">
       <SubType>Form</SubType>
@@ -102,14 +106,23 @@
     <Compile Include="Listado Estadistico\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Login\Form1.cs">
+    <Compile Include="Login\LoginUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Login\LoginUsuarios.Designer.cs">
+      <DependentUpon>LoginUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Login\LoginUsuarios.resx">
+      <DependentUpon>LoginUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Cliente\AMBCliente.resx">
+      <DependentUpon>AMBCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PantallaBienvenida.resx">
+      <DependentUpon>PantallaBienvenida.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
