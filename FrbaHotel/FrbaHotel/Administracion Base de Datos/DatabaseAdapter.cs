@@ -335,5 +335,10 @@ namespace FrbaHotel.Administracion_Base_de_Datos
             return ejecutarProcedureWithReturnValue("id_ultima_insercion");
         }
 
+        public static void insertarDatosEnTabla(string tabla, object[] valores)
+        {
+            ejecutarProcedure("insertar_" + tabla, valores);
+        }
+
     }
 }
