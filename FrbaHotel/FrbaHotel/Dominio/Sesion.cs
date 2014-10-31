@@ -29,9 +29,9 @@ namespace FrbaHotel
                 
         public static void iniciar(string username, string password)
         {
-          /*  int exitoso=0;
-            DataTable tablaUsuario = DatabaseAdapter.traerDataTable("login", username, password,exitoso);
-            if (exitoso==0) //Fallar, no coincide
+            /*int error=0;
+            DataTable tablaUsuario = DatabaseAdapter.traerDataTable("login", username, password,error);
+            DatabaseAdapter.CheckExcepcionPara(error);
 
             Sesion.Usuario = new Usuario((int)tablaUsuario.Rows[0]["id_usuario"],(string)tablaUsuario.Rows[0]["username"]);
             */

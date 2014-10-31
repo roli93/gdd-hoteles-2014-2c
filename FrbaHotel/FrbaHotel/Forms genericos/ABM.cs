@@ -28,21 +28,25 @@ namespace FrbaHotel
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //TODO: Negrada, mejorar si hay tiempo
-            if (this.radioButton1.Checked)
-                MessageBox.Show("Proximamente Alta");
-            if (this.radioButton2.Checked)
-                MessageBox.Show("Proximamente Modificacion");
-            if (this.radioButton3.Checked)
-                MessageBox.Show("Proximamente Baja");
+            Continuar();
         }
 
         private void ABM_Load(object sender, EventArgs e)
         {
-            radioButton1.Text = "Crear " + article + " " + entityName + " desde cero";
-            radioButton2.Text = "Modificar " + article + " " + entityName + " existente";
-            radioButton3.Text = "Eliminar " + article + " " + entityName;
+            radioAlta.Text = "Crear " + article + " " + entityName + " desde cero";
+            radioModificacion.Text = "Modificar " + article + " " + entityName + " existente";
+            radioBaja.Text = "Eliminar " + article + " " + entityName;
             this.Text = entityName.Substring(0, 1).ToUpper() + entityName.Substring(1)+"s";
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

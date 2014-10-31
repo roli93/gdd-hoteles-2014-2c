@@ -31,13 +31,13 @@ namespace FrbaHotel.Login
         private void InitializeComponent()
         {
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboFuncionalidad = new System.Windows.Forms.ComboBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.comboFuncionalidad);
             this.groupBox2.Location = new System.Drawing.Point(12, 23);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(256, 56);
@@ -45,14 +45,14 @@ namespace FrbaHotel.Login
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = " Seleccione la operacion que desea realizar.";
             // 
-            // comboBox1
+            // comboFuncionalidad
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(17, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(219, 21);
-            this.comboBox1.TabIndex = 0;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
+            this.comboFuncionalidad.FormattingEnabled = true;
+            this.comboFuncionalidad.Location = new System.Drawing.Point(17, 19);
+            this.comboFuncionalidad.Name = "comboFuncionalidad";
+            this.comboFuncionalidad.Size = new System.Drawing.Size(219, 21);
+            this.comboFuncionalidad.TabIndex = 0;
+            this.comboFuncionalidad.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged_1);
             // 
             // SeleccionFuncionalidad
             // 
@@ -71,7 +71,7 @@ namespace FrbaHotel.Login
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboFuncionalidad;
 
     }
 }

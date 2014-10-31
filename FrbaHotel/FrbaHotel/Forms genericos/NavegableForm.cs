@@ -7,11 +7,23 @@ using System.Windows.Forms;
 
 namespace FrbaHotel
 {
-    public class NavegableForm : Form
+    public partial class NavegableForm : Form
     {
         private NavegableForm owner;
         public delegate void AfterClose();
         private AfterClose afterCloseAction;
+
+        public NavegableForm Owner
+        {
+            get
+            {
+                return owner;
+            }
+            set
+            {
+                owner = value;
+            }
+        }
 
         public NavegableForm()
         {

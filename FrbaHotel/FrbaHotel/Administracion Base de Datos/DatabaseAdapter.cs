@@ -12,6 +12,20 @@ namespace FrbaHotel.Administracion_Base_de_Datos
 {
     class DatabaseAdapter //objeto que hace de interfaz con la base de datos
     {
+        private static Dictionary<int, ExcepcionFrbaHoteles> excepciones;
+
+        public static Dictionary<int, ExcepcionFrbaHoteles> Excepciones
+        {
+            get
+            {
+                return excepciones;
+            }
+            set
+            {
+                excepciones = value;
+            }
+        }
+
         /***********************************************************************************
          *                                 Métodos privados                                *
          * *********************************************************************************
@@ -340,5 +354,19 @@ namespace FrbaHotel.Administracion_Base_de_Datos
             ejecutarProcedure("insertar_" + tabla, valores);
         }
 
+        public static void CheckExcepcionPara(int codigo)
+        {
+            if (codigo != 0)
+                throw ExcepcionPara(codigo);
+        }
+
+        private static ExcepcionFrbaHoteles ExcepcionPara(int codigo)
+        {
+            ExcepcionFrbaHoteles excepcion;
+            excepciones.TryGetValue(codigo, out excepcion);
+            return excepcion;
+        }
+
+            
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace FrbaHotel.Registrar_Estadia
+﻿namespace FrbaHotel.Listado_Estadistico
 {
     partial class Form1
     {
