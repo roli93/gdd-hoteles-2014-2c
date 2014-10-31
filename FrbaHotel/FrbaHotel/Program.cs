@@ -24,8 +24,8 @@ namespace FrbaHotel
             SeleccionFuncionalidad.FuncionalidadesPosibles= funcionalidadesSistema;
             // DatabaseAdapter.Excepciones=...
             //------------------CONFIGURACIONES------------------->>
-
-            Application.Run(new PantallaBienvenida());
+            
+                Application.Run(new PantallaBienvenida());
         }
     }
 }

@@ -28,7 +28,7 @@ namespace FrbaHotel
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Continuar();
+            Excecute(Continuar);
         }
 
         private void ABM_Load(object sender, EventArgs e)

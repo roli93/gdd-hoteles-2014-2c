@@ -17,10 +17,12 @@ namespace FrbaHotel
             //TODO: Negrada, mejorar si hay tiempo
             if (this.radioAlta.Checked)
                 MessageBox.Show("Proximamente Alta");
-            if (this.radioModificacion.Checked)
+            else if (this.radioModificacion.Checked)
                 MessageBox.Show("Proximamente Modificacion");
-            if (this.radioBaja.Checked)
+            else if (this.radioBaja.Checked)
                 MessageBox.Show("Proximamente Baja");
+            else
+            throw new ExcepcionFrbaHoteles("Debe seleccionar una acción para continuar");
         }
 
 

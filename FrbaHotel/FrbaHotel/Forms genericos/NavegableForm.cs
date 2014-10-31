@@ -11,9 +11,10 @@ namespace FrbaHotel
     {
         private NavegableForm owner;
         public delegate void AfterClose();
+        public delegate void ExceptionableTask();
         private AfterClose afterCloseAction;
 
-        public NavegableForm Owner
+        public new NavegableForm Owner
         {
             get
             {
@@ -95,7 +96,22 @@ namespace FrbaHotel
 
         private void NavegableForm_Load(object sender, EventArgs e)
         {
+        }
 
+        protected void Excecute(ExceptionableTask task)
+        {
+            try
+            {
+                task();
+            }
+            catch (ExcepcionFrbaHoteles e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            catch(SystemException e)
+            {
+                MessageBox.Show("Ha ocurrido un error desconocido. Estamos trabajando para solucionarlo");
+            }
         }
 
     }
