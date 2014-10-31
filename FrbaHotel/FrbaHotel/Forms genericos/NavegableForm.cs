@@ -98,7 +98,7 @@ namespace FrbaHotel
         {
         }
 
-        protected void Excecute(ExceptionableTask task)
+        protected void Execute(ExceptionableTask task)
         {
             try
             {

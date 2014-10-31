@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.ABM_de_Usuario
 {
-    partial class Form1
+    public partial class ABMUsuario:ABM
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ABMUsuario
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(241, 132);
+            this.Name = "ABMUsuario";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.ABMUsuario_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

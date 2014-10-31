@@ -49,7 +49,7 @@ namespace FrbaHotel
             }
             return lista.ToArray();
         }
-
+        //Deprecated(?)
         public static string[] getFuncionalidades()
         {
            // return dataTableToString("obtener_funcionalidades","Descripcion",rol)

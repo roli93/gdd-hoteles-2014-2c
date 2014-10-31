@@ -33,6 +33,8 @@ namespace FrbaHotel
                     funcionalidades.Add(new Funcionalidad((int)elemento["id_funcionalidad"], (string)elemento["descripcion"]));
                 }
                 return funcionalidades;*/
+                if(id==0)
+                    return new List<Funcionalidad> { new Funcionalidad(1, "Reserva Hotelera") };
                 return new List<Funcionalidad> { new Funcionalidad(1, "Reservas"), new Funcionalidad(2, "Echar gente") };
             }
         }

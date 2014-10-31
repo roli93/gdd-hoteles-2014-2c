@@ -1,0 +1,17 @@
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\bin\Release\FrbaHotel.exe.manifest
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\bin\Release\FrbaHotel.application
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\bin\Release\FrbaHotel.exe
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\bin\Release\FrbaHotel.pdb
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Release\ResolveAssemblyReference.cache
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.ABM.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.NavegableForm.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.Login.LoginUsuarios.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.ABM_de_Cliente.AMBCliente.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.Login.SeleccionFuncionalidad.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.PantallaBienvenida.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.Properties.Resources.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.csproj.GenerateResource.Cache
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.exe.manifest
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.application
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.exe
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Release\FrbaHotel.pdb

@@ -60,8 +60,7 @@ namespace FrbaHotel.Login
 
         private void button3_Click(object sender, EventArgs e)
         {
-            acceder();
-            new SeleccionFuncionalidad(this).StandaloneOpen();
+            Execute(acceder);
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)

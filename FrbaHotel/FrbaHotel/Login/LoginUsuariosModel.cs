@@ -38,8 +38,11 @@ namespace FrbaHotel.Login
 
         public void acceder()
         {
-            Sesion.Usuario.RolActual = rol;
-            Sesion.Usuario.HotelActual = hotel;
+            if (rol == null || hotel == null)
+                throw new ExcepcionFrbaHoteles("Debe seleccionar un Rol y un Hotel para acceder");
+            Sesion.Usuario.Rol = rol;
+            Sesion.Usuario.Hotel = hotel;
+            new SeleccionFuncionalidad(this).StandaloneOpen();
         }
     }
 }

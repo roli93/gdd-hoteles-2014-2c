@@ -7,26 +7,30 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FrbaHotel.Login;
+using FrbaHotel.ABM_de_Usuario;
 
 namespace FrbaHotel
 {
     public partial class PantallaBienvenida : NavegableForm
     {
-        public PantallaBienvenida():base()
+        private int codigoGuest;
+
+        public PantallaBienvenida(int codigoGuest):base()
         {
-            
+            this.codigoGuest = codigoGuest;
             InitializeComponent();
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-           new ABM(this, "un", "cliente").StandaloneOpen();
+            /*loginHuesped();
+            new SeleccionFuncionalidad(this).StandaloneOpen();*/
+            new ABMUsuario(this).StandaloneOpen();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            LoginUsuarios l= new LoginUsuarios(this);
-            l.StandaloneOpen();
+            new LoginUsuarios(this).StandaloneOpen();
         }
     }
 }

@@ -16,15 +16,17 @@ namespace FrbaHotel
         {
             //TODO: Negrada, mejorar si hay tiempo
             if (this.radioAlta.Checked)
-                MessageBox.Show("Proximamente Alta");
+                alta();
             else if (this.radioModificacion.Checked)
-                MessageBox.Show("Proximamente Modificacion");
+                baja();
             else if (this.radioBaja.Checked)
-                MessageBox.Show("Proximamente Baja");
+                modificacion();
             else
-            throw new ExcepcionFrbaHoteles("Debe seleccionar una acción para continuar");
+                throw new ExcepcionFrbaHoteles("Debe seleccionar una acción para continuar");
         }
-
-
+   
+        public virtual void alta(){}
+        public virtual void baja(){}
+        public virtual void modificacion(){}
     }
 }

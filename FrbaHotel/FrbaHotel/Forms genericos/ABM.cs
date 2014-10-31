@@ -28,13 +28,13 @@ namespace FrbaHotel
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Excecute(Continuar);
+            Execute(Continuar);
         }
 
         private void ABM_Load(object sender, EventArgs e)
         {
             radioAlta.Text = "Crear " + article + " " + entityName + " desde cero";
-            radioModificacion.Text = "Modificar " + article + " " + entityName + " existente";
+            radioModificacion.Text = "Ver y/o modificar " + article + " " + entityName + " existente";
             radioBaja.Text = "Eliminar " + article + " " + entityName;
             this.Text = entityName.Substring(0, 1).ToUpper() + entityName.Substring(1)+"s";
         }

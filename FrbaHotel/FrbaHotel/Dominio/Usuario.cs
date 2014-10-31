@@ -12,21 +12,22 @@ namespace FrbaHotel
 {
     public class Usuario
     {
-        private int id;
-        private string username;
-
-
+        public int Id { get; set; }
+        public string Username { get; set; }
+        public Hotel Hotel { get; set; }
+        public Rol Rol { get; set; }
+               
         public Usuario(int id, string username)
         {
-            this.username = username;
-            this.id = id;
+            Username = username;
+            Id = id;
         }
 
         public List<Rol> Roles
         {
             get
             {/*
-                DataTable elementos = DatabaseAdapter.traerDataTable("obtener_roles", id);
+                DataTable elementos = DatabaseAdapter.traerDataTable("obtener_roles", Id);
                 List<Rol> roles = new List<Rol>();
 
                 foreach (DataRow elemento in elementos.Rows)
@@ -52,10 +53,7 @@ namespace FrbaHotel
                 return new List<Hotel> { new Hotel(1, "SuperHote"), new Hotel(2, "HotelFeo") };
             }
         }
-        public int Id {get;set;}
-        public string Username { get; set; }
-        public Hotel HotelActual {get;set;}
-        public Rol RolActual {get;set;}
+        
 
   
 

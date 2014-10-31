@@ -11,3 +11,9 @@ E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.Login.LoginUsuari
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM.resources
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.NavegableForm.resources
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.Login.SeleccionFuncionalidad.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\bin\Debug\FrbaHotel.exe.manifest
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\bin\Debug\FrbaHotel.application
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.exe.manifest
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.application
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.ABMUsuario.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.AltaUsuario.resources

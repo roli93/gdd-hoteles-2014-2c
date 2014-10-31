@@ -38,7 +38,7 @@
             // 
             // botonContinuar
             // 
-            this.botonContinuar.Location = new System.Drawing.Point(135, 117);
+            this.botonContinuar.Location = new System.Drawing.Point(162, 104);
             this.botonContinuar.Name = "botonContinuar";
             this.botonContinuar.Size = new System.Drawing.Size(75, 23);
             this.botonContinuar.TabIndex = 0;
@@ -92,7 +92,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(217, 146);
+            this.ClientSize = new System.Drawing.Size(249, 139);
             this.Controls.Add(this.radioBaja);
             this.Controls.Add(this.radioModificacion);
             this.Controls.Add(this.radioAlta);

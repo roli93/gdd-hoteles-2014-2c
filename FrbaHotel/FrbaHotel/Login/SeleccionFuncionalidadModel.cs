@@ -12,9 +12,10 @@ namespace FrbaHotel.Login
 {
     public partial class SeleccionFuncionalidad : NavegableForm
     {
-        private static Dictionary<int, NavegableForm> funcionalidadesPosibles = new Dictionary<int, NavegableForm>();
+        private static Dictionary<int, NavegableFormInstanciator> funcionalidadesPosibles = new Dictionary<int, NavegableFormInstanciator>();
+        public delegate NavegableForm NavegableFormInstanciator(NavegableForm owner);
 
-        public static Dictionary<int, NavegableForm> FuncionalidadesPosibles
+        public static Dictionary<int, NavegableFormInstanciator> FuncionalidadesPosibles
         {
             get
             {
@@ -28,15 +29,15 @@ namespace FrbaHotel.Login
 
         private void agregarPadreAFuncionalidades()
         {
-            foreach (KeyValuePair<int, NavegableForm> entrada in funcionalidadesPosibles)
-                entrada.Value.Owner = this;
+            /*foreach (KeyValuePair<int, NavegableFormInstanciator> entrada in funcionalidadesPosibles)
+               entrada.Value.Owner = this;*/
         }
 
         public List<Object> Funcionalidades
         {
             get
             {
-                return Sesion.Usuario.RolActual.Funcionalidades.Cast<Object>().ToList();
+                return Sesion.Usuario.Rol.Funcionalidades.Cast<Object>().ToList();
             }
         }
 
@@ -44,10 +45,10 @@ namespace FrbaHotel.Login
         {
             get
             {
-                NavegableForm ventanaFuncionalidad;
+                NavegableFormInstanciator constructor;
                 Funcionalidad funcionalidadSeleccionada = (Funcionalidad)comboFuncionalidad.SelectedItem;
-                funcionalidadesPosibles.TryGetValue(funcionalidadSeleccionada.Id, out ventanaFuncionalidad);
-                return ventanaFuncionalidad;
+                funcionalidadesPosibles.TryGetValue(funcionalidadSeleccionada.Id, out constructor);
+                return constructor(this);
             }
         }
 
