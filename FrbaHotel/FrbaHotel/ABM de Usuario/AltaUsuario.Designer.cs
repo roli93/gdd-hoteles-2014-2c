@@ -138,6 +138,9 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
+            this.listBox1.Items.AddRange(new object[] {
+            "Administrador",
+            "Recepcionista"});
             this.listBox1.Location = new System.Drawing.Point(330, 24);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(154, 95);
@@ -390,6 +393,7 @@
             this.button2.Text = "Guardar";
             this.button2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 

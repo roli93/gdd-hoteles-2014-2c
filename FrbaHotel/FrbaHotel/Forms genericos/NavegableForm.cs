@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using FrbaHotel.Administracion_Base_de_Datos;
 using System.Windows.Forms;
 
 namespace FrbaHotel
@@ -106,9 +106,26 @@ namespace FrbaHotel
             }
             catch (ExcepcionFrbaHoteles e)
             {
-                MessageBox.Show(e.Message);
+                MessageBox.Show(e.Message,"Error");
             }
             catch(SystemException e)
+            {
+                MessageBox.Show("Ha ocurrido un error desconocido. Estamos trabajando para solucionarlo");
+            }
+        }
+
+        protected void ExcecuteAndShow(ExceptionableTask task)
+        {
+            try
+            {
+                task();
+                MessageBox.Show("La operación se realizó correctamente");
+            }
+            catch (ExcepcionFrbaHoteles e)
+            {
+                MessageBox.Show(e.Message,"Error");
+            }
+            catch (SystemException e)
             {
                 MessageBox.Show("Ha ocurrido un error desconocido. Estamos trabajando para solucionarlo");
             }

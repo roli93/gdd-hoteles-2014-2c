@@ -6,10 +6,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using FrbaHotel.Forms_genericos;
 
 namespace FrbaHotel.ABM_de_Usuario
 {
-    public partial class AltaUsuario : NavegableForm
+    public partial class AltaUsuario : Alta
     {
         public AltaUsuario()
         {
@@ -104,22 +105,27 @@ namespace FrbaHotel.ABM_de_Usuario
 
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
-            dia = numericUpDown1.Value;
+            dia = Convert.ToInt32(numericUpDown1.Value);
         }
 
         private void numericUpDown3_ValueChanged(object sender, EventArgs e)
         {
-            mes = numericUpDown3.Value;
+            mes = Convert.ToInt32(numericUpDown3.Value);
         }
 
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
-            anio = numericUpDown2.Value;
+            anio = Convert.ToInt32(numericUpDown2.Value);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Limpiar();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ExcecuteAndShow(Guardar);
         }
 
 

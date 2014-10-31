@@ -349,9 +349,11 @@ namespace FrbaHotel.Administracion_Base_de_Datos
             return ejecutarProcedureWithReturnValue("id_ultima_insercion");
         }
 
-        public static void insertarDatosEnTabla(string tabla, object[] valores)
+        public static void insertarDatosEnTabla(string tabla, params object[] valores)
         {
-            ejecutarProcedure("insertar_" + tabla, valores);
+            int error = 0;//ejecutarProcedureWithReturnValue("insertar_" + tabla, valores);
+            CheckExcepcionPara(error);
+
         }
 
         public static void CheckExcepcionPara(int codigo)
@@ -360,7 +362,7 @@ namespace FrbaHotel.Administracion_Base_de_Datos
                 throw ExcepcionPara(codigo);
         }
 
-        private static ExcepcionFrbaHoteles ExcepcionPara(int codigo)
+        public static ExcepcionFrbaHoteles ExcepcionPara(int codigo)
         {
             ExcepcionFrbaHoteles excepcion;
             excepciones.TryGetValue(codigo, out excepcion);
