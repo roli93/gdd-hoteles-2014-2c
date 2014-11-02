@@ -105,6 +105,8 @@ namespace FrbaHotel.ABM_de_Usuario
             bindCheckedListBox(checkedListBox1, Sesion.ObjectRoles);
             bindCheckedListBox(checkedListBox2, Sesion.ObjectHoteles);
             bindCombo(comboBox1, new List<object>(new object[] { new TipoDocumento(1, "DNI") })/*TODO: new List<object>(DatabaseAdapter.dataTableToString("obtener_tipo_documento", "descripcion",null))*/);
+            textBox2.UseSystemPasswordChar = true;
+            textBox5.UseSystemPasswordChar = true;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
