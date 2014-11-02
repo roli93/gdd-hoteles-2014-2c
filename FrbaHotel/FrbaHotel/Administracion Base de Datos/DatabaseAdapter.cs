@@ -369,6 +369,18 @@ namespace FrbaHotel.Administracion_Base_de_Datos
             return excepcion;
         }
 
+        public static string[] dataTableToString(string procedure, string columna, params object[] argumentos)
+        {
+            DataTable elementos = traerDataTable(procedure, argumentos);
+            List<string> lista = new List<string>();
+
+            foreach (DataRow elemento in elementos.Rows)
+            {
+                lista.Add(elemento[columna].ToString());
+            }
+            return lista.ToArray();
+        }
+
             
     }
 }

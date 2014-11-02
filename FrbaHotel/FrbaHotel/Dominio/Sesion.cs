@@ -26,6 +26,22 @@ namespace FrbaHotel
                 usuario = value;
             }
         }
+
+        public static List<Object> ObjectRoles
+        {
+            get
+            {
+                return Usuario.Roles.Cast<Object>().ToList();
+            }
+        }
+
+        public static List<Object> ObjectHoteles
+        {
+            get
+            {
+                return Usuario.Hoteles.Cast<Object>().ToList();
+            }
+        }
                 
         public static void iniciar(string username, string password)
         {
@@ -36,30 +52,6 @@ namespace FrbaHotel
             Sesion.Usuario = new Usuario((int)tablaUsuario.Rows[0]["id_usuario"],(string)tablaUsuario.Rows[0]["username"]);
             */
             Sesion.Usuario = new Usuario(0, (string)"pepe");
-        }
-        
-        private static string[] dataTableToString(string procedure, string columna, object argumento)
-        {
-            DataTable elementos = DatabaseAdapter.traerDataTable(procedure, argumento);
-            List<string> lista = new List<string>();
-
-            foreach (DataRow elemento in elementos.Rows)
-            {
-               lista.Add(elemento[columna].ToString());
-            }
-            return lista.ToArray();
-        }
-        //Deprecated(?)
-        public static string[] getFuncionalidades()
-        {
-           // return dataTableToString("obtener_funcionalidades","Descripcion",rol)
-            return new string[] { "jaja", "jeje" };
-        }
-
-        public static string[] getRoles()
-        {
-            // return dataTableToString("obtener_roles","Descripcion",usuario)
-            return new string[] { "jaja", "jeje" };
         }
     }
 }

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FrbaHotel.Forms_genericos;
+using FrbaHotel.Administracion_Base_de_Datos;
 
 namespace FrbaHotel.ABM_de_Usuario
 {
@@ -58,11 +59,6 @@ namespace FrbaHotel.ABM_de_Usuario
             confirmarPassword = textBox5.Text;
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            rol = (Rol) listBox1.SelectedItem;
-        }
-
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             nombre = textBox3.Text;
@@ -97,27 +93,7 @@ namespace FrbaHotel.ABM_de_Usuario
         {
             direccion = textBox1.Text;
         }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            hotel = (Hotel) comboBox1.SelectedItem;
-        }
-
-        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
-        {
-            dia = Convert.ToInt32(numericUpDown1.Value);
-        }
-
-        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
-        {
-            mes = Convert.ToInt32(numericUpDown3.Value);
-        }
-
-        private void numericUpDown2_ValueChanged(object sender, EventArgs e)
-        {
-            anio = Convert.ToInt32(numericUpDown2.Value);
-        }
-
+ 
         private void button1_Click(object sender, EventArgs e)
         {
             Limpiar();
@@ -126,6 +102,19 @@ namespace FrbaHotel.ABM_de_Usuario
         private void button2_Click(object sender, EventArgs e)
         {
             ExcecuteAndShow(Guardar);
+        }
+
+        private void AltaUsuario_Load(object sender, EventArgs e)
+        {
+            dateTimePicker1.Value = DateTime.Now;
+        }
+
+        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
+        {
+            fechaNacimiento = dateTimePicker1.Value;
+            bindCheckedListBox(checkedListBox1,Sesion.ObjectRoles);
+            bindCheckedListBox(checkedListBox2, Sesion.ObjectHoteles);
+            bindDomainUpDown(domainUpDown1, new List<object>(new string[]{"DNI","LC","LE"})/*TODO new List<object>(DatabaseAdapter.dataTableToString("obtener_tipo_documento", "descripcion",null))*/);
         }
 
 

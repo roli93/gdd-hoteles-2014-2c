@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using FrbaHotel.Administracion_Base_de_Datos;
 
 namespace FrbaHotel.Forms_genericos
 {
@@ -92,5 +93,13 @@ namespace FrbaHotel.Forms_genericos
         public virtual void ValidarErroresConcretos()
         {
         }
+
+        public void AddElementos(string tablaIntermedia, int idOneSide, List<int> idsManySide)
+        {
+            foreach(int id in idsManySide)
+                DatabaseAdapter.insertarDatosEnTabla(tablaIntermedia,idOneSide,id);
+        }
+
+
     }
 }

@@ -12,5 +12,15 @@ namespace FrbaHotel
         {
             combo.Items.AddRange(elementos.ToArray());
         }
+
+        protected void bindCheckedListBox(CheckedListBox list, List<Object> elementos)
+        {
+            list.Items.AddRange(elementos.ToArray());
+        }
+
+        protected void bindDomainUpDown(DomainUpDown list, List<Object> elementos)
+        {
+            list.Items.AddRange(elementos.ToArray());
+        }
     }
 }
