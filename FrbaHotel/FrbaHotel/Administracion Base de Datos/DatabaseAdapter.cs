@@ -351,9 +351,10 @@ namespace FrbaHotel.Administracion_Base_de_Datos
 
         public static void insertarDatosEnTabla(string tabla, params object[] valores)
         {
-            int error = 0;//ejecutarProcedureWithReturnValue("insertar_" + tabla, valores);
-            CheckExcepcionPara(error);
 
+            int error = 0;
+            //TODO error = ejecutarProcedureWithReturnValue("insertar_" + tabla, valores);
+            CheckExcepcionPara(error);
         }
 
         public static void CheckExcepcionPara(int codigo)

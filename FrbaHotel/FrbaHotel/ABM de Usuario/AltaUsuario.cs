@@ -74,11 +74,6 @@ namespace FrbaHotel.ABM_de_Usuario
             apellido = textBox8.Text;
         }
 
-        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
-        {
-            tipoDni = (TipoDocumento) domainUpDown1.SelectedItem;
-        }
-
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
             mail = textBox6.Text;
@@ -107,14 +102,34 @@ namespace FrbaHotel.ABM_de_Usuario
         private void AltaUsuario_Load(object sender, EventArgs e)
         {
             dateTimePicker1.Value = DateTime.Now;
+            bindCheckedListBox(checkedListBox1, Sesion.ObjectRoles);
+            bindCheckedListBox(checkedListBox2, Sesion.ObjectHoteles);
+            bindCombo(comboBox1, new List<object>(new object[] { new TipoDocumento(1, "DNI") })/*TODO: new List<object>(DatabaseAdapter.dataTableToString("obtener_tipo_documento", "descripcion",null))*/);
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            fechaNacimiento = dateTimePicker1.Value;
-            bindCheckedListBox(checkedListBox1,Sesion.ObjectRoles);
-            bindCheckedListBox(checkedListBox2, Sesion.ObjectHoteles);
-            bindDomainUpDown(domainUpDown1, new List<object>(new string[]{"DNI","LC","LE"})/*TODO new List<object>(DatabaseAdapter.dataTableToString("obtener_tipo_documento", "descripcion",null))*/);
+            fechaNacimiento = dateTimePicker1.Value;            
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            tipoDni = (TipoDocumento)comboBox1.SelectedItem;
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            roles = CheckListToList<Rol>(checkedListBox1);
+        }
+
+        private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            hoteles = CheckListToList<Hotel>(checkedListBox2);
         }
 
 

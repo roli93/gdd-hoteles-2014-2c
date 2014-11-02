@@ -23,7 +23,9 @@ namespace FrbaHotel.Forms_genericos
             {typeof(DomainUpDown), c => {}},
             {typeof(Button), c => {}},
             {typeof(Label), c => {}},
-            {typeof(ComboBox), c => {}}
+            {typeof(ComboBox), c => {}},
+            {typeof(CheckedListBox), c => ClearItems((CheckedListBox)c)},
+            {typeof(DateTimePicker), c => ((DateTimePicker)c).Value=DateTime.Now}
     };
 
         protected string errorMessage = "";
@@ -52,7 +54,7 @@ namespace FrbaHotel.Forms_genericos
         {
             int i;
             foreach (string campo in campos)
-                if (!int.TryParse(campo, out i))
+                if ((!int.TryParse(campo, out i)) && (campo != null) && (campo != ""))
                     errorMessage += ("\""+campo + "\" no es un número válido \n");
         }
 
@@ -76,6 +78,12 @@ namespace FrbaHotel.Forms_genericos
                     errorMessage += ("El campo "+nombresCampos[i] + " no ha sido completado\n");
         }
 
+        public void ValidarCollecionVacia<T>(string nombreCampo, List<T> campo)
+        {
+            if (campo.Count==0)
+                    errorMessage += ("No se han seleccionado opciones para " + nombreCampo + "\n");
+        }
+
         public bool HuboErrores()
         {
             errorMessage = "";
@@ -94,12 +102,20 @@ namespace FrbaHotel.Forms_genericos
         {
         }
 
-        public void AddElementos(string tablaIntermedia, int idOneSide, List<int> idsManySide)
+        public List<T> CheckListToList<T>(CheckedListBox checkedList)
         {
-            foreach(int id in idsManySide)
-                DatabaseAdapter.insertarDatosEnTabla(tablaIntermedia,idOneSide,id);
+            List<T> lista = new List<T>();
+            foreach (T elemento in checkedList.CheckedItems)
+                lista.Add(elemento);
+            return lista;
         }
 
-
+        public static void ClearItems(CheckedListBox checkedListBox)
+        {
+            object[] items = new object[checkedListBox.Items.Count];
+            checkedListBox.Items.CopyTo(items, 0);
+            checkedListBox.Items.Clear();
+            checkedListBox.Items.AddRange(items);
+        }
     }
 }

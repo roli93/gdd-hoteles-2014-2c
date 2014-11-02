@@ -118,6 +118,7 @@
     <Compile Include="Dominio\Hotel.cs" />
     <Compile Include="Dominio\Rol.cs" />
     <Compile Include="Dominio\Sesion.cs" />
+    <Compile Include="Dominio\TipoDocumento.cs" />
     <Compile Include="Dominio\Usuario.cs" />
     <Compile Include="ExcepcionFrbaHoteles.cs" />
     <Compile Include="Forms genericos\ABM.cs">
@@ -138,6 +139,8 @@
     <Compile Include="Forms genericos\NavegableFormModel.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Homes\Home.cs" />
+    <Compile Include="Homes\HomeUsuarios.cs" />
     <Compile Include="Login\LoginUsuariosModel.cs">
       <SubType>Form</SubType>
     </Compile>

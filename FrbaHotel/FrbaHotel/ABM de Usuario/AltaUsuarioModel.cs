@@ -7,43 +7,33 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FrbaHotel.Administracion_Base_de_Datos;
+using FrbaHotel.Homes;
 
 namespace FrbaHotel.ABM_de_Usuario
 {
-
-    public class TipoDocumento
-    {
-        public int Id;
-        public string Descripcion;
-
-        public TipoDocumento(int id, string descripcion)
-        {
-            Id = id;
-            Descripcion = descripcion;
-        }
-    }
-
     public partial class AltaUsuario
     {
         private string confirmarPassword, password, nombre, apellido, nroDocumento, mail, telefono, direccion,username;
         DateTime fechaNacimiento;
-        private Hotel hotel;
-        private Rol rol;
+        private List<Hotel> hoteles=new List<Hotel>();
+        private List<Rol> roles = new List<Rol>();
         private TipoDocumento tipoDni;
 
         private void Guardar()
         {
             ValidarErrores();
-            DatabaseAdapter.insertarDatosEnTabla("usuario", username, password, rol.Id, nombre, apellido, tipoDni.Id, nroDocumento, mail, telefono, direccion, fechaNacimiento, hotel.Id);
+            HomeUsuarios.registrarUsuario(username, password, roles, nombre, apellido, tipoDni, nroDocumento, mail, telefono, direccion, fechaNacimiento, hoteles);
         }
 
         public override void ValidarErroresConcretos()
         {
             ValidarVacios(
-                new string[]{"Password","Nombre","Apellido","Documento","Mail","Teléfono","Dirección","Nombre de Usuario","Hotel","Rol","Tipo Documento"},
-                new object[]{password, nombre, apellido, nroDocumento, mail, telefono, direccion, username, hotel, rol, tipoDni});
+                new string[]{"Password","Nombre","Apellido","Documento","Mail","Teléfono","Dirección","Nombre de Usuario","Tipo Documento"},
+                new object[]{password, nombre, apellido, nroDocumento, mail, telefono, direccion, username, tipoDni});
             ValidarDoblePassword();
             ValidarNumericos(nroDocumento, telefono);
+            ValidarCollecionVacia<Rol>("Roles", roles);
+            ValidarCollecionVacia<Hotel>("Hoteles", hoteles);
         }
 
         public void ValidarDoblePassword()
