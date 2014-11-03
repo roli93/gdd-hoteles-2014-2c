@@ -30,5 +30,15 @@ namespace FrbaHotel.ABM_de_Usuario
         {
             new AltaUsuario(this).FinalStandaloneOpen();
         }
+
+        public override void modificacion()
+        {
+            new SeleccionarUsuario(this,"Editar").StandaloneOpen();
+        }
+
+        public override void baja()
+        {
+            new SeleccionarUsuario(this,"Eliminar").StandaloneOpen();
+        }
     }
 }

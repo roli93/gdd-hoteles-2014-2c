@@ -12,11 +12,21 @@ namespace FrbaHotel.ABM_de_Usuario
 {
     public partial class SeleccionarUsuario :Alta
     {
+        private string accion;
+
         public SeleccionarUsuario()
         {
             InitializeComponent();
             constructorEdicion = (id) => { return new ModificacionUsuario(this, id); };
         }
+        public SeleccionarUsuario(NavegableForm owner,string accion)
+            : base(owner)
+        {
+            InitializeComponent();
+            constructorEdicion = (id) => { return new ModificacionUsuario(this, id); };
+            this.accion = accion;
+        }
+
 
         private void label3_Click(object sender, EventArgs e)
         {
@@ -25,13 +35,11 @@ namespace FrbaHotel.ABM_de_Usuario
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Limpiar();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Execute(Buscar);
-            cargarGrilla(dataGridView1, usuarios);
+            
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -71,7 +79,9 @@ namespace FrbaHotel.ABM_de_Usuario
 
         private void SeleccionarUsuario_Load(object sender, EventArgs e)
         {
-            cargarBotonModificarDatos(dataGridView1, "Editar");
+            bindCombo<Rol>(comboBox1, Sesion.RolesDisponibles);
+            bindCombo<Hotel>(comboBox2, Sesion.HotelesDisponibles);
+            cargarBotonModificarDatos(dataGridView1, accion);
         }
 
         private void label11_Click(object sender, EventArgs e)
@@ -111,7 +121,19 @@ namespace FrbaHotel.ABM_de_Usuario
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            abrirVentanaEdicion(dataGridView1, e);
+            if (accion == "Editar") abrirVentanaEdicion(dataGridView1, e);
+            else if (accion == "Eliminar") EliminarUsuario(dataGridView1, e);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Limpiar();
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            Execute(Buscar);
+            cargarGrilla(dataGridView1, usuarios);
         }
     }
 }

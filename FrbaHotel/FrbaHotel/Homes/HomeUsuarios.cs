@@ -23,12 +23,20 @@ namespace FrbaHotel.Homes
         }
 
         public static DataTable buscarUsuarios(string nombre, string apellido,string email, string username, Rol rol, Hotel Hotel)
-        {
+        {/*TODO
             return DatabaseAdapter.traerDataTable("buscar_usuarios", nombre, apellido, email, username, rol.Id, Hotel.Id);
+          */DataTable ej = new DataTable();
+            ej.Clear();
+            ej.Columns.Add("Nombre");
+            ej.Columns.Add("ID");
+            ej.Columns.Add("Edad");
+            ej.Columns.Add("apellido");
+            ej.Rows.Add(new object[] { "Juan", 1, 23,"Perez" });
+            return ej;
         }
 
         public static void buscarPorId(int id, out string username, out string password, out  List<Rol> roles, out  string nombre, out  string apellido, out  TipoDocumento tipoDni, out  string dni, out  string mail, out  string telefono, out  string direccion, out  DateTime fechaNacimiento, out  List<Hotel> hoteles)
-        {
+        {/*TODO
             DataRow usuario = DatabaseAdapter.traerDataTable("buscar_usuario_por_id", id).Rows[0];
             username = usuario["username"].ToString();
             password = usuario["password"].ToString();
@@ -42,7 +50,22 @@ namespace FrbaHotel.Homes
             Usuario user = new Usuario(id, username);
             tipoDni = user.TipoDocumento;
             roles = user.Roles;
-            hoteles = user.Hoteles;              
+            hoteles = user.Hoteles;         */
+
+            username = "juanLoco34";
+            password = "sss";
+            nombre = "Juan";
+            apellido = "Perez";
+            dni = "37777777";
+            mail = "juanLoco@mimail.com";
+            direccion = "Mi casa";
+            telefono = "45556659";
+            fechaNacimiento = new DateTime(1999,12,15);
+            Usuario user = new Usuario(id, username);
+            tipoDni = user.TipoDocumento;
+            roles = user.Roles;
+            hoteles = user.Hoteles; 
+
         }
 
         public static void actualizarUsuario(int id,string username, string password, List<Rol> rolesOriginales, List<Rol> roles, string nombre, string apellido, TipoDocumento tipoDni, string dni, string mail, string telefono, string direccion, DateTime fechaNacimiento, List<Hotel> hotelesOriginales, List<Hotel> hoteles)
@@ -52,6 +75,11 @@ namespace FrbaHotel.Homes
             agregarElementos("usuario_x_hotel", id,IdsDe<Hotel>(diferencia<Hotel>(hoteles, hotelesOriginales)));
             removerElementos("usuario_x_rol", id, IdsDe<Rol>(diferencia<Rol>(rolesOriginales, roles)));
             removerElementos("usuario_x_hotel", id, IdsDe<Hotel>(diferencia<Hotel>(hotelesOriginales, hoteles)));
+        }
+
+        public static void bajaLogica(int id)
+        {/*TODO
+            DatabaseAdapter.ejecutarProcedure("baja_usuario", id);*/
         }
 
     }

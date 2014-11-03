@@ -24,6 +24,18 @@ namespace FrbaHotel.ABM_de_Usuario
             usuarios= HomeUsuarios.buscarUsuarios(nombre, apellido, email, username, rol, hotel);
         }
 
+        public void EliminarUsuario(DataGridView grilla, DataGridViewCellEventArgs e)
+        {
+            DataGridViewCellCollection celdas = grilla.Rows[e.RowIndex].Cells;
+            int aModificar = Convert.ToInt32(celdas["ID"].Value);
+            string nombre = celdas["nombre"].Value.ToString();
+            string apellido = celdas["apellido"].Value.ToString();
+            if (MessageBox.Show("¿Realmente desea dar de baja a "+nombre +" "+apellido+"?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                HomeUsuarios.bajaLogica(aModificar);
+                cargarGrilla(grilla, usuarios);
+            }
+        }
 
     }
 }

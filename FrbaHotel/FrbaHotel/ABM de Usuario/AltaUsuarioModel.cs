@@ -19,7 +19,7 @@ namespace FrbaHotel.ABM_de_Usuario
         protected List<Rol> roles = new List<Rol>();
         protected TipoDocumento tipoDni;
 
-        protected void Guardar()
+        protected virtual void Guardar()
         {
             ValidarErrores();
             HomeUsuarios.registrarUsuario(username, password, roles, nombre, apellido, tipoDni, nroDocumento, mail, telefono, direccion, fechaNacimiento, hoteles);

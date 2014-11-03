@@ -20,6 +20,7 @@ namespace FrbaHotel.ABM_de_Usuario
             : base(owner)
         {
             this.IdUsuario = IdUsuario;
+            InitializeComponent();
         }
 
         private void ModificacionUsuario_Load(object sender, EventArgs e)
@@ -27,14 +28,25 @@ namespace FrbaHotel.ABM_de_Usuario
             CargarUsuario();
             SelectCheckBoxes<Rol>(checkedListBox1, rolesOriginales);
             SelectCheckBoxes<Hotel>(checkedListBox2, hotelesOriginales);
+            _username.Text = username;
+            _password.Text = password;
+            _confirmarPassword.Text = password;
+            _nombre.Text = nombre;
+            _apellido.Text = apellido;
+            _mail.Text = mail;
+            _direccion.Text = direccion;
+            _nroDocumento.Text = nroDocumento;
+            _telefono.Text = telefono;
+            dateTimePicker1.Value = fechaNacimiento;
+            comboBox1.SelectedIndex = comboBox1.FindStringExact(tipoDni.Descripcion,0);
         }
 
-        private void SelectCheckBoxes<T>(CheckedListBox box,List<T> items)
+        private void SelectCheckBoxes<T>(CheckedListBox box, List<T> items) where T : Entidad 
         {
-           for (int count = 0; count < checkedListBox1.Items.Count; count++)
+           for (int count = 0; count < box.Items.Count; count++)
             {
-              if (items.Contains<T>((T)checkedListBox1.Items[count]))
-                checkedListBox1.SetItemChecked(count, true);
+              if (items.Any(e=>e.Equals(((T)box.Items[count]))))
+                box.SetItemChecked(count, true);
             }
         }
     }

@@ -18,9 +18,9 @@ namespace FrbaHotel
             if (this.radioAlta.Checked)
                 alta();
             else if (this.radioModificacion.Checked)
-                baja();
-            else if (this.radioBaja.Checked)
                 modificacion();
+            else if (this.radioBaja.Checked)
+                baja();
             else
                 throw new ExcepcionFrbaHoteles("Debe seleccionar una acción para continuar");
         }

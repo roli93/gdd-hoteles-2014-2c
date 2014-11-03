@@ -23,9 +23,10 @@ namespace FrbaHotel.Forms_genericos
             {typeof(DomainUpDown), c => {}},
             {typeof(Button), c => {}},
             {typeof(Label), c => {}},
-            {typeof(ComboBox), c => {}},
+            {typeof(ComboBox), c => ((ComboBox)c).SelectedIndex=-1},
             {typeof(CheckedListBox), c => ClearItems((CheckedListBox)c)},
-            {typeof(DateTimePicker), c => ((DateTimePicker)c).Value=DateTime.Now}
+            {typeof(DateTimePicker), c => ((DateTimePicker)c).Value=DateTime.Now},
+            {typeof(DataGridView), c => {}},
     };
 
         public delegate NavegableForm ConstructorModificacion(int IdElemento);
@@ -160,7 +161,7 @@ namespace FrbaHotel.Forms_genericos
             try
             {
                 DataGridViewCellCollection celdas = grilla.Rows[e.RowIndex].Cells;
-                int aModificar =(int) celdas["ID"].Value;
+                int aModificar = Convert.ToInt32(celdas["ID"].Value);
                 if (e.ColumnIndex == celdas["Operación"].ColumnIndex)
                 {
                     constructorEdicion(aModificar).StandaloneOpen();
