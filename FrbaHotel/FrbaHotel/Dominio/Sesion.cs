@@ -14,6 +14,7 @@ namespace FrbaHotel
     public static class Sesion
     {
         private static Usuario usuario;
+        public delegate TResul Constructor<T,TResul>(T entrada);
 
         public static Usuario Usuario
         {
@@ -27,21 +28,42 @@ namespace FrbaHotel
             }
         }
 
-        public static List<Object> ObjectRoles
+        public static List<Rol> RolesDisponibles
         {
             get
             {
-                return Usuario.Roles.Cast<Object>().ToList();
+                //TODO return elementosDisponibles<Rol>((e) => new Rol((int)e["id_rol"], (string)e["descripcion"]), "roles_disponibles");
+                return new List<Rol> { new Rol(1, "admin"), new Rol(2, "recep") };
             }
         }
 
-        public static List<Object> ObjectHoteles
+        public static List<Hotel> HotelesDisponibles
         {
             get
             {
-                return Usuario.Hoteles.Cast<Object>().ToList();
+                //TODO return elementosDisponibles<Hotel>((e) => new Hotel((int)e["id_hotel"], (string)e["nombre"]), "hoteles_disponibles");
+                return new List<Hotel> { new Hotel(1, "SuperHote"), new Hotel(2, "HotelFeo") };
             }
         }
+
+        public static List<TipoDocumento> TiposDocumentoDisponibles
+        {
+            get
+            {
+                //TODO return elementosDisponibles<TipoDocumento>((e) => new TipoDocumento((int)e["id_documento"], (string)e["descripcion"]), "documentos_disponibles");
+                return new List<TipoDocumento> { new TipoDocumento(1, "DNI"), new TipoDocumento(2, "LC") };
+            }
+        }
+
+        private static List<T> elementosDisponibles<T>(Constructor<DataRow,T> constructor, string procedure)
+        {
+            DataTable elementos = DatabaseAdapter.traerDataTable("procedure");
+            List<T> listaElementos = new List<T>();
+            foreach (DataRow elemento in elementos.Rows)
+                listaElementos.Add(constructor(elemento));
+            return listaElementos;
+        }
+
                 
         public static void iniciar(string username, string password)
         {

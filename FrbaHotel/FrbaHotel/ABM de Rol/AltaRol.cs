@@ -6,10 +6,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using FrbaHotel.Forms_genericos;
 
 namespace FrbaHotel.ABM_de_Rol
 {
-    public partial class AltaRol : NavegableForm
+    public partial class AltaRol : Alta
     {
         public AltaRol()
         {

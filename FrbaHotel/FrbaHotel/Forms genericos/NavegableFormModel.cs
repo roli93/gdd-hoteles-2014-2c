@@ -8,19 +8,19 @@ namespace FrbaHotel
 {
     public partial class NavegableForm
     {
-        protected void bindCombo(ComboBox combo, List<Object> elementos)
+        protected void bindCombo<T>(ComboBox combo, List<T> elementos)
         {
-            combo.Items.AddRange(elementos.ToArray());
+            combo.Items.AddRange(elementos.Cast<Object>().ToList().ToArray());
         }
 
-        protected void bindCheckedListBox(CheckedListBox list, List<Object> elementos)
+        protected void bindCheckedListBox<T>(CheckedListBox list, List<T> elementos)
         {
-            list.Items.AddRange(elementos.ToArray());
+            list.Items.AddRange(elementos.Cast<Object>().ToList().ToArray());
         }
 
-        protected void bindDomainUpDown(DomainUpDown list, List<Object> elementos)
+        protected void bindDomainUpDown<T>(DomainUpDown list, List<T> elementos)
         {
-            list.Items.AddRange(elementos.ToArray());
+            list.Items.AddRange(elementos.Cast<Object>().ToList().ToArray());
         }
     }
 }

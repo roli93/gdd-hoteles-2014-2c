@@ -86,11 +86,32 @@
     <Compile Include="ABM de Regimen\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM de Rol\Form1.cs">
+    <Compile Include="ABM de Rol\ABMRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM de Rol\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ABM de Rol\ABMRol.Designer.cs">
+      <DependentUpon>ABMRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Rol\AltaRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Rol\AltaRol.Designer.cs">
+      <DependentUpon>AltaRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Rol\AltaRolModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Rol\BajaRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Rol\BajaRol.Designer.cs">
+      <DependentUpon>BajaRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Rol\SeleccionarRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Rol\SeleccionarRol.Designer.cs">
+      <DependentUpon>SeleccionarRol.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM de Usuario\ABMUsuario.cs">
       <SubType>Form</SubType>
@@ -176,6 +197,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ABM de Rol\AltaRol.resx">
+      <DependentUpon>AltaRol.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM de Usuario\ABMUsuario.resx">
       <DependentUpon>ABMUsuario.cs</DependentUpon>
     </EmbeddedResource>

@@ -26,7 +26,7 @@ namespace FrbaHotel
         public List<Rol> Roles
         {
             get
-            {/*
+            {/*     TODO
                 DataTable elementos = DatabaseAdapter.traerDataTable("obtener_roles", Id);
                 List<Rol> roles = new List<Rol>();
 
@@ -42,7 +42,7 @@ namespace FrbaHotel
         {
             get
             {
-                /*DataTable elementos = DatabaseAdapter.traerDataTable("obtener_hoteles", id);
+                /*  TODO DataTable elementos = DatabaseAdapter.traerDataTable("obtener_hoteles", id);
                 List<Hotel> hoteles = new List<Hotel>();
 
                 foreach (DataRow elemento in elementos.Rows)

@@ -17,3 +17,4 @@ E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.exe.manifest
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.application
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.ABMUsuario.resources
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Usuario.AltaUsuario.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Rol.AltaRol.resources

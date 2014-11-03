@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FrbaHotel.Administracion_Base_de_Datos;
+using System.Data;
 
 namespace FrbaHotel.Homes
 {
@@ -20,5 +21,6 @@ namespace FrbaHotel.Homes
         {
             return DatabaseAdapter.ejecutarProcedureWithReturnValue("id_username", username);
         }
+
     }
 }
