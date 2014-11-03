@@ -12,7 +12,7 @@ namespace FrbaHotel.Forms_genericos
 {
     public class Alta : NavegableForm
     {
-        private static Dictionary<Type, Action<Control>> cleaners = new Dictionary<Type, Action<Control>>() { 
+        protected static Dictionary<Type, Action<Control>> cleaners = new Dictionary<Type, Action<Control>>() { 
             {typeof(TextBox), c => ((TextBox)c).Clear()},
             {typeof(CheckBox), c => ((CheckBox)c).Checked = false},
             {typeof(ListBox), c =>{} },
@@ -28,11 +28,20 @@ namespace FrbaHotel.Forms_genericos
             {typeof(DateTimePicker), c => ((DateTimePicker)c).Value=DateTime.Now}
     };
 
+        public delegate NavegableForm ConstructorModificacion(int IdElemento);
+        protected ConstructorModificacion constructorEdicion;
+
         protected string errorMessage = "";
 
         public Alta(NavegableForm owner)
             : base(owner)
         {
+        }
+
+        public Alta(NavegableForm owner,ConstructorModificacion constructorEdicion)
+            : base(owner)
+        {
+            this.constructorEdicion = constructorEdicion;
         }
 
         public Alta()
@@ -117,5 +126,50 @@ namespace FrbaHotel.Forms_genericos
             checkedListBox.Items.Clear();
             checkedListBox.Items.AddRange(items);
         }
+
+        //Métodos de listado, los pongo aca porque el VS se puso en puto y no me diseña si le hago una subclase a esta
+
+        public void cargarBotonModificarDatos(DataGridView grilla, string boton)
+        {
+            DataGridViewButtonColumn col = new DataGridViewButtonColumn();
+            col.Text = boton;
+            col.Name = "Operación";
+            col.UseColumnTextForButtonValue = true;
+            grilla.Columns.Add(col);
+        }
+
+        public void cargarGrilla(DataGridView grid, DataTable dataTable)
+        {
+            grid.DataSource = dataTable;
+            grid.AutoResizeColumns(); //ajusta el tamaño de las columnas y filas a su contenido
+            grid.AutoResizeRows();
+        }
+
+        public void abrirVentanaEdicion(DataGridView grilla, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (grilla[0, e.RowIndex].Value == null)
+                {
+
+                }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+            }
+            try
+            {
+                DataGridViewCellCollection celdas = grilla.Rows[e.RowIndex].Cells;
+                int aModificar =(int) celdas["ID"].Value;
+                if (e.ColumnIndex == celdas["Operación"].ColumnIndex)
+                {
+                    constructorEdicion(aModificar).StandaloneOpen();
+                }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+            }
+        }
+
     }
 }

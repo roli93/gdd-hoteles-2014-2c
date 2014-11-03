@@ -53,9 +53,14 @@ namespace FrbaHotel
                 return new List<Hotel> { new Hotel(1, "SuperHote"), new Hotel(2, "HotelFeo") };
             }
         }
-        
 
-  
-
+        public TipoDocumento TipoDocumento
+        {
+            get
+            {
+                DataRow documento = DatabaseAdapter.traerDataTable("obtener_documento", Id).Rows[0];
+                return new TipoDocumento(Convert.ToInt32(documento["id_rol"]), documento["nombre"].ToString());
+            }
+        }
     }
 }

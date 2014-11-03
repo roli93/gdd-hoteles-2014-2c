@@ -409,9 +409,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.CheckedListBox checkedListBox2;
+        protected System.Windows.Forms.CheckedListBox checkedListBox1;
+        protected System.Windows.Forms.CheckedListBox checkedListBox2;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
+        protected System.Windows.Forms.ComboBox comboBox1;
     }
 }

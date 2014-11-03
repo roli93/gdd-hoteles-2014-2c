@@ -357,6 +357,23 @@ namespace FrbaHotel.Administracion_Base_de_Datos
             CheckExcepcionPara(error);
         }
 
+        public static void borrarDatosEnTabla(string tabla, params object[] valores)
+        {
+
+            int error = 0;
+            //TODO error = ejecutarProcedureWithReturnValue("borrar_" + tabla, valores);
+            CheckExcepcionPara(error);
+        }
+
+        public static void actualizarDatosEnTabla(string tabla, params object[] valores)
+        {
+
+            int error = 0;
+            //TODO error = ejecutarProcedureWithReturnValue("actualizar_" + tabla, valores);
+            CheckExcepcionPara(error);
+        }
+
+
         public static void CheckExcepcionPara(int codigo)
         {
             if (codigo != 0)
