@@ -35,6 +35,7 @@
             this._buscar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this._id = new System.Windows.Forms.TextBox();
+            this._limpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._gridRoles)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,6 +64,7 @@
             this._estaActivo.TabIndex = 2;
             this._estaActivo.Text = "Activo";
             this._estaActivo.UseVisualStyleBackColor = true;
+            this._estaActivo.CheckedChanged += new System.EventHandler(this._estaActivo_CheckedChanged);
             // 
             // _gridRoles
             // 
@@ -105,11 +107,25 @@
             this._id.TabIndex = 51;
             this._id.TextChanged += new System.EventHandler(this._id_TextChanged);
             // 
+            // _limpiar
+            // 
+            this._limpiar.Image = global::FrbaHotel.Properties.Resources.clean;
+            this._limpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._limpiar.Location = new System.Drawing.Point(269, 46);
+            this._limpiar.Name = "_limpiar";
+            this._limpiar.Size = new System.Drawing.Size(101, 36);
+            this._limpiar.TabIndex = 52;
+            this._limpiar.Text = "Limpiar";
+            this._limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._limpiar.UseVisualStyleBackColor = true;
+            this._limpiar.Click += new System.EventHandler(this._limpiar_Click);
+            // 
             // SeleccionarRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(485, 306);
+            this.Controls.Add(this._limpiar);
             this.Controls.Add(this._id);
             this.Controls.Add(this.label1);
             this.Controls.Add(this._buscar);
@@ -134,5 +150,6 @@
         private System.Windows.Forms.Button _buscar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox _id;
+        private System.Windows.Forms.Button _limpiar;
     }
 }

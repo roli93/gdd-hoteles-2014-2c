@@ -7,6 +7,8 @@
     using System.Text;
     using System.Windows.Forms;
     using FrbaHotel.Forms_genericos;
+using FrbaHotel.ABM_de_Rol;
+
 
 namespace FrbaHotel.ABM_de_Rol
 {
@@ -23,7 +25,7 @@ namespace FrbaHotel.ABM_de_Rol
                 : base(owner)
             {
                 InitializeComponent();
-                constructorEdicion = (id) => { return new ModificacionRol(this, id); };
+                constructorEdicion = (id) => { return new ModificarRol(this, id); };
                 this.accion = accion;
             }
 
@@ -53,7 +55,17 @@ namespace FrbaHotel.ABM_de_Rol
 
              private void _id_TextChanged(object sender, EventArgs e)
              {
-                 id = _id.Text;
+                 id = Convert.ToInt32(_id.Text);
+             }
+
+             private void _estaActivo_CheckedChanged(object sender, EventArgs e)
+             {
+                 estaActivo = _estaActivo.Checked;
+             }
+
+             private void _limpiar_Click(object sender, EventArgs e)
+             {
+                 Limpiar();
              }
 
         

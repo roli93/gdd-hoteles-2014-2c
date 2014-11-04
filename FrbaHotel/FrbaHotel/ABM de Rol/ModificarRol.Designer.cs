@@ -28,9 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ModificarRol
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "SeleccionarRol";
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "ModificarRol";
+            this.Text = "ModificarRol";
+            this.Load += new System.EventHandler(this.ModificarRol_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

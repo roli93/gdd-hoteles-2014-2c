@@ -30,10 +30,11 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this._nombre = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.FuncLabel = new System.Windows.Forms.Label();
             this._aceptar = new System.Windows.Forms.Button();
             this._habilitado = new System.Windows.Forms.CheckBox();
             this._funcionalidadesCLB = new System.Windows.Forms.CheckedListBox();
+            this._limpiar = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -53,14 +54,14 @@
             this._nombre.TabIndex = 1;
             this._nombre.TextChanged += new System.EventHandler(this._nombre_TextChanged);
             // 
-            // label2
+            // FuncLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 57);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(84, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Funcionalidades";
+            this.FuncLabel.AutoSize = true;
+            this.FuncLabel.Location = new System.Drawing.Point(16, 57);
+            this.FuncLabel.Name = "FuncLabel";
+            this.FuncLabel.Size = new System.Drawing.Size(84, 13);
+            this.FuncLabel.TabIndex = 2;
+            this.FuncLabel.Text = "Funcionalidades";
             // 
             // _aceptar
             // 
@@ -95,15 +96,29 @@
             this._funcionalidadesCLB.TabIndex = 9;
             this._funcionalidadesCLB.SelectedIndexChanged += new System.EventHandler(this._funcionalidadesCLB_SelectedIndexChanged);
             // 
+            // _limpiar
+            // 
+            this._limpiar.Image = global::FrbaHotel.Properties.Resources.clean;
+            this._limpiar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this._limpiar.Location = new System.Drawing.Point(180, 170);
+            this._limpiar.Name = "_limpiar";
+            this._limpiar.Size = new System.Drawing.Size(92, 33);
+            this._limpiar.TabIndex = 10;
+            this._limpiar.Text = "Limpiar";
+            this._limpiar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this._limpiar.UseVisualStyleBackColor = true;
+            this._limpiar.Click += new System.EventHandler(this._limpiar_Click);
+            // 
             // AltaRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this._limpiar);
             this.Controls.Add(this._funcionalidadesCLB);
             this.Controls.Add(this._habilitado);
             this.Controls.Add(this._aceptar);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.FuncLabel);
             this.Controls.Add(this._nombre);
             this.Controls.Add(this.label1);
             this.Name = "AltaRol";
@@ -115,11 +130,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox _nombre;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button _aceptar;
-        private System.Windows.Forms.CheckBox _habilitado;
-        private System.Windows.Forms.CheckedListBox _funcionalidadesCLB;
+        protected System.Windows.Forms.Label label1;
+        protected System.Windows.Forms.TextBox _nombre;
+        protected System.Windows.Forms.Button _aceptar;
+        protected System.Windows.Forms.CheckBox _habilitado;
+        protected System.Windows.Forms.CheckedListBox _funcionalidadesCLB;
+        protected System.Windows.Forms.Label FuncLabel;
+        private System.Windows.Forms.Button _limpiar;
     }
 }

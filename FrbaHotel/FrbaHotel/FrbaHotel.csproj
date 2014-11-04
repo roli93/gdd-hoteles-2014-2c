@@ -102,6 +102,9 @@
     <Compile Include="ABM de Rol\AltaRolModel.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ABM de Rol\ModificarRolModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ABM de Rol\SeleccionarRol.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,9 +113,6 @@
     </Compile>
     <Compile Include="ABM de Rol\SeleccionarRolModel.cs">
       <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM de Rol\SeleccionarRolModel.Designer.cs">
-      <DependentUpon>SeleccionarRolModel.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM de Rol\ModificarRol.cs">
       <SubType>Form</SubType>
@@ -226,6 +226,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ABM de Rol\AltaRol.resx">
       <DependentUpon>AltaRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Rol\ModificarRol.resx">
+      <DependentUpon>ModificarRol.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM de Rol\SeleccionarRol.resx">
       <DependentUpon>SeleccionarRol.cs</DependentUpon>

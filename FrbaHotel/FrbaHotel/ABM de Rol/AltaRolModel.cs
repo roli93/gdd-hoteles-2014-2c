@@ -14,7 +14,7 @@ namespace FrbaHotel.ABM_de_Rol
         private List<Funcionalidad> Funcionalidades =new List<Funcionalidad>();
         private bool EstaActivo;
 
-        private virtual void Guardar()
+        protected virtual void Guardar()
         {
             // TODO ValidarErrores();
            // object[] o = new object[] { null };

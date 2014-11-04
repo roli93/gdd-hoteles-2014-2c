@@ -12,8 +12,8 @@ namespace FrbaHotel.Homes
         public static void registrarRol(string nombre, List<Funcionalidad> funcionalidades, bool estaActivo)
         {
             DatabaseAdapter.insertarDatosEnTabla("rol", nombre, estaActivo);
-            int id = idParaNombre(nombre)
-            agregarElementos("funcionalidad_x_rol",id,IdsDe<Funcionalidad>(funcionalidades))           
+            int id = idParaNombre(nombre);
+            agregarElementos("funcionalidad_x_rol", id, IdsDe<Funcionalidad>(funcionalidades));        
         }
 
         public static int idParaNombre(string nombre)
@@ -57,7 +57,7 @@ namespace FrbaHotel.Homes
             int id = idParaNombre(nombre);
             agregarElementos("funcionalidad_x_rol", id, IdsDe<Funcionalidad>(diferencia<Funcionalidad>(funcionalidades, funcionalidadesOriginales)));
 
-            removerElementos("funcionalidad_x_rol", id, IdsDe<Rol>(diferencia<Rol>(funcionalidadesOriginales, funcionalidades)));
+            removerElementos("funcionalidad_x_rol", id, IdsDe<Funcionalidad>(diferencia<Funcionalidad>(funcionalidadesOriginales, funcionalidades)));
             
         }
 

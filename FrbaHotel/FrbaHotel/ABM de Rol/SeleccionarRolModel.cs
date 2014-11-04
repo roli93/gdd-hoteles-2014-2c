@@ -21,7 +21,7 @@ namespace FrbaHotel.ABM_de_Rol
         public virtual void Buscar()
         {
             ValidarErrores();
-            roles= HomeRoles.buscarRoles(nombre,estaActivo);
+            roles = HomeRoles.buscarRoles(id, nombre, estaActivo);
         }
 
         public void EliminarRol(DataGridView grilla, DataGridViewCellEventArgs e)

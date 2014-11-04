@@ -17,34 +17,39 @@ namespace FrbaHotel.ABM_de_Rol
             InitializeComponent();
         }
 
-        public AltaRol(NavegableForm owner)
+        public AltaRol(NavegableForm owner):base(owner)
         {
             InitializeComponent();
         }
 
         private void _nombre_TextChanged(object sender, EventArgs e)
         {
-            nombre = _nombre.Text
+            nombre = _nombre.Text;
         }
 
         private void _funcionalidadesCLB_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Funcionalidades = CheckListToList<Funcionalidad>(_funcionalidadesCLB)
+            Funcionalidades = CheckListToList<Funcionalidad>(_funcionalidadesCLB);
         }
 
         private void _habilitado_CheckedChanged(object sender, EventArgs e)
         {
-            EstaActivo = _habilitado.Checked
+            EstaActivo = _habilitado.Checked;
         }
 
         private void _aceptar_Click(object sender, EventArgs e)
         {
-            ExcecuteAndShow(Guardar)
+            ExcecuteAndShow(Guardar);
         }
 
         private void AltaRol_Load(object sender, EventArgs e)
         {
             bindCheckedListBox<Funcionalidad>(_funcionalidadesCLB, Sesion.FuncionalidadesDisponibles);
+        }
+
+        private void _limpiar_Click(object sender, EventArgs e)
+        {
+            Limpiar();
         }
 
     }
