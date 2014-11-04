@@ -9,9 +9,9 @@ using System.Windows.Forms;
 
 namespace FrbaHotel.ABM_de_Rol
 {
-    public partial class BajaRol : Form
+    public partial class ModificarRol : Form
     {
-        public BajaRol()
+        public ModificarRol()
         {
             InitializeComponent();
         }

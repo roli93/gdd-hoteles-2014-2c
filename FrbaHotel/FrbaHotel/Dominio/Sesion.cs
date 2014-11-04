@@ -55,6 +55,15 @@ namespace FrbaHotel
             }
         }
 
+        public static List<Funcionalidad> FuncionalidadesDisponibles
+        {
+            get
+            {
+                //TODO return elementosDisponibles<Funcionalidad>((e) => new Funcionalidad((int)e["id_funcionalidad"], (string)e["descripcion"]), "funcionalidades_disponibles");
+                return new List<Funcionalidad> { new Funcionalidad(1, "Habilitar gente"), new Funcionalidad(2, "Realizar check in"), new Funcionalidad(3, "Reservar") };
+            }
+        }
+
         private static List<T> elementosDisponibles<T>(Constructor<DataRow,T> constructor, string procedure)
         {
             DataTable elementos = DatabaseAdapter.traerDataTable("procedure");

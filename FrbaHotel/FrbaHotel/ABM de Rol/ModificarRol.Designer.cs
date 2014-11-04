@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.ABM_de_Rol
 {
-    partial class BajaRol
+    partial class ModificarRol
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "BajaRol";
+            this.Text = "SeleccionarRol";
         }
 
         #endregion

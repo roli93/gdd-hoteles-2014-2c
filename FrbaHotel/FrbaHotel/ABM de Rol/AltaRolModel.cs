@@ -14,11 +14,12 @@ namespace FrbaHotel.ABM_de_Rol
         private List<Funcionalidad> Funcionalidades =new List<Funcionalidad>();
         private bool EstaActivo;
 
-        private void Guardar()
+        private virtual void Guardar()
         {
             // TODO ValidarErrores();
-            object[] o = new object[] { null };
-            DatabaseAdapter.insertarDatosEnTabla("rol", nombre);
+           // object[] o = new object[] { null };
+            //DatabaseAdapter.insertarDatosEnTabla("rol", nombre);
+
         }
 
         public override void ValidarErroresConcretos()

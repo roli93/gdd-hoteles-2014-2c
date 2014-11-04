@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BAFE3016-AC06-4C43-ABEF-87F21AB5699B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -102,17 +102,23 @@
     <Compile Include="ABM de Rol\AltaRolModel.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM de Rol\BajaRol.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ABM de Rol\BajaRol.Designer.cs">
-      <DependentUpon>BajaRol.cs</DependentUpon>
-    </Compile>
     <Compile Include="ABM de Rol\SeleccionarRol.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM de Rol\SeleccionarRol.Designer.cs">
       <DependentUpon>SeleccionarRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Rol\SeleccionarRolModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Rol\SeleccionarRolModel.Designer.cs">
+      <DependentUpon>SeleccionarRolModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Rol\ModificarRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Rol\ModificarRol.Designer.cs">
+      <DependentUpon>ModificarRol.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM de Usuario\ABMUsuario.cs">
       <SubType>Form</SubType>
@@ -181,6 +187,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Homes\Home.cs" />
+    <Compile Include="Homes\HomeRoles.cs" />
     <Compile Include="Homes\HomeUsuarios.cs" />
     <Compile Include="Login\LoginUsuariosModel.cs">
       <SubType>Form</SubType>
@@ -219,6 +226,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ABM de Rol\AltaRol.resx">
       <DependentUpon>AltaRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Rol\SeleccionarRol.resx">
+      <DependentUpon>SeleccionarRol.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM de Usuario\ABMUsuario.resx">
       <DependentUpon>ABMUsuario.cs</DependentUpon>
@@ -310,6 +321,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\clean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Magnifying-Glass-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Magnifying-Glass-icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Magnifying-Glass-icon2.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Listado Estadistico\" />

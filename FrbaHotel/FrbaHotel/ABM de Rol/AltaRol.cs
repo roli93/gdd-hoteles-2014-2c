@@ -22,29 +22,30 @@ namespace FrbaHotel.ABM_de_Rol
             InitializeComponent();
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void _nombre_TextChanged(object sender, EventArgs e)
         {
-
+            nombre = _nombre.Text
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void _funcionalidadesCLB_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Funcionalidades = CheckListToList<Funcionalidad>(_funcionalidadesCLB)
         }
 
-        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        private void _habilitado_CheckedChanged(object sender, EventArgs e)
         {
-
+            EstaActivo = _habilitado.Checked
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void _aceptar_Click(object sender, EventArgs e)
         {
-
+            ExcecuteAndShow(Guardar)
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void AltaRol_Load(object sender, EventArgs e)
         {
-
+            bindCheckedListBox<Funcionalidad>(_funcionalidadesCLB, Sesion.FuncionalidadesDisponibles);
         }
+
     }
 }
