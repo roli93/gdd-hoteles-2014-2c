@@ -53,7 +53,7 @@ namespace FrbaHotel
                 return new List<Hotel> { new Hotel(1, "SuperHote"), new Hotel(2, "HotelFeo") };
             }
         }
-
+        //Deprecated (?)
         public TipoDocumento TipoDocumento
         {
             get

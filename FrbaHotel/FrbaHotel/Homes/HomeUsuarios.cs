@@ -43,12 +43,12 @@ namespace FrbaHotel.Homes
             nombre = usuario["nombre"].ToString();
             apellido = usuario["apellido"].ToString();
             dni = usuario["numero_documento"].ToString();
-            mail = usuario["username"].ToString();
-            direccion = usuario["username"].ToString();
-            telefono = usuario["username"].ToString();
-            fechaNacimiento = Convert.ToDateTime(usuario["username"]);
+            mail = usuario["mail"].ToString();
+            direccion = usuario["direccion"].ToString();
+            telefono = usuario["telefono"].ToString();
+            fechaNacimiento = Convert.ToDateTime(usuario["fecha_nacimiento"]);
             Usuario user = new Usuario(id, username);
-            tipoDni = user.TipoDocumento;
+            tipoDni = new TipoDocumento(Convert.ToInt32(usuario["tipo_dni"]),"");
             roles = user.Roles;
             hoteles = user.Hoteles;         */
 

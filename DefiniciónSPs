@@ -1,0 +1,61 @@
+// Defino las interfaces de los SP: tipo de parámetros y retorno + lógica que resuelve.
+//Formato: retorno nombreDelProcedure(tipoParametro param1, tipoParametro param2...)
+
+
+roles_disponibles()
+//Hace el select para devovlerme todos los roles disponibles, o sea todos los de la tabla que estén
+//habilitados
+
+hoteles_disponibles()
+//Hace el select para devovlerme todos los hoteles de la tabla.
+
+documentos_disponibles()
+//Hace el select para devovlerme todos los tipos de documento de la tabla.
+
+funcionalidades_disponibles()
+//Hace el select para devovlerme todas las funcionalidades de la tabla.
+
+
+login(varchar usuario, varchar password, out int error)
+//Hace el select y busca el usuario que tiene ese username, chequea el password contra el que está
+//encriptado, devuelve la fila con los datos del usuario que saco del select. En cuanto al error, 
+//deuelve 0 en caso de estar todo bien, -1 si el password es incorrecto, -2 si el user no existe, -3 si
+//el usuario está inhabilitado por intentos incorrectos.
+
+obtener_funcionalidades(int id_rol)
+//Hace el select para devolver todas las funcionalidades de un rol en particular;
+
+obtener_roles(int id_usuario)
+//Hace el select para devolver todos los roles de un ususario;
+
+obtener_hoteles(int id_usuario)
+//Hace el select para devolver todos los hoteles de un usuario;
+
+buscar_usuarios(varchar nombre,varchar apellido, varchar email, varchar username, int id_rol, int id_hotel)
+//Hace un select para obtener los usuarios que matcheen con los datos dados. Cuanndo alguno de los
+//parámetros no hay que usarlo para filtrar (no se eligió ese filtro) los vachar vienen vacíos ("")
+//para q si pones un like ande igual, y los id de rol y hotel vienen en -1.
+
+buscar_usuario_por_id(int id_usuario)
+//Hace el select para devovlerme toda la fila con el usuario que tiene ese id.
+
+baja_usuario(int id_usuario)
+// Le da de baja (lógica) al usuario (cambiñandole el campo correspondiente);
+
+//------------------Se necesitan SPs para insertar,borrar, y actualizar.-------------------------//
+//El formato del nombre siempre sera "insertar_"+nombreDeTabla y los 
+//parámetros que recibirá serán todos los campos a completar de la tabla en el orden en que están en 
+//la tabla. El valor de retorno es si hubo algun error en la insercion.
+
+//Ej 
+int insertar_usuario(int id, varchar username...)
+
+//Devuelven 0 si la ejecución es correcta, -1 si se violó un Unique(para usuarios), por ahora solo eso. 
+//Se necesitan para tablas: Usuario, Rol, UsuarioxRol, Usuario x Hotel, FuncionalidadXRol.
+
+//De forma similar se necesitan procedimientos para actualizar de nombre 
+//"actualizar_"+nombreDeLATabla para los Usuarios y Roles (por ahora)
+
+//De forma similar s enecesitan procedimientos para deletear de nombre "borrar_"+nombre de la tabla 
+//para las tablas usuario x rol, usuario x hotel y rol x funcionalidad.
+

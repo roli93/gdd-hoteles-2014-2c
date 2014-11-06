@@ -66,7 +66,7 @@ namespace FrbaHotel
 
         private static List<T> elementosDisponibles<T>(Constructor<DataRow,T> constructor, string procedure)
         {
-            DataTable elementos = DatabaseAdapter.traerDataTable("procedure");
+            DataTable elementos = DatabaseAdapter.traerDataTable(procedure);
             List<T> listaElementos = new List<T>();
             foreach (DataRow elemento in elementos.Rows)
                 listaElementos.Add(constructor(elemento));
