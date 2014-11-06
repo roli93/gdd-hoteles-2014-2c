@@ -14,8 +14,8 @@ namespace FrbaHotel.ABM_de_Usuario
     public partial class SeleccionarUsuario
     {
         private string nombre="", apellido="", email="",username="";
-        private Rol rol;
-        private Hotel hotel;
+        private Rol rol= new Rol(-1,"");
+        private Hotel hotel = new Hotel(-1, "");
         private DataTable usuarios;
 
         public void Buscar()

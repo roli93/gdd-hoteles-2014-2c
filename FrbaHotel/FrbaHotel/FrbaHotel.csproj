@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BAFE3016-AC06-4C43-ABEF-87F21AB5699B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -69,11 +69,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABM de Cliente\AMBCliente.cs">
+    <Compile Include="ABM de Cliente\ABMClientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM de Cliente\AMBCliente.Designer.cs">
-      <DependentUpon>AMBCliente.cs</DependentUpon>
+    <Compile Include="ABM de Cliente\ABMClientes.Designer.cs">
+      <DependentUpon>ABMClientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Cliente\AltaCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Cliente\AltaCliente.Designer.cs">
+      <DependentUpon>AltaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Cliente\AltaClienteModel.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM de Habitacion\Form1.cs">
       <SubType>Form</SubType>
@@ -163,6 +172,7 @@
     <Compile Include="Dominio\Entidad.cs" />
     <Compile Include="Dominio\Funcionalidad.cs" />
     <Compile Include="Dominio\Hotel.cs" />
+    <Compile Include="Dominio\Pais.cs" />
     <Compile Include="Dominio\Rol.cs" />
     <Compile Include="Dominio\Sesion.cs" />
     <Compile Include="Dominio\TipoDocumento.cs" />
@@ -187,6 +197,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Homes\Home.cs" />
+    <Compile Include="Homes\HomeClientes.cs" />
     <Compile Include="Homes\HomeRoles.cs" />
     <Compile Include="Homes\HomeUsuarios.cs" />
     <Compile Include="Login\LoginUsuariosModel.cs">
@@ -224,6 +235,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ABM de Cliente\AltaCliente.resx">
+      <DependentUpon>AltaCliente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM de Rol\AltaRol.resx">
       <DependentUpon>AltaRol.cs</DependentUpon>
     </EmbeddedResource>
@@ -255,9 +269,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginUsuarios.resx">
       <DependentUpon>LoginUsuarios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ABM de Cliente\AMBCliente.resx">
-      <DependentUpon>AMBCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\SeleccionFuncionalidad.resx">
       <DependentUpon>SeleccionFuncionalidad.cs</DependentUpon>

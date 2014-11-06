@@ -5,7 +5,6 @@ E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\bin\Debug\FrbaHotel.exe
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\bin\Debug\FrbaHotel.pdb
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.exe
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.pdb
-E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.AMBCliente.resources
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.PantallaBienvenida.resources
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.Login.LoginUsuarios.resources
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM.resources
@@ -44,3 +43,6 @@ C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\bin\Debug\FrbaHotel.
 C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\bin\Debug\FrbaHotel.pdb
 C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.exe.manifest
 C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.application
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.AltaCliente.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Rol.ModificarRol.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Rol.SeleccionarRol.resources
