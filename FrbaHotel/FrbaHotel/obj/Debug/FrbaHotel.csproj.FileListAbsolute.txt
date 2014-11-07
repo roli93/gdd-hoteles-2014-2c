@@ -32,7 +32,6 @@ C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.
 C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM.resources
 C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.NavegableForm.resources
 C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.Login.LoginUsuarios.resources
-C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.AMBCliente.resources
 C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.Login.SeleccionFuncionalidad.resources
 C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.PantallaBienvenida.resources
 C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.Properties.Resources.resources
@@ -46,3 +45,5 @@ C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.AltaCliente.resources
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Rol.ModificarRol.resources
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Rol.SeleccionarRol.resources
+C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.AltaCliente.resources
+C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Habitacion.AltaHabitacion.resources
