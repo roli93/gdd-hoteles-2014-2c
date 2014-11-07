@@ -53,13 +53,12 @@ namespace FrbaHotel
                 return new List<Hotel> { new Hotel(1, "SuperHote"), new Hotel(2, "HotelFeo") };
             }
         }
-        //Deprecated (?)
         public TipoDocumento TipoDocumento
         {
             get
             {
                /*TODO  DataRow documento = DatabaseAdapter.traerDataTable("obtener_documento", Id).Rows[0];
-                return new TipoDocumento(Convert.ToInt32(documento["id_rol"]), documento["nombre"].ToString());*/
+                return new TipoDocumento(Convert.ToInt32(documento["id_tipo_documento"]), documento["descripcion"].ToString());*/
                 return new TipoDocumento(1, "DNI");
             }
         }

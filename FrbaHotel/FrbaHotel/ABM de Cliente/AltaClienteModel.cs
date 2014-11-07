@@ -13,12 +13,12 @@ namespace FrbaHotel.ABM_de_Cliente
 {
     public partial class AltaCliente
     {
-        string nombre, apellido, nroId, mail, telefono, calle, localidad;
-        TipoDocumento tipoId;
-        Pais pais;
-        DateTime fechaNacimiento;
+        protected string nombre, apellido, nroId, mail, telefono, calle, localidad;
+        protected TipoDocumento tipoId;
+        protected Pais pais;
+        protected DateTime fechaNacimiento;
 
-        public void Guardar()
+        public virtual void Guardar()
         {
             ValidarErrores();
             HomeClientes.registrarCliente(nombre, apellido, tipoId, nroId, mail, telefono, calle, localidad, fechaNacimiento, pais);

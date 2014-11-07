@@ -47,3 +47,6 @@ E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Rol.Modifi
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Rol.SeleccionarRol.resources
 C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.AltaCliente.resources
 C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Habitacion.AltaHabitacion.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.ModificarCliente.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.SeleccionarCliente.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Habitacion.AltaHabitacion.resources

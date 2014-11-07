@@ -48,7 +48,7 @@ namespace FrbaHotel.Homes
             telefono = usuario["telefono"].ToString();
             fechaNacimiento = Convert.ToDateTime(usuario["fecha_nacimiento"]);
             Usuario user = new Usuario(id, username);
-            tipoDni = new TipoDocumento(Convert.ToInt32(usuario["tipo_dni"]),"");
+            tipoDni = user.TipoDocumento;
             roles = user.Roles;
             hoteles = user.Hoteles;         */
 

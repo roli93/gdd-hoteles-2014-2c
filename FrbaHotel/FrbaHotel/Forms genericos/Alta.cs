@@ -86,6 +86,10 @@ namespace FrbaHotel.Forms_genericos
             for (i = 0; i < campos.Length;i++ )
                 if (campos[i]==null)
                     errorMessage += ("El campo "+nombresCampos[i] + " no ha sido completado\n");
+                else if(campos[i].GetType()==typeof(string))
+                    if(campos[i].ToString()=="")
+                        errorMessage += ("El campo "+nombresCampos[i] + " no ha sido completado\n");
+
         }
 
         public void ValidarCollecionVacia<T>(string nombreCampo, List<T> campo)

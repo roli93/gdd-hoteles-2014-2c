@@ -20,7 +20,7 @@ namespace FrbaHotel.ABM_de_Cliente
         public SeleccionarCliente(NavegableForm owner):base(owner)
         {
             InitializeComponent();
-            constructorEdicion = (id) => { return new ModificarCliente(this); };
+            constructorEdicion = (id) => { return new ModificarCliente(this,id); };
             
         }
 
