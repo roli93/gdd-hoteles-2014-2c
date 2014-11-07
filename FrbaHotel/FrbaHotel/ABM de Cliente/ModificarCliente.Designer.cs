@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.ABM_de_Cliente
 {
-    partial class ABMClientes
+    partial class ModificarCliente
     {
         /// <summary>
         /// Required designer variable.
@@ -28,19 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // ABMClientes
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(249, 139);
-            this.Name = "ABMClientes";
-            this.Text = "ABMClientes";
-            this.Load += new System.EventHandler(this.ABMClientes_Load);
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            this.Text = "ModificarCliente";
         }
 
         #endregion

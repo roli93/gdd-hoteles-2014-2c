@@ -29,12 +29,18 @@ namespace FrbaHotel.ABM_de_Cliente
 
         public override void modificacion()
         {
-          //  new SeleccionarUsuario(this, "Editar").StandaloneOpen();
+            new SeleccionarCliente(this).StandaloneOpen();
         }
 
         public override void baja()
         {
            // new SeleccionarUsuario(this, "Eliminar").StandaloneOpen();
+        }
+
+        private void ABMClientes_Load(object sender, EventArgs e)
+        {
+            radioBaja.Hide();
+            radioModificacion.Text = "Editar o inhabilitar un cliente existente";
         }
     }
 }
