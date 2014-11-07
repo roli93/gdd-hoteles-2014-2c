@@ -26,7 +26,7 @@ namespace FrbaHotel.Forms_genericos
             {typeof(ComboBox), c => ((ComboBox)c).SelectedIndex=-1},
             {typeof(CheckedListBox), c => ClearItems((CheckedListBox)c)},
             {typeof(DateTimePicker), c => ((DateTimePicker)c).Value=DateTime.Now},
-            {typeof(DataGridView), c => ((DataGridView)c).DataSource=null},
+            {typeof(DataGridView), c => {}},
     };
 
         public delegate NavegableForm ConstructorModificacion(int IdElemento);

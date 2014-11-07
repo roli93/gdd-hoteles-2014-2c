@@ -82,11 +82,5 @@ namespace FrbaHotel.ABM_de_Cliente
         {
             ExcecuteAndShow(Guardar);
         }
-
-        private void AltaCliente_Load(object sender, EventArgs e)
-        {
-            bindCombo<Pais>(_pais, Sesion.PaisesDisponibles);
-            bindCombo<TipoDocumento>(comboBox1, Sesion.TiposIdDisponibles);
-        }
     }
 }

@@ -133,7 +133,7 @@ namespace FrbaHotel.ABM_de_Usuario
         private void button2_Click_1(object sender, EventArgs e)
         {
             Execute(Buscar);
-
+            cargarGrilla(dataGridView1, usuarios);
         }
     }
 }

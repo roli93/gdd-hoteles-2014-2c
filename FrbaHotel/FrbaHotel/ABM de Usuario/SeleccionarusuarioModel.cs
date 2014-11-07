@@ -22,7 +22,6 @@ namespace FrbaHotel.ABM_de_Usuario
         {
             ValidarErrores();
             usuarios= HomeUsuarios.buscarUsuarios(nombre, apellido, email, username, rol, hotel);
-            cargarGrilla(dataGridView1, usuarios);
         }
 
         public void EliminarUsuario(DataGridView grilla, DataGridViewCellEventArgs e)

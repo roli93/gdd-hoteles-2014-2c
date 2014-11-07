@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FrbaHotel.Administracion_Base_de_Datos;
-using FrbaHotel.Dominio;
 
 
 namespace FrbaHotel
@@ -51,20 +50,10 @@ namespace FrbaHotel
         {
             get
             {
-                //TODO return elementosDisponibles<TipoDocumento>((e) => new TipoDocumento((int)e["id_tipo_documento"], (string)e["descripcion"]), "documentos_disponibles");
+                //TODO return elementosDisponibles<TipoDocumento>((e) => new TipoDocumento((int)e["id_documento"], (string)e["descripcion"]), "documentos_disponibles");
                 return new List<TipoDocumento> { new TipoDocumento(1, "DNI"), new TipoDocumento(2, "LC") };
             }
         }
-
-        public static List<TipoDocumento> TiposIdDisponibles
-        {
-            get
-            {
-                //TODO return elementosDisponibles<TipoDocumento>((e) => new TipoDocumento((int)e["id_tipo_identificacion"], (string)e["descripcion"]), "identificaciones_disponibles");
-                return new List<TipoDocumento> { new TipoDocumento(1, "DNI"), new TipoDocumento(2, "Pasaporte") };
-            }
-        }
-
 
         public static List<Funcionalidad> FuncionalidadesDisponibles
         {
@@ -72,15 +61,6 @@ namespace FrbaHotel
             {
                 //TODO return elementosDisponibles<Funcionalidad>((e) => new Funcionalidad((int)e["id_funcionalidad"], (string)e["descripcion"]), "funcionalidades_disponibles");
                 return new List<Funcionalidad> { new Funcionalidad(1, "Habilitar gente"), new Funcionalidad(2, "Realizar check in"), new Funcionalidad(3, "Reservar") };
-            }
-        }
-
-        public static List<Pais> PaisesDisponibles
-        {
-            get
-            {
-                //TODO return elementosDisponibles<Pais>((e) => new Pais((int)e["id_pais"], (string)e["descripcion"]), "paises_disponibles");
-                return new List<Pais> { new Pais(1,"Argentina"), new Pais(2,"Brasil"), new Pais(3,"España")};
             }
         }
 

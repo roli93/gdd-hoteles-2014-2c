@@ -15,19 +15,5 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.insertarDatosEnTabla("cliente", nombre, apellido, tipoId.Id, nroId, mail, telefono, calle, localidad, fechaNacimiento);
         }
 
-        public static DataTable buscarClientes(string nombre, string apellido, string email, string nroId, TipoDocumento tipoId )
-        {/*TODO
-            return DatabaseAdapter.traerDataTable("buscar_clientes", nombre, apellido, email, nroId, tipoId.Id);
-          */
-            DataTable ej = new DataTable();
-            ej.Clear();
-            ej.Columns.Add("Nombre");
-            ej.Columns.Add("ID");
-            ej.Columns.Add("Edad");
-            ej.Columns.Add("apellido");
-            ej.Rows.Add(new object[] { "Juan", 1, 23, "Perez" });
-            return ej;
-        }
-
     }
 }

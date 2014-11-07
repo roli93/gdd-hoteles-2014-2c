@@ -52,22 +52,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-<<<<<<< HEAD
     <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FrbaHotel.exe" size="300544">
-=======
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="FrbaHotel.exe" size="308736">
->>>>>>> origin/master
       <assemblyIdentity name="FrbaHotel" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-<<<<<<< HEAD
         <dsig:DigestValue>ywoFpfb6lmFeG6Ot7jymPtzFXT0=</dsig:DigestValue>
-=======
-        <dsig:DigestValue>bxh1UYnMGNUqQcQ8DTXiiY0Dkcw=</dsig:DigestValue>
->>>>>>> origin/master
       </hash>
     </dependentAssembly>
   </dependency>

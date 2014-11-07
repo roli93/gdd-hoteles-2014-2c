@@ -107,10 +107,10 @@
 
         #endregion
 
-        protected System.Windows.Forms.Button botonContinuar;
-        protected System.Windows.Forms.Label label1;
-        protected System.Windows.Forms.RadioButton radioAlta;
-        protected System.Windows.Forms.RadioButton radioModificacion;
-        protected System.Windows.Forms.RadioButton radioBaja;
+        private System.Windows.Forms.Button botonContinuar;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.RadioButton radioAlta;
+        private System.Windows.Forms.RadioButton radioModificacion;
+        private System.Windows.Forms.RadioButton radioBaja;
     }
 }
