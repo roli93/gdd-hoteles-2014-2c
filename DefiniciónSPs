@@ -47,15 +47,20 @@ baja_usuario(int id_usuario)
 //parámetros que recibirá serán todos los campos a completar de la tabla en el orden en que están en 
 //la tabla. El valor de retorno es si hubo algun error en la insercion.
 
-//Ej 
-int insertar_usuario(int id, varchar username...)
 
-//Devuelven 0 si la ejecución es correcta, -1 si se violó un Unique(para usuarios), por ahora solo eso. 
-//Se necesitan para tablas: Usuario, Rol, UsuarioxRol, Usuario x Hotel, FuncionalidadXRol.
+int insertar_usuario(id, username, password, nombre, apellido, Id_tipo_dni, dni, mail, telefono, direccion, fechaNacimiento);
+//Devuelve -4 si el username esta repetido.(se violo constraint unique, @@error =2627 creo q es)
 
-//De forma similar se necesitan procedimientos para actualizar de nombre 
-//"actualizar_"+nombreDeLATabla para los Usuarios y Roles (por ahora)
+int actualizar_usuario(username, password, nombre, apellido, Id_tipo_dni, dni, mail, telefono, direccion, fechaNacimiento);
+//devuelve -4 si username esta repetido
 
-//De forma similar s enecesitan procedimientos para deletear de nombre "borrar_"+nombre de la tabla 
-//para las tablas usuario x rol, usuario x hotel y rol x funcionalidad.
+insertar_usuario_x_rol(id_usuario, id_rol)
+
+borrar_usuario_x_rol(id_usuario, id_rol)
+
+insertar_usuario_x_hotel(id_usuario, id_hotel)
+
+borrar_usuario_x_hotel(id_usuario, id_hotel)
+
+
 
