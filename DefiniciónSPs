@@ -48,10 +48,10 @@ baja_usuario(int id_usuario)
 //la tabla. El valor de retorno es si hubo algun error en la insercion.
 
 
-int insertar_usuario(id, username, password, nombre, apellido, Id_tipo_dni, dni, mail, telefono, direccion, fechaNacimiento);
+int insertar_usuario( username, password, nombre, apellido, Id_tipo_dni, dni, mail, telefono, direccion, fechaNacimiento);
 //Devuelve -4 si el username esta repetido.(se violo constraint unique, @@error =2627 creo q es)
 
-int actualizar_usuario(username, password, nombre, apellido, Id_tipo_dni, dni, mail, telefono, direccion, fechaNacimiento);
+int actualizar_usuario(id,username, password, nombre, apellido, Id_tipo_dni, dni, mail, telefono, direccion, fechaNacimiento);
 //devuelve -4 si username esta repetido
 
 insertar_usuario_x_rol(id_usuario, id_rol)
@@ -62,5 +62,17 @@ insertar_usuario_x_hotel(id_usuario, id_hotel)
 
 borrar_usuario_x_hotel(id_usuario, id_hotel)
 
+insertar_cliente(nombre, apellido,id_tipo_identificacion, nroId, mail, telefono, calle, localidad, fechaNacimiento)
+//Devuelve -5 si se repite el email. Devuelve -6 si se repite la pk (tipo y número de id). Le setea habilitado en 1 (true)
 
+actualizar_cliente(id,nombre, apellido,id_tipo_identificacion, nroId, mail, telefono, calle, localidad, fechaNacimiento,habilitado)
+//Devuelve -5 si se repite el email. Devuelve -6 si se repite la pk (tipo y número de id).
+
+buscar_cliente_por_id(int id_cliente)
+//Hace el select para devovlerme toda la fila con el cliente que tiene ese id.
+
+buscar_clientes(nombre, apellido, email, nroId, Id_tipo_identificación)
+//Hace un select para obtener los usuarios que matcheen con los datos dados. Cuanndo alguno de los
+//parámetros no hay que usarlo para filtrar (no se eligió ese filtro) los vachar vienen vacíos ("")
+//para q si pones un like ande igual, y lel id de tipo identificación viene en -1.
 
