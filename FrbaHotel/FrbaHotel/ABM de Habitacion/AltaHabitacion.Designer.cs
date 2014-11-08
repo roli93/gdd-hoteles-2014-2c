@@ -51,6 +51,7 @@
             this._hotel.Name = "_hotel";
             this._hotel.Size = new System.Drawing.Size(218, 21);
             this._hotel.TabIndex = 0;
+            this._hotel.SelectedIndexChanged += new System.EventHandler(this._hotel_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -95,6 +96,7 @@
             this._tipo.Name = "_tipo";
             this._tipo.Size = new System.Drawing.Size(218, 21);
             this._tipo.TabIndex = 5;
+            this._tipo.SelectedIndexChanged += new System.EventHandler(this._tipo_SelectedIndexChanged);
             // 
             // label5
             // 
@@ -120,6 +122,7 @@
             this._descripcion.Name = "_descripcion";
             this._descripcion.Size = new System.Drawing.Size(190, 20);
             this._descripcion.TabIndex = 8;
+            this._descripcion.TextChanged += new System.EventHandler(this._descripcion_TextChanged);
             // 
             // _numero
             // 
@@ -127,6 +130,7 @@
             this._numero.Name = "_numero";
             this._numero.Size = new System.Drawing.Size(77, 20);
             this._numero.TabIndex = 10;
+            this._numero.TextChanged += new System.EventHandler(this._numero_TextChanged);
             // 
             // _piso
             // 
@@ -134,15 +138,18 @@
             this._piso.Name = "_piso";
             this._piso.Size = new System.Drawing.Size(43, 20);
             this._piso.TabIndex = 11;
-            this._piso.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // _ubicacion
             // 
             this._ubicacion.FormattingEnabled = true;
+            this._ubicacion.Items.AddRange(new object[] {
+            "Interior",
+            "Exterior"});
             this._ubicacion.Location = new System.Drawing.Point(77, 89);
             this._ubicacion.Name = "_ubicacion";
             this._ubicacion.Size = new System.Drawing.Size(137, 21);
             this._ubicacion.TabIndex = 12;
+            this._ubicacion.SelectedIndexChanged += new System.EventHandler(this._ubicacion_SelectedIndexChanged);
             // 
             // button1
             // 
@@ -191,6 +198,7 @@
             this.Controls.Add(this._hotel);
             this.Name = "AltaHabitacion";
             this.Text = "AltaHabitacion";
+            this.Load += new System.EventHandler(this.AltaHabitacion_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
