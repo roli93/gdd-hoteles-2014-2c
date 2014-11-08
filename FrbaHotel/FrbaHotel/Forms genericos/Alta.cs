@@ -168,12 +168,17 @@ namespace FrbaHotel.Forms_genericos
                 int aModificar = Convert.ToInt32(celdas["ID"].Value);
                 if (e.ColumnIndex == celdas["Operación"].ColumnIndex)
                 {
-                    constructorEdicion(aModificar).StandaloneOpen();
+                    gridClickAction(aModificar);
                 }
             }
             catch (ArgumentOutOfRangeException)
             {
             }
+        }
+
+        public virtual void gridClickAction(int seleccionado)
+        {
+            constructorEdicion(seleccionado).StandaloneOpen();
         }
 
     }

@@ -52,3 +52,7 @@ E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.Se
 E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Habitacion.AltaHabitacion.resources
 C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.ModificarCliente.resources
 C:\Users\Martin\git\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.ABM_de_Cliente.SeleccionarCliente.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.Generar_Modificar_Reserva.Agregar_Habitación.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.Generar_Modificar_Reserva.ClienteParaReserva.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.Generar_Modificar_Reserva.GenerarReserva.resources
+E:\gdd-hoteles-2014-2c\FrbaHotel\FrbaHotel\obj\Debug\FrbaHotel.Generar_Modificar_Reserva.SeleccionarRegimen.resources

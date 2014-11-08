@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BAFE3016-AC06-4C43-ABEF-87F21AB5699B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -202,6 +202,8 @@
     <Compile Include="Dominio\Habitacion.cs" />
     <Compile Include="Dominio\Hotel.cs" />
     <Compile Include="Dominio\Pais.cs" />
+    <Compile Include="Dominio\Regimen.cs" />
+    <Compile Include="Dominio\Reserva.cs" />
     <Compile Include="Dominio\Rol.cs" />
     <Compile Include="Dominio\Sesion.cs" />
     <Compile Include="Dominio\TipoDocumento.cs" />
@@ -226,8 +228,36 @@
     <Compile Include="Forms genericos\NavegableFormModel.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Generar Modificar Reserva\Agregar Habitación.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\Agregar Habitación.Designer.cs">
+      <DependentUpon>Agregar Habitación.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\ClienteParaReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\ClienteParaReserva.Designer.cs">
+      <DependentUpon>ClienteParaReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\GenerarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\GenerarReserva.Designer.cs">
+      <DependentUpon>GenerarReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\GenerarReservaModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\SeleccionarRegimen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\SeleccionarRegimen.Designer.cs">
+      <DependentUpon>SeleccionarRegimen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Homes\Home.cs" />
     <Compile Include="Homes\HomeClientes.cs" />
+    <Compile Include="Homes\HomeReservas.cs" />
     <Compile Include="Homes\HomeRoles.cs" />
     <Compile Include="Homes\HomeUsuarios.cs" />
     <Compile Include="Login\LoginUsuariosModel.cs">
@@ -247,12 +277,6 @@
     </Compile>
     <Compile Include="PantallaBienvenida.Designer.cs">
       <DependentUpon>PantallaBienvenida.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Generar Modificar Reserva\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Generar Modificar Reserva\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
     <Compile Include="Login\LoginUsuarios.cs">
       <SubType>Form</SubType>
@@ -306,6 +330,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms genericos\NavegableForm.resx">
       <DependentUpon>NavegableForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Modificar Reserva\Agregar Habitación.resx">
+      <DependentUpon>Agregar Habitación.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Modificar Reserva\ClienteParaReserva.resx">
+      <DependentUpon>ClienteParaReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Modificar Reserva\GenerarReserva.resx">
+      <DependentUpon>GenerarReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Modificar Reserva\SeleccionarRegimen.resx">
+      <DependentUpon>SeleccionarRegimen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginUsuarios.resx">
       <DependentUpon>LoginUsuarios.cs</DependentUpon>

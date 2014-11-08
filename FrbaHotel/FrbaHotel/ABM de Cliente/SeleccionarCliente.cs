@@ -21,23 +21,25 @@ namespace FrbaHotel.ABM_de_Cliente
         {
             InitializeComponent();
             constructorEdicion = (id) => { return new ModificarCliente(this,id); };
-            
+            accion = "Editar";
         }
+
+        protected string accion;
 
         private void SeleccionarCliente_Load(object sender, EventArgs e)
         {
             bindCombo<TipoDocumento>(comboBox1, Sesion.TiposIdDisponibles);
-            cargarBotonModificarDatos(dataGridView1, "Editar");
+            cargarBotonModificarDatos(dataGridView1, accion);
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            nombre = textBox3.Text;
+            nombre = _nombre.Text;
         }
 
         private void textBox8_TextChanged(object sender, EventArgs e)
         {
-            apellido = textBox8.Text;
+            apellido = _apellido.Text;
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)

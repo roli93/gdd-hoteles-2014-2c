@@ -7,12 +7,12 @@ namespace FrbaHotel.Dominio
 {
     public class Habitacion : Entidad
     {
-        
-        private int numeroHabitacion;
-        private int piso;
-        private string ubicacion;
-       // private TipoHabitacion tipo;
-        private string descripcion;
+
+        public int numeroHabitacion { get; set; }
+        public int piso { get; set; }
+        public string ubicacion { get; set; }
+        public TipoHabitacion tipo { get; set; }
+        public string descripcion { get; set; }
 
     }
 }

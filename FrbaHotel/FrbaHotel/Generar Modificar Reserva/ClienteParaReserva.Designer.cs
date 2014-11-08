@@ -1,6 +1,6 @@
 ﻿namespace FrbaHotel.Generar_Modificar_Reserva
 {
-    partial class Form1
+    partial class ClienteParaReserva
     {
         /// <summary>
         /// Required designer variable.
@@ -28,9 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // ClienteParaReserva
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(684, 388);
+            this.Name = "ClienteParaReserva";
+            this.Text = "ClienteParaReserva";
+            this.Load += new System.EventHandler(this.ClienteParaReserva_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
