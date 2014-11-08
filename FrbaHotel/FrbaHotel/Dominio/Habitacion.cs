@@ -11,7 +11,7 @@ namespace FrbaHotel.Dominio
         private int numeroHabitacion;
         private int piso;
         private string ubicacion;
-       // private TipoHabitacion tipo;
+        private TipoHabitacion tipo;
         private string descripcion;
 
     }
