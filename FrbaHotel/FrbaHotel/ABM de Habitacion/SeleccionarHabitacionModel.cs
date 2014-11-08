@@ -18,7 +18,7 @@ namespace FrbaHotel.ABM_de_Habitacion
         public void Buscar()
         {
             ValidarErrores();
-            habitaciones = HomeHabitaciones.buscarHabitacionesEnHotel(hotel, numero, piso, ubicacion, tipo, descripcion);
+            habitaciones = HomeHabitaciones.buscarHabitaciones(hotel, numero, piso, ubicacion, tipo, descripcion);
             cargarGrilla(dataGridView1, habitaciones);
         }
 

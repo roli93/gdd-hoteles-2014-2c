@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BAFE3016-AC06-4C43-ABEF-87F21AB5699B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -115,6 +115,15 @@
       <DependentUpon>AltaHabitacion.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM de Habitacion\AltaHabitacionModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Habitacion\SeleccionarHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Habitacion\SeleccionarHabitacion.Designer.cs">
+      <DependentUpon>SeleccionarHabitacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Habitacion\SeleccionarHabitacionModel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM de Regimen\Form1.cs">
@@ -257,6 +266,7 @@
     </Compile>
     <Compile Include="Homes\Home.cs" />
     <Compile Include="Homes\HomeClientes.cs" />
+    <Compile Include="Homes\HomeHabitaciones.cs" />
     <Compile Include="Homes\HomeReservas.cs" />
     <Compile Include="Homes\HomeRoles.cs" />
     <Compile Include="Homes\HomeUsuarios.cs" />
@@ -300,6 +310,10 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ABM de Habitacion\AltaHabitacion.resx">
       <DependentUpon>AltaHabitacion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Habitacion\SeleccionarHabitacion.resx">
+      <DependentUpon>SeleccionarHabitacion.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM de Rol\AltaRol.resx">
