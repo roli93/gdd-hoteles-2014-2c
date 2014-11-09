@@ -10,7 +10,7 @@ using FrbaHotel.Administracion_Base_de_Datos;
 
 namespace FrbaHotel
 {
-    public class Funcionalidad
+    public class Funcionalidad : Entidad
     {
         public Funcionalidad(int id, string descripcion)
         {
@@ -18,7 +18,6 @@ namespace FrbaHotel
             this.Descripcion = descripcion;
         }
 
-        public int Id { get; set; }
         public string Descripcion { get; set; }
 
         public override string ToString()

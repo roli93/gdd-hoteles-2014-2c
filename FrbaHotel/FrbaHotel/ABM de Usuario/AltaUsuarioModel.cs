@@ -13,13 +13,13 @@ namespace FrbaHotel.ABM_de_Usuario
 {
     public partial class AltaUsuario
     {
-        private string confirmarPassword, password, nombre, apellido, nroDocumento, mail, telefono, direccion,username;
-        DateTime fechaNacimiento;
-        private List<Hotel> hoteles=new List<Hotel>();
-        private List<Rol> roles = new List<Rol>();
-        private TipoDocumento tipoDni;
+        protected string confirmarPassword, password, nombre, apellido, nroDocumento, mail, telefono, direccion,username;
+        protected DateTime fechaNacimiento;
+        protected List<Hotel> hoteles = new List<Hotel>();
+        protected List<Rol> roles = new List<Rol>();
+        protected TipoDocumento tipoDni;
 
-        private void Guardar()
+        protected virtual void Guardar()
         {
             ValidarErrores();
             HomeUsuarios.registrarUsuario(username, password, roles, nombre, apellido, tipoDni, nroDocumento, mail, telefono, direccion, fechaNacimiento, hoteles);

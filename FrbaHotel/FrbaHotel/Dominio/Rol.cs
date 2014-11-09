@@ -10,14 +10,13 @@ using FrbaHotel.Administracion_Base_de_Datos;
 
 namespace FrbaHotel
 {
-    public class Rol
+    public class Rol:Entidad
     {
-        private int id;
         private string descripcion;
 
         public Rol(int id, string descripcion)
         {
-            this.id = id;
+            this.Id = id;
             this.descripcion = descripcion;
         }
         
@@ -33,19 +32,17 @@ namespace FrbaHotel
                     funcionalidades.Add(new Funcionalidad((int)elemento["id_funcionalidad"], (string)elemento["descripcion"]));
                 }
                 return funcionalidades;*/
-                if(id==0)
+                if(Id==0)
                     return new List<Funcionalidad> { new Funcionalidad(1, "Reserva Hotelera") };
-                return new List<Funcionalidad> { new Funcionalidad(1, "Reservas"), new Funcionalidad(2, "Echar gente") };
+                return new List<Funcionalidad> { new Funcionalidad(1, "Reservas"), new Funcionalidad(2, "Echar gente"), new Funcionalidad(5, "ABM clientes") };
             }
         }
 
-        public int Id { get; set; }
         public string Descripcion { get; set; }
 
         public override string ToString()
         {
             return descripcion;
         }
-
     }
 }

@@ -41,7 +41,7 @@ namespace FrbaHotel.ABM_de_Usuario
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            password= textBox2.Text;
+            password= _password.Text;
         }
 
         private void label5_Click(object sender, EventArgs e)
@@ -51,42 +51,42 @@ namespace FrbaHotel.ABM_de_Usuario
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            username=textBox1.Text;
+            username=_username.Text;
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
         {
-            confirmarPassword = textBox5.Text;
+            confirmarPassword = _confirmarPassword.Text;
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
-            nombre = textBox3.Text;
+            nombre = _nombre.Text;
         }
 
         private void textBox9_TextChanged(object sender, EventArgs e)
         {
-            nroDocumento = textBox9.Text;
+            nroDocumento = _nroDocumento.Text;
         }
 
         private void textBox8_TextChanged(object sender, EventArgs e)
         {
-            apellido = textBox8.Text;
+            apellido = _apellido.Text;
         }
 
         private void textBox6_TextChanged(object sender, EventArgs e)
         {
-            mail = textBox6.Text;
+            mail = _mail.Text;
         }
 
         private void textBox10_TextChanged(object sender, EventArgs e)
         {
-            telefono = textBox10.Text;
+            telefono = _telefono.Text;
         }
 
         private void textBox7_TextChanged(object sender, EventArgs e)
         {
-            direccion = textBox1.Text;
+            direccion = _username.Text;
         }
  
         private void button1_Click(object sender, EventArgs e)
@@ -102,11 +102,11 @@ namespace FrbaHotel.ABM_de_Usuario
         private void AltaUsuario_Load(object sender, EventArgs e)
         {
             dateTimePicker1.Value = DateTime.Now;
-            bindCheckedListBox(checkedListBox1, Sesion.ObjectRoles);
-            bindCheckedListBox(checkedListBox2, Sesion.ObjectHoteles);
-            bindCombo(comboBox1, new List<object>(new object[] { new TipoDocumento(1, "DNI") })/*TODO: new List<object>(DatabaseAdapter.dataTableToString("obtener_tipo_documento", "descripcion",null))*/);
-            textBox2.UseSystemPasswordChar = true;
-            textBox5.UseSystemPasswordChar = true;
+            bindCheckedListBox<Rol>(checkedListBox1, Sesion.RolesDisponibles);
+            bindCheckedListBox<Hotel>(checkedListBox2, Sesion.HotelesDisponibles);
+            bindCombo<TipoDocumento>(comboBox1, Sesion.TiposDocumentoDisponibles);            
+            _password.UseSystemPasswordChar = true;
+            _confirmarPassword.UseSystemPasswordChar = true;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)

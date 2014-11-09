@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BAFE3016-AC06-4C43-ABEF-87F21AB5699B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -55,6 +55,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -68,17 +69,62 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ABM de Cliente\AMBCliente.cs">
+    <Compile Include="ABM de Cliente\ABMClientes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM de Cliente\AMBCliente.Designer.cs">
-      <DependentUpon>AMBCliente.cs</DependentUpon>
+    <Compile Include="ABM de Cliente\ABMClientes.Designer.cs">
+      <DependentUpon>ABMClientes.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM de Habitacion\Form1.cs">
+    <Compile Include="ABM de Cliente\AltaCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM de Habitacion\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ABM de Cliente\AltaCliente.Designer.cs">
+      <DependentUpon>AltaCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Cliente\AltaClienteModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Cliente\ModificarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Cliente\ModificarCliente.Designer.cs">
+      <DependentUpon>ModificarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Cliente\ModoficarClienteModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Cliente\SeleccionarCliente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Cliente\SeleccionarCliente.Designer.cs">
+      <DependentUpon>SeleccionarCliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Cliente\SeleccionarClienteModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Habitacion\ABMHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Habitacion\ABMHabitacion.Designer.cs">
+      <DependentUpon>ABMHabitacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Habitacion\AltaHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Habitacion\AltaHabitacion.Designer.cs">
+      <DependentUpon>AltaHabitacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Habitacion\AltaHabitacionModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Habitacion\SeleccionarHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Habitacion\SeleccionarHabitacion.Designer.cs">
+      <DependentUpon>SeleccionarHabitacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Habitacion\SeleccionarHabitacionModel.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="ABM de Regimen\Form1.cs">
       <SubType>Form</SubType>
@@ -86,11 +132,38 @@
     <Compile Include="ABM de Regimen\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="ABM de Rol\Form1.cs">
+    <Compile Include="ABM de Rol\ABMRol.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM de Rol\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ABM de Rol\ABMRol.Designer.cs">
+      <DependentUpon>ABMRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Rol\AltaRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Rol\AltaRol.Designer.cs">
+      <DependentUpon>AltaRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Rol\AltaRolModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Rol\ModificarRolModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Rol\SeleccionarRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Rol\SeleccionarRol.Designer.cs">
+      <DependentUpon>SeleccionarRol.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Rol\SeleccionarRolModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Rol\ModificarRol.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Rol\ModificarRol.Designer.cs">
+      <DependentUpon>ModificarRol.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM de Usuario\ABMUsuario.cs">
       <SubType>Form</SubType>
@@ -101,10 +174,28 @@
     <Compile Include="ABM de Usuario\AltaUsuario.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ABM de Usuario\AltaUsuario.Designer.cs">
+    <Compile Include="ABM de Usuario\AltaUsuario.designer.cs">
       <DependentUpon>AltaUsuario.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM de Usuario\AltaUsuarioModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Usuario\ModificacionUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Usuario\ModificacionUsuario.Designer.cs">
+      <DependentUpon>ModificacionUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Usuario\ModificacionUsuarioModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Usuario\SeleccionarUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Usuario\SeleccionarUsuario.Designer.cs">
+      <DependentUpon>SeleccionarUsuario.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Usuario\SeleccionarusuarioModel.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion Base de Datos\DatabaseAdapter.cs" />
@@ -114,11 +205,18 @@
     <Compile Include="Cancelar Reserva\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dominio\Cliente.cs" />
+    <Compile Include="Dominio\Entidad.cs" />
     <Compile Include="Dominio\Funcionalidad.cs" />
+    <Compile Include="Dominio\Habitacion.cs" />
     <Compile Include="Dominio\Hotel.cs" />
+    <Compile Include="Dominio\Pais.cs" />
+    <Compile Include="Dominio\Regimen.cs" />
+    <Compile Include="Dominio\Reserva.cs" />
     <Compile Include="Dominio\Rol.cs" />
     <Compile Include="Dominio\Sesion.cs" />
     <Compile Include="Dominio\TipoDocumento.cs" />
+    <Compile Include="Dominio\TipoHabitacion.cs" />
     <Compile Include="Dominio\Usuario.cs" />
     <Compile Include="ExcepcionFrbaHoteles.cs" />
     <Compile Include="Forms genericos\ABM.cs">
@@ -139,7 +237,38 @@
     <Compile Include="Forms genericos\NavegableFormModel.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Generar Modificar Reserva\Agregar Habitación.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\Agregar Habitación.Designer.cs">
+      <DependentUpon>Agregar Habitación.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\ClienteParaReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\ClienteParaReserva.Designer.cs">
+      <DependentUpon>ClienteParaReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\GenerarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\GenerarReserva.Designer.cs">
+      <DependentUpon>GenerarReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\GenerarReservaModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\SeleccionarRegimen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\SeleccionarRegimen.Designer.cs">
+      <DependentUpon>SeleccionarRegimen.cs</DependentUpon>
+    </Compile>
     <Compile Include="Homes\Home.cs" />
+    <Compile Include="Homes\HomeClientes.cs" />
+    <Compile Include="Homes\HomeHabitaciones.cs" />
+    <Compile Include="Homes\HomeReservas.cs" />
+    <Compile Include="Homes\HomeRoles.cs" />
     <Compile Include="Homes\HomeUsuarios.cs" />
     <Compile Include="Login\LoginUsuariosModel.cs">
       <SubType>Form</SubType>
@@ -159,12 +288,6 @@
     <Compile Include="PantallaBienvenida.Designer.cs">
       <DependentUpon>PantallaBienvenida.cs</DependentUpon>
     </Compile>
-    <Compile Include="Generar Modificar Reserva\Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Generar Modificar Reserva\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="Login\LoginUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -176,11 +299,45 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ABM de Cliente\AltaCliente.resx">
+      <DependentUpon>AltaCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Cliente\ModificarCliente.resx">
+      <DependentUpon>ModificarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Cliente\SeleccionarCliente.resx">
+      <DependentUpon>SeleccionarCliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Habitacion\AltaHabitacion.resx">
+      <DependentUpon>AltaHabitacion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Habitacion\SeleccionarHabitacion.resx">
+      <DependentUpon>SeleccionarHabitacion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Rol\AltaRol.resx">
+      <DependentUpon>AltaRol.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Rol\ModificarRol.resx">
+      <DependentUpon>ModificarRol.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Rol\SeleccionarRol.resx">
+      <DependentUpon>SeleccionarRol.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM de Usuario\ABMUsuario.resx">
       <DependentUpon>ABMUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM de Usuario\AltaUsuario.resx">
       <DependentUpon>AltaUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Usuario\ModificacionUsuario.resx">
+      <DependentUpon>ModificacionUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Usuario\SeleccionarUsuario.resx">
+      <DependentUpon>SeleccionarUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms genericos\ABM.resx">
       <DependentUpon>ABM.cs</DependentUpon>
@@ -188,11 +345,20 @@
     <EmbeddedResource Include="Forms genericos\NavegableForm.resx">
       <DependentUpon>NavegableForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Generar Modificar Reserva\Agregar Habitación.resx">
+      <DependentUpon>Agregar Habitación.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Modificar Reserva\ClienteParaReserva.resx">
+      <DependentUpon>ClienteParaReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Modificar Reserva\GenerarReserva.resx">
+      <DependentUpon>GenerarReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Modificar Reserva\SeleccionarRegimen.resx">
+      <DependentUpon>SeleccionarRegimen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginUsuarios.resx">
       <DependentUpon>LoginUsuarios.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ABM de Cliente\AMBCliente.resx">
-      <DependentUpon>AMBCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\SeleccionFuncionalidad.resx">
       <DependentUpon>SeleccionFuncionalidad.cs</DependentUpon>
@@ -260,6 +426,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\clean.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Magnifying-Glass-icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Magnifying-Glass-icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Magnifying-Glass-icon2.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Listado Estadistico\" />

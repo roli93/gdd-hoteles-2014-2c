@@ -26,7 +26,7 @@ namespace FrbaHotel
         public List<Rol> Roles
         {
             get
-            {/*
+            {/*     TODO
                 DataTable elementos = DatabaseAdapter.traerDataTable("obtener_roles", Id);
                 List<Rol> roles = new List<Rol>();
 
@@ -35,14 +35,14 @@ namespace FrbaHotel
                     roles.Add(new Rol((int) elemento["id_rol"],(string) elemento["descripcion"]));
                 }
                 return roles;*/
-                return new List<Rol> { new Rol(1, "admin"), new Rol(2, "recep") };
+                return new List<Rol> { new Rol(1, "admin"), };
             }
         }
         public List<Hotel>Hoteles
         {
             get
             {
-                /*DataTable elementos = DatabaseAdapter.traerDataTable("obtener_hoteles", id);
+                /*  TODO DataTable elementos = DatabaseAdapter.traerDataTable("obtener_hoteles", id);
                 List<Hotel> hoteles = new List<Hotel>();
 
                 foreach (DataRow elemento in elementos.Rows)
@@ -53,9 +53,14 @@ namespace FrbaHotel
                 return new List<Hotel> { new Hotel(1, "SuperHote"), new Hotel(2, "HotelFeo") };
             }
         }
-        
-
-  
-
+        public TipoDocumento TipoDocumento
+        {
+            get
+            {
+               /*TODO  DataRow documento = DatabaseAdapter.traerDataTable("obtener_documento", Id).Rows[0];
+                return new TipoDocumento(Convert.ToInt32(documento["id_tipo_documento"]), documento["descripcion"].ToString());*/
+                return new TipoDocumento(1, "DNI");
+            }
+        }
     }
 }

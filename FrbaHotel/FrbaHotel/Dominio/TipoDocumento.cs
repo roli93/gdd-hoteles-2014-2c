@@ -11,9 +11,8 @@ using FrbaHotel.Administracion_Base_de_Datos;
 namespace FrbaHotel
 {
 
-    public class TipoDocumento
+    public class TipoDocumento:Entidad
     {
-        public int Id;
         public string Descripcion;
 
         public TipoDocumento(int id, string descripcion)

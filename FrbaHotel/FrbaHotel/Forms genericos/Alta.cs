@@ -12,7 +12,7 @@ namespace FrbaHotel.Forms_genericos
 {
     public class Alta : NavegableForm
     {
-        private static Dictionary<Type, Action<Control>> cleaners = new Dictionary<Type, Action<Control>>() { 
+        protected static Dictionary<Type, Action<Control>> cleaners = new Dictionary<Type, Action<Control>>() { 
             {typeof(TextBox), c => ((TextBox)c).Clear()},
             {typeof(CheckBox), c => ((CheckBox)c).Checked = false},
             {typeof(ListBox), c =>{} },
@@ -23,16 +23,26 @@ namespace FrbaHotel.Forms_genericos
             {typeof(DomainUpDown), c => {}},
             {typeof(Button), c => {}},
             {typeof(Label), c => {}},
-            {typeof(ComboBox), c => {}},
+            {typeof(ComboBox), c => ((ComboBox)c).SelectedIndex=-1},
             {typeof(CheckedListBox), c => ClearItems((CheckedListBox)c)},
-            {typeof(DateTimePicker), c => ((DateTimePicker)c).Value=DateTime.Now}
+            {typeof(DateTimePicker), c => ((DateTimePicker)c).Value=DateTime.Now},
+            {typeof(DataGridView), c => ((DataGridView)c).DataSource=null},
     };
+
+        public delegate NavegableForm ConstructorModificacion(int IdElemento);
+        protected ConstructorModificacion constructorEdicion;
 
         protected string errorMessage = "";
 
         public Alta(NavegableForm owner)
             : base(owner)
         {
+        }
+
+        public Alta(NavegableForm owner,ConstructorModificacion constructorEdicion)
+            : base(owner)
+        {
+            this.constructorEdicion = constructorEdicion;
         }
 
         public Alta()
@@ -76,6 +86,10 @@ namespace FrbaHotel.Forms_genericos
             for (i = 0; i < campos.Length;i++ )
                 if (campos[i]==null)
                     errorMessage += ("El campo "+nombresCampos[i] + " no ha sido completado\n");
+                else if(campos[i].GetType()==typeof(string))
+                    if(campos[i].ToString()=="")
+                        errorMessage += ("El campo "+nombresCampos[i] + " no ha sido completado\n");
+
         }
 
         public void ValidarCollecionVacia<T>(string nombreCampo, List<T> campo)
@@ -117,5 +131,55 @@ namespace FrbaHotel.Forms_genericos
             checkedListBox.Items.Clear();
             checkedListBox.Items.AddRange(items);
         }
+
+        //Métodos de listado, los pongo aca porque el VS se puso en puto y no me diseña si le hago una subclase a esta
+
+        public void cargarBotonModificarDatos(DataGridView grilla, string boton)
+        {
+            DataGridViewButtonColumn col = new DataGridViewButtonColumn();
+            col.Text = boton;
+            col.Name = "Operación";
+            col.UseColumnTextForButtonValue = true;
+            grilla.Columns.Add(col);
+        }
+
+        public void cargarGrilla(DataGridView grid, DataTable dataTable)
+        {
+            grid.DataSource = dataTable;
+            grid.AutoResizeColumns(); //ajusta el tamaño de las columnas y filas a su contenido
+            grid.AutoResizeRows();
+        }
+
+        public void abrirVentanaEdicion(DataGridView grilla, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (grilla[0, e.RowIndex].Value == null)
+                {
+
+                }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+            }
+            try
+            {
+                DataGridViewCellCollection celdas = grilla.Rows[e.RowIndex].Cells;
+                int aModificar = Convert.ToInt32(celdas["ID"].Value);
+                if (e.ColumnIndex == celdas["Operación"].ColumnIndex)
+                {
+                    gridClickAction(aModificar);
+                }
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+            }
+        }
+
+        public virtual void gridClickAction(int seleccionado)
+        {
+            constructorEdicion(seleccionado).StandaloneOpen();
+        }
+
     }
 }
