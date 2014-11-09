@@ -1,5 +1,5 @@
-/FrbaHotel/FrbaHotel/bin/*
-/FrbaHotel/FrbaHotel/obj/*
+FrbaHotel/FrbaHotel/bin/*
+FrbaHotel/FrbaHotel/obj/*
 *.suo
 *.orig
 # Executables
