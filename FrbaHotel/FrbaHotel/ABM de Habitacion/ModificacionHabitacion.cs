@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using FrbaHotel.ABM_de_Habitacion;
 using System.Windows.Forms;
 
 namespace FrbaHotel.ABM_de_Habitacion
@@ -16,10 +17,25 @@ namespace FrbaHotel.ABM_de_Habitacion
             InitializeComponent();
         }
 
-        public ModificacionHabitacion(NavegableForm owner, int unIdHabitacion)
+        public ModificacionHabitacion(NavegableForm owner, int unIdHabitacion):base(owner)
         {
             idHabitacion = unIdHabitacion;
             InitializeComponent();
+            
+        }
+
+        private void ModificacionHabitacion_Load(object sender, EventArgs e)
+        {
+            CargarHabitacion();
+            _hotel.SelectedIndex = _hotel.FindStringExact(hotel.Nombre, 0);
+            _descripcion.Text = descripcion.ToString();
+            _numero.Text = numero.ToString();
+            _piso.Text = piso.ToString();
+            _tipo.SelectedIndex = _tipo.FindStringExact(tipo.descripcion,0);
+            _ubicacion.SelectedIndex = _ubicacion.FindStringExact(ubicacion,0);
+
+            _tipo.Enabled = false;
+               
             
         }
 
