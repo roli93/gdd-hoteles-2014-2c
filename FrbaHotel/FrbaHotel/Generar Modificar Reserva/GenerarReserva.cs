@@ -76,6 +76,11 @@ namespace FrbaHotel.Generar_Modificar_Reserva
             ExcecuteAndShow(Guardar);
         }
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+            new Agregar_Habitación(this).StandaloneOpen();
+        }
+
 
 
     }

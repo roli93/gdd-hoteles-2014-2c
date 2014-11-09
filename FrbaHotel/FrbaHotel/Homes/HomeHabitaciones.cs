@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Data;
 using FrbaHotel.Dominio;
-using FrbaHotel.Administracion_Base_de_Datos
+using FrbaHotel.Administracion_Base_de_Datos;
 
 namespace FrbaHotel.Homes
 {
     public class HomeHabitaciones : Home
     {
-        public void bajaLogica(int unId)
+        public static void bajaLogica(int unId)
         {
             
          DatabaseAdapter.ejecutarProcedure("baja_logica_habitacion",unId);
         }
 
-        public DataTable buscarHabitaciones(Hotel unHotel, int unNumero, int unPiso, string unaUbicacion, TipoHabitacion unTipo, string unaDescripcion)
+        public static DataTable buscarHabitaciones(Hotel unHotel, int unNumero, int unPiso, string unaUbicacion, TipoHabitacion unTipo, string unaDescripcion)
         {
             /*TODO
             return DatabaseAdapter.traerDataTable("buscar_habitaciones", unHotel, unNumero, unPiso, unaUbicacion, unTipo, unaDescripcion);

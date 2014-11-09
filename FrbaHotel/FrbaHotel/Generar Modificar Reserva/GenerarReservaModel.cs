@@ -49,6 +49,38 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         }
 
+        public void AgregarHabitacion(Habitacion habitacion)
+        {
+            habitaciones.Add(habitacion);
+            ActualizarHabitaciones();
+        }
+
+        public void ActualizarHabitaciones()
+        {
+            DataTable habitacionesTable = GenerarTableHabitaciones();
+            cargarGrilla(dataGridView1, habitacionesTable);
+        }
+
+        public DataTable GenerarTableHabitaciones()
+        {
+            DataTable table = new DataTable();
+            table.Clear();
+            table.Columns.Add("Tipo");
+            table.Columns.Add("Cantidad");
+            
+            List<TipoHabitacion> tiposHabitacion = habitaciones.ConvertAll<TipoHabitacion>(h=>h.tipo);
+
+            List<TipoHabitacion> tiposHabitacionDistintos = tiposHabitacion.Distinct<TipoHabitacion>().ToList();
+
+            foreach (TipoHabitacion t in tiposHabitacionDistintos)
+            {
+                int cantidad = tiposHabitacionDistintos.Count<TipoHabitacion>(tipo => tipo.Equals(t));
+                table.Rows.Add(new object[] { t, cantidad });
+            }
+
+            return table;
+        }
+
 
 
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using FrbaHotel.Homes
+using FrbaHotel.Homes;
 using FrbaHotel.Dominio;
 
 namespace FrbaHotel.ABM_de_Habitacion
@@ -26,7 +26,7 @@ namespace FrbaHotel.ABM_de_Habitacion
         protected virtual void Guardar()
         {
             ValidarErrores();
-            HomeHoteles.AgregarHabitacionA(this.Hotel,this.Piso,this.Numero,this.Ubicacion,this.Tipo,this.Descripcion);
+          //TODO  HomeHoteles.AgregarHabitacionA(this.Hotel,this.Piso,this.Numero,this.Ubicacion,this.Tipo,this.Descripcion);
         }
 
         public override void  ValidarErroresConcretos()
@@ -34,7 +34,7 @@ namespace FrbaHotel.ABM_de_Habitacion
             ValidarVacios(
             new string[]{"Hotel","Piso","Numero","Ubicacion","Tipo","Descripcion"},
                 new object[]{hotel, piso, numero, ubicacion, tipo, descripcion});
- 	        ValidarNumericos(piso,numero);
+ 	       // TODO ValidarNumericos(piso,numero);
         }
 
     }

@@ -15,15 +15,15 @@ namespace FrbaHotel.ABM_de_Habitacion
         public SeleccionarHabitacion()
         {
             InitializeComponent();
-            constructorEdicion = (id) => { return new ModificacionHabitacion(this, id); };
+            //todo constructorEdicion = (id) => { return new ModificacionHabitacion(this, id); };
         }
 
         public SeleccionarHabitacion(NavegableForm owner, string accion)
             : base(owner)
         {
             InitializeComponent();
-            constructorEdicion = (id) => { return new ModificacionHabitacion(this, id); };
-            this.accion = accion;
+           //TODO  constructorEdicion = (id) => { return new ModificacionHabitacion(this, id); };
+           //TODO  this.accion = accion;
         }
 
         private void _hotel_SelectedIndexChanged(object sender, EventArgs e)

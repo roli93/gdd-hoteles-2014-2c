@@ -36,22 +36,22 @@ namespace FrbaHotel.ABM_de_Habitacion
 
         private void _hotel_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Hotel = (Hotel)_hotel.SelectedItem();
+            Hotel = (Hotel)_hotel.SelectedItem;
         }
 
         private void _numero_TextChanged(object sender, EventArgs e)
         {
-            Numero = Convert.ToInt32(_numero.Text());
+            Numero = Convert.ToInt32(_numero.Text);
         }
 
         private void _ubicacion_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Ubicacion = (string)_ubicacion.SelectedItem();
+            Ubicacion = (string)_ubicacion.SelectedItem;
         }
 
         private void _tipo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Tipo = (TipoHabitacion)_tipo.SelectedItem();
+            Tipo = (TipoHabitacion)_tipo.SelectedItem;
         }
 
         private void _descripcion_TextChanged(object sender, EventArgs e)
