@@ -8,15 +8,13 @@ namespace FrbaHotel.Dominio
     public class TipoHabitacion : Entidad
     {
 
-        private string descripcion;
+        public string descripcion;
 
         public TipoHabitacion(int unId,string unaDescripcion)
         {
             this.Id = unId;
-            this.Descripcion = unaDescripcion;
+            this.descripcion = unaDescripcion;
         }
-
-        public string Descripcion { get; set; }
 
     }
 }

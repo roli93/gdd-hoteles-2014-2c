@@ -117,6 +117,15 @@
     <Compile Include="ABM de Habitacion\AltaHabitacionModel.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ABM de Habitacion\ModificacionHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Habitacion\ModificacionHabitacion.Designer.cs">
+      <DependentUpon>ModificacionHabitacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Habitacion\ModificacionHabitacionModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="ABM de Habitacion\SeleccionarHabitacion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -267,6 +276,7 @@
     <Compile Include="Homes\Home.cs" />
     <Compile Include="Homes\HomeClientes.cs" />
     <Compile Include="Homes\HomeHabitaciones.cs" />
+    <Compile Include="Homes\HomeHoteles.cs" />
     <Compile Include="Homes\HomeReservas.cs" />
     <Compile Include="Homes\HomeRoles.cs" />
     <Compile Include="Homes\HomeUsuarios.cs" />
