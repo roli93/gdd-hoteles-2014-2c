@@ -9,24 +9,17 @@ namespace FrbaHotel.ABM_de_Habitacion
 {
     public partial class AltaHabitacion
     {
-        private Hotel hotel;
-        private int piso;
-        private int numero;
-        private string ubicacion;
-        private TipoHabitacion tipo;
-        private string descripcion;
-
-        public Hotel Hotel { get; set; }
-        public int Piso { get; set; }
-        public int Numero { get; set; }
-        public string Ubicacion { get; set; }
-        public TipoHabitacion Tipo { get; set; }
-        public string Descripcion { get; set; }
+        protected Hotel hotel;
+        protected int piso;
+        protected int numero;
+        protected string ubicacion;
+        protected TipoHabitacion tipo;
+        protected string descripcion;
 
         protected virtual void Guardar()
         {
             ValidarErrores();
-          //TODO  HomeHoteles.AgregarHabitacionA(this.Hotel,this.Piso,this.Numero,this.Ubicacion,this.Tipo,this.Descripcion);
+            HomeHoteles.agregarHabitacionA(this.hotel,this.piso,this.numero,this.ubicacion,this.tipo,this.descripcion);
         }
 
         public override void  ValidarErroresConcretos()
@@ -34,7 +27,7 @@ namespace FrbaHotel.ABM_de_Habitacion
             ValidarVacios(
             new string[]{"Hotel","Piso","Numero","Ubicacion","Tipo","Descripcion"},
                 new object[]{hotel, piso, numero, ubicacion, tipo, descripcion});
- 	       // TODO ValidarNumericos(piso,numero);
+ 	        ValidarNumericos(new string[]{"Piso","Numero"});
         }
 
     }
