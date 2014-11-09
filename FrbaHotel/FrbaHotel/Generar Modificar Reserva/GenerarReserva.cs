@@ -68,6 +68,8 @@ namespace FrbaHotel.Generar_Modificar_Reserva
                 labelHotel.Hide();
                 _hotel.Hide();
             }
+            habitaciones = caca();
+            ActualizarHabitaciones();
 
         }
 

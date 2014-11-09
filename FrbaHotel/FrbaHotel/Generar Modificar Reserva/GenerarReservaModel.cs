@@ -22,6 +22,25 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         protected List<Habitacion> habitaciones;
         public int ClienteId { get; set; }
 
+
+        //TODO BORRAR
+        public List<Habitacion> caca()
+        {
+            Habitacion h1 = new Habitacion();
+            Habitacion h2 = new Habitacion();
+            Habitacion h3 = new Habitacion();
+            h1.tipo = new TipoHabitacion(1,"Doble");
+            h2.tipo = new TipoHabitacion(2,"Simple");
+            h3.tipo = new TipoHabitacion(1,"Doble");
+            
+            List<Habitacion> l = new List<Habitacion>();
+            l.Add(h1);
+            l.Add(h2);
+            l.Add(h3);
+
+            return l;
+        }
+
         public void Guardar()
         {
             ValidarErrores();
@@ -70,11 +89,11 @@ namespace FrbaHotel.Generar_Modificar_Reserva
             
             List<TipoHabitacion> tiposHabitacion = habitaciones.ConvertAll<TipoHabitacion>(h=>h.tipo);
 
-            List<TipoHabitacion> tiposHabitacionDistintos = tiposHabitacion.Distinct<TipoHabitacion>().ToList();
+            List<TipoHabitacion> tiposHabitacionDistintos = tiposHabitacion.Distinct<TipoHabitacion>(new TipoHabitacionEqComparer()).ToList();
 
             foreach (TipoHabitacion t in tiposHabitacionDistintos)
             {
-                int cantidad = tiposHabitacionDistintos.Count<TipoHabitacion>(tipo => tipo.Equals(t));
+                int cantidad = tiposHabitacion.Count<TipoHabitacion>(tipo => tipo.Equals(t));
                 table.Rows.Add(new object[] { t, cantidad });
             }
 
@@ -84,4 +103,20 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
 
     }
+}
+
+class TipoHabitacionEqComparer : IEqualityComparer<TipoHabitacion>
+{
+
+    public bool Equals(TipoHabitacion t1, TipoHabitacion t2)
+    {
+        return t1.Equals(t2);
+    }
+
+
+    public int GetHashCode(TipoHabitacion t)
+    {
+        return t.GetHashCode();
+    }
+
 }

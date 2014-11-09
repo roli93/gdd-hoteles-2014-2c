@@ -8,8 +8,6 @@ namespace FrbaHotel.Dominio
     public class TipoHabitacion : Entidad
     {
 
-        private string descripcion;
-
         public TipoHabitacion(int unId,string unaDescripcion)
         {
             this.Id = unId;
@@ -17,6 +15,11 @@ namespace FrbaHotel.Dominio
         }
 
         public string Descripcion { get; set; }
+
+        public override string ToString()
+        {
+            return Descripcion;
+        }
 
     }
 }

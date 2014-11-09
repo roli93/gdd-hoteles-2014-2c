@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BAFE3016-AC06-4C43-ABEF-87F21AB5699B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -242,6 +242,9 @@
     </Compile>
     <Compile Include="Generar Modificar Reserva\Agregar Habitación.Designer.cs">
       <DependentUpon>Agregar Habitación.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\AgregarHabitacionModel.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Generar Modificar Reserva\ClienteParaReserva.cs">
       <SubType>Form</SubType>

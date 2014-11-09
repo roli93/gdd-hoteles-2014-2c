@@ -7,25 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FrbaHotel.Forms_genericos;
+using FrbaHotel.Dominio;
 
 namespace FrbaHotel.Generar_Modificar_Reserva
 {
     public partial class Agregar_Habitación : Alta
     {
-        public Agregar_Habitación()
+        private int cantidad;
+        private TipoHabitacion tipoHabitacion;
+
+        public void Agregar()
         {
-            InitializeComponent();
         }
 
-        public Agregar_Habitación(NavegableForm o):base(o)
-        {
-            InitializeComponent();
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
 
 
     }
