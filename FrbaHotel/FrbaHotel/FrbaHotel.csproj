@@ -322,6 +322,10 @@
       <DependentUpon>AltaHabitacion.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Habitacion\ModificacionHabitacion.resx">
+      <DependentUpon>ModificacionHabitacion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM de Habitacion\SeleccionarHabitacion.resx">
       <DependentUpon>SeleccionarHabitacion.cs</DependentUpon>
       <SubType>Designer</SubType>

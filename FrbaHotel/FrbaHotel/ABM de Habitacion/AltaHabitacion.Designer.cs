@@ -206,19 +206,19 @@
 
         #endregion
 
-        private System.Windows.Forms.ComboBox _hotel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox _tipo;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox _descripcion;
-        private System.Windows.Forms.TextBox _numero;
-        private System.Windows.Forms.TextBox _piso;
-        private System.Windows.Forms.ComboBox _ubicacion;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
+        protected System.Windows.Forms.ComboBox _hotel;
+        protected System.Windows.Forms.ComboBox _tipo;
+        protected System.Windows.Forms.TextBox _descripcion;
+        protected System.Windows.Forms.TextBox _numero;
+        protected System.Windows.Forms.TextBox _piso;
+        protected System.Windows.Forms.ComboBox _ubicacion;
     }
 }
