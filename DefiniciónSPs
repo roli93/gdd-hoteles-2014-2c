@@ -119,12 +119,18 @@ actualizar_reserva(id_reserva, id regimen, fecha_inicio, fecha_fin)
 //actualiza la reserva del id dado;Setea el estado de la reserva al 
 //codigo q le correspoidne por reserva Modificada;
 
-insertar_modificacion(fecha, id_reserva, ide_usuario)
-//Inserta una nueva modificacion en la tabla;
+insertar_modificacion(fecha, id_reserva, ide_usuario,varchar motivo, int tipo)
+//Inserta una nueva modificacion en la tabla; Si tipo es 0 es una modificacion, si tipo es 1 es una cancelacion.
 
 int reserva_editable(id_reserva)
 //Devuelve 1 si la reserva tiene estado en "reserva correcta" o "reserva modificada". si esta cancelada o con ingreso, o si no existe devuelve 0
 
+cancelar_reserva_no_show(id_reserva)
+//setea el estado de la reserva como cancelada por no show
 
+cancelar_reserva_clientew(id_reserva)
+//setea el estado de la reserva como cancelada por el cliente
 
+cancelar_reserva_recepcion(id_reserva)
+//setea el estado de la reserva como cancelada por personal de recepcion
 
