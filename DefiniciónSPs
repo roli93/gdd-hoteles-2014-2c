@@ -124,6 +124,7 @@ insertar_modificacion(fecha, id_reserva, ide_usuario,varchar motivo, int tipo)
 
 int reserva_editable(id_reserva)
 //Devuelve 1 si la reserva tiene estado en "reserva correcta" o "reserva modificada". si esta cancelada o con ingreso, o si no existe devuelve 0
+//Tambien devuelve 0 (false) si está a menos d eun dia de efectivizarse
 
 cancelar_reserva_no_show(id_reserva)
 //setea el estado de la reserva como cancelada por no show
