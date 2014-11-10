@@ -91,10 +91,14 @@ insertar_reserva(id_regimen, fecha_inicio, fecha_fin, id_cliente,fecha_realizaci
 //Inserta una nueva reserva, creo q no tendria por qué dar error nunca.
 
 insertar_habitacion_reservada(id_reserva, id_habitacion)
-//Agrega una habitacion reservada
+//Agrega una habitacion reservada. Si ya esá asociada a otra reserva en fechas que se superponen, debe fallar y devovler -7
 
-buscar_habiaciones(id_hotel, id_tipo_habitacion, int cantidad)
-//hace un select para devovler las top cantidad habitaciones que hay de ese tipo en ese hotel. el orden es trivial.
+borrar_habitacion_reservada(id_reserva, id_habitacion)
+//Borra una habitacion reservada
+
+buscar_habiaciones(id_hotel, id_tipo_habitacion, int cantidad, fecha_inicio, fecha_fin)
+//hace un select para devovler las top cantidad habitaciones que hay de ese tipo en ese hotel que estén disponibles
+// entre esas fechas, es decir tales que no hay otra reserva asociada q se superponga.El orden es trivial.
 
 regimenes_disponibes(id_hotel)
 //hace un select * y devuelve todos los regímenes disponibles para un hotel.
@@ -109,6 +113,11 @@ buscar_reserva_por_id(id_reserva)
 obtener_habitaciones(id_reserva)
 //Hace un select dodne devuelve todas las habitaciones de esa reserva. devuelve las siguentes columnas:
 //id_habitacion,id_tipo_habitacion, descripcion_tipo_habitacion
+
+actualizar_reserva(id_reserva, id regimen, fecha_inicio, fecha_fin)
+//actualiza la reserva del id dado;
+
+
 
 
 
