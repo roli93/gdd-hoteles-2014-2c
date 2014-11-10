@@ -106,7 +106,7 @@ namespace FrbaHotel
         {
             get
             {
-                //TODO return elementosDisponibles<TipoHabitaion>((e) => new TipoHabitacion(DATOS, "tiposHabitacion_disponibles");
+                //TODO return elementosDisponibles<TipoHabitaion>((e) => new TipoHabitacion(DATOS, "tipos_habitacion_disponibles");
                 return new List<TipoHabitacion> { new TipoHabitacion(1, "KingSize"), new TipoHabitacion(2, "TamanioBanio"), new TipoHabitacion(3, "TamanioStandar") };
             }
         }
