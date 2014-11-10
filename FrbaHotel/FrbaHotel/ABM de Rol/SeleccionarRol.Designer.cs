@@ -87,7 +87,7 @@
             this._buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._buscar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this._buscar.UseVisualStyleBackColor = true;
-            this._buscar.Click += new System.EventHandler(this._buscar_Click_1);
+            this._buscar.Click += new System.EventHandler(this._buscar_Click);
             // 
             // _limpiar
             // 

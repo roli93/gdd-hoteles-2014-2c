@@ -452,6 +452,21 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Registrar Estadia\AltaClientePorReserva.resx">
+      <DependentUpon>AltaClientePorReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registrar Estadia\CambiarHabitacion.resx">
+      <DependentUpon>CambiarHabitacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registrar Estadia\ClienteParaReserva.resx">
+      <DependentUpon>ClienteParaReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registrar Estadia\RegistrarEstadia.resx">
+      <DependentUpon>RegistrarEstadia.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registrar Estadia\RegistrarIngreso.resx">
+      <DependentUpon>RegistrarIngreso.cs</DependentUpon>
+    </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -473,11 +488,38 @@
     <Compile Include="Registrar Consumible\Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Registrar Estadia\Form1.cs">
+    <Compile Include="Registrar Estadia\AltaClientePorReserva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Registrar Estadia\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Registrar Estadia\AltaClientePorReserva.Designer.cs">
+      <DependentUpon>AltaClientePorReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registrar Estadia\CambiarHabitacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registrar Estadia\CambiarHabitacion.Designer.cs">
+      <DependentUpon>CambiarHabitacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registrar Estadia\ClienteParaReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registrar Estadia\ClienteParaReserva.Designer.cs">
+      <DependentUpon>ClienteParaReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registrar Estadia\RegistrarEstadia.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registrar Estadia\RegistrarEstadia.Designer.cs">
+      <DependentUpon>RegistrarEstadia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registrar Estadia\RegistrarIngreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registrar Estadia\RegistrarIngreso.Designer.cs">
+      <DependentUpon>RegistrarIngreso.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registrar Estadia\RegistrarIngresoModel.cs">
+      <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

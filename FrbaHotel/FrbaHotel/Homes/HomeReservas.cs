@@ -136,5 +136,55 @@ namespace FrbaHotel.Homes
                 DatabaseAdapter.insertarDatosEnTabla("modificacion", DateTime.Now, idReserva, Sesion.Usuario.Id, motivo,1);
             }*/
         }
+
+        public static DataTable habitacionesReserva(int idReserva)
+        {/* TODO
+            return DatabaseAdapter.traerDataTable("habitaciones_de_reserva", idReserva);*/
+            DataTable ej = new DataTable();
+            ej.Clear();
+            ej.Columns.Add("id");
+            ej.Columns.Add("Numero");
+            ej.Columns.Add("Clientes");
+            ej.Rows.Add(new object[] { 142, 2, 0 });
+            ej.Rows.Add(new object[] { 24242, 12, 2 });
+            return ej;
+        }
+
+        public static void cambiarHabitacion(int idHabitacionreservada, int numero)
+        {/*TODO
+            int error = DatabaseAdapter.ejecutarProcedureWithReturnValue("cambiar_habitacion", idHabitacionreservada, numero);
+            DatabaseAdapter.CheckExcepcionPara(error);*/
+        }
+
+        public static void agregarClienteHabitacion(int idHabitacionReservada, int idCliente)
+        {/*TODO
+            DatabaseAdapter.insertarDatosEnTabla("cliente_x_habitacion", idHabitacionReservada, idCliente);*/
+        }
+
+        public static bool reservaEsIngresable(int idReserva)
+        {
+            /*TODO
+            if (DatabaseAdapter.ejecutarProcedureWithReturnValue("reserva_ingresable", idReserva, Sesion.Usuario.Hotel.Id) == 1)
+                return true;
+            else
+                return false;*/
+            return true;
+        }
+
+        public static bool reservaEsEgresable(int idReserva)
+        {
+            /*TODO
+            if (DatabaseAdapter.ejecutarProcedureWithReturnValue("reserva_egresable", idReserva, Sesion.Usuario.Hotel.Id) == 1)
+                return true;
+            else
+                return false;*/
+            return true;
+        }
+
+        public static void ingresarReserva(int idReserva)
+        {/*TODO
+            DatabaseAdapter.ejecutarProcedure("registrar_ingreso_reserva", idReserva);*/
+        }
+
     }
 }
