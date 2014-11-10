@@ -102,8 +102,6 @@ regimenes_disponibes(id_hotel)
 tipos_habitacion_disponibles()
 //hace un select * y devuelve todos lso tipos de habitacion que hay en el sistema
 
-hoteles_disponibles_usuario(id_usuario)
-//hace un select y devuelve tipo y nombre de todos los hoteles en los que trabaja un usuario
 
 
 
