@@ -7,6 +7,8 @@ using FrbaHotel.Administracion_Base_de_Datos;
 using FrbaHotel.ABM_de_Usuario;
 using FrbaHotel.ABM_de_Cliente;
 using FrbaHotel.Generar_Modificar_Reserva;
+using FrbaHotel.ABM_de_Habitacion;
+using FrbaHotel.ABM_de_Rol;
 
 namespace FrbaHotel
 {
@@ -25,6 +27,10 @@ namespace FrbaHotel
             Dictionary<int, SeleccionFuncionalidad.NavegableFormInstanciator> funcionalidadesSistema = new Dictionary<int, SeleccionFuncionalidad.NavegableFormInstanciator>();
             funcionalidadesSistema.Add(1,(owner) => new GenerarReserva(owner));
             funcionalidadesSistema.Add(5, (owner) => new ABMClientes(owner));
+            funcionalidadesSistema.Add(6, (owner) => new ABMHabitacion(owner));
+            funcionalidadesSistema.Add(7, (owner) => new ABMRol(owner));
+
+
             SeleccionFuncionalidad.FuncionalidadesPosibles= funcionalidadesSistema;
             // DatabaseAdapter.Excepciones=...
             //------------------CONFIGURACIONES------------------->>

@@ -482,17 +482,7 @@
     <None Include="Resources\clean.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Magnifying-Glass-icon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Magnifying-Glass-icon1.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Magnifying-Glass-icon2.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Listado Estadistico\" />
-    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

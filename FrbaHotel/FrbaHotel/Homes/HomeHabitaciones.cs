@@ -12,7 +12,7 @@ namespace FrbaHotel.Homes
     {
         static public void bajaLogica(int unId)
         {
-         DatabaseAdapter.ejecutarProcedure("baja_logica_habitacion",unId);
+         //DatabaseAdapter.ejecutarProcedure("baja_logica_habitacion",unId);
         }
 
         static public DataTable buscarHabitaciones(Hotel unHotel, int unNumero, int unPiso, string unaUbicacion, TipoHabitacion unTipo, string unaDescripcion)
@@ -21,12 +21,15 @@ namespace FrbaHotel.Homes
             return DatabaseAdapter.traerDataTable("buscar_habitaciones", unHotel.Id, unNumero, unPiso, unaUbicacion, unTipo.Id, unaDescripcion);
           */
             DataTable ej = new DataTable();
-            ej.Clear();
+            ej.Clear(); 
+            ej.Columns.Add("ID");
             ej.Columns.Add("Hotel");
             ej.Columns.Add("Numero");
             ej.Columns.Add("Piso");
-            ej.Columns.Add("Ubicacion");
-            ej.Rows.Add(new object[] { new Hotel(1,"Hotel Aca no vuelvo ni en pedo"), 23, 1, "Interior" });
+            ej.Columns.Add("Ubicacion"); 
+            ej.Columns.Add("Operación");
+            ej.Rows.Add(new object[] {1, new Hotel(2, "Hotel Con Vista al Puto"), 21, 2, "Exterior", "Seleccionar" });
+            ej.Rows.Add(new object[] {2, new Hotel(1,"Hotel Aca no vuelvo ni en pedo"), 23, 1, "Interior","Seleccionar" });
             return ej;
         }
 
