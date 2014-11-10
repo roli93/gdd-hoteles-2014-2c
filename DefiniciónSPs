@@ -155,3 +155,11 @@ int cambiar_habitacion(id_habitacion_reservada, numero)
 
 int insertar_cliente_x_habitacion(id_habitacion_reservada, id_cliente)
 //inserta un cliente x habitacion. Si ya estaba insertado devuelve -9
+
+int reserva_ingresable(id_reserva,id_hotel)
+//Devuelve 1 si la reserva tiene estado en "reserva correcta" o "reserva modificada". si esta cancelada o con ingreso, o si no existe devuelve 0
+//Tambien devuelve 0 (false) si ya se pasó la fecha de inicio o si no pertenece al hotel especidicado
+
+int reserva_egresable(id_reserva,id_hotel)
+//Devuelve 1 si la reserva tiene estado en "reserva ingresada" si el estado es otro , o si no existe devuelve 0
+//Tambien devuelve 0 (false) si no pertenece al hotel especidicado
