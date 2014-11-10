@@ -100,6 +100,8 @@ borrar_habitacion_reservada(id_reserva, id_habitacion)
 buscar_habiaciones(id_hotel, id_tipo_habitacion, int cantidad, fecha_inicio, fecha_fin)
 //hace un select para devovler las top cantidad habitaciones que hay de ese tipo en ese hotel que estén disponibles
 // entre esas fechas, es decir tales que no hay otra reserva asociada q se superponga.El orden es trivial.
+//Este Sp debe encargarse de cancelar las reservas pasadas de fecha y sin efectivizar q haya en el momento, como dice
+//el enunciado
 
 regimenes_disponibes(id_hotel)
 //hace un select * y devuelve todos los regímenes disponibles para un hotel.
@@ -163,3 +165,6 @@ int reserva_ingresable(id_reserva,id_hotel)
 int reserva_egresable(id_reserva,id_hotel)
 //Devuelve 1 si la reserva tiene estado en "reserva ingresada" si el estado es otro , o si no existe devuelve 0
 //Tambien devuelve 0 (false) si no pertenece al hotel especidicado
+
+registrar_ingreso_reserva(id_reserva)
+//cambia el estado de la reserva por reserva ingresada
