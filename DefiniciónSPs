@@ -102,7 +102,13 @@ regimenes_disponibes(id_hotel)
 tipos_habitacion_disponibles()
 //hace un select * y devuelve todos lso tipos de habitacion que hay en el sistema
 
+buscar_reserva_por_id(id_reserva)
+//Hace un select con los joins correspondientes para devovlerme las siguientes columnas para la reserva del id dado:
+//fecha_fin, fecha_inicio,id_hotel_habitacion,nombre_hotel_habitacion,id_regimen_habitacon, descripcion_regimen_habitacion
 
+obtener_habitaciones(id_reserva)
+//Hace un select dodne devuelve todas las habitaciones de esa reserva. devuelve las siguentes columnas:
+//id_habitacion,id_tipo_habitacion, descripcion_tipo_habitacion
 
 
 
