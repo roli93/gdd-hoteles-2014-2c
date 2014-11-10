@@ -135,3 +135,12 @@ cancelar_reserva_clientew(id_reserva)
 cancelar_reserva_recepcion(id_reserva)
 //setea el estado de la reserva como cancelada por personal de recepcion
 
+buscar_roles(string nombre,bool estado)
+//Hace el select y trae los roles que correspondan, el nombre viene por default en "" y el estado 
+//en True (el estado es distinto a la alta o baja logica)
+
+buscar_rol_por_id(int id)
+//Devuelve la fila que corresponde a ese id de rol con todas sus columnas
+
+baja_rol(int id)
+// pone en baja logica el rol correspondiente a ese id
