@@ -86,3 +86,26 @@ buscar_habitacion_por_id(int id_habitacion)
 
 baja_logica_habitacion(id_habitacion)
 //poner en baja logica el campo correspondiente
+
+insertar_reserva(id_hotel,id_regimen, fecha_inicio, fecha_fin, id_cliente)
+//Inserta una nueva reserva, creo q no tendria por qué dar error nunca.
+
+insertar_habitacion_reservada(id_reserva, id_habitacion)
+//Agrega una habitacion reservada
+
+buscar_habiaciones(id_hotel, id_tipo_habitacion, int cantidad)
+//hace un select para devovler las top cantidad habitaciones que hay de ese tipo en ese hotel. el orden es trivial.
+
+regimenes_disponibes(id_hotel)
+//hace un select * y devuelve todos los regímenes disponibles para un hotel.
+
+tipos_habitacion_disponibles()
+//hace un select * y devuelve todos lso tipos de habitacion que hay en el sistema
+
+hoteles_disponibles_usuario(id_usuario)
+//hace un select y devuelve tipo y nombre de todos los hoteles en los que trabaja un usuario
+
+
+
+
+
