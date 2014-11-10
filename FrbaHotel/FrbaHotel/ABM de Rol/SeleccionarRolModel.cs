@@ -14,14 +14,13 @@ namespace FrbaHotel.ABM_de_Rol
     public partial class SeleccionarRol
     {
         private string nombre = "";
-        private int id;
         private bool estaActivo;
         private DataTable roles;
 
         public virtual void Buscar()
         {
             ValidarErrores();
-            roles = HomeRoles.buscarRoles(id, nombre, estaActivo);
+            roles = HomeRoles.buscarRoles(nombre, estaActivo);
         }
 
         public void EliminarRol(DataGridView grilla, DataGridViewCellEventArgs e)

@@ -27,7 +27,7 @@ namespace FrbaHotel.ABM_de_Habitacion
             ValidarVacios(
             new string[]{"Hotel","Piso","Numero","Ubicacion","Tipo","Descripcion"},
                 new object[]{hotel, piso, numero, ubicacion, tipo, descripcion});
- 	        ValidarNumericos(new string[]{"Piso","Numero"});
+ 	   //TODO esta validacion no funca bien     ValidarNumericos(new string[]{"Piso","Numero"});
         }
 
     }

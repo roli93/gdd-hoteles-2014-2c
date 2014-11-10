@@ -87,14 +87,19 @@ buscar_habitacion_por_id(int id_habitacion)
 baja_logica_habitacion(id_habitacion)
 //poner en baja logica el campo correspondiente
 
-insertar_reserva(id_hotel,id_regimen, fecha_inicio, fecha_fin, id_cliente)
-//Inserta una nueva reserva, creo q no tendria por qué dar error nunca.
+insertar_reserva(id_regimen, fecha_inicio, fecha_fin, id_cliente,fecha_realizacion)
+//Inserta una nueva reserva, creo q no tendria por qué dar error nunca. Setea el estado de la reserva al 
+//codigo q le correspoidne por reserva correcta;
 
 insertar_habitacion_reservada(id_reserva, id_habitacion)
-//Agrega una habitacion reservada
+//Agrega una habitacion reservada. Si ya esá asociada a otra reserva en fechas que se superponen, debe fallar y devovler -7
 
-buscar_habiaciones(id_hotel, id_tipo_habitacion, int cantidad)
-//hace un select para devovler las top cantidad habitaciones que hay de ese tipo en ese hotel. el orden es trivial.
+borrar_habitacion_reservada(id_reserva, id_habitacion)
+//Borra una habitacion reservada
+
+buscar_habiaciones(id_hotel, id_tipo_habitacion, int cantidad, fecha_inicio, fecha_fin)
+//hace un select para devovler las top cantidad habitaciones que hay de ese tipo en ese hotel que estén disponibles
+// entre esas fechas, es decir tales que no hay otra reserva asociada q se superponga.El orden es trivial.
 
 regimenes_disponibes(id_hotel)
 //hace un select * y devuelve todos los regímenes disponibles para un hotel.
@@ -102,8 +107,31 @@ regimenes_disponibes(id_hotel)
 tipos_habitacion_disponibles()
 //hace un select * y devuelve todos lso tipos de habitacion que hay en el sistema
 
+buscar_reserva_por_id(id_reserva)
+//Hace un select con los joins correspondientes para devovlerme las siguientes columnas para la reserva del id dado:
+//fecha_fin, fecha_inicio,id_hotel_habitacion,nombre_hotel_habitacion,id_regimen_habitacon, descripcion_regimen_habitacion
 
+obtener_habitaciones(id_reserva)
+//Hace un select dodne devuelve todas las habitaciones de esa reserva. devuelve las siguentes columnas:
+//id_habitacion,id_tipo_habitacion, descripcion_tipo_habitacion
 
+actualizar_reserva(id_reserva, id regimen, fecha_inicio, fecha_fin)
+//actualiza la reserva del id dado;Setea el estado de la reserva al 
+//codigo q le correspoidne por reserva Modificada;
 
+insertar_modificacion(fecha, id_reserva, ide_usuario,varchar motivo, int tipo)
+//Inserta una nueva modificacion en la tabla; Si tipo es 0 es una modificacion, si tipo es 1 es una cancelacion.
 
+int reserva_editable(id_reserva)
+//Devuelve 1 si la reserva tiene estado en "reserva correcta" o "reserva modificada". si esta cancelada o con ingreso, o si no existe devuelve 0
+//Tambien devuelve 0 (false) si está a menos d eun dia de efectivizarse
+
+cancelar_reserva_no_show(id_reserva)
+//setea el estado de la reserva como cancelada por no show
+
+cancelar_reserva_clientew(id_reserva)
+//setea el estado de la reserva como cancelada por el cliente
+
+cancelar_reserva_recepcion(id_reserva)
+//setea el estado de la reserva como cancelada por personal de recepcion
 

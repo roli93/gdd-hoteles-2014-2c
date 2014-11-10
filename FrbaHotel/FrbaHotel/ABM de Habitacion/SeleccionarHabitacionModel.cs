@@ -32,6 +32,7 @@ namespace FrbaHotel.ABM_de_Habitacion
             if (MessageBox.Show("¿Realmente desea dar de baja la habitacion " + numeroString + "?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 HomeHabitaciones.bajaLogica(aModificar);
+                
                 cargarGrilla(grilla, habitaciones);
             }
         }
