@@ -7,13 +7,13 @@ roles_disponibles()
 //habilitados
 
 hoteles_disponibles()
-//Hace el select para devovlerme todos los hoteles de la tabla.
+//Hace el select para devovlerme todos los hoteles habilitados de la tabla.
 
 documentos_disponibles()
 //Hace el select para devovlerme todos los tipos de documento de la tabla.
 
 funcionalidades_disponibles()
-//Hace el select para devovlerme todas las funcionalidades de la tabla.
+//Hace el select para devovlerme todas las funcionalidades habilitadas de la tabla.
 
 
 login(varchar usuario, varchar password, out int error)
@@ -26,7 +26,7 @@ obtener_funcionalidades(int id_rol)
 //Hace el select para devolver todas las funcionalidades de un rol en particular;
 
 obtener_roles(int id_usuario)
-//Hace el select para devolver todos los roles de un ususario;
+//Hace el select para devolver todos los roles habilitados de un ususario;
 
 obtener_hoteles(int id_usuario)
 //Hace el select para devolver todos los hoteles de un usuario;
@@ -76,3 +76,13 @@ buscar_clientes(nombre, apellido, email, nroId, Id_tipo_identificación)
 //parámetros no hay que usarlo para filtrar (no se eligió ese filtro) los vachar vienen vacíos ("")
 //para q si pones un like ande igual, y lel id de tipo identificación viene en -1.
 
+buscar_habitaciones(int id_hotel,int numero_habitacion, int piso_habitacion, string ubicacion_habitacion , int id_tipo_habitacion, string descripcion_habitacion)
+//Hace un select para obtener las habitaciones que matcheen con los datos dados. Cuanndo alguno de los
+//parámetros no hay que usarlo para filtrar (no se eligió ese filtro) los vachar vienen vacíos ("")
+//para q si pones un like ande igual, y el id de tipo habitacion viene en -1.
+
+buscar_habitacion_por_id(int id_habitacion)
+//Hace el select para traer toda la fila de la habitacion correspondiente a ese Id
+
+baja_logica_habitacion(id_habitacion)
+//poner en baja logica el campo correspondiente
