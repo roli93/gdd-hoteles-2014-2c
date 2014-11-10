@@ -144,3 +144,11 @@ buscar_rol_por_id(int id)
 
 baja_rol(int id)
 // pone en baja logica el rol correspondiente a ese id
+
+habitaciones_de_reserva(int id_reserva)
+//Hace un select para devovlerme una tabla con la ssiguientes columnas:
+//id(id_habitacion_reservada), numero (numero de la habitacion reservada), clientes (cantidad de clientes q tiene asociados)
+
+int cambiar_habitacion(id_habitacion_reservada, numero)
+//Cambia el id_habitacion de una habitacion reservada por el de una habitacion del numero dado, que sea del mismo tipo y hotel que el que tenía antes.
+//Si no hay habitaciones disponibles en el mismo hotel y tipo con otro número deve devovler codigo de error -8
