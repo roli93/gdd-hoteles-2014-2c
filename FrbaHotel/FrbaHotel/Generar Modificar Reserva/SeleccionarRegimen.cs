@@ -7,19 +7,45 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FrbaHotel.Forms_genericos;
+using FrbaHotel.Administracion_Base_de_Datos;
+using FrbaHotel.Dominio;
+using FrbaHotel.Homes;
 
 namespace FrbaHotel.Generar_Modificar_Reserva
 {
     public partial class SeleccionarRegimen : Alta
     {
+        private GenerarReserva generarReserva;
+
         public SeleccionarRegimen()
         {
             InitializeComponent();
         }
 
-        public SeleccionarRegimen(NavegableForm o,Hotel hotel):base(o)
+        public SeleccionarRegimen(GenerarReserva o):base(o)
         {
+            this.generarReserva = o;
             InitializeComponent();
+
         }
+
+        private void SeleccionarRegimen_Load(object sender, EventArgs e)
+        {
+            cargarGrilla(dataGridView1,HomeReservas.regimenesParaHotel(generarReserva.Hotel));
+            cargarBotonModificarDatos(dataGridView1, "Elegir");
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            operacionConSeleccionado(dataGridView1,e);
+        }
+
+        public override void gridClickAction(DataGridViewCellCollection celdas)
+        {
+            generarReserva.CambiarRegimen(new Regimen(Convert.ToInt32(celdas["ID"].Value), celdas["descripcion"].Value.ToString()));
+            Close();
+        }
+
+
     }
 }

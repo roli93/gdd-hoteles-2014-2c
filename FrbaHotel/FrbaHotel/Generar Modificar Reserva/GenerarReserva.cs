@@ -19,19 +19,20 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         public GenerarReserva(NavegableForm o):base(o)
         {
+            Habitaciones = new List<FrbaHotel.Dominio.Habitacion>();
+            successMessage = "La reserva se realizó con éxito";
             InitializeComponent();
         }
 
         public GenerarReserva(NavegableForm o,Hotel hotel)
             : base(o)
         {
-            this.hotel = hotel;
             InitializeComponent();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-
+            new SeleccionarRegimen(this).StandaloneOpen();
         }
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
@@ -46,7 +47,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            hotel = (Hotel)_hotel.SelectedItem;
+            Hotel = (Hotel)_hotel.SelectedItem;
             _seleccionarRegimen.Enabled = true;
         }
 
@@ -57,30 +58,27 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         private void GenerarReserva_Load(object sender, EventArgs e)
         {
-            if (hotel == null)
-            {
                 _seleccionarRegimen.Enabled = false;
-                bindCombo<Hotel>(_hotel, Sesion.HotelesDisponibles);
-            }
-            else
-            {
-                hotel = Sesion.Usuario.Hotel;
-                labelHotel.Hide();
-                _hotel.Hide();
-            }
-            habitaciones = caca();
-            ActualizarHabitaciones();
-
+                bindCombo<Hotel>(_hotel, Sesion.HotelesDisponiblesUsuario);
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ExcecuteAndShow(Guardar);
+            Execute(Guardar);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            new Agregar_Habitación(this).StandaloneOpen();
+            Agregar_Habitación ventana =  new Agregar_Habitación(this);
+            try
+            {
+                ventana.StandaloneOpen();
+            }
+            catch(ExcepcionFrbaHoteles exc)
+            {
+                MessageBox.Show(exc.Message);
+                ventana.Close();
+            }
         }
 
 

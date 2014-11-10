@@ -33,7 +33,7 @@
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.labelHotel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this._apellido = new System.Windows.Forms.TextBox();
+            this._regimen = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
@@ -92,12 +92,13 @@
             this.label8.TabIndex = 40;
             this.label8.Text = "Habitaciones:";
             // 
-            // _apellido
+            // _regimen
             // 
-            this._apellido.Location = new System.Drawing.Point(88, 35);
-            this._apellido.Name = "_apellido";
-            this._apellido.Size = new System.Drawing.Size(119, 20);
-            this._apellido.TabIndex = 41;
+            this._regimen.Location = new System.Drawing.Point(88, 35);
+            this._regimen.Name = "_regimen";
+            this._regimen.ReadOnly = true;
+            this._regimen.Size = new System.Drawing.Size(119, 20);
+            this._regimen.TabIndex = 41;
             // 
             // label1
             // 
@@ -204,7 +205,7 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.labelHotel);
             this.Controls.Add(this.label8);
-            this.Controls.Add(this._apellido);
+            this.Controls.Add(this._regimen);
             this.Name = "GenerarReserva";
             this.Text = "GenerarReserva";
             this.Load += new System.EventHandler(this.GenerarReserva_Load);
@@ -223,7 +224,7 @@
         protected System.Windows.Forms.Button button1;
         protected System.Windows.Forms.Label labelHotel;
         protected System.Windows.Forms.Label label8;
-        protected System.Windows.Forms.TextBox _apellido;
+        protected System.Windows.Forms.TextBox _regimen;
         protected System.Windows.Forms.Label label1;
         protected System.Windows.Forms.DateTimePicker dateTimePicker2;
         protected System.Windows.Forms.Label label2;

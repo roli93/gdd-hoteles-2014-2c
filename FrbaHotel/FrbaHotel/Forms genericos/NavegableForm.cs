@@ -13,6 +13,8 @@ namespace FrbaHotel
         public delegate void AfterClose();
         public delegate void ExceptionableTask();
         private AfterClose afterCloseAction;
+        protected string successMessage = "La operación se realizó correctamente";
+        protected string errorMessage = "";
 
         public new NavegableForm Owner
         {
@@ -51,6 +53,11 @@ namespace FrbaHotel
         public void Open()
         {
             this.Show();
+        }
+
+        public void OpenDialogue()
+        {
+            this.ShowDialog();
         }
 
         public void StandaloneOpen()
@@ -107,10 +114,12 @@ namespace FrbaHotel
             catch (ExcepcionFrbaHoteles e)
             {
                 MessageBox.Show(e.Message,"Error");
+                errorMessage += "  ";
             }
             catch(SystemException e)
             {
                 MessageBox.Show("Ha ocurrido un error desconocido. Estamos trabajando para solucionarlo");
+                errorMessage += "  ";
             }
         }
 
@@ -119,15 +128,17 @@ namespace FrbaHotel
             try
             {
                 task();
-                MessageBox.Show("La operación se realizó correctamente");
+                MessageBox.Show(successMessage);
             }
             catch (ExcepcionFrbaHoteles e)
             {
                 MessageBox.Show(e.Message,"Error");
+                errorMessage += "  ";
             }
             catch (SystemException e)
             {
                 MessageBox.Show("Ha ocurrido un error desconocido. Estamos trabajando para solucionarlo");
+                errorMessage += "  ";
             }
         }
 

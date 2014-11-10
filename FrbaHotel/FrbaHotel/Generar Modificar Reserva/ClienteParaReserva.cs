@@ -22,9 +22,11 @@ namespace FrbaHotel.Generar_Modificar_Reserva
             InitializeComponent();
         }
 
-        public override void gridClickAction(int seleccionado)
+        public override void  gridClickAction(DataGridViewCellCollection celdas)
         {
-            ((GenerarReserva) this.Owner).ClienteId=seleccionado;
+ 	         ((GenerarReserva) this.Owner).ClienteId=Convert.ToInt32(celdas["id"].Value);
+             ((GenerarReserva)this.Owner).FinalizarGuardado();
+             Close();
         }
 
         private void ClienteParaReserva_Load(object sender, EventArgs e)

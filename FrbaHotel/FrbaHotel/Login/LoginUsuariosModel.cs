@@ -33,7 +33,15 @@ namespace FrbaHotel.Login
 
         public void iniciarSesion()
         {
+            if (username == null || password == null)
+                throw new ExcepcionFrbaHoteles("Debe ingresar su nombre de usuario y contraseña");
             Sesion.iniciar(username, password);
+            bindCombo(comboRoles, Roles);
+            bindCombo(comboHoteles, Hoteles);
+            foreach (Control control in firstSet)
+                control.Hide();
+            foreach (Control control in secondSet)
+                control.Show();
         }
 
         public void acceder()

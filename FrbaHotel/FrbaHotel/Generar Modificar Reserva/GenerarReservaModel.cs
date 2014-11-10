@@ -16,61 +16,56 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 {
     public partial class GenerarReserva : Alta
     {
-        protected Regimen regimen;
+        public Regimen Regimen { get; set; }
         protected DateTime fechaInicio, fechaFin;
-        protected Hotel hotel;
-        protected List<Habitacion> habitaciones;
+        public Hotel Hotel { get; set; }
+        public List<Habitacion> Habitaciones { get; set; }
         public int ClienteId { get; set; }
-
-
-        //TODO BORRAR
-        public List<Habitacion> caca()
-        {
-            Habitacion h1 = new Habitacion();
-            Habitacion h2 = new Habitacion();
-            Habitacion h3 = new Habitacion();
-            h1.tipo = new TipoHabitacion(1,"Doble");
-            h2.tipo = new TipoHabitacion(2,"Simple");
-            h3.tipo = new TipoHabitacion(1,"Doble");
-            
-            List<Habitacion> l = new List<Habitacion>();
-            l.Add(h1);
-            l.Add(h2);
-            l.Add(h3);
-
-            return l;
-        }
 
         public void Guardar()
         {
             ValidarErrores();
             ObtenerCliente();
-            HomeReservas.registrarReserva(hotel, regimen, fechaInicio, fechaFin, habitaciones, ClienteId);
+        }
+
+        public void FinalizarGuardado()
+        {
+            if (MessageBox.Show("¿Confirma la reserva realizada?", "Ingresar Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                ExcecuteAndShow(PersistirReserva);
+            }
+            
+        }
+
+        public void PersistirReserva()
+        {
+            HomeReservas.registrarReserva(Hotel, Regimen, fechaInicio, fechaFin, Habitaciones, ClienteId);
+            Close();
         }
 
         public override void ValidarErroresConcretos()
         {
-            ValidarVacios(new string[] { "Régimen", "Fecha Inicio", "Fecha Fin" }, new object[] { regimen, fechaInicio, fechaFin });
-            ValidarCollecionVacia<Habitacion>("Habitaciones", habitaciones); 
+            ValidarVacios(new string[] { "Régimen", "Fecha Inicio", "Fecha Fin" }, new object[] { Regimen, fechaInicio, fechaFin });
+            ValidarCollecionVacia<Habitacion>("Habitaciones", Habitaciones); 
         }
 
         public void ObtenerCliente()
         {
             if (MessageBox.Show("Necesita indicar sus datos como cliente titular de la reserva\n¿Es usted cliente de la cadena?", "Ingresar Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                new ClienteParaReserva(this).StandaloneOpen();
+                new ClienteParaReserva(this).OpenDialogue();
             }
             else
             {
-                new AltaCliente(this).StandaloneOpen();
-                this.ClienteId = DatabaseAdapter.getIdUltimaInsercion();
+                new AltaClientePorReserva(this).OpenDialogue();
+                
             }
 
         }
 
-        public void AgregarHabitacion(Habitacion habitacion)
+        public void AgregarHabitaciones(List<Habitacion> habitaciones)
         {
-            habitaciones.Add(habitacion);
+            Habitaciones.AddRange(habitaciones);
             ActualizarHabitaciones();
         }
 
@@ -87,7 +82,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
             table.Columns.Add("Tipo");
             table.Columns.Add("Cantidad");
             
-            List<TipoHabitacion> tiposHabitacion = habitaciones.ConvertAll<TipoHabitacion>(h=>h.tipo);
+            List<TipoHabitacion> tiposHabitacion = Habitaciones.ConvertAll<TipoHabitacion>(h=>h.tipo);
 
             List<TipoHabitacion> tiposHabitacionDistintos = tiposHabitacion.Distinct<TipoHabitacion>(new TipoHabitacionEqComparer()).ToList();
 
@@ -100,7 +95,11 @@ namespace FrbaHotel.Generar_Modificar_Reserva
             return table;
         }
 
-
+        public void CambiarRegimen(Regimen regimen)
+        {
+            Regimen = regimen;
+            _regimen.Text = Regimen.ToString();
+        }
 
     }
 }

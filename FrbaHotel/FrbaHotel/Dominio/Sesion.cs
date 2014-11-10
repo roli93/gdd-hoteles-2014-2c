@@ -47,6 +47,24 @@ namespace FrbaHotel
             }
         }
 
+        public static List<Hotel> HotelesDisponiblesUsuario
+        {
+            get
+            {
+                if (Usuario.Id.Equals(-1))
+                {
+                    //TODO return elementosDisponibles<Hotel>((e) => new Hotel((int)e["id_hotel"], (string)e["nombre"]), "hoteles_disponibles");
+                    return new List<Hotel> { new Hotel(1, "SuperHote"), new Hotel(2, "HotelFeo"), new Hotel(3, "Hotelucho") };
+                }
+                else
+                {
+                    return new List<Hotel> { Usuario.Hotel };
+                }
+            }
+        }
+
+
+
         public static List<TipoDocumento> TiposDocumentoDisponibles
         {
             get
@@ -89,7 +107,7 @@ namespace FrbaHotel
             get
             {
                 //TODO return elementosDisponibles<TipoHabitaion>((e) => new TipoHabitacion(DATOS, "tiposHabitacion_disponibles");
-                return new List<TipoHabitacion> { new TipoHabitacion(1,"KingSize") , new TipoHabitacion(2,"TamanioBanio"), new TipoHabitacion(3,"TamanioStandar")};
+                return new List<TipoHabitacion> { new TipoHabitacion(1, "KingSize"), new TipoHabitacion(2, "TamanioBanio"), new TipoHabitacion(3, "TamanioStandar") };
             }
         }
 
@@ -105,13 +123,22 @@ namespace FrbaHotel
                 
         public static void iniciar(string username, string password)
         {
-            /*int error=0;
-            DataTable tablaUsuario = DatabaseAdapter.traerDataTable("login", username, password,error);
-            DatabaseAdapter.CheckExcepcionPara(error);
 
-            Sesion.Usuario = new Usuario((int)tablaUsuario.Rows[0]["id_usuario"],(string)tablaUsuario.Rows[0]["username"]);
-            */
-            Sesion.Usuario = new Usuario(0, (string)"pepe");
+            if (username.Equals("Guest"))
+            {
+                Sesion.Usuario = new Usuario(-1, "Guest");
+                Sesion.Usuario.Rol = new Rol(-1/*TODO id guest*/, "Guest");
+            }
+            else
+            {
+                /*int error=0;
+                DataTable tablaUsuario = DatabaseAdapter.traerDataTable("login", username, password,error);
+                DatabaseAdapter.CheckExcepcionPara(error);
+
+                Sesion.Usuario = new Usuario((int)tablaUsuario.Rows[0]["id_usuario"],(string)tablaUsuario.Rows[0]["username"]);
+                */
+                Sesion.Usuario = new Usuario(0, (string)"pepe");
+            }
         }
     }
 }

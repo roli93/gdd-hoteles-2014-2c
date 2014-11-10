@@ -32,8 +32,6 @@ namespace FrbaHotel.Forms_genericos
         public delegate NavegableForm ConstructorModificacion(int IdElemento);
         protected ConstructorModificacion constructorEdicion;
 
-        protected string errorMessage = "";
-
         public Alta(NavegableForm owner)
             : base(owner)
         {
@@ -100,13 +98,14 @@ namespace FrbaHotel.Forms_genericos
 
         public bool HuboErrores()
         {
-            errorMessage = "";
+
             ValidarErroresConcretos();
             return errorMessage != "";
         }
 
         public void ValidarErrores()
         {
+            errorMessage = "";
             if (HuboErrores())
                 throw new ExcepcionFrbaHoteles(errorMessage);
 
@@ -150,7 +149,7 @@ namespace FrbaHotel.Forms_genericos
             grid.AutoResizeRows();
         }
 
-        public void abrirVentanaEdicion(DataGridView grilla, DataGridViewCellEventArgs e)
+        public void operacionConSeleccionado(DataGridView grilla, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -165,10 +164,9 @@ namespace FrbaHotel.Forms_genericos
             try
             {
                 DataGridViewCellCollection celdas = grilla.Rows[e.RowIndex].Cells;
-                int aModificar = Convert.ToInt32(celdas["ID"].Value);
                 if (e.ColumnIndex == celdas["Operación"].ColumnIndex)
                 {
-                    gridClickAction(aModificar);
+                    gridClickAction(celdas);
                 }
             }
             catch (ArgumentOutOfRangeException)
@@ -176,9 +174,10 @@ namespace FrbaHotel.Forms_genericos
             }
         }
 
-        public virtual void gridClickAction(int seleccionado)
+        public virtual void gridClickAction(DataGridViewCellCollection celdas)
         {
-            constructorEdicion(seleccionado).StandaloneOpen();
+            int aModificar = Convert.ToInt32(celdas["ID"].Value);
+            constructorEdicion(aModificar).StandaloneOpen();
         }
 
     }

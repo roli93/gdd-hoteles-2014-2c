@@ -255,6 +255,12 @@
     <Compile Include="Generar Modificar Reserva\AgregarHabitacionModel.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Generar Modificar Reserva\AltaClientePorReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\AltaClientePorReserva.Designer.cs">
+      <DependentUpon>AltaClientePorReserva.cs</DependentUpon>
+    </Compile>
     <Compile Include="Generar Modificar Reserva\ClienteParaReserva.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -364,6 +370,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Modificar Reserva\Agregar Habitación.resx">
       <DependentUpon>Agregar Habitación.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Modificar Reserva\AltaClientePorReserva.resx">
+      <DependentUpon>AltaClientePorReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Modificar Reserva\ClienteParaReserva.resx">
       <DependentUpon>ClienteParaReserva.cs</DependentUpon>

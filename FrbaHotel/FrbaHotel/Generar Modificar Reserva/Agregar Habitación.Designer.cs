@@ -61,6 +61,7 @@
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(144, 20);
             this.numericUpDown1.TabIndex = 50;
+            this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
             // label1
             // 
@@ -80,6 +81,7 @@
             this.button1.TabIndex = 52;
             this.button1.Text = "Agregar";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Agregar_Habitación
             // 
@@ -93,6 +95,7 @@
             this.Controls.Add(this.label11);
             this.Name = "Agregar_Habitación";
             this.Text = "Agregar_Habitación";
+            this.Load += new System.EventHandler(this.Agregar_Habitación_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

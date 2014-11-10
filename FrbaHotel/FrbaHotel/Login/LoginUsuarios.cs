@@ -49,13 +49,7 @@ namespace FrbaHotel.Login
 
         private void button1_Click_1(object sender, EventArgs e)
         {
-            iniciarSesion();
-            bindCombo(comboRoles,Roles);
-            bindCombo(comboHoteles, Hoteles);
-            foreach (Control control in firstSet)
-                control.Hide();
-            foreach (Control control in secondSet)
-                control.Show();
+            Execute(iniciarSesion);
         }
 
         private void button3_Click(object sender, EventArgs e)

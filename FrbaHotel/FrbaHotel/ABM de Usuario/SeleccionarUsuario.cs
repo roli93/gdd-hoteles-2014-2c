@@ -121,7 +121,7 @@ namespace FrbaHotel.ABM_de_Usuario
 
         private void dataGridView1_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
-            if (accion == "Editar") abrirVentanaEdicion(dataGridView1, e);
+            if (accion == "Editar") operacionConSeleccionado(dataGridView1, e);
             else if (accion == "Eliminar") EliminarUsuario(dataGridView1, e);
         }
 

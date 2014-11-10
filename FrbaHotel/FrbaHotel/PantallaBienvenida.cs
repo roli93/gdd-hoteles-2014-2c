@@ -23,9 +23,8 @@ namespace FrbaHotel
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            /*loginHuesped();
-            new SeleccionFuncionalidad(this).StandaloneOpen();*/
-            new ABMUsuario(this).StandaloneOpen();
+            Sesion.iniciar("Guest", "");
+            new SeleccionFuncionalidad(this).StandaloneOpen(); ;
         }
 
         private void button1_Click(object sender, EventArgs e)
