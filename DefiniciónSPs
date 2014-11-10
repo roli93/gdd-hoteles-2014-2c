@@ -152,3 +152,6 @@ habitaciones_de_reserva(int id_reserva)
 int cambiar_habitacion(id_habitacion_reservada, numero)
 //Cambia el id_habitacion de una habitacion reservada por el de una habitacion del numero dado, que sea del mismo tipo y hotel que el que tenía antes.
 //Si no hay habitaciones disponibles en el mismo hotel y tipo con otro número deve devovler codigo de error -8
+
+int insertar_cliente_x_habitacion(id_habitacion_reservada, id_cliente)
+//inserta un cliente x habitacion. Si ya estaba insertado devuelve -9
