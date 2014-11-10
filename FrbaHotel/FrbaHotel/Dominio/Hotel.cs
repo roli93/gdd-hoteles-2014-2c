@@ -12,18 +12,17 @@ namespace FrbaHotel
 {
     public class Hotel:Entidad
     {
-        private string nombre;
 
         public Hotel(int id, string nombre)
         {
             this.Id = id;
-            this.nombre = nombre;
+            this.Nombre = nombre;
         }
         public string Nombre { get; set; }
 
         public override string ToString()
         {
-            return nombre;
+            return Nombre;
         }
 
     }

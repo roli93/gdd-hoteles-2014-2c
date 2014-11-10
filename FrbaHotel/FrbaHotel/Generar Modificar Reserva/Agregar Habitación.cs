@@ -41,12 +41,15 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         private void Agregar_Habitación_Load(object sender, EventArgs e)
         {
-            if(generarReserva.Hotel==null)
+            if(generarReserva.Hotel==null||generarReserva.FechaFin==null || generarReserva.FechaInicio==null)
             {
-                throw new ExcepcionFrbaHoteles("Debe seleccionar un hotel");
+                throw new ExcepcionFrbaHoteles("Debe seleccionar un hotel y dos fechas");
             }
             bindCombo<TipoHabitacion>(comboBox1,Sesion.TiposHabitacionDisponibles);
             numericUpDown1.Value = 1;
+            hotel = generarReserva.Hotel;
+            fechaFin = generarReserva.FechaFin;
+            fechaInicio = generarReserva.FechaInicio;
         }
 
 

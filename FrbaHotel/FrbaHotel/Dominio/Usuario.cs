@@ -62,5 +62,10 @@ namespace FrbaHotel
                 return new TipoDocumento(1, "DNI");
             }
         }
+
+        public bool esGuest()
+        {
+            return Id.Equals(-1);
+        }
     }
 }

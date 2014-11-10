@@ -193,7 +193,7 @@ namespace FrbaHotel.Administracion_Base_de_Datos
             {
                 conexionSql(conexion, comando);
                 comando.CommandType = CommandType.Text;
-                comando.CommandText = "SELECT PARAMETER_NAME FROM information_schema.parameters WHERE SPECIFIC_SCHEMA='THE_DISCRETABOY' AND SPECIFIC_NAME='" + procedure + "'";
+                comando.CommandText = "SELECT PARAMETER_NAME FROM information_schema.parameters WHERE SPECIFIC_SCHEMA='MAX_POWER' AND SPECIFIC_NAME='" + procedure + "'";
                 dataReader = comando.ExecuteReader();
                 dataTable.Load(dataReader);
                 foreach (DataRow d in dataTable.Rows)

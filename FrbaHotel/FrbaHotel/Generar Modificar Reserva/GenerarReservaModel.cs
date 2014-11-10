@@ -17,12 +17,13 @@ namespace FrbaHotel.Generar_Modificar_Reserva
     public partial class GenerarReserva : Alta
     {
         public Regimen Regimen { get; set; }
-        protected DateTime fechaInicio, fechaFin;
+        public DateTime FechaInicio{ get; set; }
+        public DateTime FechaFin{ get; set; }
         public Hotel Hotel { get; set; }
         public List<Habitacion> Habitaciones { get; set; }
         public int ClienteId { get; set; }
 
-        public void Guardar()
+        public virtual void Guardar()
         {
             ValidarErrores();
             ObtenerCliente();
@@ -30,7 +31,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         public void FinalizarGuardado()
         {
-            if (MessageBox.Show("¿Confirma la reserva realizada?", "Ingresar Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("¿Confirma la reserva realizada?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 ExcecuteAndShow(PersistirReserva);
             }
@@ -39,13 +40,14 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         public void PersistirReserva()
         {
-            HomeReservas.registrarReserva(Hotel, Regimen, fechaInicio, fechaFin, Habitaciones, ClienteId);
+            int id = HomeReservas.registrarReserva(Regimen, FechaInicio, FechaFin, Habitaciones, ClienteId);
+            successMessage+="\nIMPORTANTE: Su código de reserva para futuras modificaciones es "+id.ToString();
             Close();
         }
 
         public override void ValidarErroresConcretos()
         {
-            ValidarVacios(new string[] { "Régimen", "Fecha Inicio", "Fecha Fin" }, new object[] { Regimen, fechaInicio, fechaFin });
+            ValidarVacios(new string[] { "Régimen" }, new object[] { Regimen });
             ValidarCollecionVacia<Habitacion>("Habitaciones", Habitaciones); 
         }
 
@@ -100,6 +102,21 @@ namespace FrbaHotel.Generar_Modificar_Reserva
             Regimen = regimen;
             _regimen.Text = Regimen.ToString();
         }
+
+        public override void Limpiar()
+        {
+            base.Limpiar();
+            Regimen = null;
+            Habitaciones= new List<Habitacion>();
+            _seleccionarRegimen.Enabled = false;
+        }
+
+        public override void gridClickAction(DataGridViewCellCollection celdas)
+        {
+            Habitaciones.RemoveAll(h => h.tipo.Descripcion.Equals(celdas["tipo"].Value.ToString()));
+            ActualizarHabitaciones();
+        }
+
 
     }
 }

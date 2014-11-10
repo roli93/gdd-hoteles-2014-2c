@@ -99,6 +99,7 @@
             this._regimen.ReadOnly = true;
             this._regimen.Size = new System.Drawing.Size(119, 20);
             this._regimen.TabIndex = 41;
+            this._regimen.TextChanged += new System.EventHandler(this._regimen_TextChanged);
             // 
             // label1
             // 
@@ -148,6 +149,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(290, 142);
             this.dataGridView1.TabIndex = 52;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // button4
             // 
@@ -228,8 +230,8 @@
         protected System.Windows.Forms.Label label1;
         protected System.Windows.Forms.DateTimePicker dateTimePicker2;
         protected System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button _seleccionarRegimen;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button button4;
+        protected System.Windows.Forms.Button _seleccionarRegimen;
+        protected System.Windows.Forms.DataGridView dataGridView1;
+        protected System.Windows.Forms.Button button4;
     }
 }

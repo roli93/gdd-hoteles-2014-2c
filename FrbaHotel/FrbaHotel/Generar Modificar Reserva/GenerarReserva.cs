@@ -37,12 +37,12 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         private void dateTimePicker2_ValueChanged(object sender, EventArgs e)
         {
-            fechaInicio = dateTimePicker2.Value;
+            FechaInicio = dateTimePicker2.Value;
         }
 
         private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
         {
-            fechaFin = dateTimePicker1.Value;
+            FechaFin = dateTimePicker1.Value;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -60,6 +60,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         {
                 _seleccionarRegimen.Enabled = false;
                 bindCombo<Hotel>(_hotel, Sesion.HotelesDisponiblesUsuario);
+                cargarBotonModificarDatos(dataGridView1, "Eliminar");
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -79,6 +80,16 @@ namespace FrbaHotel.Generar_Modificar_Reserva
                 MessageBox.Show(exc.Message);
                 ventana.Close();
             }
+        }
+
+        private void _regimen_TextChanged(object sender, EventArgs e)
+        {
+            Regimen.Descripcion = _regimen.Text;
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            operacionConSeleccionado(dataGridView1, e);
         }
 
 

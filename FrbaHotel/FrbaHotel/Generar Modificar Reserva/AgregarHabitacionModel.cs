@@ -18,11 +18,12 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         private Hotel hotel;
         private int cantidad;
         private TipoHabitacion tipoHabitacion;
+        private DateTime fechaInicio, fechaFin;
 
         public void Agregar()
         {
             ValidarErrores();
-            List<Habitacion> habitaciones =  HomeReservas.BuscarHabitaciones(hotel, tipoHabitacion, cantidad);
+            List<Habitacion> habitaciones =  HomeReservas.BuscarHabitaciones(hotel, tipoHabitacion, cantidad,fechaInicio,fechaFin);
             if(habitaciones.Count<cantidad)
                 throw new ExcepcionFrbaHoteles("No hay tantas habiatciones disponibles del tipo que ud. solicita");
             generarReserva.AgregarHabitaciones(habitaciones);

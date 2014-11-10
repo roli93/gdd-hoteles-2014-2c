@@ -51,7 +51,7 @@ namespace FrbaHotel
         {
             get
             {
-                if (Usuario.Id.Equals(-1))
+                if (Usuario.esGuest())
                 {
                     //TODO return elementosDisponibles<Hotel>((e) => new Hotel((int)e["id_hotel"], (string)e["nombre"]), "hoteles_disponibles");
                     return new List<Hotel> { new Hotel(1, "SuperHote"), new Hotel(2, "HotelFeo"), new Hotel(3, "Hotelucho") };

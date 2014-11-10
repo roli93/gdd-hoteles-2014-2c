@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BAFE3016-AC06-4C43-ABEF-87F21AB5699B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -232,11 +232,11 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Administracion Base de Datos\DatabaseAdapter.cs" />
-    <Compile Include="Cancelar Reserva\Form1.cs">
+    <Compile Include="Cancelar Reserva\CancelarReserva.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Cancelar Reserva\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Cancelar Reserva\CancelarReserva.Designer.cs">
+      <DependentUpon>CancelarReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="Dominio\Cliente.cs" />
     <Compile Include="Dominio\Entidad.cs" />
@@ -270,6 +270,12 @@
     <Compile Include="Forms genericos\NavegableFormModel.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Generar Modificar Reserva\ABMReservas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\ABMReservas.Designer.cs">
+      <DependentUpon>ABMReservas.cs</DependentUpon>
+    </Compile>
     <Compile Include="Generar Modificar Reserva\Agregar Habitación.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -291,6 +297,15 @@
     <Compile Include="Generar Modificar Reserva\ClienteParaReserva.Designer.cs">
       <DependentUpon>ClienteParaReserva.cs</DependentUpon>
     </Compile>
+    <Compile Include="Generar Modificar Reserva\EditarReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\EditarReserva.Designer.cs">
+      <DependentUpon>EditarReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\EditarReservaModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Generar Modificar Reserva\GenerarReserva.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -299,6 +314,12 @@
     </Compile>
     <Compile Include="Generar Modificar Reserva\GenerarReservaModel.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\InsertarCodigoReserva.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Generar Modificar Reserva\InsertarCodigoReserva.Designer.cs">
+      <DependentUpon>InsertarCodigoReserva.cs</DependentUpon>
     </Compile>
     <Compile Include="Generar Modificar Reserva\SeleccionarRegimen.cs">
       <SubType>Form</SubType>
@@ -390,6 +411,9 @@
     <EmbeddedResource Include="ABM de Usuario\SeleccionarUsuario.resx">
       <DependentUpon>SeleccionarUsuario.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Cancelar Reserva\CancelarReserva.resx">
+      <DependentUpon>CancelarReserva.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms genericos\ABM.resx">
       <DependentUpon>ABM.cs</DependentUpon>
     </EmbeddedResource>
@@ -407,6 +431,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Modificar Reserva\GenerarReserva.resx">
       <DependentUpon>GenerarReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Generar Modificar Reserva\InsertarCodigoReserva.resx">
+      <DependentUpon>InsertarCodigoReserva.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Modificar Reserva\SeleccionarRegimen.resx">
       <DependentUpon>SeleccionarRegimen.cs</DependentUpon>

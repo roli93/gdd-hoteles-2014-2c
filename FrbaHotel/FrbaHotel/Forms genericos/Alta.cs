@@ -53,7 +53,7 @@ namespace FrbaHotel.Forms_genericos
                 cleaners[control.GetType()].Invoke(control);
         }
 
-        public void Limpiar()
+        public virtual void Limpiar()
         {
             ClearControls(this.Controls);
         }
