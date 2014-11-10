@@ -34,12 +34,12 @@ namespace FrbaHotel.ABM_de_Habitacion
 
         public override void modificacion()
         {
-           //TODO new SeleccionarHabitacion(this, "Editar").StandaloneOpen();
+           new SeleccionarHabitacion(this, "Editar").StandaloneOpen();
         }
 
         public override void baja()
         {
-           //TODO new SeleccionarHabitacion(this, "Eliminar").StandaloneOpen();
+           new SeleccionarHabitacion(this, "Eliminar").StandaloneOpen();
         }
 
 

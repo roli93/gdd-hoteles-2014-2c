@@ -31,7 +31,7 @@ namespace FrbaHotel.ABM_de_Habitacion
             _descripcion.Text = descripcion.ToString();
             _numero.Text = numero.ToString();
             _piso.Text = piso.ToString();
-            _tipo.SelectedIndex = _tipo.FindStringExact(tipo.Descripcion,0);
+            _tipo.SelectedIndex = _tipo.FindStringExact(tipo.descripcion,0);
             _ubicacion.SelectedIndex = _ubicacion.FindStringExact(ubicacion,0);
 
             _tipo.Enabled = false;

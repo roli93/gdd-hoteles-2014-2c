@@ -67,27 +67,6 @@ namespace FrbaHotel.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Magnifying_Glass_icon {
-            get {
-                object obj = ResourceManager.GetObject("Magnifying-Glass-icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Magnifying_Glass_icon1 {
-            get {
-                object obj = ResourceManager.GetObject("Magnifying-Glass-icon1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        internal static System.Drawing.Bitmap Magnifying_Glass_icon2 {
-            get {
-                object obj = ResourceManager.GetObject("Magnifying-Glass-icon2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap tilde {
             get {
                 object obj = ResourceManager.GetObject("tilde", resourceCulture);

@@ -19,7 +19,7 @@ namespace FrbaHotel.ABM_de_Habitacion
         protected virtual void Guardar()
         {
             ValidarErrores();
-            HomeHoteles.agregarHabitacionA(this.hotel,this.piso,this.numero,this.ubicacion,this.tipo,this.descripcion);
+            HomeHabitaciones.agregarHabitacion(this.hotel,this.piso,this.numero,this.ubicacion,this.tipo,this.descripcion);
         }
 
         public override void  ValidarErroresConcretos()

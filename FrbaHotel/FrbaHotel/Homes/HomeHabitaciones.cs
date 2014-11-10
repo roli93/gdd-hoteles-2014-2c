@@ -18,7 +18,7 @@ namespace FrbaHotel.Homes
         static public DataTable buscarHabitaciones(Hotel unHotel, int unNumero, int unPiso, string unaUbicacion, TipoHabitacion unTipo, string unaDescripcion)
         {
             /*TODO
-            return DatabaseAdapter.traerDataTable("buscar_habitaciones", unHotel, unNumero, unPiso, unaUbicacion, unTipo, unaDescripcion);
+            return DatabaseAdapter.traerDataTable("buscar_habitaciones", unHotel.Id, unNumero, unPiso, unaUbicacion, unTipo.Id, unaDescripcion);
           */
             DataTable ej = new DataTable();
             ej.Clear();
@@ -32,6 +32,7 @@ namespace FrbaHotel.Homes
 
         static public Habitacion buscarPorId(int unIdHabitacion,out Hotel unHotel,out int unNumero,out int unPiso,out TipoHabitacion unTipo, out string unaUbicacion, out string unaDescripcion)
         {
+            //TODO Buscar_Habitacion_Por_Id
             Habitacion laHabitacion = new Habitacion();
             laHabitacion.Id = unIdHabitacion;
             unHotel = new Hotel(1, "Hotel Aca no vuelvo ni en pedo");
@@ -54,7 +55,15 @@ namespace FrbaHotel.Homes
 
         static public void actualizarHabitacion(int idHabitacion,Hotel unHotel,int unNumero,int unPiso,TipoHabitacion unTipo,string unaUbicacion,string unaDescripcion)
         {
+            //TODO actualizar_habitacion
+            
         }
+
+        static public void agregarHabitacion(Hotel unHotel, int unPiso, int unNumero, string unaUbicacion, TipoHabitacion unTipo, string unaDescripcion)
+        {
+            //TODO agregar habitacion a base de datos
+        }
+
 
     }
 }

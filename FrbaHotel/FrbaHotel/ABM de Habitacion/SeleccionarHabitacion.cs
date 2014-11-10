@@ -71,7 +71,7 @@ namespace FrbaHotel.ABM_de_Habitacion
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            operacionConSeleccionado(dataGridView1, e);
+            abrirVentanaEdicion(dataGridView1, e);
         }
 
     }
