@@ -33,8 +33,6 @@
             this._estaActivo = new System.Windows.Forms.CheckBox();
             this._gridRoles = new System.Windows.Forms.DataGridView();
             this._buscar = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this._id = new System.Windows.Forms.TextBox();
             this._limpiar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this._gridRoles)).BeginInit();
             this.SuspendLayout();
@@ -42,7 +40,7 @@
             // Nombre
             // 
             this.Nombre.AutoSize = true;
-            this.Nombre.Location = new System.Drawing.Point(16, 48);
+            this.Nombre.Location = new System.Drawing.Point(13, 16);
             this.Nombre.Name = "Nombre";
             this.Nombre.Size = new System.Drawing.Size(44, 13);
             this.Nombre.TabIndex = 0;
@@ -50,7 +48,7 @@
             // 
             // _nombre
             // 
-            this._nombre.Location = new System.Drawing.Point(66, 45);
+            this._nombre.Location = new System.Drawing.Point(63, 13);
             this._nombre.Name = "_nombre";
             this._nombre.Size = new System.Drawing.Size(100, 20);
             this._nombre.TabIndex = 1;
@@ -89,23 +87,7 @@
             this._buscar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this._buscar.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
             this._buscar.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(19, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(16, 13);
-            this.label1.TabIndex = 50;
-            this.label1.Text = "Id";
-            // 
-            // _id
-            // 
-            this._id.Location = new System.Drawing.Point(66, 13);
-            this._id.Name = "_id";
-            this._id.Size = new System.Drawing.Size(100, 20);
-            this._id.TabIndex = 51;
-            this._id.TextChanged += new System.EventHandler(this._id_TextChanged);
+            this._buscar.Click += new System.EventHandler(this._buscar_Click_1);
             // 
             // _limpiar
             // 
@@ -126,8 +108,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(485, 306);
             this.Controls.Add(this._limpiar);
-            this.Controls.Add(this._id);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this._buscar);
             this.Controls.Add(this._gridRoles);
             this.Controls.Add(this._estaActivo);
@@ -148,8 +128,6 @@
         private System.Windows.Forms.CheckBox _estaActivo;
         private System.Windows.Forms.DataGridView _gridRoles;
         private System.Windows.Forms.Button _buscar;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox _id;
         private System.Windows.Forms.Button _limpiar;
     }
 }

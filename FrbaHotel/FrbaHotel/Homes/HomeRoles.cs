@@ -21,16 +21,17 @@ namespace FrbaHotel.Homes
             return DatabaseAdapter.ejecutarProcedureWithReturnValue("id_rol", nombre);
         }
 
-        public static DataTable buscarRoles(int id, string nombre,bool estaActivo)
+        public static DataTable buscarRoles(string nombre,bool estaActivo)
         {/*TODO
-            return DatabaseAdapter.traerDataTable("buscar_roles",id , nombre, estaActivo);
+            return DatabaseAdapter.traerDataTable("buscar_roles", nombre, estaActivo);
           */
             DataTable ej = new DataTable();
             ej.Clear();
             ej.Columns.Add("ID"); 
             ej.Columns.Add("Nombre");
-            ej.Columns.Add("EstaActivo");
-            ej.Rows.Add(new object[] { 1, "Healer", true });
+            ej.Columns.Add("EstaActivo"); 
+            ej.Columns.Add("Operación");
+            ej.Rows.Add(new object[] { 1, "Healer", true, "Seleccionar"});
             return ej;
         }
 

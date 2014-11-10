@@ -53,11 +53,6 @@ namespace FrbaHotel.ABM_de_Rol
                 cargarGrilla(_gridRoles, roles);
             }
 
-             private void _id_TextChanged(object sender, EventArgs e)
-             {
-                 id = Convert.ToInt32(_id.Text);
-             }
-
              private void _estaActivo_CheckedChanged(object sender, EventArgs e)
              {
                  estaActivo = _estaActivo.Checked;
