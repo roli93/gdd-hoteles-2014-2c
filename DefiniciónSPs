@@ -88,7 +88,8 @@ baja_logica_habitacion(id_habitacion)
 //poner en baja logica el campo correspondiente
 
 insertar_reserva(id_regimen, fecha_inicio, fecha_fin, id_cliente,fecha_realizacion)
-//Inserta una nueva reserva, creo q no tendria por qué dar error nunca.
+//Inserta una nueva reserva, creo q no tendria por qué dar error nunca. Setea el estado de la reserva al 
+//codigo q le correspoidne por reserva correcta;
 
 insertar_habitacion_reservada(id_reserva, id_habitacion)
 //Agrega una habitacion reservada. Si ya esá asociada a otra reserva en fechas que se superponen, debe fallar y devovler -7
@@ -115,7 +116,11 @@ obtener_habitaciones(id_reserva)
 //id_habitacion,id_tipo_habitacion, descripcion_tipo_habitacion
 
 actualizar_reserva(id_reserva, id regimen, fecha_inicio, fecha_fin)
-//actualiza la reserva del id dado;
+//actualiza la reserva del id dado;Setea el estado de la reserva al 
+//codigo q le correspoidne por reserva Modificada;
+
+insertar_modificacion(fecha, id_reserva, ide_usuario)
+//Inserta una nueva modificacion en la tabla;
 
 
 
