@@ -87,7 +87,7 @@ buscar_habitacion_por_id(int id_habitacion)
 baja_logica_habitacion(id_habitacion)
 //poner en baja logica el campo correspondiente
 
-insertar_reserva(id_hotel,id_regimen, fecha_inicio, fecha_fin, id_cliente)
+insertar_reserva(id_regimen, fecha_inicio, fecha_fin, id_cliente,fecha_realizacion)
 //Inserta una nueva reserva, creo q no tendria por qué dar error nunca.
 
 insertar_habitacion_reservada(id_reserva, id_habitacion)
