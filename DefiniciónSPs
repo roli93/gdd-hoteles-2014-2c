@@ -175,3 +175,9 @@ consumibles_de_reserva(id_reserva)
 
 insertar_producto_x_habitacion_reservada(id_reserva, id_producto,cantidad)
 //Inserta en la tabla esos datos. Si el producto ya estaba para esa reserva, le suma a la cantidad q tenía la cantidad ingresada;
+
+borrar_producto_x_habitacion_reservada(id_reserva,id_producto)
+//borra la fila de la tabla con ese id reserva y ese id producto
+
+productos_disponibles()
+//Hace el select para devolver todos los productos de la tabla de productos. solo id y descripcion
