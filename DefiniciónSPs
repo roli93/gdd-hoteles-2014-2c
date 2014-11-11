@@ -214,4 +214,7 @@ top5estadistico_habitaciones_mas_ocupadas(int trimestre,int año)
 // de la suma de todas las facturaciones que haya tenido (independientemente del Hotel).
 //Trae todos las columnas correspondientes a los atributos del Cliente
 
+ciudades_disponibles
+// todas las ciudades disponibles
+
 
