@@ -218,3 +218,11 @@ ciudades_disponibles
 // todas las ciudades disponibles
 
 
+buscar_hoteles(nombre_hotel, estrellas_hotel, pais_nombre, ciudad_nombre)
+// Busca los hoteles que cumplan con lo pedido, de estar vacias, los strings vienen en "" y la cantidad de estrellas en 0
+
+baja_hotel(id_hotel)
+//Da de baja el hotel, y guarda el historial correspondiente indicando que entro en inactividad
+
+buscar_hotel_por_id(id_hotel)
+//trae la fila correspondiente a ese id de hotel

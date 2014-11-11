@@ -111,7 +111,7 @@ namespace FrbaHotel
             }
         }
 
-        public static List<string> RegimenesDisponibles
+        public static List<Regimen> RegimenesDisponibles
         {
             get
             {

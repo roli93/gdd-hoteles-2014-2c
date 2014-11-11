@@ -9,20 +9,20 @@ namespace FrbaHotel.ABM_de_Hotel
 {
     public partial class AltaHotel
     {
-        private string nombre;
-        private string email;
-        private string telefono;
-        private string direccion;
-        private int estrellas;
-        private Pais pais;
-        private string ciudad;
-        private List<Regimen> regimenes;
-        private string fechaCreacion;
+        protected string nombre;
+        protected string email;
+        protected string telefono;
+        protected string direccion;
+        protected int estrellas;
+        protected Pais pais;
+        protected string ciudad;
+        protected List<Regimen> regimenes;
+        protected DateTime fechaCreacion;
 
         protected virtual void Guardar()
         {
             ValidarErrores();
-            HomeHoteles.insertarHotel(nombre,email,telefono,direccion,estrellas,pais,ciudad,regimenes,fechaCreacion);
+            HomeHoteles.insertarHotel(nombre,email,telefono,direccion,estrellas,pais,ciudad,regimenes,fechaCreacion.ToString());
 
         }
         

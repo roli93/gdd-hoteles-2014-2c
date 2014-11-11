@@ -28,9 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // _ciudades
+            // 
+            this._ciudades.Items.AddRange(new object[] {
+            "Buenos Aires",
+            "Bariloche",
+            "Trelew"});
+            // 
+            // ModificarHotel
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(330, 376);
+            this.Name = "ModificarHotel";
             this.Text = "ModificarHotel";
+            this.Load += new System.EventHandler(this.ModificarHotel_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
