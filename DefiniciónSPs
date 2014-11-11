@@ -168,3 +168,10 @@ int reserva_egresable(id_reserva,id_hotel)
 
 registrar_ingreso_reserva(id_reserva)
 //cambia el estado de la reserva por reserva ingresada
+
+consumibles_de_reserva(id_reserva)
+//Hace un select y devuelve los consumibles de esa reserva. las columnas son: id (id del producto) descripcion,
+//cantidad,precio unitario, precio total (cantidad * unitario)
+
+insertar_producto_x_habitacion_reservada(id_reserva, id_producto,cantidad)
+//Inserta en la tabla esos datos. Si el producto ya estaba para esa reserva, le suma a la cantidad q tenía la cantidad ingresada;
