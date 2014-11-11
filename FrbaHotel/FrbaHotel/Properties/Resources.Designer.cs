@@ -67,6 +67,13 @@ namespace FrbaHotel.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap document_scroll_icon1 {
+            get {
+                object obj = ResourceManager.GetObject("document-scroll-icon1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap tilde {
             get {
                 object obj = ResourceManager.GetObject("tilde", resourceCulture);

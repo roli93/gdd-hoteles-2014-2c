@@ -34,7 +34,7 @@ namespace FrbaHotel
                 return funcionalidades;*/
                 if(Id==0)
                     return new List<Funcionalidad> { new Funcionalidad(1, "Reserva Hotelera") };
-                return new List<Funcionalidad> { new Funcionalidad(1, "Reservas"), new Funcionalidad(2, "Echar gente"), new Funcionalidad(5, "ABM clientes"), new Funcionalidad(6, "ABM habitaciones"), new Funcionalidad(7, "ABM de Rol"), new Funcionalidad(8, "ABM de Hotel") };
+                return new List<Funcionalidad> { new Funcionalidad(1, "Reservas"), new Funcionalidad(2, "Echar gente"), new Funcionalidad(5, "ABM clientes"), new Funcionalidad(6, "ABM habitaciones"), new Funcionalidad(7, "ABM de Rol"), new Funcionalidad(8, "ABM de Hotel"), new Funcionalidad(9, "Listados Estadisticos") };
             }
         }
 

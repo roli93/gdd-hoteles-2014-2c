@@ -11,6 +11,7 @@ using FrbaHotel.ABM_de_Habitacion;
 using FrbaHotel.ABM_de_Rol;
 using FrbaHotel.Registrar_Estadia;
 using FrbaHotel.ABM_de_Hotel;
+using FrbaHotel.Listado_Estadistico;
 
 namespace FrbaHotel
 {
@@ -32,6 +33,8 @@ namespace FrbaHotel
             funcionalidadesSistema.Add(6, (owner) => new ABMHabitacion(owner));
             funcionalidadesSistema.Add(7, (owner) => new ABMRol(owner));
             funcionalidadesSistema.Add(8, (owner) => new ABMHotel(owner));
+            funcionalidadesSistema.Add(9, (owner) => new ListadoEstadistico(owner));
+
 
             SeleccionFuncionalidad.FuncionalidadesPosibles= funcionalidadesSistema;
             // DatabaseAdapter.Excepciones=...

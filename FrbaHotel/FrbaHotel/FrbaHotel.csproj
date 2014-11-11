@@ -347,6 +347,18 @@
     <Compile Include="Homes\HomeReservas.cs" />
     <Compile Include="Homes\HomeRoles.cs" />
     <Compile Include="Homes\HomeUsuarios.cs" />
+    <Compile Include="Listado Estadistico\Formato.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listado Estadistico\Formato.Designer.cs">
+      <DependentUpon>Formato.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Listado Estadistico\ListadoEstadistico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Listado Estadistico\ListadoEstadistico.Designer.cs">
+      <DependentUpon>ListadoEstadistico.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login\LoginUsuariosModel.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -478,6 +490,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Generar Modificar Reserva\SeleccionarRegimen.resx">
       <DependentUpon>SeleccionarRegimen.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listado Estadistico\Formato.resx">
+      <DependentUpon>Formato.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Listado Estadistico\ListadoEstadistico.resx">
+      <DependentUpon>ListadoEstadistico.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Login\LoginUsuarios.resx">
@@ -651,7 +671,7 @@
     <None Include="Resources\clean.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Listado Estadistico\" />
+    <None Include="Resources\document-scroll-icon1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
