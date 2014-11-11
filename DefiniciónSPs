@@ -215,10 +215,3 @@ top5estadistico_habitaciones_mas_ocupadas(int trimestre,int año)
 //Trae todos las columnas correspondientes a los atributos del Cliente
 
 
-paises ()
-//trae todos los paises
-
-ciudades_de_pais(int id_pais)
-// trae todas las ciudades de ese pais
-
-
