@@ -193,3 +193,23 @@ decimal total_factura(id_factura)
 
 facturar(id_reserva, fecha_salida, modo_pago)
 //Cambia el estadod e la reserva a facturado, asinga na fecha de salida y asigna el metodo de pago a la factura. 
+
+
+top5estadistico_hoteles_mas_reservas_canceladas(int trimestre,int año)
+//Trae los 5 hoteles con mas reservas canceladas en ese trimestre del año, con las columnas correspondientes solo a los atributos del hotel y la cantidad de reservas canceladas
+
+top5estadistico_hoteles_mas_consumibles_facturados(int trimestre,int año)
+//Trae los 5 hoteles con mas consumibles facturados en ese trimestre del año, con las columnas correspondientes solo a los atributos del hotel y la cantidad de consumibles
+
+top5estadistico_hoteles_con_mas_periodo_inactivo(int trimestre,int año)
+//Trae los 5 hoteles con mas tiempo inactivo tuvieron en el trimestre del año, con las columnas correspondientes solo a los atributos del hotel
+
+top5estadistico_habitaciones_mas_ocupadas(int trimestre,int año)
+//Trae las 5 habitaciones que mas se ocuparon en ese trimestre del año, esto es por orden, las que mas dias se ocuparon, y las que mas veces se ocuparon.
+//(habitacion que se ocupo 4 dias, en 2 veces de 2 dias) >> (habitacion que se ocupo 4 dias en una vez sola),
+// trae los datos de la habitacion, los dias que se ocupo, cuantas veces fue ocupada, y el nombre del hotel al que pertenece
+
+//top5estadistico_clientes_por_puntaje(int trimestre,int año)
+//Trae los 5 clientes con mas puntaje del trimestre en el año, donde cada $10 en estadías vale 1 punto y cada $5 de consumibles es 1 punto,
+// de la suma de todas las facturaciones que haya tenido (independientemente del Hotel).
+//Trae todos las columnas correspondientes a los atributos del Cliente

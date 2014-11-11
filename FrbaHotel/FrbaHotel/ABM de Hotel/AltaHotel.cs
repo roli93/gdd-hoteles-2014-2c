@@ -20,6 +20,8 @@ namespace FrbaHotel.ABM_de_Hotel
         public AltaHotel(NavegableForm owner)
             : base(owner)
         {
+            InitializeComponent();
+
         }
 
         private void _nombre_TextChanged(object sender, EventArgs e)

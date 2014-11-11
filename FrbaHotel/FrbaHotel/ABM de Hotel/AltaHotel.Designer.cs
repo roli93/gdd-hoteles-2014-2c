@@ -166,6 +166,12 @@
             // _estrellas
             // 
             this._estrellas.FormattingEnabled = true;
+            this._estrellas.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
             this._estrellas.Location = new System.Drawing.Point(68, 116);
             this._estrellas.Name = "_estrellas";
             this._estrellas.Size = new System.Drawing.Size(51, 21);
