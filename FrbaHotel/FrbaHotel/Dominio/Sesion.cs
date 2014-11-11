@@ -111,6 +111,25 @@ namespace FrbaHotel
             }
         }
 
+        public static List<Producto> ProductosDisponibles
+        {
+            get
+            {
+                //TODO return elementosDisponibles<Producto>((e) => new Producto((int)e["id_producto"], (string)e["descripcion"]), "productos_disponibles");
+                return new List<Producto> { new Producto(1, "Coca-Cola"), new Producto(2, "Rhodesia"), new Producto(3, "Dr. Lemon") };
+            }
+        }
+
+        public static List<ModoPago> ModosPagoDisponibles
+        {
+            get
+            {
+                //TODO return elementosDisponibles<Producto>((e) => new ModoPago((int)e["id_metodo_pago"], (string)e["descripcion"]), "metodos_pago_disponibles");
+                return new List<ModoPago> { new ModoPago(1, "Tarjeta de crédito"), new ModoPago(2, "Tarjeta de Débito"), new ModoPago(3, "Efectivo") };
+            }
+        }
+
+
         private static List<T> elementosDisponibles<T>(Constructor<DataRow,T> constructor, string procedure)
         {
             DataTable elementos = DatabaseAdapter.traerDataTable(procedure);

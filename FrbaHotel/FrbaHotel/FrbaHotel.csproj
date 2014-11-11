@@ -243,7 +243,9 @@
     <Compile Include="Dominio\Funcionalidad.cs" />
     <Compile Include="Dominio\Habitacion.cs" />
     <Compile Include="Dominio\Hotel.cs" />
+    <Compile Include="Dominio\ModoPago.cs" />
     <Compile Include="Dominio\Pais.cs" />
+    <Compile Include="Dominio\Producto.cs" />
     <Compile Include="Dominio\Regimen.cs" />
     <Compile Include="Dominio\Reserva.cs" />
     <Compile Include="Dominio\Rol.cs" />
@@ -329,6 +331,7 @@
     </Compile>
     <Compile Include="Homes\Home.cs" />
     <Compile Include="Homes\HomeClientes.cs" />
+    <Compile Include="Homes\HomeFacturas.cs" />
     <Compile Include="Homes\HomeHabitaciones.cs" />
     <Compile Include="Homes\HomeHoteles.cs" />
     <Compile Include="Homes\HomeReservas.cs" />
@@ -452,6 +455,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Registrar Consumible\AgregarConsumible.resx">
+      <DependentUpon>AgregarConsumible.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registrar Consumible\RegistrarConsumibles.resx">
+      <DependentUpon>RegistrarConsumibles.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Registrar Estadia\AltaClientePorReserva.resx">
       <DependentUpon>AltaClientePorReserva.cs</DependentUpon>
     </EmbeddedResource>
@@ -460,6 +469,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Registrar Estadia\ClienteParaReserva.resx">
       <DependentUpon>ClienteParaReserva.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registrar Estadia\ElegirMetodoPago.resx">
+      <DependentUpon>ElegirMetodoPago.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registrar Estadia\Factura.resx">
+      <DependentUpon>Factura.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registrar Estadia\RegistrarEgreso.resx">
+      <DependentUpon>RegistrarEgreso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Registrar Estadia\RegistrarEstadia.resx">
       <DependentUpon>RegistrarEstadia.cs</DependentUpon>
@@ -482,11 +500,23 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="Registrar Consumible\Form1.cs">
+    <Compile Include="Registrar Consumible\AgregarConsumible.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Registrar Consumible\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Registrar Consumible\AgregarConsumible.Designer.cs">
+      <DependentUpon>AgregarConsumible.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registrar Consumible\AgregarConsumibleModel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registrar Consumible\RegistrarConsumibles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registrar Consumible\RegistrarConsumibles.Designer.cs">
+      <DependentUpon>RegistrarConsumibles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registrar Consumible\RegistrarConsumiblesModel.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Registrar Estadia\AltaClientePorReserva.cs">
       <SubType>Form</SubType>
@@ -505,6 +535,24 @@
     </Compile>
     <Compile Include="Registrar Estadia\ClienteParaReserva.Designer.cs">
       <DependentUpon>ClienteParaReserva.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registrar Estadia\ElegirMetodoPago.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registrar Estadia\ElegirMetodoPago.Designer.cs">
+      <DependentUpon>ElegirMetodoPago.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registrar Estadia\Factura.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registrar Estadia\Factura.Designer.cs">
+      <DependentUpon>Factura.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Registrar Estadia\RegistrarEgreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registrar Estadia\RegistrarEgreso.Designer.cs">
+      <DependentUpon>RegistrarEgreso.cs</DependentUpon>
     </Compile>
     <Compile Include="Registrar Estadia\RegistrarEstadia.cs">
       <SubType>Form</SubType>

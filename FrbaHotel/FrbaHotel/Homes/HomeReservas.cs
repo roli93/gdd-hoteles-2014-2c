@@ -150,6 +150,21 @@ namespace FrbaHotel.Homes
             return ej;
         }
 
+        public static DataTable consumiblesReserva(int idReserva)
+        {/* TODO
+            return DatabaseAdapter.traerDataTable("consumibles_de_reserva", idReserva);*/
+            DataTable ej = new DataTable();
+            ej.Clear();
+            ej.Columns.Add("id");
+            ej.Columns.Add("descripcion");
+            ej.Columns.Add("Cantidad");
+            ej.Columns.Add("Precio Unitario");
+            ej.Columns.Add("Total");
+            ej.Rows.Add(new object[] { 142,"Coca", 2, 2,4 });
+            ej.Rows.Add(new object[] { 24242,"Lays", 12, 2,24 });
+            return ej;
+        }
+
         public static void cambiarHabitacion(int idHabitacionreservada, int numero)
         {/*TODO
             int error = DatabaseAdapter.ejecutarProcedureWithReturnValue("cambiar_habitacion", idHabitacionreservada, numero);
@@ -184,6 +199,22 @@ namespace FrbaHotel.Homes
         public static void ingresarReserva(int idReserva)
         {/*TODO
             DatabaseAdapter.ejecutarProcedure("registrar_ingreso_reserva", idReserva);*/
+        }
+
+        public static void agregarConsumible(int idReserva, Producto producto, int cantidad)
+        {/*TODO
+            DatabaseAdapter.insertarDatosEnTabla("producto_x_habitacion_reservada", idReserva, producto.Id,cantidad);
+        */}
+
+        public static void removerConsumible(int idReserva, int idProducto)
+        {/*
+            DatabaseAdapter.borrarDatosEnTabla("producto_x_habitacion_reservada", idReserva, idProducto);
+        */
+        }
+
+        public static void facturar(int idReserva, DateTime fechaSalida,ModoPago mp)
+        {/*
+            DatabaseAdapter.ejecutarProcedure("facturar", idReserva, fechaSalida,mp.Id);*/
         }
 
     }
