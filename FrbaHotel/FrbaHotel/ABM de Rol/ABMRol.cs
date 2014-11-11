@@ -34,12 +34,12 @@ namespace FrbaHotel.ABM_de_Rol
 
         public override void baja()
         {
-            new SeleccionarRol(this, "Eliminar").FinalStandaloneOpen();
+            new SeleccionarRol(this, "Eliminar").StandaloneOpen();
         }
 
         public override void modificacion()
         {
-            new SeleccionarRol(this, "Modificar").FinalStandaloneOpen();
+            new SeleccionarRol(this, "Editar").StandaloneOpen();
         }
 
     }

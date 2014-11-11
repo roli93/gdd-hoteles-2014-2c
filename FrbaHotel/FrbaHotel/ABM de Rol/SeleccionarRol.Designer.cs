@@ -74,6 +74,7 @@
             this._gridRoles.ReadOnly = true;
             this._gridRoles.Size = new System.Drawing.Size(457, 206);
             this._gridRoles.TabIndex = 48;
+            this._gridRoles.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this._gridRoles_CellContentClick);
             // 
             // _buscar
             // 
@@ -115,6 +116,7 @@
             this.Controls.Add(this.Nombre);
             this.Name = "SeleccionarRol";
             this.Text = "SeleccionarRol";
+            this.Load += new System.EventHandler(this.SeleccionarRol_Load);
             ((System.ComponentModel.ISupportInitialize)(this._gridRoles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

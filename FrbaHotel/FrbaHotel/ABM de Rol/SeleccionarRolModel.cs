@@ -21,6 +21,7 @@ namespace FrbaHotel.ABM_de_Rol
         {
             ValidarErrores();
             roles = HomeRoles.buscarRoles(nombre, estaActivo);
+            cargarGrilla(_gridRoles, roles);
         }
 
         public void EliminarRol(DataGridView grilla, DataGridViewCellEventArgs e)

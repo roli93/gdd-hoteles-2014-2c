@@ -32,6 +32,8 @@ namespace FrbaHotel.ABM_de_Rol
             private void SeleccionarRol_Load(object sender, EventArgs e)
             {
                cargarBotonModificarDatos(_gridRoles, accion);
+               estaActivo = true;
+               _estaActivo.Checked = true;
             }
 
 
@@ -50,7 +52,6 @@ namespace FrbaHotel.ABM_de_Rol
              private void _buscar_Click(object sender, EventArgs e)
             {
                 Execute(Buscar);
-                cargarGrilla(_gridRoles, roles);
             }
 
              private void _estaActivo_CheckedChanged(object sender, EventArgs e)

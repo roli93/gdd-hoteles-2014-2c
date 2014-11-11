@@ -89,7 +89,6 @@
             // 
             // _funcionalidadesCLB
             // 
-            this._funcionalidadesCLB.FormattingEnabled = true;
             this._funcionalidadesCLB.Location = new System.Drawing.Point(12, 73);
             this._funcionalidadesCLB.Name = "_funcionalidadesCLB";
             this._funcionalidadesCLB.Size = new System.Drawing.Size(120, 94);
@@ -125,6 +124,8 @@
             this.Text = "AltaRol";
             this.ResumeLayout(false);
             this.PerformLayout();
+            this.Load += new System.EventHandler(this.AltaRol_Load);
+
 
         }
 

@@ -29,9 +29,8 @@ namespace FrbaHotel.Homes
             ej.Clear();
             ej.Columns.Add("ID"); 
             ej.Columns.Add("Nombre");
-            ej.Columns.Add("EstaActivo"); 
-            ej.Columns.Add("Operación");
-            ej.Rows.Add(new object[] { 1, "Healer", true, "Seleccionar"});
+            ej.Columns.Add("EstaActivo");
+            ej.Rows.Add(new object[] { 1, "Healer", true});
             return ej;
         }
 
