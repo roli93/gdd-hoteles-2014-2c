@@ -10,10 +10,11 @@ namespace FrbaHotel.Homes
     class HomeRoles:Home
     {
         public static void registrarRol(string nombre, List<Funcionalidad> funcionalidades, bool estaActivo)
-        {
+        {/*TODO
             DatabaseAdapter.insertarDatosEnTabla("rol", nombre, estaActivo);
             int id = idParaNombre(nombre);
             agregarElementos("funcionalidad_x_rol", id, IdsDe<Funcionalidad>(funcionalidades));        
+        */
         }
 
         public static int idParaNombre(string nombre)

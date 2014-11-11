@@ -332,6 +332,7 @@
     <Compile Include="Homes\Home.cs" />
     <Compile Include="Homes\HomeClientes.cs" />
     <Compile Include="Homes\HomeFacturas.cs" />
+    <Compile Include="Homes\HomeGeografico.cs" />
     <Compile Include="Homes\HomeHabitaciones.cs" />
     <Compile Include="Homes\HomeHoteles.cs" />
     <Compile Include="Homes\HomeReservas.cs" />

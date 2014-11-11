@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using FrbaHotel.Administracion_Base_de_Datos;
 using FrbaHotel.Forms_genericos;
+using FrbaHotel.Homes;
 
 namespace FrbaHotel.ABM_de_Rol
 {
@@ -16,10 +17,8 @@ namespace FrbaHotel.ABM_de_Rol
 
         protected virtual void Guardar()
         {
-            // TODO ValidarErrores();
-           // object[] o = new object[] { null };
-            //DatabaseAdapter.insertarDatosEnTabla("rol", nombre);
-
+          ValidarErrores();
+          HomeRoles.registrarRol(nombre, Funcionalidades, EstaActivo);
         }
 
         public override void ValidarErroresConcretos()

@@ -102,6 +102,25 @@ namespace FrbaHotel
             }
         }
 
+        public static List<string> CiudadesDisponibles
+        {
+            get
+            {
+                //TODO return elementosDisponibles<string>((e) => (string)e["ciudad"]), "ciudades_disponibles");
+                return new List<string> {"Buenos Aires","Bariloche","Trelew"};
+            }
+        }
+
+        public static List<string> RegimenesDisponibles
+        {
+            get
+            {
+                //TODO return elementosDisponibles<Regimen>((e) => new Regimen((int)e["Id"],(string)e("Descripcion")), "regimenes_disponibles");
+                return new List<Regimen> { new Regimen(1,"MediaPension"), new Regimen(2,"FullBreikfasth") };
+            }
+        }
+
+
         public static List<TipoHabitacion> TiposHabitacionDisponibles
         {
             get
