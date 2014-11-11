@@ -125,7 +125,7 @@ FROM         gd_esquema.Maestra
 ORDER BY Codigo
 GO
 
-
+print 'Vistas creadas.'
 
 	/*	F U N C I O N E S	*/
 
@@ -193,6 +193,7 @@ returns bigint
     END
 GO
 
+print 'Funciones creadas.'
 
 	/*	S	P	*/
 		
@@ -294,7 +295,7 @@ IF OBJECT_ID('dbo.IMP_Habitacion', 'P') IS NOT NULL
 GO	
 
 create procedure IMP_Habitacion
-AS INSERT INTO Habitacion (id_hotel, id_tipo_habitacion, numero, piso, interna, habilitada)
+AS INSERT INTO Habitacion (id_hotel, id_tipo_habitacion, numero, piso, ubicacion, habilitada)
 	select dbo.buscar_ID_Hotel(Ciudad_Hotel, Calle_Hotel, Altura_Hotel) as hotel_id, Tipo, Numero, 
 			Piso, 
 			case when Frente = 'S' then 'N' else 'S' end as interna, /* TODO : VER ESTO !!! */
@@ -342,7 +343,44 @@ insert into Producto_X_HabitacionReservada (id_habitacion_reservada, id_producto
 		join HabitacionReservada hr on hr.reserva_id = f.id_reserva)
 GO
 
+/* SP - CLIENTES REPETIDOS */
+IF OBJECT_ID('dbo.Detectar_Clientes_Repetidos', 'P') IS NOT NULL
+  DROP PROCEDURE dbo.Detectar_Clientes_Repetidos
+GO	
 
+CREATE PROCEDURE Detectar_Clientes_Repetidos as
+
+	DECLARE @pasaporte int
+
+	DECLARE C_Repetidos CURSOR 
+		LOCAL STATIC READ_ONLY FORWARD_ONLY
+	FOR 
+		(select Pasaporte from V_Clientes
+			group by Pasaporte 
+			having COUNT(Pasaporte) <> 1)
+
+	OPEN C_Repetidos
+	FETCH NEXT FROM C_Repetidos INTO @pasaporte
+	WHILE @@FETCH_STATUS = 0
+	BEGIN 
+		PRINT @pasaporte
+		insert into Clientes_Repetidos (altura, apellido, calle, departamento, fecha_nacimiento, 
+						habilitado, id_pais, id_tipo_identificacion, localidad, 
+						mail, nombre, numero_identificacion, piso, telefono, controlado)
+				select altura, apellido, calle, departamento, fecha_nacimiento, 
+						habilitado, id_pais, id_tipo_identificacion, localidad, 
+						mail, nombre, numero_identificacion, piso, telefono, 'N' as controlado
+				from Cliente where numero_identificacion = @pasaporte 
+		FETCH NEXT FROM C_Repetidos INTO @pasaporte
+	END
+	CLOSE C_Repetidos
+	DEALLOCATE C_Repetidos
+GO
+
+
+print 'SP creados.'
+
+/*
 drop index IDX_Clientes on cliente
 go
 drop index IDX_Reservas on Reservas
@@ -354,13 +392,6 @@ go
 drop index IDX_Habitaciones_Reservadas on HabitacionReservada
 go
 
-create nonclustered index IDX_Clientes on Cliente(numero_identificacion, nombre);
-create nonclustered index IDX_Reservas on Reservas(id_reserva);
-create nonclustered index IDX_Habitaciones on Habitacion(id_habitacion, numero, piso);
-create nonclustered index IDX_Hoteles on Hoteles(id);
-create nonclustered index IDX_Habitaciones_Reservadas on HabitacionReservada(reserva_id, habitacion_id);
-
--- S E C U E N C I A 
 delete from reservas;
 delete from cliente;
 delete from paises;
@@ -372,29 +403,69 @@ delete from hoteles;
 delete from Habitacion;
 delete from HabitacionReservada;
 delete from Producto_X_HabitacionReservada;
+*/
 
+-- S E C U E N C I A 
 
 EXEC IMP_Nacionalidad 
 GO
+print 'Importado: Nacionalidades.'
+
 EXEC IMP_Cliente 
 GO
+create nonclustered index IDX_Clientes on Cliente(numero_identificacion, nombre);
+print 'Importado: Cliente.'
+
 EXEC IMP_Consumible 
 GO
+print 'Importado: Consumible.'
+
 EXEC IMP_Tipo_Habitacion 
 GO
+print 'Importado: Tipo de Habitacion.'
+
 EXEC IMP_Regimen 
 GO
+print 'Importado: Regimen.'
+
 EXEC IMP_Reserva 
 GO
+create nonclustered index IDX_Reservas on Reservas(id_reserva);
+
+print 'Importado: Reserva.'
+
 EXEC IMP_Factura 
 GO
+print 'Importado: Factura.'
+
 EXEC IMP_Hotel 
 GO
+create nonclustered index IDX_Hoteles on Hoteles(id);
+print 'Importado: Hotel.'
+
 EXEC IMP_Habitacion 
 GO
+
+select * from Habitacion
+create nonclustered index IDX_Habitaciones on Habitacion(id_habitacion, numero, piso);
+print 'Importado: Habitacion.'
+
 EXEC IMP_HabitacionReservada
 GO
+create nonclustered index IDX_Habitaciones_Reservadas on HabitacionReservada(reserva_id, habitacion_id);
+print 'Importado: Habitacion Reservada.'
+
 EXEC IMP_HabitacionReservada_Cliente
 GO
+print 'Importado: Habitacion Reservada por Cliente.'
+
 EXEC IMP_Producto_HabitacionReservada
 GO
+print 'Importado: Producto por Habitacion Reservada.'
+
+print 'MIGRACION FINALIZADA.'
+
+
+EXEC Detectar_Clientes_Repetidos
+GO
+print 'Clientes duplicados detectados.'
