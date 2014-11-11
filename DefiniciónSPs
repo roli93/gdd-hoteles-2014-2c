@@ -213,3 +213,12 @@ top5estadistico_habitaciones_mas_ocupadas(int trimestre,int año)
 //Trae los 5 clientes con mas puntaje del trimestre en el año, donde cada $10 en estadías vale 1 punto y cada $5 de consumibles es 1 punto,
 // de la suma de todas las facturaciones que haya tenido (independientemente del Hotel).
 //Trae todos las columnas correspondientes a los atributos del Cliente
+
+
+paises ()
+//trae todos los paises
+
+ciudades_de_pais(int id_pais)
+// trae todas las ciudades de ese pais
+
+
