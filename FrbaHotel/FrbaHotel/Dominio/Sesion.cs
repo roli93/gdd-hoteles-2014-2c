@@ -107,7 +107,7 @@ namespace FrbaHotel
             get
             {
                 //TODO return elementosDisponibles<string>((e) => (string)e["ciudad"]), "ciudades_disponibles");
-                return new List<string> {"Buenos Aires","Bariloche","Trelew"};
+                return new List<string> {"Buenos Aires","Bariloche","Trelew","Cataluña"};
             }
         }
 

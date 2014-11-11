@@ -10,7 +10,7 @@ namespace FrbaHotel.ABM_de_Hotel
     public partial class ModificarHotel
     {
 
-        private List<Regimen> regimenesOriginales;
+        private List<Regimen> regimenesOriginales = new List<Regimen>();
 
 
         public void CargarHotel()

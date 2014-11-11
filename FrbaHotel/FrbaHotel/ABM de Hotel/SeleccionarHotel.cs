@@ -53,7 +53,7 @@ namespace FrbaHotel.ABM_de_Hotel
 
         private void _estrellas_SelectedIndexChanged(object sender, EventArgs e)
         {
-            estrellas = Convert.ToInt32(_estrellas.SelectedItem.ToString());
+            estrellas = Convert.ToInt32(_estrellas.SelectedItem);
         }
 
         private void _paises_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,7 +63,7 @@ namespace FrbaHotel.ABM_de_Hotel
 
         private void _ciudades_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ciudad = _ciudades.SelectedItem.ToString();
+            ciudad = (string)_ciudades.SelectedItem;
         }
 
         private void SeleccionarHotel_Load(object sender, EventArgs e)

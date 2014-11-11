@@ -30,13 +30,6 @@
         {
             this.SuspendLayout();
             // 
-            // _ciudades
-            // 
-            this._ciudades.Items.AddRange(new object[] {
-            "Buenos Aires",
-            "Bariloche",
-            "Trelew"});
-            // 
             // ModificarHotel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
