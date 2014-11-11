@@ -106,8 +106,8 @@ GO
 
 CREATE VIEW V_Reservas AS 
 SELECT DISTINCT 
-                      TOP (100) PERCENT Reserva_Codigo AS Codigo, Reserva_Fecha_Inicio AS Fecha_Inicio, Reserva_Cant_Noches AS Noches, 
-                      Cliente_Pasaporte_Nro AS Cliente, Regimen_Descripcion AS Regimen, Cliente_Apellido AS Apellido, Cliente_Nombre AS Nombre
+	TOP (100) PERCENT Hotel_Ciudad, Hotel_Calle, Hotel_Nro_Calle, Habitacion_Numero, Habitacion_Piso, Reserva_Codigo AS Codigo, Reserva_Fecha_Inicio AS Fecha_Inicio, Reserva_Cant_Noches AS Noches, 
+	Cliente_Pasaporte_Nro AS Cliente, Regimen_Descripcion AS Regimen, Cliente_Apellido AS Apellido, Cliente_Nombre AS Nombre
 FROM         gd_esquema.Maestra
 ORDER BY Codigo
 GO
@@ -178,6 +178,21 @@ returns bigint
 							ciudad = @ciudad)
     END
 GO
+
+
+IF OBJECT_ID('dbo.buscar_ID_HabitacionReservada', 'FN') IS NOT NULL
+  DROP FUNCTION dbo.buscar_ID_HabitacionReservada
+GO	
+
+CREATE function buscar_ID_HabitacionReservada (@id_habitacion as bigint, @id_reserva as bigint)
+returns bigint
+    BEGIN 
+        return (select id from HabitacionReservada 
+					where habitacion_id = @id_habitacion and
+						reserva_id = @id_reserva)
+    END
+GO
+
 
 	/*	S	P	*/
 		
@@ -287,17 +302,63 @@ AS INSERT INTO Habitacion (id_hotel, id_tipo_habitacion, numero, piso, interna, 
 	from V_Habitaciones
 GO
 
+/* SP - HABITACION_RESERVADA */
+IF OBJECT_ID('dbo.IMP_HabitacionReservada', 'P') IS NOT NULL
+  DROP PROCEDURE dbo.IMP_HabitacionReservada
+GO	
+
+create Procedure IMP_HabitacionReservada AS
+insert into HabitacionReservada (habitacion_id, reserva_id) 
+ (select dbo.buscar_ID_Habitacion(dbo.buscar_ID_Hotel(hotel_Ciudad,Hotel_Calle,hotel_Nro_Calle), 
+			Habitacion_Piso, Habitacion_Numero),
+			codigo
+			from V_Reservas)
+GO
+
+
+/* SP - HABITACION_RESERVADA_CLIENTE */
+IF OBJECT_ID('dbo.IMP_HabitacionReservada_Cliente', 'P') IS NOT NULL
+  DROP PROCEDURE dbo.IMP_HabitacionReservada_Cliente
+GO	
+
+create Procedure IMP_HabitacionReservada_Cliente AS
+insert into HabitacionReservada_X_Cliente (habitacion_reservada_id, cliente_id) 
+ (select dbo.buscar_ID_HabitacionReservada(dbo.buscar_ID_Habitacion(dbo.buscar_ID_Hotel(hotel_Ciudad,Hotel_Calle,hotel_Nro_Calle), Habitacion_Piso, Habitacion_Numero), codigo) as id_HabReservada,
+			dbo.buscar_ID_Cliente(Cliente, Nombre, Apellido) as id_cliente
+			from V_Reservas)
+GO
+
+
+/* SP - PRODUCTO_HABITACION_RESERVADA */
+IF OBJECT_ID('dbo.IMP_Producto_HabitacionReservada', 'P') IS NOT NULL
+  DROP PROCEDURE dbo.IMP_Producto_HabitacionReservada
+GO	
+
+create Procedure IMP_Producto_HabitacionReservada AS
+insert into Producto_X_HabitacionReservada (id_habitacion_reservada, id_producto, cantidad, id_factura) 
+ (select hr.id, v.Consumible, v.Cantidad, v.Factura 
+		from V_ItemFactura v
+		join Factura f on f.id_factura = v.Factura
+		join HabitacionReservada hr on hr.reserva_id = f.id_reserva)
+GO
+
 
 drop index IDX_Clientes on cliente
 go
-
-create nonclustered index IDX_Clientes
-	on Cliente(numero_identificacion, nombre);
-
 drop index IDX_Reservas on Reservas
 go
-create nonclustered index IDX_Reservas
-	on Reservas(id_reserva);
+drop index IDX_Habitaciones on Habitacion
+go
+drop index IDX_Hoteles on Hoteles
+go
+drop index IDX_Habitaciones_Reservadas on HabitacionReservada
+go
+
+create nonclustered index IDX_Clientes on Cliente(numero_identificacion, nombre);
+create nonclustered index IDX_Reservas on Reservas(id_reserva);
+create nonclustered index IDX_Habitaciones on Habitacion(id_habitacion, numero, piso);
+create nonclustered index IDX_Hoteles on Hoteles(id);
+create nonclustered index IDX_Habitaciones_Reservadas on HabitacionReservada(reserva_id, habitacion_id);
 
 -- S E C U E N C I A 
 delete from reservas;
@@ -309,6 +370,8 @@ delete from Regimen;
 delete from factura;
 delete from hoteles;
 delete from Habitacion;
+delete from HabitacionReservada;
+delete from Producto_X_HabitacionReservada;
 
 
 EXEC IMP_Nacionalidad 
@@ -328,4 +391,10 @@ GO
 EXEC IMP_Hotel 
 GO
 EXEC IMP_Habitacion 
+GO
+EXEC IMP_HabitacionReservada
+GO
+EXEC IMP_HabitacionReservada_Cliente
+GO
+EXEC IMP_Producto_HabitacionReservada
 GO
