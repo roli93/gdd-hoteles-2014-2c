@@ -181,3 +181,15 @@ borrar_producto_x_habitacion_reservada(id_reserva,id_producto)
 
 productos_disponibles()
 //Hace el select para devolver todos los productos de la tabla de productos. solo id y descripcion
+
+items_factura(id_factura)
+//Hace un select que me devuelve todos los items de la factura y también devuelve un item dias Alojado y dias no alojado.
+//Tambien tiene que estar el item de devolucion por all inclusive si corresponde, para esto yo lo que
+//habia pensado es simplementye hacer que haya un producto "Devolucion All Inclusive" de precio -1 y cargarlo
+//en los items con la cantidad igual a lo q hay q restar, para que al multiplicar se eso y reste solo.
+
+decimal total_factura(id_factura)
+//devuelve un decimal con el valor ttoald e la factura;
+
+facturar(id_reserva, fecha_salida, modo_pago)
+//Cambia el estadod e la reserva a facturado, asinga na fecha de salida y asigna el metodo de pago a la factura. 
