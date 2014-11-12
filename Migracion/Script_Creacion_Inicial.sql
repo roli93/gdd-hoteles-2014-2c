@@ -2040,14 +2040,76 @@ create procedure total_factura(@id_factura bigint)
 AS SELECT DISTINCT total FROM [MAX_POWER].Factura WHERE id_factura = @id_factura
 GO
 
-create procedure top5estadistico_hoteles_mas_consumibles_facturados(@trimestre bigint, @año bigint)
-as select top 5 hot.id, hot.calle, hot.altura, hot.ciudad, SUM(phr.cantidad) 
-from MAX_POWER.Producto_X_HabitacionReservada phr
-join MAX_POWER.HabitacionReservada hr on hr.habitacion_id = phr.id_habitacion_reservada
-join MAX_POWER.Habitacion h on h.id_habitacion = hr.habitacion_id
-join MAX_POWER.Hoteles hot on hot.id = h.id_hotel
+create procedure insertar_habitacion_reservada(@id_reserva bigint, @id_habitacion bigint)
+AS BEGIN
+BEGIN TRY
+INSERT INTO [MAX_POWER].HabitacionReservada (reserva_id, habitacion_id) VALUES (@id_reserva, @id_habitacion)
+END TRY
+BEGIN CATCH
+DECLARE @fechaReserva datetime
+SET @fechaReserva = (SELECT fecha_inicio FROM [MAX_POWER].Reservas WHERE id_reserva = @id_reserva)
+IF (SELECT COUNT (*) FROM [MAX_POWER].HabitacionReservada HR JOIN [MAX_POWER].Reservas R ON HR.reserva_id != R.id_reserva WHERE HR.habitacion_id = @id_habitacion AND @fechaReserva BETWEEN R.fecha_inicio AND R.fecha_fin)>0
+	RETURN -7
+--raiseError
+END CATCH
+END
+GO
 
-group by hot.id, hot.calle, hot.altura, hot.ciudad
+create procedure reserva_editable(@id_reserva bigint)
+AS IF (SELECT COUNT (*) FROM [MAX_POWER].Reservas WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%correc%') OR id_estado = (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%modific%')) > 0
+	RETURN 1
+IF ((SELECT COUNT (*) FROM [MAX_POWER].Reservas WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%cancela%') OR id_estado  = (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%ingres%'))>0 OR (SELECT COUNT (*) FROM [MAX_POWER].Reservas WHERE id_reserva = @id_reserva)=0 OR (SELECT COUNT (*) FROM [MAX_POWER].Reservas WHERE id_reserva = @id_reserva AND fecha_fin = DATEADD(day,+1,getdate()))>0)
+	RETURN 0
+GO
+
+create procedure buscar_roles(@nombre varchar(50), @estado char(1))
+AS SELECT * FROM [MAX_POWER].Roles WHERE
+UPPER(nombre) LIKE UPPER(@nombre)
+AND UPPER(habilitado) LIKE UPPER(@estado)
+GO
+
+create procedure habitaciones_de_reserva(@id_reserva bigint)
+AS SELECT DISTINCT HR.habitacion_id, H.numero
+FROM [MAX_POWER].HabitacionReservada HR
+join [MAX_POWER].Habitacion H on H.id_habitacion = HR.habitacion_id
+WHERE HR.reserva_id = @id_reserva
+UNION
+SELECT COUNT (*) FROM [MAX_POWER].HabitacionReservada_X_Cliente CH JOIN [MAX_POWER].HabitacionReservada H ON CH.habitacion_reservada_id = H.id WHERE H.reserva_id = @id_reserva
+GO
+
+create procedure cambiar_habitacion(@id_habitacion_reservada bigint, @numero bigint)
+AS DECLARE @id_tipo_habitacion_anterior bigint
+DECLARE @id_hotel_habitacion_anterior bigint
+SET @id_tipo_habitacion_anterior = (SELECT H.id_tipo_habitacion FROM [MAX_POWER].HabitacionReservada HR JOIN [MAX_POWER].Habitacion H ON H.id_habitacion = HR.habitacion_id WHERE HR.id = @id_habitacion_reservada)
+SET @id_hotel_habitacion_anterior = (SELECT H.id_hotel FROM [MAX_POWER].HabitacionReservada HR JOIN [MAX_POWER].Habitacion H ON H.id_habitacion = HR.habitacion_id WHERE HR.id = @id_habitacion_reservada)
+IF (SELECT COUNT (*) FROM [MAX_POWER].Habitacion WHERE id_hotel = @id_hotel_habitacion_anterior AND id_tipo_habitacion = @id_tipo_habitacion_anterior) > 0
+	UPDATE [MAX_POWER].HabitacionReservada SET habitacion_id = (SELECT TOP 1 * FROM [MAX_POWER].Habitacion WHERE id_hotel = @id_hotel_habitacion_anterior AND id_tipo_habitacion = @id_tipo_habitacion_anterior) WHERE id = @id_habitacion_reservada
+ELSE
+	RETURN -8
+GO
+
+create procedure reserva_ingresable(@id_reserva bigint, @id_hotel bigint)
+AS IF (SELECT COUNT (*) FROM [MAX_POWER].Reservas WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%correc%') OR id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%modific%'))>0
+	RETURN 1
+IF ((SELECT COUNT (*) FROM [MAX_POWER].Reservas WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%cancel%') OR id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%ingres%'))>0 OR (SELECT COUNT (*) FROM [MAX_POWER].HabitacionReservada HR JOIN [MAX_POWER].Habitacion H ON H.id_habitacion = HR.habitacion_id WHERE HR.reserva_id = @id_reserva AND H.id_hotel != @id_hotel)=0 OR (SELECT COUNT (*) FROM [MAX_POWER].Reservas WHERE id_reserva = @id_reserva AND fecha_inicio < getdate())>0)
+	RETURN 0
+GO
+
+create procedure reserva_egresable(@id_reserva bigint, @id_hotel bigint)
+AS IF (SELECT COUNT (*) FROM [MAX_POWER].Reservas WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%ingres%'))>0
+	RETURN 1
+IF ((SELECT COUNT (*) FROM [MAX_POWER].Reservas WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion NOT LIKE '%ingres%'))>0 OR (SELECT COUNT (*) FROM [MAX_POWER].HabitacionReservada HR JOIN [MAX_POWER].Habitacion H ON H.id_habitacion = HR.habitacion_id WHERE HR.reserva_id = @id_reserva AND H.id_hotel != @id_hotel)=0 OR (SELECT COUNT (*) FROM [MAX_POWER].Reservas WHERE id_reserva = @id_reserva)=0)
+	RETURN 0
+GO
+
+create procedure actualizar_reserva(@id_reserva bigint, @id_regimen bigint, @fecha_inicio datetime, @fecha_fin datetime)
+AS
+UPDATE [MAX_POWER].Reservas SET
+id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%modific%'),
+fecha_inicio = @fecha_inicio,
+fecha_fin = @fecha_fin,
+id_regimen = @id_regimen
+WHERE id_reserva = @id_reserva
 GO
 
 print 'Finalizo la importacion de SP propios de la aplicacion.'
