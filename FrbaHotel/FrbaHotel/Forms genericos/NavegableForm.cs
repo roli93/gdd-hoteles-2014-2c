@@ -123,7 +123,7 @@ namespace FrbaHotel
             }
         }
 
-        protected void ExcecuteAndShow(ExceptionableTask task)
+        protected virtual void ExcecuteAndShow(ExceptionableTask task)
         {
             try
             {

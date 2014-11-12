@@ -54,5 +54,27 @@ namespace FrbaHotel.Listado_Estadistico
         {
             ValidarVacios(new string[] { "Año", "Trimestre" }, new object[] {_anio.Text, _trimestre.SelectedItem });
         }
+
+
+        //Puesto aca para que no tire el msgBox de operacion finalizada.
+        protected override void ExcecuteAndShow(ExceptionableTask task)
+        {
+            try
+            {
+                task();
+            }
+            catch (ExcepcionFrbaHoteles e)
+            {
+                MessageBox.Show(e.Message, "Error");
+                errorMessage += "  ";
+            }
+            catch (SystemException e)
+            {
+                MessageBox.Show("Ha ocurrido un error desconocido. Estamos trabajando para solucionarlo");
+                errorMessage += "  ";
+            }
+        }
+
+
     }
 }
