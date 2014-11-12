@@ -44,3 +44,6 @@ FrbaHotel/FrbaHotel/Properties/Resources.Designer.cs
 FrbaHotel/FrbaHotel/Properties/Resources.resx
 FrbaHotel/FrbaHotel/SeleccionarHotel.cs
 FrbaHotel/FrbaHotel/SeleccionarHotel.designer.cs
+FrbaHotel/FrbaHotel/obj/Debug/FrbaHotel.ABM_de_Hotel.BajaHotel.resources
+FrbaHotel/FrbaHotel/obj/Debug/FrbaHotel.Listado_Estadistico.Formato.resources
+FrbaHotel/FrbaHotel/obj/Debug/FrbaHotel.Listado_Estadistico.ListadoEstadistico.resources
