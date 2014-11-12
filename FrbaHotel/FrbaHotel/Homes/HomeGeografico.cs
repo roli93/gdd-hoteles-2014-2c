@@ -12,8 +12,8 @@ namespace FrbaHotel.Homes
         public static DataTable buscarPaises()
         {/*TODO
            
-            return DatabaseAdapter.traerDataTable("paises").;
-            */
+            return DatabaseAdapter.traerDataTable("paises");
+                */
             DataTable ej = new DataTable();
             ej.Clear(); 
             ej.Columns.Add("ID");

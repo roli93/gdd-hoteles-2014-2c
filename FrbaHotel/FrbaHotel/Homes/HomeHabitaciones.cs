@@ -35,7 +35,14 @@ namespace FrbaHotel.Homes
 
         static public Habitacion buscarPorId(int unIdHabitacion,out Hotel unHotel,out int unNumero,out int unPiso,out TipoHabitacion unTipo, out string unaUbicacion, out string unaDescripcion)
         {
-            //TODO Buscar_Habitacion_Por_Id
+            //DataRow laHabitacion = DatabaseAdapter.traerDataTable("buscar_habitacion_por_id", unIdHabitacion).Rows[0];
+            //HomeHoteles.buscarPorId(laHabitacion["id_hotel"],unHotel);
+            //This.buscarTipoPorId(laHabitacion["id_tipo"],unTipo);
+            //unNumero = (int)laHabitacion["numero"];
+            //unPiso = (int)laHabitacion["piso"];
+            //unaUbicacion = laHabitacion["ubicacion"].ToString();
+            //unaDescripcion = laHabitacion["descripcion"].ToString();
+            
             Habitacion laHabitacion = new Habitacion();
             laHabitacion.Id = unIdHabitacion;
             unHotel = new Hotel(1, "Hotel Aca no vuelvo ni en pedo");
@@ -59,12 +66,13 @@ namespace FrbaHotel.Homes
         static public void actualizarHabitacion(int idHabitacion,Hotel unHotel,int unNumero,int unPiso,TipoHabitacion unTipo,string unaUbicacion,string unaDescripcion)
         {
             //TODO actualizar_habitacion
-            
+            //DatabaseAdapter.actualizarDatosEnTabla("habitacion", idHabitacion, unHotel.Id, unNumero, unPiso, unTipo.Id, unaUbicacion, unaDescripcion);
         }
 
         static public void agregarHabitacion(Hotel unHotel, int unPiso, int unNumero, string unaUbicacion, TipoHabitacion unTipo, string unaDescripcion)
         {
             //TODO agregar habitacion a base de datos
+            //DatabaseAdapter.insertarDatosEnTabla("habitacion", unHotel.Id, unNumero, unPiso, unTipo.Id, unaUbicacion, unaDescripcion);
         }
 
 

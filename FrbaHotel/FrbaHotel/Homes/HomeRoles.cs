@@ -37,12 +37,13 @@ namespace FrbaHotel.Homes
 
         public static void buscarPorId(int id, out string nombre, out bool estaActivo, out  List<Funcionalidad> funcionalidades)
         {/*TODO
-            DataRow rol = DatabaseAdapter.traerDataTable("buscar_rol_por_id", id).Rows[0];
-            nombre = usuario["nombre"].ToString();
-            estaActivo = usuario["estaActivo"].ToString();
+            DataRow rolTraido = DatabaseAdapter.traerDataTable("buscar_rol_por_id", id).Rows[0];
+            nombre = rolTraido["nombre"].ToString();
+            estaActivo = rolTraido["estaActivo"].ToString();
             
             Rol rol = new Rol(id, nombre);
-            funcionalidades = rol.Funcionalidades      */
+          * rol.estaActivo = estaActivo;
+            funcionalidades = rol.Funcionalidades;      */
 
             nombre = "rolPiola";
             estaActivo = true;
