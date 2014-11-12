@@ -13,8 +13,16 @@ namespace FrbaHotel.Homes
         static public void insertarHotel(string nombre, string email, string telefono, string direccion, int estrellas, Pais pais, string ciudad, List<Regimen> regimenes, string fechaCreacion)
         {
             //TODO   DatabaseAdapter.insertarDatosEnTabla("hotel", nombre, email, telefono, direccion, estrellas, pais.Id, ciudad, fechaCreacion);
+            int id = idParaHotel(nombre);
+            agregarElementos("regimen_x_hotel",id, IdsDe<Regimen>(regimenes));
+
         }
-        
+
+        public static int idParaHotel(string nombre)
+        {
+            return DatabaseAdapter.ejecutarProcedureWithReturnValue("id_hotel", nombre);
+        }
+
         static public void buscarPorId(int idHotel,out string nombre, out string email, out string telefono, out string direccion, out int estrellas, out Pais pais, out string ciudad, out List<Regimen> regimenes, out DateTime fechaCreacion)
         {
            /*TODO
@@ -52,12 +60,11 @@ namespace FrbaHotel.Homes
             ej.Rows.Add(new object[] { 1, "Hotel aca no vuelvo ni en pedo", 5, "Argentina", "Chascomus"});
             ej.Rows.Add(new object[] { 2, "Hotel Espá y Risort", 3, "Chile", "Santiago" });
             return ej;
-
         }
 
-        static public void bajaLogica(int idHotel)
+        static public void bajaLogica(int idHotel,string fechaDesde,string fechaHasta)
         {
-            //TODO DatabaseAdapter.ejecutarProcedure("baja_hotel", idHotel);
+            //DatabaseAdapter.insertarDatosEnTabla("periodo_cierre", id, fechaDesde, fechaHasta);
         }
 
     }

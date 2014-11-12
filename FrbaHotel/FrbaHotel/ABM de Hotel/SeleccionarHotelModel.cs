@@ -31,8 +31,7 @@ namespace FrbaHotel.ABM_de_Hotel
             string nombreAux = celdas["nombre"].Value.ToString();
             if (MessageBox.Show("¿Realmente desea dar de baja el rol " + nombreAux + "?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                HomeHoteles.bajaLogica(aModificar);
-                cargarGrilla(grilla, hoteles);
+                new BajaHotel(this, aModificar).StandaloneOpen();
             }
         }
 
