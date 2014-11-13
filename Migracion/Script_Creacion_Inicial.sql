@@ -754,6 +754,7 @@ CREATE TABLE [MAX_POWER].[Reservas](
 	[fecha_realizacion] [date] NOT NULL,
 	[fecha_inicio] [date] NOT NULL,
 	[fecha_fin] [date] NOT NULL,
+	[fecha_salida] [date] NOT NULL,
 	[id_estado] [bigint] NULL,
 	[id_cliente_titular] [bigint] NOT NULL,
 	[id_regimen] [bigint] NOT NULL,
@@ -1662,6 +1663,8 @@ print 'Clientes duplicados detectados.'
 print 'Comenzando migracion de SP de aplicaion'
 GO
 
+/*-----------------------------------------------------------STORED PROCEDURES PARA LA APP----------------------------------------------------------*/
+
 CREATE PROCEDURE [MAX_POWER].roles_disponibles
 AS SELECT * FROM MAX_POWER.Roles WHERE UPPER(habilitado) = 'S'
 GO
@@ -1679,23 +1682,23 @@ AS SELECT * FROM MAX_POWER.Funcionalidad
 GO
 
 CREATE PROCEDURE [MAX_POWER].obtener_funcionalidades(@id_rol bigint)
-AS SELECT descripcion 
+AS SELECT fun.ID_FUNCIONALIDAD,fun.DESCRIPCION
 FROM MAX_POWER.Funcionalidad_X_Rol FR
 join MAX_POWER.Funcionalidad Fun on Fun.id_funcionalidad = FR.id_funcionalidad
 WHERE fr.id_rol = @id_rol
 GO
 
 CREATE PROCEDURE [MAX_POWER].obtener_roles(@id_usuario bigint)
-AS SELECT nombre, habilitado
+AS SELECT R.ID_ROL, R.NOMBRE
 FROM MAX_POWER.Usuario_X_Rol UR
-join MAX_POWER.Roles on Roles.id_rol = UR.id_rol
+join MAX_POWER.Roles R on Roles.id_rol = UR.id_rol
 WHERE id_usuario = @id_usuario
 GO
 
 CREATE PROCEDURE [MAX_POWER].obtener_hoteles(@id_usuario bigint)
-AS SELECT nombre, mail, telefono, calle, altura, fecha_creacion, estrellas, recarga_estrellas, pais_id, ciudad
+AS SELECT H.nombre,H.ID
 FROM MAX_POWER.Hotel_X_Empleado HE
-join MAX_POWER.Hoteles on HE.hotel_id = Hoteles.id
+join MAX_POWER.Hoteles H on HE.hotel_id = Hoteles.id
 WHERE usuario_id = @id_usuario
 GO
 
@@ -1761,22 +1764,36 @@ AS SELECT * FROM MAX_POWER.Cliente
 WHERE id_cliente = @id_cliente
 GO
 
-CREATE PROCEDURE [MAX_POWER].chequear_login(@usuario varchar(50), @password varchar(50), @error bigint OUTPUT)
+CREATE PROCEDURE [MAX_POWER].chequear_login(@usuario varchar(50), @password varchar(50))
 AS
-IF not exists (SELECT * FROM MAX_POWER.Usuarios WHERE Username = @usuario)
-	SET @error = -2
+BEGIN
+DECLARE @pass_almacenado varchar(50)
+DECLARE @intentos_fallidos int
+IF not exists (SELECT * FROM MAX_POWER.Usuarios WHERE Username = @usuario AND UPPER(habilitado)='S')
+	RETURN (-2)
 ELSE
 	BEGIN
-	IF  not exists (SELECT * FROM MAX_POWER.Usuarios WHERE Username = @usuario AND pw = @password)
-	SET @error = -1
+	SELECT @pass_almacenado=pw FROM MAX_POWER.Usuarios WHERE Username = @usuario
+	IF(@password!=@pass_almacenado)
+		RETURN (-1)
 	ELSE
 		BEGIN
-		SET @error = 0
-		SELECT * FROM MAX_POWER.Usuarios WHERE Username = @usuario AND pw = @password;
+		SELECT @intentos_fallidos=intentos_fallidos FROM MAX_POWER.Usuarios WHERE Username = @usuario
+		IF(@intentos_fallidos>2)
+			RETURN (-3)
+		ELSE
+			RETURN (0);
 		END
 	END
-RETURN
+END
 GO
+
+
+CREATE PROCEDURE [MAX_POWER].usuario_para_login(@usuario varchar(50), @password varchar(50))
+AS 
+	SELECT * FROM MAX_POWER.Usuarios WHERE Username = @usuario AND UPPER(habilitado)='S'
+
+
 
 CREATE PROCEDURE [MAX_POWER].buscar_clientes(@nombre varchar(50), @apellido varchar(50), @email varchar(50), @nroId as bigint, @Id_tipo_identificación as bigint)
 AS SELECT * FROM MAX_POWER.Cliente WHERE
@@ -1837,6 +1854,11 @@ CREATE PROCEDURE [MAX_POWER].productos_disponibles
 AS SELECT DISTINCT id_producto, descripcion FROM MAX_POWER.Producto
 GO
 
+CREATE PROCEDURE [MAX_POWER].regimenes_disponibles(@id_hotel bigint)
+AS SELECT * FROM MAX_POWER.Regimen r,MAX_POWER.Regimen_x_hotel rh WHERE r.id_regimen=rh.id_regimen AND rh-id_hotel=@id_hotel 
+GO
+
+
 create procedure [MAX_POWER].buscar_habitaciones(@id_hotel bigint, @numero_habitacion bigint, @piso_habitacion bigint, @ubicacion_habitacion varchar(10), @id_tipo_habitacion bigint, @descripcion_habitacion varchar(50))
 AS SELECT * FROM [MAX_POWER].Habitacion WHERE
 CAST(id_hotel as varchar(50)) LIKE (select case when @id_hotel = -1 then '%' else cast(@id_hotel as varchar(50)) end)
@@ -1846,6 +1868,24 @@ AND UPPER(ubicacion) LIKE UPPER(@ubicacion_habitacion)
 AND CAST(id_tipo_habitacion as varchar(50)) LIKE (select case when @id_tipo_habitacion = -1 then '%' else cast(@id_tipo_habitacion as varchar(50)) end)
 AND UPPER(descripcion) LIKE UPPER(@descripcion_habitacion)
 GO
+
+CREATE FUNCTION habitacion_libre(@id_habitacion bigint, @fecha_inicio datetime, @fecha_fin datetime) RETURNS INT AS
+BEGIN
+IF (SELECT COUNT (*) FROM [MAX_POWER].HabitacionReservada HR JOIN [MAX_POWER].Reservas R ON HR.reserva_id != R.id_reserva WHERE HR.habitacion_id = @id_habitacion AND 
+	(@fecha_inicio BETWEEN R.fecha_inicio AND R.fecha_fin
+	OR @fecha_fin BETWEEN R.fecha_inicio AND R.fecha_fin
+	OR R.fecha_inicio BETWEEN @fecha_inicio AND @fecha_fin
+	OR R.fecha_fin BETWEEN @fecha_inicio AND @fecha_fin)
+	)>0
+	RETURN 0
+ELSE
+	RETURN 1
+END
+
+create procedure [MAX_POWER].buscar_habitaciones_reserva(@id_hotel bigint, @id_tipo_habitacion bigint,@cantidad int, @fecha_inicio datetime, @fecha_fin datetime)
+AS SELECT TOP (@CANTIDAD) * FROM HABITACIONES WHERE id_hotel=@id_hotel 
+												AND id_tipo_habitacion=@id_tipo_habitacion 
+												AND habitacion_libre(id_habitacion,	@fecha_inicio,@fecha_fin)=1
 
 create procedure [MAX_POWER].buscar_usuarios(@nombre varchar(50), @apellido varchar(50), @email varchar(50), @username varchar(50), @id_rol bigint, @id_hotel bigint)
 AS SELECT * FROM [MAX_POWER].Usuarios WHERE
@@ -1934,7 +1974,7 @@ GO
 create procedure [MAX_POWER].insertar_reserva(@id_regimen bigint, @fecha_inicio datetime, @fecha_fin datetime, @id_cliente bigint, @fecha_realizacion datetime)
 AS BEGIN
 BEGIN TRY
-INSERT INTO [MAX_POWER].Reservas (id_regimen, fecha_inicio, fecha_fin, id_cliente_titular, fecha_realizacion, id_estado) VALUES (@id_regimen, @fecha_inicio, @fecha_fin, @id_cliente, @fecha_realizacion, (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '% correcta'))
+INSERT INTO [MAX_POWER].Reservas (id_regimen, fecha_inicio, fecha_fin, id_cliente_titular, fecha_realizacion, id_estado) VALUES (@id_regimen, @fecha_inicio, @fecha_fin, @id_cliente, @fecha_realizacion, (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%correcta'))
 END TRY
 BEGIN CATCH
 --raiseError
@@ -1995,40 +2035,33 @@ AS
 UPDATE [MAX_POWER].Reservas SET id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%ingresa%') WHERE id_reserva = @id_reserva
 GO
 
-create procedure [MAX_POWER].insertar_producto_x_habitacion_reservada(@id_reserva bigint, @id_producto bigint, @cantidad bigint)
+create procedure [MAX_POWER].insertar_producto_x_habitacion_reservada(@id_reserva bigint,@id_habitacion bigint, @id_producto bigint, @cantidad bigint)
 AS BEGIN
-BEGIN TRY
-INSERT INTO [MAX_POWER].Producto_X_HabitacionReservada (id_habitacion_reservada, id_producto, cantidad) VALUES (@id_reserva, @id_producto, @cantidad)
-IF (SELECT COUNT (*) FROM [MAX_POWER].Producto_X_HabitacionReservada WHERE id_producto = @id_producto AND id_habitacion_reservada = @id_reserva) > 0
+IF (SELECT COUNT (*) FROM [MAX_POWER].Producto_X_HabitacionReservada ph, MAX_POWER.habitacionReservada hr 
+	WHERE  hr.habitacion_id=@id_habitacion AND hr.reserva_id=@id_reserva and ph.id_habitacion_reservada =hr.id and  ph.id_producto = @id_producto) > 0
 	UPDATE [MAX_POWER].Producto_X_HabitacionReservada SET cantidad = cantidad + @cantidad WHERE id_habitacion_reservada = @id_reserva AND id_producto = @id_producto
-END TRY
-BEGIN CATCH
---raiseError
-END CATCH
+ELSE
+INSERT INTO [MAX_POWER].Producto_X_HabitacionReservada (id_habitacion_reservada, id_producto, cantidad) VALUES (@id_reserva, @id_producto, @cantidad)
 END
 GO
 
 create procedure [MAX_POWER].borrar_producto_x_habitacion_reservada(@id_reserva bigint, @id_producto bigint)
 AS BEGIN
-BEGIN TRY
-DELETE FROM [MAX_POWER].Producto_X_HabitacionReservada
-WHERE id_habitacion_reservada = @id_reserva
-AND id_producto = @id_producto
-END TRY
-BEGIN CATCH
---raiseError
-END CATCH
+delete FROM [MAX_POWER].Producto_X_HabitacionReservada 
+	WHERE id_producto = @id_producto and id_habitacion_reservada in (SELECT id FROM [MAX_POWER].HabitacionReservada  
+																		WHERE reserva_id=@id_reserva)
 END
 GO
 
-create procedure [MAX_POWER].facturar(@id_reserva bigint, @fecha_salida datetime, @modo_pago varchar(50))
+create procedure [MAX_POWER].facturar(@id_reserva bigint, @fecha_salida datetime, @modo_pago varchar(50),@total decimal)
 AS BEGIN
 BEGIN TRY
 UPDATE [MAX_POWER].Reservas SET
 id_estado = (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion = 'facturada'),
-fecha_fin = @fecha_salida
+fecha_salida = @fecha_salida
 WHERE id_reserva = @id_reserva
 UPDATE [MAX_POWER].Factura SET id_medoto_pago = (SELECT id_metodo_pago FROM [MAX_POWER].MetodoPago WHERE descripcion LIKE @modo_pago) WHERE id_reserva = @id_reserva
+UPDATE [MAX_POWER].Factura SET total = @total WHERE id_reserva = @id_reserva
 END TRY
 BEGIN CATCH
 --raiseError
@@ -2042,16 +2075,14 @@ GO
 
 create procedure insertar_habitacion_reservada(@id_reserva bigint, @id_habitacion bigint)
 AS BEGIN
-BEGIN TRY
-INSERT INTO [MAX_POWER].HabitacionReservada (reserva_id, habitacion_id) VALUES (@id_reserva, @id_habitacion)
-END TRY
-BEGIN CATCH
-DECLARE @fechaReserva datetime
-SET @fechaReserva = (SELECT fecha_inicio FROM [MAX_POWER].Reservas WHERE id_reserva = @id_reserva)
-IF (SELECT COUNT (*) FROM [MAX_POWER].HabitacionReservada HR JOIN [MAX_POWER].Reservas R ON HR.reserva_id != R.id_reserva WHERE HR.habitacion_id = @id_habitacion AND @fechaReserva BETWEEN R.fecha_inicio AND R.fecha_fin)>0
+DECLARE @fechaReservaInicial datetime
+SET @fechaReservaInicial = (SELECT fecha_inicio FROM [MAX_POWER].Reservas WHERE id_reserva = @id_reserva)
+DECLARE @fechaReservaFinal datetime
+SET @fechaReservaFinal = (SELECT fecha_fin FROM [MAX_POWER].Reservas WHERE id_reserva = @id_reserva)
+IF (habitacion_libre(@id_habitacion,@fechaReservaInicial,@fechaReservaFinal)=0)
 	RETURN -7
---raiseError
-END CATCH
+ELSE
+	INSERT INTO [MAX_POWER].HabitacionReservada (reserva_id, habitacion_id) VALUES (@id_reserva, @id_habitacion)
 END
 GO
 
@@ -2068,14 +2099,12 @@ UPPER(nombre) LIKE UPPER(@nombre)
 AND UPPER(habilitado) LIKE UPPER(@estado)
 GO
 
-create procedure habitaciones_de_reserva(@id_reserva bigint)
-AS SELECT DISTINCT HR.habitacion_id, H.numero
-FROM [MAX_POWER].HabitacionReservada HR
-join [MAX_POWER].Habitacion H on H.id_habitacion = HR.habitacion_id
-WHERE HR.reserva_id = @id_reserva
-UNION
-SELECT COUNT (*) FROM [MAX_POWER].HabitacionReservada_X_Cliente CH JOIN [MAX_POWER].HabitacionReservada H ON CH.habitacion_reservada_id = H.id WHERE H.reserva_id = @id_reserva
-GO
+create procedure habitaciones_de_reserva(@id_reserva bigint) as
+select hc.habitacion_reservada_id as id, h.numero as numero, COUNT(hc.cliente_id) as clientes 
+from MAX_POWER.habitacionReservada hr,MAX_POWER.Habitacion h, MAX_POWER.Habitacionreservada_x_cliente hc
+where hr.habitacion_id = h.id_habitacion AND hr.id=hc.habitacion_reservada_id and hr.reserva_id=@id_reserva
+group by hc.habitacion_reservada_id, h.numero
+
 
 create procedure cambiar_habitacion(@id_habitacion_reservada bigint, @numero bigint)
 AS DECLARE @id_tipo_habitacion_anterior bigint
@@ -2111,6 +2140,52 @@ fecha_fin = @fecha_fin,
 id_regimen = @id_regimen
 WHERE id_reserva = @id_reserva
 GO
+
+create procedure buscar_reserva_por_id(@id_reserva bigint) as
+SELECT rs.id_reserva,RS.FECHA_FIN AS fecha_fin, RS.FECHA_INICIO as fecha_inicio, H.ID as id_hotel_habitacion, H.NOMBRE as nombre_hotel_habitacion ,RG.ID_REGIMEN as id_regimen_habitacion, RG.DESCRIPCION as descripcion_regimen_habitacion
+	FROM MAX_POWER.RESERVAS RS, MAX_POWER.HOTELes H, MAX_POWER.REGIMEN RG,MAX_POWER.HABITACION HAB, MAX_POWER.HABITACIONRESERVADA HRS
+	WHERE HRS.reserva_id=RS.ID_RESERVA AND HAB.ID_HABITACION=HRS.habitacion_id AND HAB.ID_HOTEL=H.ID AND RG.ID_REGIMEN=RS.ID_REGIMEN and rs.id_reserva=@id_reserva
+
+create procedure consumibles_reserva(@id_reserva bigint) as
+select ph.id_producto as id, p.descripcion as descripcion, H.numero as numero_habitacion, ph.cantidad as cantidad,p.precio as precio_unitario, ph.cantidad*p.precio as precio_total
+from MAX_POWER.producto_x_habitacionReservada ph,MAX_POWER.producto p, MAX_POWER.habitacionReservada hr, MAX_POWER.habitacion h
+where ph.id_producto=p.id_producto AND hr.id=ph.id_habitacion_reservada and hr.habitacion_id=h.id_habitacion and hr.reserva_id=@id_reserva
+
+create function max_power.precio_dia(@id_reserva bigint, @id_regimen bigint) returns decimal as
+begin
+declare @precio decimal 
+select @precio=SUM(th.porcentual*r.precio_base) from max_power.habitacionReservada hr, max_power.regimen r, max_power.habitacion h, max_power.tipo_habitacion th
+where @id_reserva=hr.reserva_id and hr.habitacion_id=h.id_habitacion and h.id_tipo_habitacion=th.id_tipo_habitacion and r.id_regimen = @id_regimen
+return @precio
+end
+
+create procedure items_factura(@id_factura bigint)as
+select p.id_producto as id, p.descripcion as descripcion, sum(ph.cantidad) as cantidad, p.precio as precio_unitario, sum(ph.cantidad*p.precio) as precio_total
+from MAX_POWER.producto_x_habitacionReservada ph,MAX_POWER.producto p
+where ph.id_producto=p.id_producto  and ph.id_factura =@id_factura
+group by p.id_producto,p.descripcion,p.precio
+union
+select 0, 'Dias alojado', DATEDIFF(day,r.fecha_inicio, r.fecha_salida), max_power.precio_dia(r.id_reserva,r.id_regimen), DATEDIFF(day,r.fecha_inicio, r.fecha_salida)*max_power.precio_dia(r.id_reserva,r.id_regimen)
+from Max_power.factura f,max_power.reservas r 
+where f.id_reserva=r.id_reserva and f.id_factura=@id_factura
+union
+select 0, 'Dias no alojado', DATEDIFF(day,r.fecha_salida, r.fecha_fin), max_power.precio_dia(r.id_reserva,r.id_regimen), DATEDIFF(day,r.fecha_salida, r.fecha_fin)*max_power.precio_dia(r.id_reserva,r.id_regimen)
+from Max_power.factura f,max_power.reservas r 
+where f.id_reserva=r.id_reserva and f.id_factura=@id_factura
+
+create procedure max_power.tiene_all_inclusive(@id_reserva)as
+begin
+declare @regimen varchar(50)
+select @regimen=rg.descripcion from max_power.regimen rg, max_power.reservas rs
+where rs.id_reserva=@id_reserva and rg.id_regimen=rs.Id_regimen
+if(@regimen like '%all%inclusive%')
+	return 1
+else 
+	return 0
+end
+
+
+
 
 print 'Finalizo la importacion de SP propios de la aplicacion.'
 

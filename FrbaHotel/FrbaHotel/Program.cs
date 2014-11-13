@@ -28,7 +28,7 @@ namespace FrbaHotel
 
             //<<------------------CONFIGURACIONES-------------------
             Dictionary<int, SeleccionFuncionalidad.NavegableFormInstanciator> funcionalidadesSistema = new Dictionary<int, SeleccionFuncionalidad.NavegableFormInstanciator>();
-            funcionalidadesSistema.Add(1,(owner) => new RegistrarEstadia(owner));
+            funcionalidadesSistema.Add(1,(owner) => new AltaUsuario(owner));
             funcionalidadesSistema.Add(5, (owner) => new ABMClientes(owner));
             funcionalidadesSistema.Add(6, (owner) => new ABMHabitacion(owner));
             funcionalidadesSistema.Add(7, (owner) => new ABMRol(owner));
