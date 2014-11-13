@@ -127,7 +127,7 @@ GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Habitacion_reservada_X_Cliente_Habitacion_reservada]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion_reservada_X_Cliente]'))
 ALTER TABLE [MAX_POWER].[Habitacion_reservada_X_Cliente] DROP CONSTRAINT [FK_Habitacion_reservada_X_Cliente_Habitacion_reservada]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion_reservada_X_Cliente]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion_reservada_X_Cliente]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Habitacion_reservada_X_Cliente]
 GO
 /****** Object:  Table [MAX_POWER].[Producto_X_Habitacion_reservada]    Script Date: 11/11/2014 21:15:57 ******/
@@ -140,7 +140,7 @@ GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Producto_X_Habitacion_reservada_Producto]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Producto_X_Habitacion_reservada]'))
 ALTER TABLE [MAX_POWER].[Producto_X_Habitacion_reservada] DROP CONSTRAINT [FK_Producto_X_Habitacion_reservada_Producto]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Producto_X_Habitacion_reservada]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Producto_X_Habitacion_reservada]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Producto_X_Habitacion_reservada]
 GO
 /****** Object:  Table [MAX_POWER].[Factura]    Script Date: 11/11/2014 21:15:56 ******/
@@ -150,7 +150,7 @@ GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Factura_reserva]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Factura]'))
 ALTER TABLE [MAX_POWER].[Factura] DROP CONSTRAINT [FK_Factura_reserva]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Factura]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Factura]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Factura]
 GO
 /****** Object:  Table [MAX_POWER].[Habitacion_reservada]    Script Date: 11/11/2014 21:15:56 ******/
@@ -160,7 +160,7 @@ GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Habitacion_reservada_reserva]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion_reservada]'))
 ALTER TABLE [MAX_POWER].[Habitacion_reservada] DROP CONSTRAINT [FK_Habitacion_reservada_reserva]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion_reservada]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion_reservada]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Habitacion_reservada]
 GO
 /****** Object:  Table [MAX_POWER].[Modificacion]    Script Date: 11/11/2014 21:15:56 ******/
@@ -173,7 +173,7 @@ GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Modificacion_Usuario]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Modificacion]'))
 ALTER TABLE [MAX_POWER].[Modificacion] DROP CONSTRAINT [FK_Modificacion_Usuario]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Modificacion]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Modificacion]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Modificacion]
 GO
 /****** Object:  Table [MAX_POWER].[Habitacion]    Script Date: 11/11/2014 21:15:56 ******/
@@ -183,7 +183,7 @@ GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Habitacion_Tipo_habitacion]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion]'))
 ALTER TABLE [MAX_POWER].[Habitacion] DROP CONSTRAINT [FK_Habitacion_Tipo_habitacion]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Habitacion]
 GO
 /****** Object:  Table [MAX_POWER].[Regimen_X_Hotel]    Script Date: 11/11/2014 21:15:57 ******/
@@ -193,7 +193,7 @@ GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Regimen_X_Hotel_Regimen]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Regimen_X_Hotel]'))
 ALTER TABLE [MAX_POWER].[Regimen_X_Hotel] DROP CONSTRAINT [FK_Regimen_X_Hotel_Regimen]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Regimen_X_Hotel]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Regimen_X_Hotel]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Regimen_X_Hotel]
 GO
 /****** Object:  Table [MAX_POWER].[reserva]    Script Date: 11/11/2014 21:15:57 ******/
@@ -206,7 +206,7 @@ GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_reserva_Regimen]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[reserva]'))
 ALTER TABLE [MAX_POWER].[reserva] DROP CONSTRAINT [FK_reserva_Regimen]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[reserva]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[reserva]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[reserva]
 GO
 /****** Object:  Table [MAX_POWER].[Hotel_X_Empleado]    Script Date: 11/11/2014 21:15:56 ******/
@@ -216,7 +216,7 @@ GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Empleado_Usuario]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Empleado]'))
 ALTER TABLE [MAX_POWER].[Hotel_X_Empleado] DROP CONSTRAINT [FK_Hotel_X_Empleado_Usuario]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Empleado]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Empleado]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Hotel_X_Empleado]
 GO
 /****** Object:  Table [MAX_POWER].[Usuario_X_Rol]    Script Date: 11/11/2014 21:15:57 ******/
@@ -226,14 +226,14 @@ GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Usuario_X_Rol_Usuario]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Usuario_X_Rol]'))
 ALTER TABLE [MAX_POWER].[Usuario_X_Rol] DROP CONSTRAINT [FK_Usuario_X_Rol_Usuario]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Usuario_X_Rol]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Usuario_X_Rol]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Usuario_X_Rol]
 GO
 /****** Object:  Table [MAX_POWER].[Periodo_Cierre]    Script Date: 11/11/2014 21:15:57 ******/
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Periodo_Cierre_Hotel]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Periodo_Cierre]'))
 ALTER TABLE [MAX_POWER].[Periodo_Cierre] DROP CONSTRAINT [FK_Periodo_Cierre_Hotel]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Periodo_Cierre]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Periodo_Cierre]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Periodo_Cierre]
 GO
 /****** Object:  Table [MAX_POWER].[Funcionalidad_X_Rol]    Script Date: 11/11/2014 21:15:56 ******/
@@ -243,21 +243,21 @@ GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Funcionalidad_X_Rol_Roles]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Funcionalidad_X_Rol]'))
 ALTER TABLE [MAX_POWER].[Funcionalidad_X_Rol] DROP CONSTRAINT [FK_Funcionalidad_X_Rol_Roles]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Funcionalidad_X_Rol]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Funcionalidad_X_Rol]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Funcionalidad_X_Rol]
 GO
 /****** Object:  Table [MAX_POWER].[Usuario]    Script Date: 11/11/2014 21:15:57 ******/
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Usuario_Tipo_documento]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Usuario]'))
 ALTER TABLE [MAX_POWER].[Usuario] DROP CONSTRAINT [FK_Usuario_Tipo_documento]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Usuario]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Usuario]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Usuario]
 GO
 /****** Object:  Table [MAX_POWER].[Hotel]    Script Date: 11/11/2014 21:15:56 ******/
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_Paises]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel]'))
 ALTER TABLE [MAX_POWER].[Hotel] DROP CONSTRAINT [FK_Hotel_Paises]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Hotel]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Hotel]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Hotel]
 GO
 /****** Object:  Table [MAX_POWER].[Cliente]    Script Date: 11/11/2014 21:15:56 ******/
@@ -267,51 +267,51 @@ GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Cliente_Tipo_documento]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Cliente]'))
 ALTER TABLE [MAX_POWER].[Cliente] DROP CONSTRAINT [FK_Cliente_Tipo_documento]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Cliente]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Cliente]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Cliente]
 GO
 /****** Object:  Table [MAX_POWER].[Clientes_Repetidos]    Script Date: 11/11/2014 21:15:56 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Clientes_Repetidos]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Clientes_Repetidos]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Clientes_Repetidos]
 GO
 /****** Object:  Table [MAX_POWER].[Estado]    Script Date: 11/11/2014 21:15:56 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Estado]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Estado]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Estado]
 GO
 /****** Object:  Table [MAX_POWER].[Funcionalidad]    Script Date: 11/11/2014 21:15:56 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Funcionalidad]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Funcionalidad]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Funcionalidad]
 GO
 /****** Object:  Table [MAX_POWER].[Metodo_pago]    Script Date: 11/11/2014 21:15:56 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Metodo_pago]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Metodo_pago]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Metodo_pago]
 GO
 /****** Object:  Table [MAX_POWER].[Rol]    Script Date: 11/11/2014 21:15:57 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Rol]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Rol]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Rol]
 GO
 /****** Object:  Table [MAX_POWER].[Tipo_documento]    Script Date: 11/11/2014 21:15:57 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Tipo_documento]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Tipo_documento]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Tipo_documento]
 GO
 /****** Object:  Table [MAX_POWER].[Tipo_habitacion]    Script Date: 11/11/2014 21:15:57 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Tipo_habitacion]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Tipo_habitacion]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Tipo_habitacion]
 GO
 /****** Object:  Table [MAX_POWER].[Tipo_modificacion]    Script Date: 11/11/2014 21:15:57 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Tipo_modificacion]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Tipo_modificacion]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Tipo_modificacion]
 GO
 /****** Object:  Table [MAX_POWER].[Pais]    Script Date: 11/11/2014 21:15:56 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Pais]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Pais]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Pais]
 GO
 /****** Object:  Table [MAX_POWER].[Regimen]    Script Date: 11/11/2014 21:15:57 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Regimen]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Regimen]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Regimen]
 GO
 /****** Object:  Table [MAX_POWER].[Producto]    Script Date: 11/11/2014 21:15:57 ******/
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Producto]') AND type in (N'U'))
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Producto]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[Producto]
 GO
 /****** Object:  Schema [MAX_POWER]    Script Date: 11/11/2014 21:15:54 ******/
@@ -329,11 +329,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Producto]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Producto]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Producto](
-	[id_producto] [bigint] NOT NULL,
-	[descripcion] [varchar](50) NOT NULL,
+	[id_producto] [BIGINT] NOT NULL,
+	[descripcion] [VARCHAR](50) NOT NULL,
 	[precio] [numeric](18, 2) NOT NULL,
  CONSTRAINT [PK_Producto] PRIMARY KEY CLUSTERED 
 (
@@ -351,13 +351,13 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Regimen]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Regimen]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Regimen](
-	[id_regimen] [bigint] IDENTITY(1,1) NOT NULL,
-	[descripcion] [varchar](50) NOT NULL,
+	[id_regimen] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[descripcion] [VARCHAR](50) NOT NULL,
 	[precio_base] [numeric](18, 2) NOT NULL,
-	[habilitado] [char](1) NOT NULL,
+	[habilitado] [CHAR](1) NOT NULL,
  CONSTRAINT [PK__Regimene__3213E83F34C8D9D1] PRIMARY KEY CLUSTERED 
 (
 	[id_regimen] ASC
@@ -374,11 +374,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Pais]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Pais]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Pais](
-	[id_pais] [bigint] IDENTITY(1,1) NOT NULL,
-	[nombre] [varchar](50) NOT NULL,
+	[id_pais] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[nombre] [VARCHAR](50) NOT NULL,
  CONSTRAINT [PK_Paises] PRIMARY KEY CLUSTERED 
 (
 	[id_pais] ASC
@@ -395,11 +395,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Tipo_modificacion]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Tipo_modificacion]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Tipo_modificacion](
-	[id_tipo_modificacion] [bigint] IDENTITY(1,1) NOT NULL,
-	[descripcion] [varchar](50) NOT NULL,
+	[id_tipo_modificacion] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[descripcion] [VARCHAR](50) NOT NULL,
  CONSTRAINT [PK__TipoModi__3213E83F6A30C649] PRIMARY KEY CLUSTERED 
 (
 	[id_tipo_modificacion] ASC
@@ -416,11 +416,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Tipo_habitacion]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Tipo_habitacion]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Tipo_habitacion](
-	[id_tipo_habitacion] [bigint] NOT NULL,
-	[descripcion] [varchar](50) NOT NULL,
+	[id_tipo_habitacion] [BIGINT] NOT NULL,
+	[descripcion] [VARCHAR](50) NOT NULL,
 	[porcentual] [numeric](18, 2) NOT NULL,
  CONSTRAINT [PK__TipoHabi__3213E83F3C69FB99] PRIMARY KEY CLUSTERED 
 (
@@ -438,11 +438,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Tipo_documento]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Tipo_documento]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Tipo_documento](
-	[id_tipo_documento] [bigint] IDENTITY(1,1) NOT NULL,
-	[descripcion] [varchar](50) NOT NULL,
+	[id_tipo_documento] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[descripcion] [VARCHAR](50) NOT NULL,
  CONSTRAINT [PK_Tipos_Documentos] PRIMARY KEY CLUSTERED 
 (
 	[id_tipo_documento] ASC
@@ -459,12 +459,12 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Rol]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Rol]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Rol](
-	[id_rol] [bigint] IDENTITY(1,1) NOT NULL,
-	[nombre] [varchar](50) NOT NULL,
-	[habilitado] [char](1) NOT NULL,
+	[id_rol] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[nombre] [VARCHAR](50) NOT NULL,
+	[habilitado] [CHAR](1) NOT NULL,
  CONSTRAINT [PK_Roles] PRIMARY KEY CLUSTERED 
 (
 	[id_rol] ASC
@@ -481,11 +481,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Metodo_pago]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Metodo_pago]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Metodo_pago](
-	[id_metodo_pago] [bigint] IDENTITY(1,1) NOT NULL,
-	[descripcion] [varchar](50) NOT NULL,
+	[id_metodo_pago] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[descripcion] [VARCHAR](50) NOT NULL,
  CONSTRAINT [PK__MedioPag__3213E83F6E01572D] PRIMARY KEY CLUSTERED 
 (
 	[id_metodo_pago] ASC
@@ -502,11 +502,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Funcionalidad]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Funcionalidad]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Funcionalidad](
-	[id_funcionalidad] [bigint] IDENTITY(1,1) NOT NULL,
-	[descripcion] [varchar](50) NOT NULL,
+	[id_funcionalidad] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[descripcion] [VARCHAR](50) NOT NULL,
  CONSTRAINT [PK_Funcionalidades] PRIMARY KEY CLUSTERED 
 (
 	[id_funcionalidad] ASC
@@ -523,11 +523,11 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Estado]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Estado]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Estado](
-	[id_estado] [bigint] IDENTITY(1,1) NOT NULL,
-	[descripcion] [varchar](50) NOT NULL,
+	[id_estado] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[descripcion] [VARCHAR](50) NOT NULL,
  CONSTRAINT [PK__Estado__3213E83F5AEE82B9] PRIMARY KEY CLUSTERED 
 (
 	[id_estado] ASC
@@ -544,25 +544,25 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Clientes_Repetidos]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Clientes_Repetidos]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Clientes_Repetidos](
-	[id_cliente] [bigint] IDENTITY(1,1) NOT NULL,
-	[id_tipo_identificacion] [bigint] NULL,
-	[numero_identificacion] [bigint] NOT NULL,
-	[apellido] [varchar](50) NOT NULL,
-	[nombre] [varchar](50) NOT NULL,
-	[fecha_nacimiento] [datetime] NOT NULL,
-	[mail] [varchar](50) NOT NULL,
-	[calle] [varchar](50) NOT NULL,
-	[altura] [bigint] NOT NULL,
-	[piso] [bigint] NULL,
-	[departamento] [varchar](50) NULL,
-	[telefono] [varchar](50) NULL,
-	[localidad] [varchar](50) NULL,
-	[id_pais] [bigint] NULL,
-	[habilitado] [char](1) NOT NULL,
-	[controlado] [char](1) NOT NULL
+	[id_cliente] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[id_tipo_identificacion] [BIGINT] NULL,
+	[numero_identificacion] [BIGINT] NOT NULL,
+	[apellido] [VARCHAR](50) NOT NULL,
+	[nombre] [VARCHAR](50) NOT NULL,
+	[fecha_nacimiento] [DATETIME] NOT NULL,
+	[mail] [VARCHAR](50) NOT NULL,
+	[calle] [VARCHAR](50) NOT NULL,
+	[altura] [BIGINT] NOT NULL,
+	[piso] [BIGINT] NULL,
+	[departamento] [VARCHAR](50) NULL,
+	[telefono] [VARCHAR](50) NULL,
+	[localidad] [VARCHAR](50) NULL,
+	[id_pais] [BIGINT] NULL,
+	[habilitado] [CHAR](1) NOT NULL,
+	[controlado] [CHAR](1) NOT NULL
 ) ON [PRIMARY]
 END
 GO
@@ -575,24 +575,24 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Cliente]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Cliente]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Cliente](
-	[id_cliente] [bigint] IDENTITY(1,1) NOT NULL,
-	[id_tipo_identificacion] [bigint] NULL,
-	[numero_identificacion] [bigint] NOT NULL,
-	[apellido] [varchar](50) NOT NULL,
-	[nombre] [varchar](50) NOT NULL,
-	[fecha_nacimiento] [datetime] NOT NULL,
-	[mail] [varchar](50) NOT NULL,
-	[calle] [varchar](50) NOT NULL,
-	[altura] [bigint] NOT NULL,
-	[piso] [bigint] NULL,
-	[departamento] [varchar](50) NULL,
-	[telefono] [varchar](50) NULL,
-	[localidad] [varchar](50) NULL,
-	[id_pais] [bigint] NULL,
-	[habilitado] [char](1) NOT NULL,
+	[id_cliente] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[id_tipo_identificacion] [BIGINT] NULL,
+	[numero_identificacion] [BIGINT] NOT NULL,
+	[apellido] [VARCHAR](50) NOT NULL,
+	[nombre] [VARCHAR](50) NOT NULL,
+	[fecha_nacimiento] [DATETIME] NOT NULL,
+	[mail] [VARCHAR](50) NOT NULL,
+	[calle] [VARCHAR](50) NOT NULL,
+	[altura] [BIGINT] NOT NULL,
+	[piso] [BIGINT] NULL,
+	[departamento] [VARCHAR](50) NULL,
+	[telefono] [VARCHAR](50) NULL,
+	[localidad] [VARCHAR](50) NULL,
+	[id_pais] [BIGINT] NULL,
+	[habilitado] [CHAR](1) NOT NULL,
  CONSTRAINT [PK__Cliente__3213E83F5EBF139D] PRIMARY KEY CLUSTERED 
 (
 	[id_cliente] ASC
@@ -609,20 +609,20 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Hotel]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Hotel]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Hotel](
-	[id_hotel] [bigint] IDENTITY(1,1) NOT NULL,
-	[nombre] [varchar](50) NULL,
-	[mail] [varchar](50) NULL,
-	[telefono] [varchar](50) NULL,
-	[calle] [varchar](50) NULL,
-	[altura] [bigint] NULL,
+	[id_hotel] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[nombre] [VARCHAR](50) NULL,
+	[mail] [VARCHAR](50) NULL,
+	[telefono] [VARCHAR](50) NULL,
+	[calle] [VARCHAR](50) NULL,
+	[altura] [BIGINT] NULL,
 	[fecha_creacion] [date] NULL,
-	[estrellas] [int] NULL,
-	[recarga_estrellas] [int] NULL,
-	[pais_id] [bigint] NULL,
-	[ciudad] [varchar](50) NULL,
+	[estrellas] [INT] NULL,
+	[recarga_estrellas] [INT] NULL,
+	[id_pais] [BIGINT] NULL,
+	[ciudad] [VARCHAR](50) NULL,
  CONSTRAINT [PK__Hotel__3213E83F30F848ED] PRIMARY KEY CLUSTERED 
 (
 	[id_hotel] ASC
@@ -639,23 +639,23 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Usuario]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Usuario]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Usuario](
-	[id_usuario] [bigint] IDENTITY(1,1) NOT NULL,
-	[username] [varchar](50) NOT NULL UNIQUE,
-	[pw] [varchar](50) NOT NULL,
-	[Nombre] [varchar](50) NOT NULL,
-	[Apellido] [varchar](50) NOT NULL,
-	[Estado] [int] NULL,
-	[tipo_documento_id] [bigint] NOT NULL,
-	[numero_documento] [varchar](50) NOT NULL,
-	[mail] [varchar](50) NULL,
-	[telefono] [varchar](50) NULL,
-	[direccion] [varchar](50) NULL,
+	[id_usuario] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[username] [VARCHAR](50) NOT NULL UNIQUE,
+	[pw] [VARCHAR](50) NOT NULL,
+	[Nombre] [VARCHAR](50) NOT NULL,
+	[Apellido] [VARCHAR](50) NOT NULL,
+	[Estado] [INT] NULL,
+	[id_tipo_documento] [BIGINT] NOT NULL,
+	[numero_documento] [VARCHAR](50) NOT NULL,
+	[mail] [VARCHAR](50) NULL,
+	[telefono] [VARCHAR](50) NULL,
+	[direccion] [VARCHAR](50) NULL,
 	[fecha_nacimiento] [date] NULL,
-	[habilitado] [char](1) NOT NULL,
-	[intentos_fallidos] [int] NOT NULL,
+	[habilitado] [CHAR](1) NOT NULL,
+	[intentos_fallidos] [INT] NOT NULL,
  CONSTRAINT [PK__Usuario__3213E83F21B6055D] PRIMARY KEY CLUSTERED 
 (
 	[id_usuario] ASC
@@ -670,11 +670,11 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Funcionalidad_X_Rol]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Funcionalidad_X_Rol]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Funcionalidad_X_Rol](
-	[id_rol] [bigint] NOT NULL,
-	[id_funcionalidad] [bigint] NOT NULL,
+	[id_rol] [BIGINT] NOT NULL,
+	[id_funcionalidad] [BIGINT] NOT NULL,
  CONSTRAINT [PK_Funcionalidad_X_Rol] PRIMARY KEY CLUSTERED 
 (
 	[id_rol] ASC,
@@ -690,13 +690,13 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Periodo_Cierre]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Periodo_Cierre]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Periodo_Cierre](
-	[id_periodo] [bigint] IDENTITY(1,1) NOT NULL,
-	[id_hotel] [bigint] NOT NULL,
-	[fecha_inicio] [varchar](50) NOT NULL,
-	[fecha_fin] [varchar](50) NOT NULL,
+	[id_periodo] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[id_hotel] [BIGINT] NOT NULL,
+	[fecha_inicio] [VARCHAR](50) NOT NULL,
+	[fecha_fin] [VARCHAR](50) NOT NULL,
  CONSTRAINT [PK_Periodos_Cierre] PRIMARY KEY CLUSTERED 
 (
 	[id_periodo] ASC
@@ -711,11 +711,11 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Usuario_X_Rol]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Usuario_X_Rol]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Usuario_X_Rol](
-	[id_usuario] [bigint] NOT NULL,
-	[id_rol] [bigint] NOT NULL,
+	[id_usuario] [BIGINT] NOT NULL,
+	[id_rol] [BIGINT] NOT NULL,
  CONSTRAINT [PK_Usuario_X_Rol] PRIMARY KEY CLUSTERED 
 (
 	[id_usuario] ASC,
@@ -729,11 +729,11 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Empleado]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Empleado]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Hotel_X_Empleado](
-	[id_usuario] [bigint] NOT NULL,
-	[id_hotel] [bigint] NOT NULL,
+	[id_usuario] [BIGINT] NOT NULL,
+	[id_hotel] [BIGINT] NOT NULL,
  CONSTRAINT [PK_Hotel_X_Empleado] PRIMARY KEY CLUSTERED 
 (
 	[id_usuario] ASC,
@@ -747,17 +747,17 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[reserva]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[reserva]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[reserva](
-	[id_reserva] [bigint] NOT NULL,
+	[id_reserva] [BIGINT] NOT NULL,
 	[fecha_realizacion] [date] NOT NULL,
 	[fecha_inicio] [date] NOT NULL,
 	[fecha_fin] [date] NOT NULL,
-	[fecha_salida] [date] NOT NULL,
-	[id_estado] [bigint] NULL,
-	[id_cliente_titular] [bigint] NOT NULL,
-	[id_regimen] [bigint] NOT NULL,
+	[fecha_salida] [date],
+	[id_estado] [BIGINT] NULL,
+	[id_cliente_titular] [BIGINT] NOT NULL,
+	[id_regimen] [BIGINT] NOT NULL,
  CONSTRAINT [PK__reserva__3213E83F4BAC3F29] PRIMARY KEY CLUSTERED 
 (
 	[id_reserva] ASC
@@ -770,11 +770,11 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Regimen_X_Hotel]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Regimen_X_Hotel]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Regimen_X_Hotel](
-	[id_hotel] [bigint] NOT NULL,
-	[id_regimen] [bigint] NOT NULL,
+	[id_hotel] [BIGINT] NOT NULL,
+	[id_regimen] [BIGINT] NOT NULL,
  CONSTRAINT [PK_Regimen_X_Hotel] PRIMARY KEY CLUSTERED 
 (
 	[id_hotel] ASC,
@@ -790,17 +790,17 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Habitacion](
-	[id_habitacion] [bigint] IDENTITY(1,1) NOT NULL,
-	[id_hotel] [bigint] NOT NULL,
-	[id_tipo_habitacion] [bigint] NOT NULL,
-	[numero] [bigint] NOT NULL,
-	[piso] [int] NOT NULL,
-	[frente] [varchar](10) NULL CHECK(frente in('S','N')),
-	[descripcion] [varchar](50) NULL,
-	[habilitada] [char](1) NOT NULL,
+	[id_habitacion] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[id_hotel] [BIGINT] NOT NULL,
+	[id_tipo_habitacion] [BIGINT] NOT NULL,
+	[numero] [BIGINT] NOT NULL,
+	[piso] [INT] NOT NULL,
+	[frente] [VARCHAR](10) NULL CHECK(frente IN('S','N')),
+	[descripcion] [VARCHAR](50) NULL,
+	[habilitada] [CHAR](1) NOT NULL,
  CONSTRAINT [PK__Habitaci__3213E83F403A8C7D] PRIMARY KEY CLUSTERED 
 (
 	[id_habitacion] ASC
@@ -817,15 +817,15 @@ SET QUOTED_IDENTIFIER ON
 GO
 SET ANSI_PADDING ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Modificacion]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Modificacion]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Modificacion](
-	[id_modificacion] [bigint] IDENTITY(1,1) NOT NULL,
-	[id_reserva] [bigint] NOT NULL,
-	[motivo] [varchar](50) NOT NULL,
+	[id_modificacion] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[id_reserva] [BIGINT] NOT NULL,
+	[motivo] [VARCHAR](50) NOT NULL,
 	[fecha] [date] NULL,
-	[id_usuario] [bigint] NOT NULL,
-	[id_tipo_modificacion] [bigint] NOT NULL,
+	[id_usuario] [BIGINT] NOT NULL,
+	[id_tipo_modificacion] [BIGINT] NOT NULL,
  CONSTRAINT [PK__Modifica__3213E83F628FA481] PRIMARY KEY CLUSTERED 
 (
 	[id_modificacion] ASC
@@ -840,12 +840,12 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion_reservada]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion_reservada]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Habitacion_reservada](
-	[id_habitacion_reservada] [bigint] IDENTITY(1,1) NOT NULL,
-	[id_reserva] [bigint] NOT NULL,
-	[id_habitacion] [bigint] NOT NULL,
+	[id_habitacion_reservada] [BIGINT] IDENTITY(1,1) NOT NULL,
+	[id_reserva] [BIGINT] NOT NULL,
+	[id_habitacion] [BIGINT] NOT NULL,
  CONSTRAINT [PK__Habitaci__3213E83F47DBAE45] PRIMARY KEY CLUSTERED 
 (
 	[id_habitacion_reservada] ASC
@@ -858,12 +858,12 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Factura]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Factura]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Factura](
-	[id_factura] [bigint] NOT NULL,
-	[id_medoto_pago] [bigint] NULL,
-	[id_reserva] [bigint] NOT NULL,
+	[id_factura] [BIGINT] NOT NULL,
+	[id_medoto_pago] [BIGINT] NULL,
+	[id_reserva] [BIGINT] NOT NULL,
 	[total] [numeric](18, 2) NOT NULL,
  CONSTRAINT [PK__Factura__3213E83F66603565] PRIMARY KEY CLUSTERED 
 (
@@ -877,13 +877,13 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Producto_X_Habitacion_reservada]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Producto_X_Habitacion_reservada]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Producto_X_Habitacion_reservada](
-	[id_habitacion_reservada] [bigint] NOT NULL,
-	[id_producto] [bigint] NOT NULL,
-	[cantidad] [bigint] NOT NULL,
-	[id_factura] [bigint] NOT NULL,
+	[id_habitacion_reservada] [BIGINT] NOT NULL,
+	[id_producto] [BIGINT] NOT NULL,
+	[cantidad] [BIGINT] NOT NULL,
+	[id_factura] [BIGINT] NOT NULL,
  CONSTRAINT [PK_Producto_X_Habitacion_reservada] PRIMARY KEY CLUSTERED 
 (
 	[id_habitacion_reservada] ASC,
@@ -897,11 +897,11 @@ SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion_reservada_X_Cliente]') AND type in (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion_reservada_X_Cliente]') AND type IN (N'U'))
 BEGIN
 CREATE TABLE [MAX_POWER].[Habitacion_reservada_X_Cliente](
-	[id_habitacion_reservada] [bigint] NOT NULL,
-	[id_cliente] [bigint] NOT NULL,
+	[id_habitacion_reservada] [BIGINT] NOT NULL,
+	[id_cliente] [BIGINT] NOT NULL,
  CONSTRAINT [PK_Habitacion_reservada_X_Cliente] PRIMARY KEY CLUSTERED 
 (
 	[id_habitacion_reservada] ASC,
@@ -1024,7 +1024,7 @@ ALTER TABLE [MAX_POWER].[Hotel_X_Empleado] CHECK CONSTRAINT [FK_Hotel_X_Empleado
 GO
 /****** Object:  ForeignKey [FK_Hotel_Paises]    Script Date: 11/11/2014 21:15:56 ******/
 IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_Paises]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel]'))
-ALTER TABLE [MAX_POWER].[Hotel]  WITH CHECK ADD  CONSTRAINT [FK_Hotel_Paises] FOREIGN KEY([pais_id])
+ALTER TABLE [MAX_POWER].[Hotel]  WITH CHECK ADD  CONSTRAINT [FK_Hotel_Paises] FOREIGN KEY([id_pais])
 REFERENCES [MAX_POWER].[Pais] ([id_pais])
 GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_Paises]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel]'))
@@ -1144,7 +1144,7 @@ ALTER TABLE [MAX_POWER].[Usuario_X_Rol] CHECK CONSTRAINT [FK_Usuario_X_Rol_Usuar
 GO
 /****** Object:  ForeignKey [FK_Usuario_Tipo_documento]    Script Date: 11/11/2014 21:15:57 ******/
 IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Usuario_Tipo_documento]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Usuario]'))
-ALTER TABLE [MAX_POWER].[Usuario]  WITH CHECK ADD  CONSTRAINT [FK_Usuario_Tipo_documento] FOREIGN KEY([tipo_documento_id])
+ALTER TABLE [MAX_POWER].[Usuario]  WITH CHECK ADD  CONSTRAINT [FK_Usuario_Tipo_documento] FOREIGN KEY([id_tipo_documento])
 REFERENCES [MAX_POWER].[Tipo_documento] ([id_tipo_documento])
 GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Usuario_Tipo_documento]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Usuario]'))
@@ -1282,7 +1282,7 @@ FROM         gd_esquema.Maestra
 ORDER BY Codigo
 GO
 
-print 'Vistas creadas.'
+PRINT 'Vistas creadas.'
 
 	/*	F U N C I O N E S	*/
 
@@ -1290,12 +1290,12 @@ IF OBJECT_ID('MAX_POWER.buscar_ID_Cliente', 'FN') IS NOT NULL
   DROP FUNCTION MAX_POWER.buscar_ID_Cliente
 GO
 
-CREATE FUNCTION [MAX_POWER].buscar_ID_Cliente (@pasaporte as varchar(50), @nombre as varchar(50), @apellido as varchar(50))
-returns bigint
+CREATE FUNCTION [MAX_POWER].buscar_ID_Cliente (@pasaporte AS VARCHAR(50), @nombre AS VARCHAR(50), @apellido AS VARCHAR(50))
+RETURNS BIGINT
     BEGIN 
-        return (select id_cliente from MAX_POWER.cliente
-					where	numero_identificacion = @pasaporte and
-							nombre = @nombre and
+        RETURN (SELECT id_cliente FROM MAX_POWER.cliente
+					WHERE	numero_identificacion = @pasaporte AND
+							nombre = @nombre AND
 							apellido = @apellido)
     END
 GO
@@ -1304,34 +1304,34 @@ IF OBJECT_ID('MAX_POWER.buscar_ID_Nacionalidad', 'FN') IS NOT NULL
   DROP FUNCTION MAX_POWER.buscar_ID_Nacionalidad
 GO
 
-CREATE FUNCTION [MAX_POWER].buscar_ID_Nacionalidad (@pais as varchar(50))
-returns bigint
-	begin 
-		return (select id_pais from MAX_POWER.Pais where nombre = @pais)
-	end
+CREATE FUNCTION [MAX_POWER].buscar_ID_Nacionalidad (@pais AS VARCHAR(50))
+RETURNS BIGINT
+	BEGIN 
+		RETURN (SELECT id_pais FROM MAX_POWER.Pais WHERE nombre = @pais)
+	END
 GO
 
 IF OBJECT_ID('MAX_POWER.buscar_ID_Regimen', 'FN') IS NOT NULL
   DROP FUNCTION MAX_POWER.buscar_ID_Regimen
 GO	
 
-CREATE FUNCTION [MAX_POWER].buscar_ID_Regimen (@regimen as varchar(50))
-returns bigint
-	begin 
-		return (select id_regimen from MAX_POWER.regimen where descripcion = @regimen)
-	end
+CREATE FUNCTION [MAX_POWER].buscar_ID_Regimen (@regimen AS VARCHAR(50))
+RETURNS BIGINT
+	BEGIN 
+		RETURN (SELECT id_regimen FROM MAX_POWER.regimen WHERE descripcion = @regimen)
+	END
 GO
 
 IF OBJECT_ID('MAX_POWER.buscar_ID_Hotel', 'FN') IS NOT NULL
   DROP FUNCTION MAX_POWER.buscar_ID_Hotel
 GO	
 
-CREATE FUNCTION [MAX_POWER].buscar_ID_Hotel (@ciudad as varchar(50), @calle as varchar(50), @altura numeric(18,0))
-returns bigint
+CREATE FUNCTION [MAX_POWER].buscar_ID_Hotel (@ciudad AS VARCHAR(50), @calle AS VARCHAR(50), @altura numeric(18,0))
+RETURNS BIGINT
     BEGIN 
-        return (select id_hotel from MAX_POWER.Hotel 
-					where	calle = @calle and
-							altura = @altura and
+        RETURN (SELECT id_hotel FROM MAX_POWER.Hotel 
+					WHERE	calle = @calle AND
+							altura = @altura AND
 							ciudad = @ciudad)
     END
 GO
@@ -1341,11 +1341,11 @@ IF OBJECT_ID('MAX_POWER.buscar_ID_Habitacion_reservada', 'FN') IS NOT NULL
   DROP FUNCTION MAX_POWER.buscar_ID_Habitacion_reservada
 GO	
 
-CREATE FUNCTION [MAX_POWER].buscar_ID_Habitacion_reservada (@id_habitacion as bigint, @id_reserva as bigint)
-returns bigint
+CREATE FUNCTION [MAX_POWER].buscar_ID_Habitacion_reservada (@id_habitacion AS BIGINT, @id_reserva AS BIGINT)
+RETURNS BIGINT
     BEGIN 
-        return (select id_habitacion_reservada from MAX_POWER.Habitacion_reservada 
-					where id_habitacion = @id_habitacion and
+        RETURN (SELECT id_habitacion_reservada FROM MAX_POWER.Habitacion_reservada 
+					WHERE id_habitacion = @id_habitacion AND
 						id_reserva = @id_reserva)
     END
 GO
@@ -1354,12 +1354,12 @@ IF OBJECT_ID('MAX_POWER.buscar_ID_Habitacion', 'FN') IS NOT NULL
   DROP FUNCTION MAX_POWER.buscar_ID_Habitacion
 GO	
 
-CREATE FUNCTION [MAX_POWER].buscar_ID_Habitacion (@id_hotel as bigint, @piso as int, @numero as bigint)
-returns bigint
+CREATE FUNCTION [MAX_POWER].buscar_ID_Habitacion (@id_hotel AS BIGINT, @piso AS INT, @numero AS BIGINT)
+RETURNS BIGINT
     BEGIN 
-        return (select id_habitacion from MAX_POWER.Habitacion 
-					where id_hotel = @id_hotel and
-						numero = @numero and
+        RETURN (SELECT id_habitacion FROM MAX_POWER.Habitacion 
+					WHERE id_hotel = @id_hotel AND
+						numero = @numero AND
 						piso = @piso)
     END
 GO
@@ -1370,18 +1370,18 @@ IF OBJECT_ID('MAX_POWER.buscar_ID_Cliente', 'FN') IS NOT NULL
   DROP FUNCTION MAX_POWER.buscar_ID_Cliente
 GO	
 
-CREATE FUNCTION [MAX_POWER].buscar_ID_Cliente (@pasaporte as varchar(50), @nombre as varchar(50), @apellido as varchar(50))
-returns bigint
+CREATE FUNCTION [MAX_POWER].buscar_ID_Cliente (@pasaporte AS VARCHAR(50), @nombre AS VARCHAR(50), @apellido AS VARCHAR(50))
+RETURNS BIGINT
     BEGIN 
-        return (select id_cliente from MAX_POWER.cliente
-					where	numero_identificacion = @pasaporte and
-							nombre = @nombre and
+        RETURN (SELECT id_cliente FROM MAX_POWER.cliente
+					WHERE	numero_identificacion = @pasaporte AND
+							nombre = @nombre AND
 							apellido = @apellido)
     END
 GO
 
 
-print 'Funciones creadas.'
+PRINT 'Funciones creadas.'
 
 	/*	S	P	*/
 		
@@ -1394,8 +1394,8 @@ CREATE PROCEDURE [MAX_POWER].IMP_Cliente
 AS INSERT INTO MAX_POWER.Cliente (numero_identificacion, Apellido, Nombre, fecha_Nacimiento, Mail, 
 						Calle, Altura, Piso, Departamento, id_pais, Habilitado)
 		SELECT pasaporte, Apellido, Nombre, Nacimiento, Cliente_Mail, 
-						Calle, Altura, Piso, Departamento, MAX_POWER.buscar_ID_Nacionalidad(Nacionalidad) as pais_id, 
-						'T' as Habilitado
+						Calle, Altura, Piso, Departamento, MAX_POWER.buscar_ID_Nacionalidad(Nacionalidad) AS id_pais, 
+						'T' AS Habilitado
 				FROM MAX_POWER.V_Clientes
 GO
 
@@ -1417,8 +1417,8 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].IMP_Factura
 AS INSERT INTO MAX_POWER.Factura (id_factura, id_reserva, total)
-	select Factura, Reserva, total
-	from MAX_POWER.V_Facturas
+	SELECT Factura, Reserva, total
+	FROM MAX_POWER.V_Facturas
 GO
 
 /* SP - NACIONALIDAD */
@@ -1439,7 +1439,7 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].IMP_Regimen
 AS INSERT INTO MAX_POWER.Regimen (Descripcion, precio_base, habilitado)
-		SELECT Descripcion, Precio, 'T' as habilitado
+		SELECT Descripcion, Precio, 'T' AS habilitado
 			FROM MAX_POWER.v_Regimen
 GO
 
@@ -1450,9 +1450,9 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].IMP_Reserva
 AS INSERT INTO MAX_POWER.reserva (id_reserva, fecha_realizacion, fecha_inicio, fecha_fin, id_cliente_titular, id_regimen)
-	select codigo, fecha_inicio, fecha_inicio, fecha_inicio + noches as fecha_fin,
-		MAX_POWER.buscar_ID_Cliente(cliente, nombre, Apellido) as id_cliente, MAX_POWER.buscar_ID_Regimen(regimen) as regimen
-	from MAX_POWER.V_reserva
+	SELECT codigo, fecha_inicio, fecha_inicio, fecha_inicio + noches AS fecha_fin,
+		MAX_POWER.buscar_ID_Cliente(cliente, nombre, Apellido) AS id_cliente, MAX_POWER.buscar_ID_Regimen(regimen) AS regimen
+	FROM MAX_POWER.V_reserva
 GO
 
 /* SP - TIPO HABITACION */
@@ -1473,8 +1473,8 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].IMP_Hotel
 AS INSERT INTO MAX_POWER.Hotel (calle, altura, ciudad, estrellas, recarga_estrellas)
-	select Calle, Altura, Ciudad, Estrellas, Recarga_Estrella
-	from MAX_POWER.V_Hotel
+	SELECT Calle, Altura, Ciudad, Estrellas, Recarga_Estrella
+	FROM MAX_POWER.V_Hotel
 GO
 
 /* SP - HABITACION */
@@ -1484,11 +1484,11 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].IMP_Habitacion
 AS INSERT INTO MAX_POWER.Habitacion (id_hotel, id_tipo_habitacion, numero, piso, frente, habilitada)
-	select MAX_POWER.buscar_ID_Hotel(Ciudad_Hotel, Calle_Hotel, Altura_Hotel) as id_hotel, Tipo, Numero, 
+	SELECT MAX_POWER.buscar_ID_Hotel(Ciudad_Hotel, Calle_Hotel, Altura_Hotel) AS id_hotel, Tipo, Numero, 
 			Piso, 
 			Frente,
-			'S' as habilitada
-	from MAX_POWER.V_habitacion
+			'S' AS habilitada
+	FROM MAX_POWER.V_habitacion
 GO
 
 /* SP - HABITACION_RESERVADA */
@@ -1498,10 +1498,10 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].IMP_Habitacion_reservada AS
 insert into MAX_POWER.Habitacion_reservada (id_habitacion, id_reserva) 
- (select MAX_POWER.buscar_ID_Habitacion(MAX_POWER.buscar_ID_Hotel(hotel_Ciudad,Hotel_Calle,hotel_Nro_Calle), 
+ (SELECT MAX_POWER.buscar_ID_Habitacion(MAX_POWER.buscar_ID_Hotel(hotel_Ciudad,Hotel_Calle,hotel_Nro_Calle), 
 			Habitacion_Piso, Habitacion_Numero),
 			codigo
-			from MAX_POWER.V_reserva)
+			FROM MAX_POWER.V_reserva)
 GO
 
 
@@ -1512,9 +1512,9 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].IMP_Habitacion_reservada_Cliente AS
 insert into MAX_POWER.Habitacion_reservada_X_Cliente (id_habitacion_reservada, id_cliente) 
- (select MAX_POWER.buscar_ID_Habitacion_reservada(MAX_POWER.buscar_ID_Habitacion(MAX_POWER.buscar_ID_Hotel(hotel_Ciudad,Hotel_Calle,hotel_Nro_Calle), Habitacion_Piso, Habitacion_Numero), codigo) as id_HabReservada,
-			MAX_POWER.buscar_ID_Cliente(Cliente, Nombre, Apellido) as id_cliente
-			from MAX_POWER.V_reserva)
+ (SELECT MAX_POWER.buscar_ID_Habitacion_reservada(MAX_POWER.buscar_ID_Habitacion(MAX_POWER.buscar_ID_Hotel(hotel_Ciudad,Hotel_Calle,hotel_Nro_Calle), Habitacion_Piso, Habitacion_Numero), codigo) AS id_HabReservada,
+			MAX_POWER.buscar_ID_Cliente(Cliente, Nombre, Apellido) AS id_cliente
+			FROM MAX_POWER.V_reserva)
 GO
 
 
@@ -1525,8 +1525,8 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].IMP_Producto_Habitacion_reservada AS
 insert into MAX_POWER.Producto_X_Habitacion_reservada (id_habitacion_reservada, id_producto, cantidad, id_factura) 
- (select hr.id_habitacion_reservada, v.Consumible, v.Cantidad, v.Factura 
-		from MAX_POWER.V_ItemFactura v
+ (SELECT hr.id_habitacion_reservada, v.Consumible, v.Cantidad, v.Factura 
+		FROM MAX_POWER.V_ItemFactura v
 		join MAX_POWER.Factura f on f.id_factura = v.Factura
 		join MAX_POWER.Habitacion_reservada hr on hr.id_reserva = f.id_reserva)
 GO
@@ -1536,14 +1536,14 @@ IF OBJECT_ID('MAX_POWER.Detectar_Clientes_Repetidos', 'P') IS NOT NULL
   DROP PROCEDURE MAX_POWER.Detectar_Clientes_Repetidos
 GO	
 
-CREATE PROCEDURE [MAX_POWER].Detectar_Clientes_Repetidos as
+CREATE PROCEDURE [MAX_POWER].Detectar_Clientes_Repetidos AS
 
-	DECLARE @pasaporte int
+	DECLARE @pasaporte INT
 
 	DECLARE C_Repetidos CURSOR 
 		LOCAL STATIC READ_ONLY FORWARD_ONLY
 	FOR 
-		(select Pasaporte from MAX_POWER.V_Clientes
+		(SELECT Pasaporte FROM MAX_POWER.V_Clientes
 			group by Pasaporte 
 			having COUNT(Pasaporte) <> 1)
 
@@ -1555,10 +1555,10 @@ CREATE PROCEDURE [MAX_POWER].Detectar_Clientes_Repetidos as
 		insert into MAX_POWER.Clientes_Repetidos (altura, apellido, calle, departamento, fecha_nacimiento, 
 						habilitado, id_pais, id_tipo_identificacion, localidad, 
 						mail, nombre, numero_identificacion, piso, telefono, controlado)
-				select altura, apellido, calle, departamento, fecha_nacimiento, 
+				SELECT altura, apellido, calle, departamento, fecha_nacimiento, 
 						habilitado, id_pais, id_tipo_identificacion, localidad, 
-						mail, nombre, numero_identificacion, piso, telefono, 'N' as controlado
-				from MAX_POWER.Cliente where numero_identificacion = @pasaporte 
+						mail, nombre, numero_identificacion, piso, telefono, 'N' AS controlado
+				FROM MAX_POWER.Cliente WHERE numero_identificacion = @pasaporte 
 		FETCH NEXT FROM C_Repetidos INTO @pasaporte
 	END
 	CLOSE C_Repetidos
@@ -1566,101 +1566,101 @@ CREATE PROCEDURE [MAX_POWER].Detectar_Clientes_Repetidos as
 GO
 
 
-print 'SP creados.'
+PRINT 'SP creados.'
 
 /*
 drop index IDX_Clientes on cliente
-go
+GO
 drop index IDX_reserva on reserva
-go
+GO
 drop index IDX_habitacion on Habitacion
-go
+GO
 drop index IDX_Hotel on Hotel
-go
+GO
 drop index IDX_habitacion_Reservadas on Habitacion_reservada
-go
+GO
 
-delete from reserva;
-delete from cliente;
-delete from Pais;
-delete from Producto;
-delete from tipo_Habitacion;
-delete from Regimen;
-delete from factura;
-delete from Hotel;
-delete from Habitacion;
-delete from Habitacion_reservada;
-delete from Producto_X_Habitacion_reservada;
+delete FROM reserva;
+delete FROM cliente;
+delete FROM Pais;
+delete FROM Producto;
+delete FROM tipo_Habitacion;
+delete FROM Regimen;
+delete FROM factura;
+delete FROM Hotel;
+delete FROM Habitacion;
+delete FROM Habitacion_reservada;
+delete FROM Producto_X_Habitacion_reservada;
 */
 
 -- S E C U E N C I A 
 
 EXEC [MAX_POWER].IMP_Nacionalidad 
 GO
-print 'Importado: Nacionalidades.'
+PRINT 'Importado: Nacionalidades.'
 
 EXEC [MAX_POWER].IMP_Cliente 
 GO
-create nonclustered index IDX_Clientes on MAX_POWER.Cliente(numero_identificacion, nombre);
-print 'Importado: Cliente.'
+CREATE nonclustered index IDX_Clientes on MAX_POWER.Cliente(numero_identificacion, nombre);
+PRINT 'Importado: Cliente.'
 
 EXEC [MAX_POWER].IMP_Consumible 
 GO
-print 'Importado: Consumible.'
+PRINT 'Importado: Consumible.'
 
 EXEC [MAX_POWER].IMP_Tipo_Habitacion 
 GO
-print 'Importado: Tipo de Habitacion.'
+PRINT 'Importado: Tipo de Habitacion.'
 
 EXEC [MAX_POWER].IMP_Regimen 
 GO
-print 'Importado: Regimen.'
+PRINT 'Importado: Regimen.'
 
 EXEC [MAX_POWER].IMP_Reserva 
 GO
-create nonclustered index IDX_reserva on MAX_POWER.reserva(id_reserva);
+CREATE nonclustered index IDX_reserva on MAX_POWER.reserva(id_reserva);
 
-print 'Importado: Reserva.'
+PRINT 'Importado: Reserva.'
 
 EXEC [MAX_POWER].IMP_Factura 
 GO
-print 'Importado: Factura.'
+PRINT 'Importado: Factura.'
 
 EXEC [MAX_POWER].IMP_Hotel 
 GO
-create nonclustered index IDX_Hotel on MAX_POWER.Hotel(id_hotel);
-print 'Importado: Hotel.'
+CREATE nonclustered index IDX_Hotel on MAX_POWER.Hotel(id_hotel);
+PRINT 'Importado: Hotel.'
 
 EXEC [MAX_POWER].IMP_Habitacion 
 GO
 
-create nonclustered index IDX_habitacion on MAX_POWER.Habitacion(id_habitacion, numero, piso);
-print 'Importado: Habitacion.'
+CREATE nonclustered index IDX_habitacion on MAX_POWER.Habitacion(id_habitacion, numero, piso);
+PRINT 'Importado: Habitacion.'
 
 insert into MAX_POWER.Tipo_documento (descripcion) values('DNI')
 update MAX_POWER.Cliente set id_tipo_identificacion = 1
 
 EXEC [MAX_POWER].IMP_Habitacion_reservada
 GO
-create nonclustered index IDX_habitacion_Reservadas on MAX_POWER.Habitacion_reservada(id_reserva, id_habitacion);
-print 'Importado: Habitacion Reservada.'
+CREATE nonclustered index IDX_habitacion_Reservadas on MAX_POWER.Habitacion_reservada(id_reserva, id_habitacion);
+PRINT 'Importado: Habitacion Reservada.'
 
 EXEC [MAX_POWER].IMP_Habitacion_reservada_Cliente
 GO
-print 'Importado: Habitacion Reservada por Cliente.'
+PRINT 'Importado: Habitacion Reservada por Cliente.'
 
 EXEC [MAX_POWER].IMP_Producto_Habitacion_reservada
 GO
-print 'Importado: Producto por Habitacion Reservada.'
+PRINT 'Importado: Producto por Habitacion Reservada.'
 
-print 'MIGRACION FINALIZADA.'
+PRINT 'MIGRACION FINALIZADA.'
 
 
 EXEC [MAX_POWER].Detectar_Clientes_Repetidos
 GO
-print 'Clientes duplicados detectados.'
+PRINT 'Clientes duplicados detectados.'
 
-print 'Comenzando migracion de SP de aplicaion'
+PRINT 'Comenzando migracion de SP de aplicaion'
 GO
 
 /*-----------------------------------------------------------STORED PROCEDURES PARA LA APP----------------------------------------------------------*/
@@ -1681,172 +1681,167 @@ CREATE PROCEDURE [MAX_POWER].funcionalidades_disponibles
 AS SELECT * FROM MAX_POWER.Funcionalidad
 GO
 
-CREATE PROCEDURE [MAX_POWER].obtener_funcionalidades(@id_rol bigint)
+CREATE PROCEDURE [MAX_POWER].obtener_funcionalidades(@id_rol BIGINT)
 AS SELECT fun.ID_FUNCIONALIDAD,fun.DESCRIPCION
-FROM MAX_POWER.Funcionalidad_X_Rol FR
-join MAX_POWER.Funcionalidad Fun on Fun.id_funcionalidad = FR.id_funcionalidad
-WHERE fr.id_rol = @id_rol
+	FROM MAX_POWER.Funcionalidad_X_Rol FR join MAX_POWER.Funcionalidad Fun on Fun.id_funcionalidad = FR.id_funcionalidad
+	WHERE fr.id_rol = @id_rol
 GO
 
-CREATE PROCEDURE [MAX_POWER].obtener_roles(@id_usuario bigint)
+CREATE PROCEDURE [MAX_POWER].obtener_roles(@id_usuario BIGINT)
 AS SELECT R.ID_ROL, R.NOMBRE
-FROM MAX_POWER.Usuario_X_Rol UR
-join MAX_POWER.Rol R on Rol.id_rol = UR.id_rol
-WHERE id_usuario = @id_usuario
+	FROM MAX_POWER.Usuario_X_Rol UR join MAX_POWER.Rol R on R.id_rol = UR.id_rol
+	WHERE id_usuario = @id_usuario
 GO
 
-CREATE PROCEDURE [MAX_POWER].obtener_Hotel(@id_usuario bigint)
+CREATE PROCEDURE [MAX_POWER].obtener_Hotel(@id_usuario BIGINT)
 AS SELECT H.nombre,H.id_hotel
-FROM MAX_POWER.Hotel_X_Empleado HE
-join MAX_POWER.Hotel H on HE.id_hotel = H.id_hotel
-WHERE id_usuario = @id_usuario
+	FROM MAX_POWER.Hotel_X_Empleado HE join MAX_POWER.Hotel H on HE.id_hotel = H.id_hotel
+	WHERE id_usuario = @id_usuario
 GO
 
-CREATE PROCEDURE [MAX_POWER].buscar_usuario_por_id(@id_usuario bigint)
+CREATE PROCEDURE [MAX_POWER].buscar_usuario_por_id(@id_usuario BIGINT)
 AS SELECT * FROM MAX_POWER.Usuario WHERE id_usuario = @id_usuario
 GO
 
-CREATE PROCEDURE [MAX_POWER].baja_usuario(@id_usuario bigint)
+CREATE PROCEDURE [MAX_POWER].baja_usuario(@id_usuario BIGINT)
 AS
 UPDATE MAX_POWER.Usuario set habilitado = 'N' WHERE id_usuario = @id_usuario
 GO
 
-CREATE PROCEDURE [MAX_POWER].insertar_usuario_x_rol(@id_usuario int, @id_rol bigint)
+CREATE PROCEDURE [MAX_POWER].insertar_usuario_x_rol(@id_usuario INT, @id_rol BIGINT)
 AS BEGIN
-BEGIN TRY
-INSERT INTO MAX_POWER.Usuario_X_Rol (id_usuario, id_rol) VALUES (@id_usuario, @id_rol)
-END TRY
-BEGIN CATCH
---raiseError
-END CATCH
+	BEGIN TRY
+		INSERT INTO MAX_POWER.Usuario_X_Rol (id_usuario, id_rol) VALUES (@id_usuario, @id_rol)
+	END TRY
+	BEGIN CATCH
+	--raiseError
+	END CATCH
 END
 GO
 
-CREATE PROCEDURE [MAX_POWER].borrar_usuario_x_rol(@id_usuario bigint, @id_rol bigint)
+CREATE PROCEDURE [MAX_POWER].borrar_usuario_x_rol(@id_usuario BIGINT, @id_rol BIGINT)
 AS BEGIN
-BEGIN TRY
-DELETE FROM MAX_POWER.Usuario_X_Rol
-WHERE id_usuario = @id_usuario
-AND id_rol = @id_rol
-END TRY
-BEGIN CATCH
---raiseError
-END CATCH
+	BEGIN TRY
+		DELETE FROM MAX_POWER.Usuario_X_Rol
+			WHERE id_usuario = @id_usuario
+			AND id_rol = @id_rol
+	END TRY
+	BEGIN CATCH
+		--raiseError
+	END CATCH
 END
 GO
 
-CREATE PROCEDURE [MAX_POWER].insertar_usuario_x_hotel(@id_usuario bigint, @id_hotel bigint)
+CREATE PROCEDURE [MAX_POWER].insertar_usuario_x_hotel(@id_usuario BIGINT, @id_hotel BIGINT)
 AS BEGIN
-BEGIN TRY
-INSERT INTO MAX_POWER.Hotel_X_Empleado (id_usuario, id_hotel) VALUES (@id_usuario, @id_hotel)
-END TRY
-BEGIN CATCH
---raiseError
-END CATCH
+	BEGIN TRY
+		INSERT INTO MAX_POWER.Hotel_X_Empleado (id_usuario, id_hotel) VALUES (@id_usuario, @id_hotel)
+	END TRY
+	BEGIN CATCH
+		--raiseError
+	END CATCH
 END
 GO
 
-CREATE PROCEDURE [MAX_POWER].borrar_usuario_x_hotel(@id_usuario bigint, @id_hotel bigint)
+CREATE PROCEDURE [MAX_POWER].borrar_usuario_x_hotel(@id_usuario BIGINT, @id_hotel BIGINT)
 AS BEGIN
-BEGIN TRY
-DELETE FROM MAX_POWER.Hotel_X_Empleado 
-WHERE id_usuario = @id_usuario
-AND id_hotel = @id_hotel
-END TRY
-BEGIN CATCH
---raiseError
-END CATCH
+	BEGIN TRY
+		DELETE FROM MAX_POWER.Hotel_X_Empleado 
+			WHERE id_usuario = @id_usuario
+			AND id_hotel = @id_hotel
+	END TRY
+	BEGIN CATCH
+		--raiseError
+	END CATCH
 END
 GO
 
-CREATE PROCEDURE [MAX_POWER].buscar_cliente_por_id(@id_cliente bigint)
+CREATE PROCEDURE [MAX_POWER].buscar_cliente_por_id(@id_cliente BIGINT)
 AS SELECT * FROM MAX_POWER.Cliente
-WHERE id_cliente = @id_cliente
+	WHERE id_cliente = @id_cliente
 GO
 
-CREATE PROCEDURE [MAX_POWER].chequear_login(@usuario varchar(50), @password varchar(50))
+CREATE PROCEDURE [MAX_POWER].chequear_login(@usuario VARCHAR(50), @password VARCHAR(50))
 AS
 BEGIN
-DECLARE @pass_almacenado varchar(50)
-DECLARE @intentos_fallidos int
-IF not exists (SELECT * FROM MAX_POWER.Usuario WHERE Username = @usuario AND UPPER(habilitado)='S')
-	RETURN (-2)
-ELSE
-	BEGIN
-	SELECT @pass_almacenado=pw FROM MAX_POWER.Usuario WHERE Username = @usuario
-	IF(@password!=@pass_almacenado)
-		RETURN (-1)
+	DECLARE @pass_almacenado VARCHAR(50)
+	DECLARE @intentos_fallidos INT
+	IF not exists (SELECT * FROM MAX_POWER.Usuario WHERE Username = @usuario AND UPPER(habilitado)='S')
+		RETURN (-2)
 	ELSE
-		BEGIN
-		SELECT @intentos_fallidos=intentos_fallidos FROM MAX_POWER.Usuario WHERE Username = @usuario
-		IF(@intentos_fallidos>2)
-			RETURN (-3)
+	BEGIN
+		SELECT @pass_almacenado=pw FROM MAX_POWER.Usuario WHERE Username = @usuario
+		IF(@password!=@pass_almacenado)
+			RETURN (-1)
 		ELSE
-			RETURN (0);
+		BEGIN
+			SELECT @intentos_fallidos=intentos_fallidos FROM MAX_POWER.Usuario WHERE Username = @usuario
+			IF(@intentos_fallidos>2)
+				RETURN (-3)
+			ELSE
+				RETURN (0);
 		END
 	END
 END
 GO
 
 
-CREATE PROCEDURE [MAX_POWER].usuario_para_login(@usuario varchar(50), @password varchar(50))
+CREATE PROCEDURE [MAX_POWER].usuario_para_login(@usuario VARCHAR(50), @password VARCHAR(50))
 AS 
 	SELECT * FROM MAX_POWER.Usuario WHERE Username = @usuario AND UPPER(habilitado)='S'
-
-
-
-CREATE PROCEDURE [MAX_POWER].buscar_clientes(@nombre varchar(50), @apellido varchar(50), @email varchar(50), @nroId as bigint, @Id_tipo_identificación as bigint)
-AS SELECT * FROM MAX_POWER.Cliente WHERE
-upper(nombre) LIKE upper(@nombre)
-AND upper(apellido) LIKE upper(@apellido)
-AND upper(mail) LIKE upper(@email)
-AND CAST(numero_identificacion as varchar(50)) LIKE (select case when @nroId = -1 then '%' else cast(@nroId as varchar(50)) end)
-AND cast(id_tipo_identificacion as varchar(50)) like (select case when @Id_tipo_identificación = -1 then '%' else cast(@Id_tipo_identificación as varchar(50)) end )
 GO
 
-CREATE PROCEDURE [MAX_POWER].buscar_habitacion_por_id(@id_habitacion bigint)
+
+CREATE PROCEDURE [MAX_POWER].buscar_clientes(@nombre VARCHAR(50), @apellido VARCHAR(50), @email VARCHAR(50), @nroId AS BIGINT, @Id_tipo_identificación AS BIGINT)
+AS SELECT * FROM MAX_POWER.Cliente 
+	WHERE UPPER(nombre) LIKE UPPER(@nombre)
+		AND UPPER(apellido) LIKE UPPER(@apellido)
+		AND UPPER(mail) LIKE UPPER(@email)
+		AND CAST(numero_identificacion AS VARCHAR(50)) LIKE (SELECT CASE WHEN @nroId = -1 THEN '%' ELSE CAST(@nroId AS VARCHAR(50)) END)
+		AND CAST(id_tipo_identificacion AS VARCHAR(50)) like (SELECT CASE WHEN @Id_tipo_identificación = -1 THEN '%' ELSE CAST(@Id_tipo_identificación AS VARCHAR(50)) END )
+GO
+
+CREATE PROCEDURE [MAX_POWER].buscar_habitacion_por_id(@id_habitacion BIGINT)
 AS SELECT * FROM MAX_POWER.Habitacion
-WHERE id_habitacion = @id_habitacion
+	WHERE id_habitacion = @id_habitacion
 GO
 
-CREATE PROCEDURE [MAX_POWER].baja_logica_habitacion(@id_habitacion bigint)
+CREATE PROCEDURE [MAX_POWER].baja_logica_habitacion(@id_habitacion BIGINT)
 AS
 UPDATE MAX_POWER.Habitacion set habilitada = 'N' WHERE id_habitacion = @id_habitacion
 GO
 
-CREATE PROCEDURE [MAX_POWER].regimenes_disponibes(@id_hotel bigint)
+CREATE PROCEDURE [MAX_POWER].regimenes_disponibes(@id_hotel BIGINT)
 AS SELECT *
-FROM MAX_POWER.Regimen_X_Hotel RH
-join MAX_POWER.Regimen R on RH.id_regimen = R.id_regimen
-WHERE RH.id_hotel = @id_hotel AND R.habilitado = 'S'
+	FROM MAX_POWER.Regimen_X_Hotel RH join MAX_POWER.Regimen R on RH.id_regimen = R.id_regimen
+	WHERE RH.id_hotel = @id_hotel AND R.habilitado = 'S'
 GO
 
 CREATE PROCEDURE [MAX_POWER].tipos_habitacion_disponibles
 AS SELECT * FROM MAX_POWER.Tipo_habitacion
 GO
 
-CREATE PROCEDURE [MAX_POWER].obtener_habitacion(@id_reserva bigint)
+CREATE PROCEDURE [MAX_POWER].obtener_habitacion(@id_reserva BIGINT)
 AS SELECT DISTINCT H.id_habitacion, H.id_tipo_habitacion, H.descripcion
-FROM MAX_POWER.Habitacion_reservada HR
-join MAX_POWER.Habitacion H on H.id_habitacion = HR.id_habitacion
-WHERE HR.id_reserva = @id_reserva
+	FROM MAX_POWER.Habitacion_reservada HR join MAX_POWER.Habitacion H on H.id_habitacion = HR.id_habitacion
+	WHERE HR.id_reserva = @id_reserva
 GO
 
-CREATE PROCEDURE [MAX_POWER].cancelar_reserva_no_show(@id_reserva bigint)
+CREATE PROCEDURE [MAX_POWER].cancelar_reserva_no_show(@id_reserva BIGINT)
 AS
-DECLARE @estado bigint
+DECLARE @estado BIGINT
 UPDATE MAX_POWER.reserva SET id_estado = (SELECT id_Estado FROM MAX_POWER.Estado WHERE descripcion LIKE '%no show') WHERE id_reserva = @id_reserva
 GO
 
-CREATE PROCEDURE [MAX_POWER].cancelar_reserva_cliente(@id_reserva bigint)
+CREATE PROCEDURE [MAX_POWER].cancelar_reserva_cliente(@id_reserva BIGINT)
 AS
-DECLARE @estado bigint
+DECLARE @estado BIGINT
 UPDATE MAX_POWER.reserva SET id_estado = (SELECT id_Estado FROM MAX_POWER.Estado WHERE descripcion LIKE '%cliente') WHERE id_reserva = @id_reserva
 GO
 
-CREATE PROCEDURE [MAX_POWER].cancelar_reserva_recepcion(@id_reserva bigint)
+CREATE PROCEDURE [MAX_POWER].cancelar_reserva_recepcion(@id_reserva BIGINT)
 AS
-DECLARE @estado bigint
+DECLARE @estado BIGINT
 UPDATE MAX_POWER.reserva SET id_estado = (SELECT id_Estado FROM MAX_POWER.Estado WHERE descripcion LIKE '%personal de recepcion') WHERE id_reserva = @id_reserva
 GO
 
@@ -1854,340 +1849,367 @@ CREATE PROCEDURE [MAX_POWER].productos_disponibles
 AS SELECT DISTINCT id_producto, descripcion FROM MAX_POWER.Producto
 GO
 
-CREATE PROCEDURE [MAX_POWER].regimenes_disponibles(@id_hotel bigint)
-AS SELECT * FROM MAX_POWER.Regimen r,MAX_POWER.Regimen_x_hotel rh WHERE r.id_regimen=rh.id_regimen AND rh-id_hotel=@id_hotel 
+CREATE PROCEDURE [MAX_POWER].regimenes_disponibles(@id_hotel BIGINT)
+AS SELECT * FROM MAX_POWER.Regimen r,MAX_POWER.Regimen_x_hotel rh WHERE r.id_regimen=rh.id_regimen AND rh.id_hotel=@id_hotel 
 GO
 
 
-create procedure [MAX_POWER].buscar_habitacion(@id_hotel bigint, @numero_habitacion bigint, @piso_habitacion bigint, @ubicacion_habitacion varchar(10), @id_tipo_habitacion bigint, @descripcion_habitacion varchar(50))
-AS SELECT * FROM [MAX_POWER].Habitacion WHERE
-CAST(id_hotel as varchar(50)) LIKE (select case when @id_hotel = -1 then '%' else cast(@id_hotel as varchar(50)) end)
-AND CAST(numero as varchar(50)) LIKE (select case when @numero_habitacion = -1 then '%' else cast(@numero_habitacion as varchar(50)) end)
-AND CAST(piso as varchar(50)) LIKE (select case when @piso_habitacion = -1 then '%' else cast(@piso_habitacion as varchar(50)) end)
-AND UPPER(frente) LIKE UPPER(@ubicacion_habitacion)
-AND CAST(id_tipo_habitacion as varchar(50)) LIKE (select case when @id_tipo_habitacion = -1 then '%' else cast(@id_tipo_habitacion as varchar(50)) end)
-AND UPPER(descripcion) LIKE UPPER(@descripcion_habitacion)
+CREATE PROCEDURE [MAX_POWER].buscar_habitacion(@id_hotel BIGINT, @numero_habitacion BIGINT, @piso_habitacion BIGINT, @ubicacion_habitacion VARCHAR(10), @id_tipo_habitacion BIGINT, @descripcion_habitacion VARCHAR(50))
+AS SELECT * FROM [MAX_POWER].Habitacion 
+	WHERE CAST(id_hotel AS VARCHAR(50)) LIKE (SELECT CASE WHEN @id_hotel = -1 THEN '%' ELSE CAST(@id_hotel AS VARCHAR(50)) END)
+		AND CAST(numero AS VARCHAR(50)) LIKE (SELECT CASE WHEN @numero_habitacion = -1 THEN '%' ELSE CAST(@numero_habitacion AS VARCHAR(50)) END)
+		AND CAST(piso AS VARCHAR(50)) LIKE (SELECT CASE WHEN @piso_habitacion = -1 THEN '%' ELSE CAST(@piso_habitacion AS VARCHAR(50)) END)
+		AND UPPER(frente) LIKE UPPER(@ubicacion_habitacion)
+		AND CAST(id_tipo_habitacion AS VARCHAR(50)) LIKE (SELECT CASE WHEN @id_tipo_habitacion = -1 THEN '%' ELSE CAST(@id_tipo_habitacion AS VARCHAR(50)) END)
+		AND UPPER(descripcion) LIKE UPPER(@descripcion_habitacion)
 GO
 
-CREATE FUNCTION habitacion_libre(@id_habitacion bigint, @fecha_inicio datetime, @fecha_fin datetime) RETURNS INT AS
+CREATE FUNCTION [MAX_POWER].habitacion_libre(@id_habitacion BIGINT, @fecha_inicio DATETIME, @fecha_fin DATETIME) RETURNS INT AS
 BEGIN
-IF (SELECT COUNT (*) FROM [MAX_POWER].Habitacion_reservada HR JOIN [MAX_POWER].reserva R ON HR.id_reserva != R.id_reserva WHERE HR.id_habitacion = @id_habitacion AND 
-	(@fecha_inicio BETWEEN R.fecha_inicio AND R.fecha_fin
-	OR @fecha_fin BETWEEN R.fecha_inicio AND R.fecha_fin
-	OR R.fecha_inicio BETWEEN @fecha_inicio AND @fecha_fin
-	OR R.fecha_fin BETWEEN @fecha_inicio AND @fecha_fin)
-	)>0
-	RETURN 0
-ELSE
-	RETURN 1
+DECLARE @esta_libre INT
+	IF (SELECT COUNT (*) FROM [MAX_POWER].Habitacion_reservada HR JOIN [MAX_POWER].reserva R ON HR.id_reserva != R.id_reserva 
+			WHERE HR.id_habitacion = @id_habitacion 
+			AND (@fecha_inicio BETWEEN R.fecha_inicio AND R.fecha_fin
+				OR @fecha_fin BETWEEN R.fecha_inicio AND R.fecha_fin
+				OR R.fecha_inicio BETWEEN @fecha_inicio AND @fecha_fin
+				OR R.fecha_fin BETWEEN @fecha_inicio AND @fecha_fin)
+		)>0
+		SET @esta_libre=0
+	ELSE
+		SET @esta_libre=1
+RETURN @esta_libre
 END
-go
+GO
 
-create procedure [MAX_POWER].buscar_habitacion_reserva(@id_hotel bigint, @id_tipo_habitacion bigint,@cantidad int, @fecha_inicio datetime, @fecha_fin datetime)
+CREATE PROCEDURE [MAX_POWER].buscar_habitacion_reserva(@id_hotel BIGINT, @id_tipo_habitacion BIGINT,@cantidad INT, @fecha_inicio DATETIME, @fecha_fin DATETIME)
 AS SELECT TOP (@CANTIDAD) * FROM habitacion WHERE id_hotel=@id_hotel 
 												AND id_tipo_habitacion=@id_tipo_habitacion 
-												AND habitacion_libre(id_habitacion,	@fecha_inicio,@fecha_fin)=1
-go
+												AND MAX_POWER.habitacion_libre(id_habitacion,	@fecha_inicio,@fecha_fin)=1
+GO
 												
-create procedure [MAX_POWER].buscar_Usuario(@nombre varchar(50), @apellido varchar(50), @email varchar(50), @username varchar(50), @id_rol bigint, @id_hotel bigint)
-AS SELECT * FROM [MAX_POWER].Usuario WHERE
-UPPER(nombre) LIKE UPPER(@nombre)
-AND UPPER(apellido) LIKE UPPER(@apellido)
-AND UPPER(mail) LIKE UPPER(@email)
-AND UPPER(username) LIKE UPPER(@username)
-AND (SELECT id_usuario FROM [MAX_POWER].Usuario_X_Rol WHERE CAST(id_rol as varchar(50)) LIKE (select case when @id_rol = -1 then '%' else cast(@id_rol as varchar(50)) end)) = id_usuario
-AND (SELECT id_usuario FROM [MAX_POWER].Hotel_X_Empleado WHERE CAST(id_hotel as varchar(50)) LIKE (select case when @id_hotel = -1 then '%' else cast(@id_hotel as varchar(50)) end)) = id_usuario
+CREATE PROCEDURE [MAX_POWER].buscar_Usuario(@nombre VARCHAR(50), @apellido VARCHAR(50), @email VARCHAR(50), @username VARCHAR(50), @id_rol BIGINT, @id_hotel BIGINT)
+AS SELECT * FROM [MAX_POWER].Usuario 
+	WHERE UPPER(nombre) LIKE UPPER(@nombre)
+		AND UPPER(apellido) LIKE UPPER(@apellido)
+		AND UPPER(mail) LIKE UPPER(@email)
+		AND UPPER(username) LIKE UPPER(@username)
+		AND (SELECT id_usuario FROM [MAX_POWER].Usuario_X_Rol WHERE CAST(id_rol AS VARCHAR(50)) LIKE (SELECT CASE WHEN @id_rol = -1 THEN '%' ELSE CAST(@id_rol AS VARCHAR(50)) END)) = id_usuario
+		AND (SELECT id_usuario FROM [MAX_POWER].Hotel_X_Empleado WHERE CAST(id_hotel AS VARCHAR(50)) LIKE (SELECT CASE WHEN @id_hotel = -1 THEN '%' ELSE CAST(@id_hotel AS VARCHAR(50)) END)) = id_usuario
 GO
 
-create procedure [MAX_POWER].insertar_usuario(@username varchar(50), @password varchar(50), @nombre varchar(50), @apellido varchar(50), @Id_tipo_dni bigint, @dni varchar(50), @mail varchar(50), @telefono varchar(50), @direccion varchar(50), @fechaNacimiento datetime)
+CREATE PROCEDURE [MAX_POWER].insertar_usuario(@username VARCHAR(50), @password VARCHAR(50), @nombre VARCHAR(50), @apellido VARCHAR(50), @Id_tipo_dni BIGINT, @dni VARCHAR(50), @mail VARCHAR(50), @telefono VARCHAR(50), @direccion VARCHAR(50), @fechaNacimiento DATETIME)
 AS BEGIN
-BEGIN TRY
-INSERT INTO [MAX_POWER].Usuario (username, pw, nombre, apellido, tipo_documento_id, numero_documento, mail, telefono, direccion, fecha_nacimiento) VALUES (@username, @password, @nombre, @apellido, @Id_tipo_dni, @dni, @mail, @telefono, @direccion, @fechaNacimiento)
-END TRY
-BEGIN CATCH
-IF @@ERROR = 2627
-    RETURN -4
-END CATCH
+	BEGIN TRY
+		INSERT INTO [MAX_POWER].Usuario (username, pw, nombre, apellido, id_tipo_documento, numero_documento, mail, telefono, direccion, fecha_nacimiento) VALUES (@username, @password, @nombre, @apellido, @Id_tipo_dni, @dni, @mail, @telefono, @direccion, @fechaNacimiento)
+	END TRY
+	BEGIN CATCH
+		IF @@ERROR = 2627
+			RETURN (-4)
+	END CATCH
+	RETURN(0)
 END
 GO
 
-create procedure [MAX_POWER].actualizar_usuario(@id bigint, @username varchar(50), @password varchar(50), @nombre varchar(50), @apellido varchar(50), @Id_tipo_dni bigint, @dni varchar(50), @mail varchar(50), @telefono varchar(50), @direccion varchar(50), @fechaNacimiento datetime)
+CREATE PROCEDURE [MAX_POWER].actualizar_usuario(@id BIGINT, @username VARCHAR(50), @password VARCHAR(50), @nombre VARCHAR(50), @apellido VARCHAR(50), @Id_tipo_dni BIGINT, @dni VARCHAR(50), @mail VARCHAR(50), @telefono VARCHAR(50), @direccion VARCHAR(50), @fechaNacimiento DATETIME)
 AS BEGIN
-BEGIN TRY
-UPDATE [MAX_POWER].Usuario SET
-Username = @username,
-pw = @password,
-nombre = @nombre,
-apellido = @apellido,
-tipo_documento_id = @Id_tipo_dni,
-numero_documento = @dni,
-mail = @mail,
-telefono = @telefono,
-direccion = @direccion,
-fecha_nacimiento = @fechaNacimiento
-WHERE id_usuario = @id
-END TRY
-BEGIN CATCH
-IF @@ERROR = 2627
-    RETURN -4
-END CATCH
+	BEGIN TRY
+		UPDATE [MAX_POWER].Usuario SET
+			Username = @username,
+			pw = @password,
+			nombre = @nombre,
+			apellido = @apellido,
+			id_tipo_documento = @Id_tipo_dni,
+			numero_documento = @dni,
+			mail = @mail,
+			telefono = @telefono,
+			direccion = @direccion,
+			fecha_nacimiento = @fechaNacimiento
+			WHERE id_usuario = @id
+	END TRY
+	BEGIN CATCH
+		IF @@ERROR = 2627
+			RETURN (-4)
+	END CATCH
+	RETURN(0)
 END
 GO
 
-create procedure [MAX_POWER].insertar_cliente(@nombre varchar(50), @apellido varchar(50), @id_tipo_identificacion bigint, @nroId bigint, @mail varchar(50), @telefono varchar(50), @calle varchar(50), @localidad varchar(50), @fechaNacimiento datetime)
+CREATE PROCEDURE [MAX_POWER].insertar_cliente(@nombre VARCHAR(50), @apellido VARCHAR(50), @id_tipo_identificacion BIGINT, @nroId BIGINT, @mail VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50), @localidad VARCHAR(50), @fechaNacimiento DATETIME)
 AS BEGIN
-BEGIN TRY
-INSERT INTO [MAX_POWER].Cliente (nombre, apellido, id_tipo_identificacion, numero_identificacion, mail, telefono, calle, localidad, fecha_nacimiento, habilitado) VALUES (@nombre, @apellido, @id_tipo_identificacion, @nroId, @mail, @telefono, @calle, @localidad, @fechaNacimiento, 1)
-END TRY
-BEGIN CATCH
-IF (SELECT COUNT (mail) FROM [MAX_POWER].Usuario WHERE mail = @mail) > 0
-	RETURN -5
-IF @@ERROR = 2627
-    RETURN -6
-END CATCH
+	IF (SELECT COUNT (mail) FROM [MAX_POWER].Usuario WHERE mail = @mail) > 0
+		RETURN (-5)
+	BEGIN TRY
+		INSERT INTO [MAX_POWER].Cliente (nombre, apellido, id_tipo_identificacion, numero_identificacion, mail, telefono, calle, localidad, fecha_nacimiento, habilitado) VALUES (@nombre, @apellido, @id_tipo_identificacion, @nroId, @mail, @telefono, @calle, @localidad, @fechaNacimiento, 1)
+	END TRY
+	BEGIN CATCH
+		IF @@ERROR = 2627
+			RETURN (-6)
+	END CATCH
+	RETURN(0)
 END
 GO
 
-create procedure [MAX_POWER].actualizar_cliente(@id bigint, @nombre varchar(50), @apellido varchar(50), @id_tipo_identificacion bigint, @nroId bigint, @mail varchar(50), @telefono varchar(50), @calle varchar(50), @localidad varchar(50), @fechaNacimiento datetime, @habilitado char(1))
+CREATE PROCEDURE [MAX_POWER].actualizar_cliente(@id BIGINT, @nombre VARCHAR(50), @apellido VARCHAR(50), @id_tipo_identificacion BIGINT, @nroId BIGINT, @mail VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50), @localidad VARCHAR(50), @fechaNacimiento DATETIME, @habilitado CHAR(1))
 AS BEGIN
-BEGIN TRY
-UPDATE [MAX_POWER].Cliente SET
-nombre = @nombre,
-apellido = @apellido,
-id_tipo_identificacion = @id_tipo_identificacion,
-numero_identificacion = @nroId,
-mail = @mail,
-telefono = @telefono,
-calle = @calle,
-localidad = @localidad,
-fecha_nacimiento = @fechaNacimiento,
-habilitado = @habilitado
-WHERE id_cliente = @id
-END TRY
-BEGIN CATCH
-IF (SELECT COUNT (mail) FROM [MAX_POWER].Usuario WHERE mail = @mail) > 0
-	RETURN -5
-IF @@ERROR = 2627
-    RETURN -6
-END CATCH
+	BEGIN TRY
+		UPDATE [MAX_POWER].Cliente SET
+		nombre = @nombre,
+		apellido = @apellido,
+		id_tipo_identificacion = @id_tipo_identificacion,
+		numero_identificacion = @nroId,
+		mail = @mail,
+		telefono = @telefono,
+		calle = @calle,
+		localidad = @localidad,
+		fecha_nacimiento = @fechaNacimiento,
+		habilitado = @habilitado
+		WHERE id_cliente = @id
+	END TRY
+	BEGIN CATCH
+		IF (SELECT COUNT (mail) FROM [MAX_POWER].Usuario WHERE mail = @mail) > 0
+			RETURN (-5)
+		IF @@ERROR = 2627
+			RETURN (-6)
+	END CATCH
+	RETURN(0)
 END
 GO
 
-create procedure [MAX_POWER].insertar_reserva(@id_regimen bigint, @fecha_inicio datetime, @fecha_fin datetime, @id_cliente bigint, @fecha_realizacion datetime)
+CREATE PROCEDURE [MAX_POWER].insertar_reserva(@id_regimen BIGINT, @fecha_inicio DATETIME, @fecha_fin DATETIME, @id_cliente BIGINT, @fecha_realizacion DATETIME)
 AS BEGIN
-BEGIN TRY
-INSERT INTO [MAX_POWER].reserva (id_regimen, fecha_inicio, fecha_fin, id_cliente_titular, fecha_realizacion, id_estado) VALUES (@id_regimen, @fecha_inicio, @fecha_fin, @id_cliente, @fecha_realizacion, (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%correcta'))
-END TRY
-BEGIN CATCH
---raiseError
-END CATCH
+	BEGIN TRY
+		INSERT INTO [MAX_POWER].reserva (id_regimen, fecha_inicio, fecha_fin, id_cliente_titular, fecha_realizacion, id_estado) VALUES (@id_regimen, @fecha_inicio, @fecha_fin, @id_cliente, @fecha_realizacion, (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%correcta'))
+	END TRY
+	BEGIN CATCH
+		--raiseError
+	END CATCH
 END
 GO
 
-create procedure [MAX_POWER].borrar_habitacion_reservada(@id_reserva bigint, @id_habitacion bigint)
+CREATE PROCEDURE [MAX_POWER].borrar_habitacion_reservada(@id_reserva BIGINT, @id_habitacion BIGINT)
 AS BEGIN
-BEGIN TRY
-DELETE FROM [MAX_POWER].Habitacion_reservada 
-WHERE id_reserva = @id_reserva
-AND id_habitacion = @id_habitacion
-END TRY
-BEGIN CATCH
---raiseError
-END CATCH
+	BEGIN TRY
+		DELETE FROM [MAX_POWER].Habitacion_reservada 
+			WHERE id_reserva = @id_reserva
+				AND id_habitacion = @id_habitacion
+	END TRY
+	BEGIN CATCH
+		--raiseError
+	END CATCH
 END
 GO
 
-create procedure [MAX_POWER].insertar_modificacion(@fecha datetime, @id_reserva bigint, @ide_usuario bigint, @motivo varchar(50), @tipo bigint)
+CREATE PROCEDURE [MAX_POWER].insertar_modificacion(@fecha DATETIME, @id_reserva BIGINT, @ide_usuario BIGINT, @motivo VARCHAR(50), @tipo BIGINT)
 AS BEGIN
-BEGIN TRY
-IF @tipo = 0
-	INSERT INTO [MAX_POWER].Modificacion (fecha, id_reserva, id_usuario, motivo, id_tipo_modificacion, id_tipo_modificacion) VALUES (@fecha, @id_reserva, @ide_usuario, @motivo, @tipo, (SELECT id_tipo_modificacion FROM [MAX_POWER].Tipo_modificacion WHERE descripcion LIKE '%modifica%'))
-IF @tipo = 1
-	INSERT INTO [MAX_POWER].Modificacion (fecha, id_reserva, id_usuario, motivo, id_tipo_modificacion, id_tipo_modificacion) VALUES (@fecha, @id_reserva, @ide_usuario, @motivo, @tipo, (SELECT id_tipo_modificacion FROM [MAX_POWER].Tipo_modificacion WHERE descripcion LIKE '%cancela%'))
-END TRY
-BEGIN CATCH
---raiseError
-END CATCH
+	BEGIN TRY
+		IF @tipo = 0
+			INSERT INTO [MAX_POWER].Modificacion (fecha, id_reserva, id_usuario, motivo, id_tipo_modificacion) VALUES (@fecha, @id_reserva, @ide_usuario, @motivo, (SELECT id_tipo_modificacion FROM [MAX_POWER].Tipo_modificacion WHERE descripcion LIKE '%modifica%'))
+		IF @tipo = 1
+			INSERT INTO [MAX_POWER].Modificacion (fecha, id_reserva, id_usuario, motivo, id_tipo_modificacion) VALUES (@fecha, @id_reserva, @ide_usuario, @motivo, (SELECT id_tipo_modificacion FROM [MAX_POWER].Tipo_modificacion WHERE descripcion LIKE '%cancela%'))
+	END TRY
+	BEGIN CATCH
+		--raiseError
+	END CATCH
 END
 GO
 
-create procedure [MAX_POWER].buscar_rol_por_id(@id bigint)
+CREATE PROCEDURE [MAX_POWER].buscar_rol_por_id(@id BIGINT)
 AS SELECT * FROM [MAX_POWER].Rol WHERE id_rol = @id
 GO
 
-create procedure [MAX_POWER].baja_rol(@id bigint)
+CREATE PROCEDURE [MAX_POWER].baja_rol(@id BIGINT)
 AS
 UPDATE [MAX_POWER].Rol SET habilitado = 'N' WHERE id_rol = @id
 GO
 
-create procedure [MAX_POWER].insertar_cliente_x_habitacion(@id_habitacion_reservada bigint, @id_cliente bigint)
+CREATE PROCEDURE [MAX_POWER].insertar_cliente_x_habitacion(@id_habitacion_reservada BIGINT, @id_cliente BIGINT)
 AS BEGIN
-BEGIN TRY
-INSERT INTO [MAX_POWER].Habitacion_reservada_X_Cliente (id_habitacion_reservada, id_cliente) VALUES (@id_habitacion_reservada, @id_cliente)
-END TRY
-BEGIN CATCH
-IF @@ERROR = 2627
-    RETURN -9
-END CATCH
-END
+	BEGIN TRY
+		INSERT INTO [MAX_POWER].Habitacion_reservada_X_Cliente (id_habitacion_reservada, id_cliente) VALUES (@id_habitacion_reservada, @id_cliente)
+	END TRY
+	BEGIN CATCH
+		IF @@ERROR = 2627
+			RETURN (-9)
+	END CATCH
+	RETURN(0)
+	END
 GO
 
-create procedure [MAX_POWER].registrar_ingreso_reserva(@id_reserva bigint)
+CREATE PROCEDURE [MAX_POWER].registrar_ingreso_reserva(@id_reserva BIGINT)
 AS
 UPDATE [MAX_POWER].reserva SET id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%ingresa%') WHERE id_reserva = @id_reserva
 GO
 
-create procedure [MAX_POWER].insertar_producto_x_habitacion_reservada(@id_reserva bigint,@id_habitacion bigint, @id_producto bigint, @cantidad bigint)
+CREATE PROCEDURE [MAX_POWER].insertar_producto_x_habitacion_reservada(@id_reserva BIGINT,@id_habitacion BIGINT, @id_producto BIGINT, @cantidad BIGINT)
 AS BEGIN
-IF (SELECT COUNT (*) FROM [MAX_POWER].Producto_X_Habitacion_reservada ph, MAX_POWER.Habitacion_reservada hr 
-	WHERE  hr.id_habitacion=@id_habitacion AND hr.id_reserva=@id_reserva and ph.id_habitacion_reservada =hr.id_habitacion_reservada and  ph.id_producto = @id_producto) > 0
-	UPDATE [MAX_POWER].Producto_X_Habitacion_reservada SET cantidad = cantidad + @cantidad WHERE id_habitacion_reservada = @id_reserva AND id_producto = @id_producto
-ELSE
-INSERT INTO [MAX_POWER].Producto_X_Habitacion_reservada (id_habitacion_reservada, id_producto, cantidad) VALUES (@id_reserva, @id_producto, @cantidad)
+	IF (SELECT COUNT (*) FROM [MAX_POWER].Producto_X_Habitacion_reservada ph, MAX_POWER.Habitacion_reservada hr 
+			WHERE  hr.id_habitacion=@id_habitacion AND hr.id_reserva=@id_reserva AND ph.id_habitacion_reservada =hr.id_habitacion_reservada AND  ph.id_producto = @id_producto
+		) > 0
+		UPDATE [MAX_POWER].Producto_X_Habitacion_reservada SET cantidad = cantidad + @cantidad WHERE id_habitacion_reservada = @id_reserva AND id_producto = @id_producto
+	ELSE
+		INSERT INTO [MAX_POWER].Producto_X_Habitacion_reservada (id_habitacion_reservada, id_producto, cantidad) VALUES (@id_reserva, @id_producto, @cantidad)
 END
 GO
 
-create procedure [MAX_POWER].borrar_producto_x_habitacion_reservada(@id_reserva bigint, @id_producto bigint)
+CREATE PROCEDURE [MAX_POWER].borrar_producto_x_habitacion_reservada(@id_reserva BIGINT, @id_producto BIGINT)
 AS BEGIN
-delete FROM [MAX_POWER].Producto_X_Habitacion_reservada 
-	WHERE id_producto = @id_producto and id_habitacion_reservada in (SELECT id_habitacion_reservada FROM [MAX_POWER].Habitacion_reservada  
-																		WHERE id_reserva=@id_reserva)
+	delete FROM [MAX_POWER].Producto_X_Habitacion_reservada 
+		WHERE id_producto = @id_producto AND id_habitacion_reservada IN (SELECT id_habitacion_reservada FROM [MAX_POWER].Habitacion_reservada  
+																			WHERE id_reserva=@id_reserva)
 END
 GO
 
-create procedure [MAX_POWER].facturar(@id_reserva bigint, @fecha_salida datetime, @modo_pago varchar(50),@total decimal)
+CREATE PROCEDURE [MAX_POWER].facturar(@id_reserva BIGINT, @fecha_salida DATETIME, @modo_pago VARCHAR(50),@total DECIMAL)
 AS BEGIN
-BEGIN TRY
-UPDATE [MAX_POWER].reserva SET
-id_estado = (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion = 'facturada'),
-fecha_salida = @fecha_salida
-WHERE id_reserva = @id_reserva
-UPDATE [MAX_POWER].Factura SET id_medoto_pago = (SELECT id_metodo_pago FROM [MAX_POWER].Metodo_pago WHERE descripcion LIKE @modo_pago) WHERE id_reserva = @id_reserva
-UPDATE [MAX_POWER].Factura SET total = @total WHERE id_reserva = @id_reserva
-END TRY
-BEGIN CATCH
---raiseError
-END CATCH
+	BEGIN TRY
+		UPDATE [MAX_POWER].reserva SET
+			id_estado = (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion = 'facturada'),
+			fecha_salida = @fecha_salida
+			WHERE id_reserva = @id_reserva
+		UPDATE [MAX_POWER].Factura SET 
+			id_medoto_pago = (SELECT id_metodo_pago FROM [MAX_POWER].Metodo_pago WHERE descripcion LIKE @modo_pago) 
+			WHERE id_reserva = @id_reserva
+		UPDATE [MAX_POWER].Factura SET 
+			total = @total 
+			WHERE id_reserva = @id_reserva
+	END TRY
+	BEGIN CATCH
+		--raiseError
+	END CATCH
 END
 GO
 
-create procedure total_factura(@id_factura bigint)
+CREATE PROCEDURE [MAX_POWER].total_factura(@id_factura BIGINT)
 AS SELECT DISTINCT total FROM [MAX_POWER].Factura WHERE id_factura = @id_factura
 GO
 
-create procedure insertar_habitacion_reservada(@id_reserva bigint, @id_habitacion bigint)
+CREATE PROCEDURE [MAX_POWER].insertar_habitacion_reservada(@id_reserva BIGINT, @id_habitacion BIGINT)
 AS BEGIN
-DECLARE @fechaReservaInicial datetime
-SET @fechaReservaInicial = (SELECT fecha_inicio FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)
-DECLARE @fechaReservaFinal datetime
-SET @fechaReservaFinal = (SELECT fecha_fin FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)
-IF (habitacion_libre(@id_habitacion,@fechaReservaInicial,@fechaReservaFinal)=0)
-	RETURN -7
-ELSE
-	INSERT INTO [MAX_POWER].Habitacion_reservada (id_reserva, id_habitacion) VALUES (@id_reserva, @id_habitacion)
+	DECLARE @fechaReservaInicial DATETIME
+	SET @fechaReservaInicial = (SELECT fecha_inicio FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)
+	DECLARE @fechaReservaFinal DATETIME
+	SET @fechaReservaFinal = (SELECT fecha_fin FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)
+	IF (MAX_POWER.habitacion_libre(@id_habitacion,@fechaReservaInicial,@fechaReservaFinal)=0)
+		RETURN (-7)
+	ELSE
+		BEGIN
+		INSERT INTO [MAX_POWER].Habitacion_reservada (id_reserva, id_habitacion) VALUES (@id_reserva, @id_habitacion)
+		RETURN (0)
+		END
 END
 GO
 
-create procedure reserva_editable(@id_reserva bigint)
-AS IF (SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%correc%') OR id_estado = (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%modific%')) > 0
-	RETURN 1
-IF ((SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%cancela%') OR id_estado  = (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%ingres%'))>0 OR (SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)=0 OR (SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND fecha_fin = DATEADD(day,+1,getdate()))>0)
-	RETURN 0
+CREATE PROCEDURE [MAX_POWER].reserva_editable(@id_reserva BIGINT)
+AS 
+	IF (SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%correc%') OR id_estado = (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%modific%')) > 0
+		RETURN (1)
+	IF ((SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%cancela%') OR id_estado  = (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%ingres%'))>0 OR (SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)=0 OR (SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND fecha_fin = DATEADD(day,+1,getdate()))>0)
+		RETURN (0)
 GO
 
-create procedure buscar_roles(@nombre varchar(50), @estado char(1))
-AS SELECT * FROM [MAX_POWER].Rol WHERE
-UPPER(nombre) LIKE UPPER(@nombre)
-AND UPPER(habilitado) LIKE UPPER(@estado)
+CREATE PROCEDURE [MAX_POWER].buscar_roles(@nombre VARCHAR(50), @estado CHAR(1))
+AS SELECT * FROM [MAX_POWER].Rol 
+	WHERE UPPER(nombre) LIKE UPPER(@nombre)
+		AND UPPER(habilitado) LIKE UPPER(@estado)
 GO
 
-create procedure habitacion_de_reserva(@id_reserva bigint) as
-select hc.id_habitacion_reservada as id, h.numero as numero, COUNT(hc.id_cliente) as clientes 
-from MAX_POWER.Habitacion_reservada hr,MAX_POWER.Habitacion h, MAX_POWER.Habitacion_reservada_x_cliente hc
-where hr.id_habitacion = h.id_habitacion AND hr.id_habitacion_reservada=hc.id_habitacion_reservada and hr.id_reserva=@id_reserva
-group by hc.id_habitacion_reservada, h.numero
-
-
-create procedure cambiar_habitacion(@id_habitacion_reservada bigint, @numero bigint)
-AS DECLARE @id_tipo_habitacion_anterior bigint
-DECLARE @id_hotel_habitacion_anterior bigint
-SET @id_tipo_habitacion_anterior = (SELECT H.id_tipo_habitacion FROM [MAX_POWER].Habitacion_reservada HR JOIN [MAX_POWER].Habitacion H ON H.id_habitacion = HR.id_habitacion WHERE HR.id_habitacion_reservada = @id_habitacion_reservada)
-SET @id_hotel_habitacion_anterior = (SELECT H.id_hotel FROM [MAX_POWER].Habitacion_reservada HR JOIN [MAX_POWER].Habitacion H ON H.id_habitacion = HR.id_habitacion WHERE HR.id_habitacion_reservada = @id_habitacion_reservada)
-IF (SELECT COUNT (*) FROM [MAX_POWER].Habitacion WHERE id_hotel = @id_hotel_habitacion_anterior AND id_tipo_habitacion = @id_tipo_habitacion_anterior) > 0
-	UPDATE [MAX_POWER].Habitacion_reservada SET id_habitacion = (SELECT TOP 1 * FROM [MAX_POWER].Habitacion WHERE id_hotel = @id_hotel_habitacion_anterior AND id_tipo_habitacion = @id_tipo_habitacion_anterior) WHERE id_habitacion_reservada = @id_habitacion_reservada
-ELSE
-	RETURN -8
+CREATE PROCEDURE [MAX_POWER].habitacion_de_reserva(@id_reserva BIGINT)
+AS SELECT hc.id_habitacion_reservada AS id, h.numero AS numero, COUNT(hc.id_cliente) AS clientes 
+		FROM MAX_POWER.Habitacion_reservada hr,MAX_POWER.Habitacion h, MAX_POWER.Habitacion_reservada_x_cliente hc
+		WHERE hr.id_habitacion = h.id_habitacion AND hr.id_habitacion_reservada=hc.id_habitacion_reservada AND hr.id_reserva=@id_reserva
+		group by hc.id_habitacion_reservada, h.numero
 GO
 
-create procedure reserva_ingresable(@id_reserva bigint, @id_hotel bigint)
-AS IF (SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%correc%') OR id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%modific%'))>0
-	RETURN 1
-IF ((SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%cancel%') OR id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%ingres%'))>0 OR (SELECT COUNT (*) FROM [MAX_POWER].Habitacion_reservada HR JOIN [MAX_POWER].Habitacion H ON H.id_habitacion = HR.id_habitacion WHERE HR.id_reserva = @id_reserva AND H.id_hotel != @id_hotel)=0 OR (SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND fecha_inicio < getdate())>0)
-	RETURN 0
+CREATE PROCEDURE [MAX_POWER].cambiar_habitacion(@id_habitacion_reservada BIGINT, @numero BIGINT)
+AS DECLARE @id_tipo_habitacion_anterior BIGINT
+	DECLARE @id_hotel_habitacion_anterior BIGINT
+	SET @id_tipo_habitacion_anterior = (SELECT H.id_tipo_habitacion FROM [MAX_POWER].Habitacion_reservada HR JOIN [MAX_POWER].Habitacion H ON H.id_habitacion = HR.id_habitacion WHERE HR.id_habitacion_reservada = @id_habitacion_reservada)
+	SET @id_hotel_habitacion_anterior = (SELECT H.id_hotel FROM [MAX_POWER].Habitacion_reservada HR JOIN [MAX_POWER].Habitacion H ON H.id_habitacion = HR.id_habitacion WHERE HR.id_habitacion_reservada = @id_habitacion_reservada)
+	IF (SELECT COUNT (*) FROM [MAX_POWER].Habitacion WHERE id_hotel = @id_hotel_habitacion_anterior AND id_tipo_habitacion = @id_tipo_habitacion_anterior) > 0
+		BEGIN
+		UPDATE [MAX_POWER].Habitacion_reservada SET id_habitacion = (SELECT TOP 1 id_habitacion FROM [MAX_POWER].Habitacion WHERE id_hotel = @id_hotel_habitacion_anterior AND id_tipo_habitacion = @id_tipo_habitacion_anterior) WHERE id_habitacion_reservada = @id_habitacion_reservada
+		RETURN(0)
+		END
+	ELSE
+		RETURN (-8)
 GO
 
-create procedure reserva_egresable(@id_reserva bigint, @id_hotel bigint)
-AS IF (SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%ingres%'))>0
-	RETURN 1
-IF ((SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion NOT LIKE '%ingres%'))>0 OR (SELECT COUNT (*) FROM [MAX_POWER].Habitacion_reservada HR JOIN [MAX_POWER].Habitacion H ON H.id_habitacion = HR.id_habitacion WHERE HR.id_reserva = @id_reserva AND H.id_hotel != @id_hotel)=0 OR (SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)=0)
-	RETURN 0
+CREATE PROCEDURE [MAX_POWER].reserva_ingresable(@id_reserva BIGINT, @id_hotel BIGINT)
+AS 
+	IF (SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%correc%') OR id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%modific%'))>0
+		RETURN (1)
+	IF ((SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%cancel%') OR id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%ingres%'))>0 OR (SELECT COUNT (*) FROM [MAX_POWER].Habitacion_reservada HR JOIN [MAX_POWER].Habitacion H ON H.id_habitacion = HR.id_habitacion WHERE HR.id_reserva = @id_reserva AND H.id_hotel != @id_hotel)=0 OR (SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND fecha_inicio < getdate())>0)
+		RETURN (8)
 GO
 
-create procedure actualizar_reserva(@id_reserva bigint, @id_regimen bigint, @fecha_inicio datetime, @fecha_fin datetime)
+CREATE PROCEDURE [MAX_POWER].reserva_egresable(@id_reserva BIGINT, @id_hotel BIGINT)
+AS 
+	IF (SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%ingres%'))>0
+		RETURN (1)
+	IF ((SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva AND id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion NOT LIKE '%ingres%'))>0 OR (SELECT COUNT (*) FROM [MAX_POWER].Habitacion_reservada HR JOIN [MAX_POWER].Habitacion H ON H.id_habitacion = HR.id_habitacion WHERE HR.id_reserva = @id_reserva AND H.id_hotel != @id_hotel)=0 OR (SELECT COUNT (*) FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)=0)
+		RETURN (0)
+GO
+
+CREATE PROCEDURE [MAX_POWER].actualizar_reserva(@id_reserva BIGINT, @id_regimen BIGINT, @fecha_inicio DATETIME, @fecha_fin DATETIME)
 AS
-UPDATE [MAX_POWER].reserva SET
-id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%modific%'),
-fecha_inicio = @fecha_inicio,
-fecha_fin = @fecha_fin,
-id_regimen = @id_regimen
-WHERE id_reserva = @id_reserva
+	UPDATE [MAX_POWER].reserva SET
+		id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%modific%'),
+		fecha_inicio = @fecha_inicio,
+		fecha_fin = @fecha_fin,
+		id_regimen = @id_regimen
+		WHERE id_reserva = @id_reserva
 GO
 
-create procedure buscar_reserva_por_id(@id_reserva bigint) as
-SELECT rs.id_reserva,RS.FECHA_FIN AS fecha_fin, RS.FECHA_INICIO as fecha_inicio, H.id_hotel as id_hotel_habitacion, H.NOMBRE as nombre_hotel_habitacion ,RG.ID_REGIMEN as id_regimen_habitacion, RG.DESCRIPCION as descripcion_regimen_habitacion
+CREATE PROCEDURE [MAX_POWER].buscar_reserva_por_id(@id_reserva BIGINT) AS
+SELECT rs.id_reserva,RS.FECHA_FIN AS fecha_fin, RS.FECHA_INICIO AS fecha_inicio, H.id_hotel AS id_hotel_habitacion, H.NOMBRE AS nombre_hotel_habitacion ,RG.ID_REGIMEN AS id_regimen_habitacion, RG.DESCRIPCION AS descripcion_regimen_habitacion
 	FROM MAX_POWER.reserva RS, MAX_POWER.Hotel H, MAX_POWER.REGIMEN RG,MAX_POWER.HABITACION HAB, MAX_POWER.Habitacion_reservada HRS
-	WHERE HRS.id_reserva=RS.ID_RESERVA AND HAB.ID_HABITACION=HRS.id_habitacion AND HAB.ID_HOTEL=H.id_hotel AND RG.ID_REGIMEN=RS.ID_REGIMEN and rs.id_reserva=@id_reserva
+	WHERE HRS.id_reserva=RS.ID_RESERVA AND HAB.ID_HABITACION=HRS.id_habitacion AND HAB.ID_HOTEL=H.id_hotel AND RG.ID_REGIMEN=RS.ID_REGIMEN AND rs.id_reserva=@id_reserva
+GO
 
-create procedure consumibles_reserva(@id_reserva bigint) as
-select ph.id_producto as id, p.descripcion as descripcion, H.numero as numero_habitacion, ph.cantidad as cantidad,p.precio as precio_unitario, ph.cantidad*p.precio as precio_total
-from MAX_POWER.producto_x_Habitacion_reservada ph,MAX_POWER.producto p, MAX_POWER.Habitacion_reservada hr, MAX_POWER.habitacion h
-where ph.id_producto=p.id_producto AND hr.id_habitacion_reservada=ph.id_habitacion_reservada and hr.id_habitacion=h.id_habitacion and hr.id_reserva=@id_reserva
+CREATE PROCEDURE [MAX_POWER].consumibles_reserva(@id_reserva BIGINT) AS
+	SELECT ph.id_producto AS id, p.descripcion AS descripcion, H.numero AS numero_habitacion, ph.cantidad AS cantidad,p.precio AS precio_unitario, ph.cantidad*p.precio AS precio_total
+		FROM MAX_POWER.producto_x_Habitacion_reservada ph,MAX_POWER.producto p, MAX_POWER.Habitacion_reservada hr, MAX_POWER.habitacion h
+		WHERE ph.id_producto=p.id_producto AND hr.id_habitacion_reservada=ph.id_habitacion_reservada AND hr.id_habitacion=h.id_habitacion AND hr.id_reserva=@id_reserva
+GO
 
-create function max_power.precio_dia(@id_reserva bigint, @id_regimen bigint) returns decimal as
-begin
-declare @precio decimal 
-select @precio=SUM(th.porcentual*r.precio_base) from max_power.Habitacion_reservada hr, max_power.regimen r, max_power.habitacion h, max_power.tipo_habitacion th
-where @id_reserva=hr.id_reserva and hr.id_habitacion=h.id_habitacion and h.id_tipo_habitacion=th.id_tipo_habitacion and r.id_regimen = @id_regimen
-return @precio
-end
+CREATE FUNCTION [MAX_POWER].precio_dia(@id_reserva BIGINT, @id_regimen BIGINT) RETURNS DECIMAL AS
+BEGIN
+	DECLARE @precio DECIMAL 
+	SELECT @precio=SUM(th.porcentual*r.precio_base) 
+		FROM max_power.Habitacion_reservada hr, max_power.regimen r, max_power.habitacion h, max_power.tipo_habitacion th
+		WHERE @id_reserva=hr.id_reserva AND hr.id_habitacion=h.id_habitacion AND h.id_tipo_habitacion=th.id_tipo_habitacion AND r.id_regimen = @id_regimen
+	RETURN @precio
+END
+GO
 
-create procedure items_factura(@id_factura bigint)as
-select p.id_producto as id, p.descripcion as descripcion, sum(ph.cantidad) as cantidad, p.precio as precio_unitario, sum(ph.cantidad*p.precio) as precio_total
-from MAX_POWER.producto_x_Habitacion_reservada ph,MAX_POWER.producto p
-where ph.id_producto=p.id_producto  and ph.id_factura =@id_factura
-group by p.id_producto,p.descripcion,p.precio
-union
-select 0, 'Dias alojado', DATEDIFF(day,r.fecha_inicio, r.fecha_salida), max_power.precio_dia(r.id_reserva,r.id_regimen), DATEDIFF(day,r.fecha_inicio, r.fecha_salida)*max_power.precio_dia(r.id_reserva,r.id_regimen)
-from Max_power.factura f,max_power.reserva r 
-where f.id_reserva=r.id_reserva and f.id_factura=@id_factura
-union
-select 0, 'Dias no alojado', DATEDIFF(day,r.fecha_salida, r.fecha_fin), max_power.precio_dia(r.id_reserva,r.id_regimen), DATEDIFF(day,r.fecha_salida, r.fecha_fin)*max_power.precio_dia(r.id_reserva,r.id_regimen)
-from Max_power.factura f,max_power.reserva r 
-where f.id_reserva=r.id_reserva and f.id_factura=@id_factura
+CREATE PROCEDURE [MAX_POWER].items_factura(@id_factura BIGINT)AS
+SELECT p.id_producto AS id, p.descripcion AS descripcion, SUM(ph.cantidad) AS cantidad, p.precio AS precio_unitario, SUM(ph.cantidad*p.precio) AS precio_total
+	FROM MAX_POWER.producto_x_Habitacion_reservada ph,MAX_POWER.producto p
+	WHERE ph.id_producto=p.id_producto  AND ph.id_factura =@id_factura
+	group by p.id_producto,p.descripcion,p.precio
+UNION
+SELECT 0, 'Dias alojado', DATEDIFF(day,r.fecha_inicio, r.fecha_salida), max_power.precio_dia(r.id_reserva,r.id_regimen), DATEDIFF(day,r.fecha_inicio, r.fecha_salida)*max_power.precio_dia(r.id_reserva,r.id_regimen)
+	FROM Max_power.factura f,max_power.reserva r 
+	WHERE f.id_reserva=r.id_reserva AND f.id_factura=@id_factura
+UNION
+	SELECT 0, 'Dias no alojado', DATEDIFF(day,r.fecha_salida, r.fecha_fin), max_power.precio_dia(r.id_reserva,r.id_regimen), DATEDIFF(day,r.fecha_salida, r.fecha_fin)*max_power.precio_dia(r.id_reserva,r.id_regimen)
+	FROM Max_power.factura f,max_power.reserva r 
+WHERE f.id_reserva=r.id_reserva AND f.id_factura=@id_factura
+GO
 
-create procedure max_power.tiene_all_inclusive(@id_reserva)as
-begin
-declare @regimen varchar(50)
-select @regimen=rg.descripcion from max_power.regimen rg, max_power.reserva rs
-where rs.id_reserva=@id_reserva and rg.id_regimen=rs.Id_regimen
-if(@regimen like '%all%inclusive%')
-	return 1
-else 
-	return 0
-end
+CREATE PROCEDURE [MAX_POWER].tiene_all_inclusive(@id_reserva BIGINT)AS
+BEGIN
+	DECLARE @regimen VARCHAR(50)
+	SELECT @regimen=rg.descripcion FROM max_power.regimen rg, max_power.reserva rs
+		WHERE rs.id_reserva=@id_reserva AND rg.id_regimen=rs.Id_regimen
+	IF(@regimen like '%all%inclusive%')
+		RETURN (1)
+	ELSE 
+		RETURN (0)
+END
+GO
 
 
 
-
-print 'Finalizo la importacion de SP propios de la aplicacion.'
+PRINT 'Finalizo la importacion de SP propios de la aplicacion.'
 
