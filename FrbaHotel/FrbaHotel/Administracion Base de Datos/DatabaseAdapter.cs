@@ -12,7 +12,7 @@ namespace FrbaHotel.Administracion_Base_de_Datos
 {
     class DatabaseAdapter //objeto que hace de interfaz con la base de datos
     {
-        private static Dictionary<int, ExcepcionFrbaHoteles> excepciones;
+        private static Dictionary<int, ExcepcionFrbaHoteles> excepciones = new Dictionary<int,ExcepcionFrbaHoteles>();
 
         public static Dictionary<int, ExcepcionFrbaHoteles> Excepciones
         {
@@ -111,7 +111,7 @@ namespace FrbaHotel.Administracion_Base_de_Datos
             }
             catch (Exception)
             {
-                return -1;
+                throw new Exception("Problem when calling SP");
             }
 
             finally
@@ -344,16 +344,16 @@ namespace FrbaHotel.Administracion_Base_de_Datos
             }
         }
 
-        public static int getIdUltimaInsercion()
+        public static int getIdUltimaInsercion(string tabla)
         {
-            return ejecutarProcedureWithReturnValue("id_ultima_insercion");
+            return ejecutarProcedureWithReturnValue("id_ultima_insercion","MAX_POWER."+tabla);
         }
 
         public static void insertarDatosEnTabla(string tabla, params object[] valores)
         {
 
             int error = 0;
-            //TODO error = ejecutarProcedureWithReturnValue("insertar_" + tabla, valores);
+            error = ejecutarProcedureWithReturnValue("insertar_" + tabla, valores);
             CheckExcepcionPara(error);
         }
 

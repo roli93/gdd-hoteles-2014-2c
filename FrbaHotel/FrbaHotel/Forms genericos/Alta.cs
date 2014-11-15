@@ -78,16 +78,23 @@ namespace FrbaHotel.Forms_genericos
             }
         }
 
-        public void ValidarVacios(string[] nombresCampos, object[] campos)
+        public void ValidarVaciosYLongitud(string[] nombresCampos, object[] campos)
         {
             int i;
-            for (i = 0; i < campos.Length;i++ )
-                if (campos[i]==null)
-                    errorMessage += ("El campo "+nombresCampos[i] + " no ha sido completado\n");
-                else if(campos[i].GetType()==typeof(string))
-                    if(campos[i].ToString()=="")
-                        errorMessage += ("El campo "+nombresCampos[i] + " no ha sido completado\n");
-
+            for (i = 0; i < campos.Length; i++)
+            {
+                if (campos[i] == null)
+                {
+                    errorMessage += ("El campo " + nombresCampos[i] + " no ha sido completado\n");
+                }
+                else if (campos[i].GetType() == typeof(string))
+                {
+                    if (campos[i].ToString() == "")
+                        errorMessage += ("El campo " + nombresCampos[i] + " no ha sido completado\n");
+                    else if (campos[i].ToString().Length > 35)
+                        errorMessage += ("El campo " + nombresCampos[i] + " es demasiado largo\n");
+                }
+            }
         }
 
         public void ValidarCollecionVacia<T>(string nombreCampo, List<T> campo)

@@ -24,17 +24,14 @@ namespace FrbaHotel
         {
             get
             {
-                /*DataTable elementos = DatabaseAdapter.traerDataTable("obtener_funcionalidades", id);
+                DataTable elementos = DatabaseAdapter.traerDataTable("obtener_funcionalidades", Id);
                 List<Funcionalidad> funcionalidades = new List<Funcionalidad>();
 
                 foreach (DataRow elemento in elementos.Rows)
                 {
-                    funcionalidades.Add(new Funcionalidad((int)elemento["id_funcionalidad"], (string)elemento["descripcion"]));
+                    funcionalidades.Add(new Funcionalidad(Convert.ToInt32(elemento["id_funcionalidad"]), elemento["descripcion"].ToString()));
                 }
-                return funcionalidades;*/
-                if(Id==0)
-                    return new List<Funcionalidad> { new Funcionalidad(1, "Reserva Hotelera") };
-                return new List<Funcionalidad> { new Funcionalidad(1, "Reservas"), new Funcionalidad(2, "Echar gente"), new Funcionalidad(5, "ABM clientes"), new Funcionalidad(6, "ABM habitaciones"), new Funcionalidad(7, "ABM de Rol"), new Funcionalidad(8, "ABM de Hotel"), new Funcionalidad(9, "Listados Estadisticos") };
+                return funcionalidades;
             }
         }
 

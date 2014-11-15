@@ -14,7 +14,7 @@ namespace FrbaHotel.Homes
         public static int registrarReserva(Regimen regimen, DateTime fechaInicio, DateTime fechaFin, List<Habitacion> habitaciones, int IdCliente)
         {
             DatabaseAdapter.insertarDatosEnTabla("reserva", regimen.Id,fechaInicio,fechaFin, IdCliente,DateTime.Now);
-            int id = DatabaseAdapter.getIdUltimaInsercion();
+            int id = DatabaseAdapter.getIdUltimaInsercion("Reserva");
             agregarElementos("habitacion_reservada", id, IdsDe<Habitacion>(habitaciones));
             /*TODO SACAR*/id = 238423879;
             return id;

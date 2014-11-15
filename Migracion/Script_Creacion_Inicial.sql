@@ -48,13 +48,13 @@ GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Habitacion_reservada_X_Cliente_Habitacion_reservada]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion_reservada_X_Cliente]'))
 ALTER TABLE [MAX_POWER].[Habitacion_reservada_X_Cliente] DROP CONSTRAINT [FK_Habitacion_reservada_X_Cliente_Habitacion_reservada]
 GO
-/****** Object:  ForeignKey [FK_Hotel_X_Empleado_Hotel]    Script Date: 11/11/2014 21:15:56 ******/
-IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Empleado_Hotel]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Empleado]'))
-ALTER TABLE [MAX_POWER].[Hotel_X_Empleado] DROP CONSTRAINT [FK_Hotel_X_Empleado_Hotel]
+/****** Object:  ForeignKey [FK_Hotel_X_Usuario_Hotel]    Script Date: 11/11/2014 21:15:56 ******/
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Usuario_Hotel]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Usuario]'))
+ALTER TABLE [MAX_POWER].[Hotel_X_Usuario] DROP CONSTRAINT [FK_Hotel_X_Usuario_Hotel]
 GO
-/****** Object:  ForeignKey [FK_Hotel_X_Empleado_Usuario]    Script Date: 11/11/2014 21:15:56 ******/
-IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Empleado_Usuario]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Empleado]'))
-ALTER TABLE [MAX_POWER].[Hotel_X_Empleado] DROP CONSTRAINT [FK_Hotel_X_Empleado_Usuario]
+/****** Object:  ForeignKey [FK_Hotel_X_Usuario_Usuario]    Script Date: 11/11/2014 21:15:56 ******/
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Usuario_Usuario]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Usuario]'))
+ALTER TABLE [MAX_POWER].[Hotel_X_Usuario] DROP CONSTRAINT [FK_Hotel_X_Usuario_Usuario]
 GO
 /****** Object:  ForeignKey [FK_Hotel_Paises]    Script Date: 11/11/2014 21:15:56 ******/
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_Paises]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel]'))
@@ -209,15 +209,15 @@ GO
 IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[reserva]') AND type IN (N'U'))
 DROP TABLE [MAX_POWER].[reserva]
 GO
-/****** Object:  Table [MAX_POWER].[Hotel_X_Empleado]    Script Date: 11/11/2014 21:15:56 ******/
-IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Empleado_Hotel]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Empleado]'))
-ALTER TABLE [MAX_POWER].[Hotel_X_Empleado] DROP CONSTRAINT [FK_Hotel_X_Empleado_Hotel]
+/****** Object:  Table [MAX_POWER].[Hotel_X_Usuario]    Script Date: 11/11/2014 21:15:56 ******/
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Usuario_Hotel]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Usuario]'))
+ALTER TABLE [MAX_POWER].[Hotel_X_Usuario] DROP CONSTRAINT [FK_Hotel_X_Usuario_Hotel]
 GO
-IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Empleado_Usuario]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Empleado]'))
-ALTER TABLE [MAX_POWER].[Hotel_X_Empleado] DROP CONSTRAINT [FK_Hotel_X_Empleado_Usuario]
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Usuario_Usuario]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Usuario]'))
+ALTER TABLE [MAX_POWER].[Hotel_X_Usuario] DROP CONSTRAINT [FK_Hotel_X_Usuario_Usuario]
 GO
-IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Empleado]') AND type IN (N'U'))
-DROP TABLE [MAX_POWER].[Hotel_X_Empleado]
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Usuario]') AND type IN (N'U'))
+DROP TABLE [MAX_POWER].[Hotel_X_Usuario]
 GO
 /****** Object:  Table [MAX_POWER].[Usuario_X_Rol]    Script Date: 11/11/2014 21:15:57 ******/
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Usuario_X_Rol_Roles]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Usuario_X_Rol]'))
@@ -655,7 +655,7 @@ CREATE TABLE [MAX_POWER].[Usuario](
 	[direccion] [VARCHAR](50) NULL,
 	[fecha_nacimiento] [date] NULL,
 	[habilitado] [CHAR](1) NOT NULL,
-	[intentos_fallidos] [INT] NOT NULL,
+	[intentos_fallidos] [INT] NOT NULL DEFAULT 0,
  CONSTRAINT [PK__Usuario__3213E83F21B6055D] PRIMARY KEY CLUSTERED 
 (
 	[id_usuario] ASC
@@ -724,17 +724,17 @@ CREATE TABLE [MAX_POWER].[Usuario_X_Rol](
 ) ON [PRIMARY]
 END
 GO
-/****** Object:  Table [MAX_POWER].[Hotel_X_Empleado]    Script Date: 11/11/2014 21:15:56 ******/
+/****** Object:  Table [MAX_POWER].[Hotel_X_Usuario]    Script Date: 11/11/2014 21:15:56 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
-IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Empleado]') AND type IN (N'U'))
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Usuario]') AND type IN (N'U'))
 BEGIN
-CREATE TABLE [MAX_POWER].[Hotel_X_Empleado](
+CREATE TABLE [MAX_POWER].[Hotel_X_Usuario](
 	[id_usuario] [BIGINT] NOT NULL,
 	[id_hotel] [BIGINT] NOT NULL,
- CONSTRAINT [PK_Hotel_X_Empleado] PRIMARY KEY CLUSTERED 
+ CONSTRAINT [PK_Hotel_X_Usuario] PRIMARY KEY CLUSTERED 
 (
 	[id_usuario] ASC,
 	[id_hotel] ASC
@@ -1006,21 +1006,21 @@ GO
 IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Habitacion_reservada_X_Cliente_Habitacion_reservada]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Habitacion_reservada_X_Cliente]'))
 ALTER TABLE [MAX_POWER].[Habitacion_reservada_X_Cliente] CHECK CONSTRAINT [FK_Habitacion_reservada_X_Cliente_Habitacion_reservada]
 GO
-/****** Object:  ForeignKey [FK_Hotel_X_Empleado_Hotel]    Script Date: 11/11/2014 21:15:56 ******/
-IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Empleado_Hotel]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Empleado]'))
-ALTER TABLE [MAX_POWER].[Hotel_X_Empleado]  WITH CHECK ADD  CONSTRAINT [FK_Hotel_X_Empleado_Hotel] FOREIGN KEY([id_hotel])
+/****** Object:  ForeignKey [FK_Hotel_X_Usuario_Hotel]    Script Date: 11/11/2014 21:15:56 ******/
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Usuario_Hotel]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Usuario]'))
+ALTER TABLE [MAX_POWER].[Hotel_X_Usuario]  WITH CHECK ADD  CONSTRAINT [FK_Hotel_X_Usuario_Hotel] FOREIGN KEY([id_hotel])
 REFERENCES [MAX_POWER].[Hotel] ([id_hotel])
 GO
-IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Empleado_Hotel]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Empleado]'))
-ALTER TABLE [MAX_POWER].[Hotel_X_Empleado] CHECK CONSTRAINT [FK_Hotel_X_Empleado_Hotel]
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Usuario_Hotel]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Usuario]'))
+ALTER TABLE [MAX_POWER].[Hotel_X_Usuario] CHECK CONSTRAINT [FK_Hotel_X_Usuario_Hotel]
 GO
-/****** Object:  ForeignKey [FK_Hotel_X_Empleado_Usuario]    Script Date: 11/11/2014 21:15:56 ******/
-IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Empleado_Usuario]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Empleado]'))
-ALTER TABLE [MAX_POWER].[Hotel_X_Empleado]  WITH CHECK ADD  CONSTRAINT [FK_Hotel_X_Empleado_Usuario] FOREIGN KEY([id_usuario])
+/****** Object:  ForeignKey [FK_Hotel_X_Usuario_Usuario]    Script Date: 11/11/2014 21:15:56 ******/
+IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Usuario_Usuario]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Usuario]'))
+ALTER TABLE [MAX_POWER].[Hotel_X_Usuario]  WITH CHECK ADD  CONSTRAINT [FK_Hotel_X_Usuario_Usuario] FOREIGN KEY([id_usuario])
 REFERENCES [MAX_POWER].[Usuario] ([id_usuario])
 GO
-IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Empleado_Usuario]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Empleado]'))
-ALTER TABLE [MAX_POWER].[Hotel_X_Empleado] CHECK CONSTRAINT [FK_Hotel_X_Empleado_Usuario]
+IF  EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_X_Usuario_Usuario]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel_X_Usuario]'))
+ALTER TABLE [MAX_POWER].[Hotel_X_Usuario] CHECK CONSTRAINT [FK_Hotel_X_Usuario_Usuario]
 GO
 /****** Object:  ForeignKey [FK_Hotel_Paises]    Script Date: 11/11/2014 21:15:56 ******/
 IF NOT EXISTS (SELECT * FROM sys.foreign_keys WHERE object_id = OBJECT_ID(N'[MAX_POWER].[FK_Hotel_Paises]') AND parent_object_id = OBJECT_ID(N'[MAX_POWER].[Hotel]'))
@@ -1669,7 +1669,7 @@ CREATE PROCEDURE [MAX_POWER].roles_disponibles
 AS SELECT * FROM MAX_POWER.Rol WHERE UPPER(habilitado) = 'S'
 GO
 
-CREATE PROCEDURE [MAX_POWER].Hotel_disponibles
+CREATE PROCEDURE [MAX_POWER].Hoteles_disponibles
 AS SELECT * FROM MAX_POWER.Hotel
 GO
 
@@ -1693,9 +1693,9 @@ AS SELECT R.ID_ROL, R.NOMBRE
 	WHERE id_usuario = @id_usuario
 GO
 
-CREATE PROCEDURE [MAX_POWER].obtener_Hotel(@id_usuario BIGINT)
+CREATE PROCEDURE [MAX_POWER].obtener_Hoteles(@id_usuario BIGINT)
 AS SELECT H.nombre,H.id_hotel
-	FROM MAX_POWER.Hotel_X_Empleado HE join MAX_POWER.Hotel H on HE.id_hotel = H.id_hotel
+	FROM MAX_POWER.Hotel_X_Usuario HE join MAX_POWER.Hotel H on HE.id_hotel = H.id_hotel
 	WHERE id_usuario = @id_usuario
 GO
 
@@ -1735,7 +1735,7 @@ GO
 CREATE PROCEDURE [MAX_POWER].insertar_usuario_x_hotel(@id_usuario BIGINT, @id_hotel BIGINT)
 AS BEGIN
 	BEGIN TRY
-		INSERT INTO MAX_POWER.Hotel_X_Empleado (id_usuario, id_hotel) VALUES (@id_usuario, @id_hotel)
+		INSERT INTO MAX_POWER.Hotel_X_Usuario (id_usuario, id_hotel) VALUES (@id_usuario, @id_hotel)
 	END TRY
 	BEGIN CATCH
 		--raiseError
@@ -1746,7 +1746,7 @@ GO
 CREATE PROCEDURE [MAX_POWER].borrar_usuario_x_hotel(@id_usuario BIGINT, @id_hotel BIGINT)
 AS BEGIN
 	BEGIN TRY
-		DELETE FROM MAX_POWER.Hotel_X_Empleado 
+		DELETE FROM MAX_POWER.Hotel_X_Usuario 
 			WHERE id_usuario = @id_usuario
 			AND id_hotel = @id_hotel
 	END TRY
@@ -1770,16 +1770,22 @@ BEGIN
 		RETURN (-2)
 	ELSE
 	BEGIN
-		SELECT @pass_almacenado=pw FROM MAX_POWER.Usuario WHERE Username = @usuario
-		IF(@password!=@pass_almacenado)
-			RETURN (-1)
+		SELECT @intentos_fallidos=intentos_fallidos FROM MAX_POWER.Usuario WHERE Username = @usuario
+		IF(@intentos_fallidos>2)
+			RETURN (-3)
 		ELSE
 		BEGIN
-			SELECT @intentos_fallidos=intentos_fallidos FROM MAX_POWER.Usuario WHERE Username = @usuario
-			IF(@intentos_fallidos>2)
-				RETURN (-3)
+			SELECT @pass_almacenado=pw FROM MAX_POWER.Usuario WHERE Username = @usuario
+			IF(@password!=@pass_almacenado)
+			BEGIN
+				UPDATE MAX_POWER.Usuario SET intentos_fallidos=intentos_fallidos+1 WHERE username=@usuario
+				RETURN (-1)
+			END
 			ELSE
+			BEGIN
+				UPDATE MAX_POWER.Usuario SET intentos_fallidos=0 WHERE username=@usuario
 				RETURN (0);
+			END
 		END
 	END
 END
@@ -1894,19 +1900,20 @@ AS SELECT * FROM [MAX_POWER].Usuario
 		AND UPPER(mail) LIKE UPPER(@email)
 		AND UPPER(username) LIKE UPPER(@username)
 		AND (SELECT id_usuario FROM [MAX_POWER].Usuario_X_Rol WHERE CAST(id_rol AS VARCHAR(50)) LIKE (SELECT CASE WHEN @id_rol = -1 THEN '%' ELSE CAST(@id_rol AS VARCHAR(50)) END)) = id_usuario
-		AND (SELECT id_usuario FROM [MAX_POWER].Hotel_X_Empleado WHERE CAST(id_hotel AS VARCHAR(50)) LIKE (SELECT CASE WHEN @id_hotel = -1 THEN '%' ELSE CAST(@id_hotel AS VARCHAR(50)) END)) = id_usuario
+		AND (SELECT id_usuario FROM [MAX_POWER].Hotel_X_Usuario WHERE CAST(id_hotel AS VARCHAR(50)) LIKE (SELECT CASE WHEN @id_hotel = -1 THEN '%' ELSE CAST(@id_hotel AS VARCHAR(50)) END)) = id_usuario
 GO
 
 CREATE PROCEDURE [MAX_POWER].insertar_usuario(@username VARCHAR(50), @password VARCHAR(50), @nombre VARCHAR(50), @apellido VARCHAR(50), @Id_tipo_dni BIGINT, @dni VARCHAR(50), @mail VARCHAR(50), @telefono VARCHAR(50), @direccion VARCHAR(50), @fechaNacimiento DATETIME)
 AS BEGIN
 	BEGIN TRY
-		INSERT INTO [MAX_POWER].Usuario (username, pw, nombre, apellido, id_tipo_documento, numero_documento, mail, telefono, direccion, fecha_nacimiento) VALUES (@username, @password, @nombre, @apellido, @Id_tipo_dni, @dni, @mail, @telefono, @direccion, @fechaNacimiento)
+		INSERT INTO [MAX_POWER].Usuario (username, pw, nombre, apellido, id_tipo_documento, numero_documento, mail, telefono, direccion, fecha_nacimiento,habilitado,intentos_fallidos) VALUES (@username, @password, @nombre, @apellido, @Id_tipo_dni, @dni, @mail, @telefono, @direccion, @fechaNacimiento,'S',0)
 	END TRY
 	BEGIN CATCH
+		print 'CATCH, @@error=' print @@error
 		IF @@ERROR = 2627
 			RETURN (-4)
+		
 	END CATCH
-	RETURN(0)
 END
 GO
 
@@ -2209,6 +2216,9 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE [MAX_POWER].id_ultima_insercion(@tabla varchar(50)) AS
+RETURN IDENT_CURRENT(@tabla)
+go
 
 
 PRINT 'Finalizo la importacion de SP propios de la aplicacion.'

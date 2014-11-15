@@ -34,6 +34,21 @@ namespace FrbaHotel.Login
         {
             foreach (Control control in secondSet)
                 control.Hide();
+            passTextBox.UseSystemPasswordChar = true;
+            passTextBox.KeyDown += new KeyEventHandler(passTextBox_KeyDown);
+            userTextBox.KeyDown += new KeyEventHandler(userTextBox_KeyDown);
+        }
+
+        void userTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                Execute(iniciarSesion);
+        }
+
+        void passTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.KeyCode==Keys.Enter)
+                Execute(iniciarSesion);
         }
 
 

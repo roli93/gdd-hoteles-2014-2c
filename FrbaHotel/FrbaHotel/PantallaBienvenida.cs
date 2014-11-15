@@ -13,17 +13,18 @@ namespace FrbaHotel
 {
     public partial class PantallaBienvenida : NavegableForm
     {
-        private int codigoGuest;
+        ExcepcionFrbaHoteles exc = new ExcepcionFrbaHoteles("caca");
 
-        public PantallaBienvenida(int codigoGuest):base()
+
+        public PantallaBienvenida():base()
         {
-            this.codigoGuest = codigoGuest;
             InitializeComponent();
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            Sesion.iniciar("Guest", "");
+            Sesion.iniciar("Guest", "Guest");
+            Sesion.Usuario.Rol = Sesion.Usuario.Roles.ElementAt<Rol>(0);//Asigna el único rol del usuario Guest que es Guest :P
             new SeleccionFuncionalidad(this).StandaloneOpen(); ;
         }
 

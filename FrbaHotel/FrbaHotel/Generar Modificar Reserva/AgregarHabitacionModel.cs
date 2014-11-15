@@ -33,7 +33,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         public override void ValidarErroresConcretos()
         {
-            ValidarVacios(new string[] { "Tipo" }, new object[] { tipoHabitacion });
+            ValidarVaciosYLongitud(new string[] { "Tipo" }, new object[] { tipoHabitacion });
         }
 
 

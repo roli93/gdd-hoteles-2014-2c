@@ -12,12 +12,5 @@ namespace FrbaHotel
 {
     public partial class PantallaBienvenida : NavegableForm
     {
-        public void loginHuesped()
-        {
-            Rol rol = new Rol(codigoGuest,"Guest");
-            Usuario huesped = new Usuario(-1, "Guest");
-            huesped.Rol = rol;
-            Sesion.Usuario = huesped;
-        }
     }
 }

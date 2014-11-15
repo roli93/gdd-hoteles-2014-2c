@@ -28,7 +28,7 @@ namespace FrbaHotel.ABM_de_Hotel
         
         public override void ValidarErroresConcretos()
         {
-            ValidarVacios(new string[] { "Nombre","Email","Telefono","Direccion","Estrellas","Pais","Ciudad","Fecha de Creacion" }, new object[] { nombre,email,telefono,direccion,estrellas,pais.Descripcion,ciudad,fechaCreacion });
+            ValidarVaciosYLongitud(new string[] { "Nombre","Email","Telefono","Direccion","Estrellas","Pais","Ciudad","Fecha de Creacion" }, new object[] { nombre,email,telefono,direccion,estrellas,pais.Descripcion,ciudad,fechaCreacion });
         }
     }
 }

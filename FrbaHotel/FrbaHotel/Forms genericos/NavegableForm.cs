@@ -129,6 +129,7 @@ namespace FrbaHotel
             {
                 task();
                 MessageBox.Show(successMessage);
+                Close();
             }
             catch (ExcepcionFrbaHoteles e)
             {

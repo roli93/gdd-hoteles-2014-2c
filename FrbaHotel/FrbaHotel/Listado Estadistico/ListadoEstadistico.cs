@@ -52,7 +52,7 @@ namespace FrbaHotel.Listado_Estadistico
 
         public override void ValidarErroresConcretos()
         {
-            ValidarVacios(new string[] { "Año", "Trimestre" }, new object[] {_anio.Text, _trimestre.SelectedItem });
+            ValidarVaciosYLongitud(new string[] { "Año", "Trimestre" }, new object[] {_anio.Text, _trimestre.SelectedItem });
         }
 
 

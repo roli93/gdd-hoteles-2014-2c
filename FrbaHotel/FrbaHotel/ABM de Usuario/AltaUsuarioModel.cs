@@ -27,7 +27,7 @@ namespace FrbaHotel.ABM_de_Usuario
 
         public override void ValidarErroresConcretos()
         {
-            ValidarVacios(
+            ValidarVaciosYLongitud(
                 new string[]{"Password","Nombre","Apellido","Documento","Mail","Teléfono","Dirección","Nombre de Usuario","Tipo Documento"},
                 new object[]{password, nombre, apellido, nroDocumento, mail, telefono, direccion, username, tipoDni});
             ValidarDoblePassword();

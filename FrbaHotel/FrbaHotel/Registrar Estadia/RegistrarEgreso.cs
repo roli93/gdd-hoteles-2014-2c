@@ -45,7 +45,7 @@ namespace FrbaHotel.Registrar_Estadia
             if (modoPago != null)
             {
                 HomeReservas.facturar(idReserva, dateTimePicker1.Value, modoPago);
-                new Factura(this, DatabaseAdapter.getIdUltimaInsercion()).FinalStandaloneOpen();
+                new Factura(this, DatabaseAdapter.getIdUltimaInsercion("Factura")).FinalStandaloneOpen();
             }
         }
 

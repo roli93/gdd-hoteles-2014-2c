@@ -26,7 +26,7 @@ namespace FrbaHotel.ABM_de_Cliente
 
         public override void ValidarErroresConcretos()
         {
-            ValidarVacios(new string[] { "Nombre", "Apellido", "Número de identidicación", "Mail", "Telefono", "Domicilio", "Localidad", "Tipo de identificación", "Pais", "Fecha de nacimiento" },
+            ValidarVaciosYLongitud(new string[] { "Nombre", "Apellido", "Número de identidicación", "Mail", "Telefono", "Domicilio", "Localidad", "Tipo de identificación", "Pais", "Fecha de nacimiento" },
                           new object[] { nombre, apellido, nroId, mail, telefono, calle, localidad, tipoId, pais, fechaNacimiento });
             ValidarNumericos(nroId, telefono);
         }

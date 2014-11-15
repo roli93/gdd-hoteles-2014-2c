@@ -47,7 +47,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         public override void ValidarErroresConcretos()
         {
-            ValidarVacios(new string[] { "Régimen" }, new object[] { Regimen });
+            ValidarVaciosYLongitud(new string[] { "Régimen" }, new object[] { Regimen });
             ValidarCollecionVacia<Habitacion>("Habitaciones", Habitaciones); 
         }
 

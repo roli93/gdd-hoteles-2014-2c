@@ -44,7 +44,7 @@ namespace FrbaHotel.Registrar_Estadia
 
         public override void ValidarErroresConcretos()
         {
-            ValidarVacios(new string[] { "Método de pago" }, new object[] { comboBox1.SelectedItem });
+            ValidarVaciosYLongitud(new string[] { "Método de pago" }, new object[] { comboBox1.SelectedItem });
         }
 
     }

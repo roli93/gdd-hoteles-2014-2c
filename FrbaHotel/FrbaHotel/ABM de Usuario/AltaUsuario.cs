@@ -96,6 +96,8 @@ namespace FrbaHotel.ABM_de_Usuario
 
         private void button2_Click(object sender, EventArgs e)
         {
+            hoteles = CheckListToList<Hotel>(checkedListBox2);
+            roles = CheckListToList<Rol>(checkedListBox1);
             ExcecuteAndShow(Guardar);
         }
 
@@ -126,12 +128,12 @@ namespace FrbaHotel.ABM_de_Usuario
 
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            roles = CheckListToList<Rol>(checkedListBox1);
+            
         }
 
         private void checkedListBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            hoteles = CheckListToList<Hotel>(checkedListBox2);
+            
         }
 
 

@@ -12,7 +12,7 @@ namespace FrbaHotel.Homes
         public static void registrarUsuario(string username, string password, List<Rol> roles, string nombre, string apellido, TipoDocumento tipoDni, string dni, string mail, string telefono, string direccion, DateTime fechaNacimiento, List<Hotel> hoteles)
         {
             DatabaseAdapter.insertarDatosEnTabla("usuario", username, password, nombre, apellido, tipoDni.Id, dni, mail, telefono, direccion, fechaNacimiento);
-            int id = idParaUsername(username);
+            int id = DatabaseAdapter.getIdUltimaInsercion("Usuario");
             agregarElementos("usuario_x_rol",id,IdsDe<Rol>(roles));
             agregarElementos("usuario_x_hotel", id, IdsDe<Hotel>(hoteles));
         }

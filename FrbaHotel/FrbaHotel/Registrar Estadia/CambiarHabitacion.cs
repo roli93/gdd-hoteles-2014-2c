@@ -43,7 +43,7 @@ namespace FrbaHotel.Registrar_Estadia
 
         public override void ValidarErroresConcretos()
         {
-            ValidarVacios(new string[] { "Numero" }, new object[] { textBox1.Text });
+            ValidarVaciosYLongitud(new string[] { "Numero" }, new object[] { textBox1.Text });
             ValidarNumericos(textBox1.Text);
         }
 

@@ -28,7 +28,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         {
             if (!HuboErrores())
             {
-                ((GenerarReserva)this.Owner).ClienteId = DatabaseAdapter.getIdUltimaInsercion();
+                ((GenerarReserva)this.Owner).ClienteId = DatabaseAdapter.getIdUltimaInsercion("Cliente");
                 ((GenerarReserva)this.Owner).FinalizarGuardado();
                 Close();
             }

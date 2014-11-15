@@ -24,7 +24,7 @@ namespace FrbaHotel.ABM_de_Habitacion
 
         public override void  ValidarErroresConcretos()
         {
-            ValidarVacios(
+            ValidarVaciosYLongitud(
             new string[]{"Hotel","Piso","Numero","Ubicacion","Tipo","Descripcion"},
                 new object[]{hotel, piso, numero, ubicacion, tipo, descripcion});
  	   //TODO esta validacion no funca bien     ValidarNumericos(new string[]{"Piso","Numero"});

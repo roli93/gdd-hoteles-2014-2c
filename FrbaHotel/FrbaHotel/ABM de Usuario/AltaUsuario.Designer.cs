@@ -123,7 +123,7 @@
             this.groupBox1.Controls.Add(this._password);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(497, 128);
+            this.groupBox1.Size = new System.Drawing.Size(591, 128);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Inicio de Sesión";
@@ -132,9 +132,9 @@
             // checkedListBox2
             // 
             this.checkedListBox2.FormattingEnabled = true;
-            this.checkedListBox2.Location = new System.Drawing.Point(410, 24);
+            this.checkedListBox2.Location = new System.Drawing.Point(450, 24);
             this.checkedListBox2.Name = "checkedListBox2";
-            this.checkedListBox2.Size = new System.Drawing.Size(81, 94);
+            this.checkedListBox2.Size = new System.Drawing.Size(135, 94);
             this.checkedListBox2.TabIndex = 11;
             this.checkedListBox2.SelectedIndexChanged += new System.EventHandler(this.checkedListBox2_SelectedIndexChanged);
             // 
@@ -143,7 +143,7 @@
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(267, 24);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(83, 94);
+            this.checkedListBox1.Size = new System.Drawing.Size(123, 94);
             this.checkedListBox1.TabIndex = 10;
             this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
@@ -161,7 +161,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label12.Location = new System.Drawing.Point(356, 24);
+            this.label12.Location = new System.Drawing.Point(396, 24);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(48, 15);
             this.label12.TabIndex = 25;
@@ -207,7 +207,7 @@
             // 
             this._mail.Location = new System.Drawing.Point(111, 211);
             this._mail.Name = "_mail";
-            this._mail.Size = new System.Drawing.Size(117, 20);
+            this._mail.Size = new System.Drawing.Size(185, 20);
             this._mail.TabIndex = 14;
             this._mail.TextChanged += new System.EventHandler(this.textBox6_TextChanged);
             // 
@@ -225,7 +225,7 @@
             // 
             this._direccion.Location = new System.Drawing.Point(111, 241);
             this._direccion.Name = "_direccion";
-            this._direccion.Size = new System.Drawing.Size(117, 20);
+            this._direccion.Size = new System.Drawing.Size(185, 20);
             this._direccion.TabIndex = 16;
             this._direccion.TextChanged += new System.EventHandler(this.textBox7_TextChanged);
             // 
@@ -233,7 +233,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label8.Location = new System.Drawing.Point(302, 149);
+            this.label8.Location = new System.Drawing.Point(380, 149);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(49, 15);
             this.label8.TabIndex = 17;
@@ -241,7 +241,7 @@
             // 
             // _apellido
             // 
-            this._apellido.Location = new System.Drawing.Point(357, 146);
+            this._apellido.Location = new System.Drawing.Point(435, 146);
             this._apellido.Name = "_apellido";
             this._apellido.Size = new System.Drawing.Size(152, 20);
             this._apellido.TabIndex = 18;
@@ -269,7 +269,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label10.Location = new System.Drawing.Point(238, 214);
+            this.label10.Location = new System.Drawing.Point(316, 214);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(113, 15);
             this.label10.TabIndex = 21;
@@ -277,7 +277,7 @@
             // 
             // _telefono
             // 
-            this._telefono.Location = new System.Drawing.Point(357, 211);
+            this._telefono.Location = new System.Drawing.Point(435, 211);
             this._telefono.Name = "_telefono";
             this._telefono.Size = new System.Drawing.Size(152, 20);
             this._telefono.TabIndex = 22;
@@ -287,7 +287,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label11.Location = new System.Drawing.Point(318, 182);
+            this.label11.Location = new System.Drawing.Point(396, 182);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(33, 15);
             this.label11.TabIndex = 24;
@@ -295,7 +295,7 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(357, 240);
+            this.dateTimePicker1.Location = new System.Drawing.Point(435, 240);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(152, 20);
             this.dateTimePicker1.TabIndex = 37;
@@ -306,7 +306,7 @@
             this.button2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.button2.Image = global::FrbaHotel.Properties.Resources.tilde;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.Location = new System.Drawing.Point(423, 266);
+            this.button2.Location = new System.Drawing.Point(517, 266);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(86, 37);
             this.button2.TabIndex = 36;
@@ -333,7 +333,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.label5.Location = new System.Drawing.Point(286, 244);
+            this.label5.Location = new System.Drawing.Point(364, 244);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(65, 15);
             this.label5.TabIndex = 38;
@@ -342,7 +342,7 @@
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(357, 178);
+            this.comboBox1.Location = new System.Drawing.Point(435, 178);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(152, 21);
             this.comboBox1.TabIndex = 39;
@@ -352,7 +352,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(521, 314);
+            this.ClientSize = new System.Drawing.Size(615, 314);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.dateTimePicker1);

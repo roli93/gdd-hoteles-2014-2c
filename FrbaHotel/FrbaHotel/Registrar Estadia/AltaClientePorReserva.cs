@@ -32,7 +32,7 @@ namespace FrbaHotel.Registrar_Estadia
         {
             if (!HuboErrores())
             {
-                HomeReservas.agregarClienteHabitacion(idHabitacion, DatabaseAdapter.getIdUltimaInsercion());
+                HomeReservas.agregarClienteHabitacion(idHabitacion, DatabaseAdapter.getIdUltimaInsercion("Cliente"));
                 ((RegistrarIngreso)this.Owner).ActualizarGrilla();
                 Close();
             }

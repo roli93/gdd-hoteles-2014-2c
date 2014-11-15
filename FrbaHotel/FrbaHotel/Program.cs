@@ -27,20 +27,25 @@ namespace FrbaHotel
             Application.SetCompatibleTextRenderingDefault(false);
 
             //<<------------------CONFIGURACIONES-------------------
+            //Asociación funcionalidad-vista
             Dictionary<int, SeleccionFuncionalidad.NavegableFormInstanciator> funcionalidadesSistema = new Dictionary<int, SeleccionFuncionalidad.NavegableFormInstanciator>();
-            funcionalidadesSistema.Add(1,(owner) => new AltaUsuario(owner));
-            funcionalidadesSistema.Add(5, (owner) => new ABMClientes(owner));
-            funcionalidadesSistema.Add(6, (owner) => new ABMHabitacion(owner));
-            funcionalidadesSistema.Add(7, (owner) => new ABMRol(owner));
-            funcionalidadesSistema.Add(8, (owner) => new ABMHotel(owner));
-            funcionalidadesSistema.Add(9, (owner) => new ListadoEstadistico(owner));
-
-
+            funcionalidadesSistema.Add(1,(owner) => new ABMRol(owner));
+            funcionalidadesSistema.Add(2, (owner) => new ABMUsuario(owner));
+            funcionalidadesSistema.Add(3, (owner) => new ABMClientes(owner));
+            funcionalidadesSistema.Add(4, (owner) => new ABMHotel(owner));
+            funcionalidadesSistema.Add(5, (owner) => new ABMHabitacion(owner));
+            funcionalidadesSistema.Add(6, (owner) => new ABMReservas(owner));
+            funcionalidadesSistema.Add(7, (owner) => new RegistrarEstadia(owner));
             SeleccionFuncionalidad.FuncionalidadesPosibles= funcionalidadesSistema;
-            // DatabaseAdapter.Excepciones=...
+            //Excepciones globales
+            DatabaseAdapter.Excepciones.Add(-2, new ExcepcionFrbaHoteles("El usuario no existe o fue dado de baja"));
+            DatabaseAdapter.Excepciones.Add(-1, new ExcepcionFrbaHoteles("La contraseña ingresada es incorrecta"));
+            DatabaseAdapter.Excepciones.Add(-3, new ExcepcionFrbaHoteles("Se ha inhabilitado al usuario por realizarse 3 intentos fallidos de login"));
+            DatabaseAdapter.Excepciones.Add(-4, new ExcepcionFrbaHoteles("El nombre de usuario ingresado no se encuentra disponible"));
+
             //------------------CONFIGURACIONES------------------->>
 
-            Application.Run(new PantallaBienvenida(0));
+            Application.Run(new PantallaBienvenida());
 
         }
     }

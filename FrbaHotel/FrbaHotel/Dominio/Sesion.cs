@@ -33,8 +33,7 @@ namespace FrbaHotel
         {
             get
             {
-                //TODO return elementosDisponibles<Rol>((e) => new Rol((int)e["id_rol"], (string)e["descripcion"]), "roles_disponibles");
-                return new List<Rol> { new Rol(1, "admin"), new Rol(2, "recep") };
+                return elementosDisponibles<Rol>((e) => new Rol(Convert.ToInt32(e["id_rol"]), e["nombre"].ToString()), "roles_disponibles");
             }
         }
 
@@ -42,7 +41,7 @@ namespace FrbaHotel
         {
             get
             {
-                 return elementosDisponibles<Hotel>((e) => new Hotel((Convert.ToInt32(e["id"])), e["nombre"].ToString()), "hoteles_disponibles");
+                 return elementosDisponibles<Hotel>((e) => new Hotel((Convert.ToInt32(e["id_hotel"])), e["nombre"].ToString()), "hoteles_disponibles");
                 
             }
         }
@@ -161,22 +160,12 @@ namespace FrbaHotel
                 
         public static void iniciar(string username, string password)
         {
+            int error = 0;
+            error = DatabaseAdapter.ejecutarProcedureWithReturnValue("chequear_login", username, password);
+            DataTable tablaUsuario = DatabaseAdapter.traerDataTable("usuario_para_login", username, password);
+            DatabaseAdapter.CheckExcepcionPara(error);
 
-            if (username.Equals("Guest"))
-            {
-                Sesion.Usuario = new Usuario(-1, "Guest");
-                Sesion.Usuario.Rol = new Rol(-1/*TODO id guest*/, "Guest");
-            }
-            else
-            {
-                /*int error=0;
-                DataTable tablaUsuario = DatabaseAdapter.traerDataTable("login", username, password,error);
-                DatabaseAdapter.CheckExcepcionPara(error);
-
-                Sesion.Usuario = new Usuario((int)tablaUsuario.Rows[0]["id_usuario"],(string)tablaUsuario.Rows[0]["username"]);
-                */
-                Sesion.Usuario = new Usuario(0, (string)"pepe");
-            }
+            Sesion.Usuario = new Usuario(Convert.ToInt32(tablaUsuario.Rows[0]["id_usuario"]),tablaUsuario.Rows[0]["username"].ToString());
         }
     }
 }
