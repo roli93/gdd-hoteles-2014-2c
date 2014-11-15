@@ -49,5 +49,10 @@ namespace FrbaHotel.ABM_de_Usuario
                 box.SetItemChecked(count, true);
             }
         }
+
+        private void _direccion_TextChanged(object sender, EventArgs e)
+        {
+            direccion = _direccion.Text;
+        }
     }
 }

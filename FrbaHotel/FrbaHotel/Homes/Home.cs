@@ -29,5 +29,23 @@ namespace FrbaHotel.Homes
         {
             return entidades.Cast<Entidad>().ToList().ConvertAll(entidad => entidad.Id);
         }
+
+        public static string like(string patron)
+        {
+            if (patron == null)
+                return "%";
+            else if (patron.Equals(""))
+                return "%";
+            else
+                return patron;
+        }
+
+        public static int idDe(Entidad entidad)
+        {
+            if (entidad != null)
+                return entidad.Id;
+            else
+                return -1;
+        }
     }
 }

@@ -361,7 +361,7 @@ namespace FrbaHotel.Administracion_Base_de_Datos
         {
 
             int error = 0;
-            //TODO error = ejecutarProcedureWithReturnValue("borrar_" + tabla, valores);
+            error = ejecutarProcedureWithReturnValue("borrar_" + tabla, valores);
             CheckExcepcionPara(error);
         }
 
@@ -369,7 +369,7 @@ namespace FrbaHotel.Administracion_Base_de_Datos
         {
 
             int error = 0;
-            //TODO error = ejecutarProcedureWithReturnValue("actualizar_" + tabla, valores);
+            error = ejecutarProcedureWithReturnValue("actualizar_" + tabla, valores);
             CheckExcepcionPara(error);
         }
 

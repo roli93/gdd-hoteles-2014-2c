@@ -1746,7 +1746,7 @@ GO
 CREATE PROCEDURE [MAX_POWER].borrar_usuario_x_hotel(@id_usuario BIGINT, @id_hotel BIGINT)
 AS BEGIN
 	BEGIN TRY
-		DELETE FROM MAX_POWER.Hotel_X_Usuario 
+		DELETE FROM MAX_POWER.Hotel_X_Empleado
 			WHERE id_usuario = @id_usuario
 			AND id_hotel = @id_hotel
 	END TRY
@@ -1893,14 +1893,18 @@ AS SELECT TOP (@CANTIDAD) * FROM habitacion WHERE id_hotel=@id_hotel
 												AND MAX_POWER.habitacion_libre(id_habitacion,	@fecha_inicio,@fecha_fin)=1
 GO
 												
-CREATE PROCEDURE [MAX_POWER].buscar_Usuario(@nombre VARCHAR(50), @apellido VARCHAR(50), @email VARCHAR(50), @username VARCHAR(50), @id_rol BIGINT, @id_hotel BIGINT)
-AS SELECT * FROM [MAX_POWER].Usuario 
-	WHERE UPPER(nombre) LIKE UPPER(@nombre)
+CREATE PROCEDURE [MAX_POWER].buscar_Usuarios(@nombre VARCHAR(50), @apellido VARCHAR(50), @email VARCHAR(50), @username VARCHAR(50), @id_rol BIGINT, @id_hotel BIGINT)
+AS SELECT distinct U.id_usuario as ID, username,Nombre,apellido,numero_documento,mail,direccion 
+	FROM [MAX_POWER].Usuario U 
+		join MAX_POWER.Usuario_X_Rol UR on UR.id_usuario=U.id_usuario 
+		join MAX_POWER.Hotel_X_Empleado UH on U.id_usuario=UH.id_usuario
+	WHERE U.habilitado LIKE 'S'
+		AND	UPPER(nombre) LIKE UPPER(@nombre)
 		AND UPPER(apellido) LIKE UPPER(@apellido)
 		AND UPPER(mail) LIKE UPPER(@email)
 		AND UPPER(username) LIKE UPPER(@username)
-		AND (SELECT id_usuario FROM [MAX_POWER].Usuario_X_Rol WHERE CAST(id_rol AS VARCHAR(50)) LIKE (SELECT CASE WHEN @id_rol = -1 THEN '%' ELSE CAST(@id_rol AS VARCHAR(50)) END)) = id_usuario
-		AND (SELECT id_usuario FROM [MAX_POWER].Hotel_X_Usuario WHERE CAST(id_hotel AS VARCHAR(50)) LIKE (SELECT CASE WHEN @id_hotel = -1 THEN '%' ELSE CAST(@id_hotel AS VARCHAR(50)) END)) = id_usuario
+		AND UR.id_rol like (SELECT CASE WHEN  @id_rol= -1 THEN '%' ELSE CAST(@id_rol AS VARCHAR(5)) END)
+		AND UH.id_hotel like (SELECT CASE WHEN @id_hotel = -1 THEN '%' ELSE CAST(@id_hotel AS VARCHAR(5)) END)
 GO
 
 CREATE PROCEDURE [MAX_POWER].insertar_usuario(@username VARCHAR(50), @password VARCHAR(50), @nombre VARCHAR(50), @apellido VARCHAR(50), @Id_tipo_dni BIGINT, @dni VARCHAR(50), @mail VARCHAR(50), @telefono VARCHAR(50), @direccion VARCHAR(50), @fechaNacimiento DATETIME)
@@ -2218,8 +2222,7 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].id_ultima_insercion(@tabla varchar(50)) AS
 RETURN IDENT_CURRENT(@tabla)
-go
-
+GO
 
 PRINT 'Finalizo la importacion de SP propios de la aplicacion.'
 

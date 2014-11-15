@@ -29,12 +29,11 @@ namespace FrbaHotel.ABM_de_Usuario
         {
             DataGridViewCellCollection celdas = grilla.Rows[e.RowIndex].Cells;
             int aModificar = Convert.ToInt32(celdas["ID"].Value);
-            string nombre = celdas["nombre"].Value.ToString();
-            string apellido = celdas["apellido"].Value.ToString();
-            if (MessageBox.Show("¿Realmente desea dar de baja a "+nombre +" "+apellido+"?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MessageBox.Show("¿Realmente desea dar de baja a "+celdas["nombre"].Value.ToString() +" "+celdas["apellido"].Value.ToString()+"?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 HomeUsuarios.bajaLogica(aModificar);
-                cargarGrilla(grilla, usuarios);
+                MessageBox.Show("La baja fue efectuada con éxito");
+                cargarGrilla(grilla, HomeUsuarios.buscarUsuarios(nombre, apellido, email, username, rol, hotel));
             }
         }
 
