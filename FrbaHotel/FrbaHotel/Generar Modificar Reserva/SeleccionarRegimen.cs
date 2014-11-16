@@ -42,7 +42,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         public override void gridClickAction(DataGridViewCellCollection celdas)
         {
-            generarReserva.CambiarRegimen(new Regimen(Convert.ToInt32(celdas["ID"].Value), celdas["descripcion"].Value.ToString()));
+            generarReserva.CambiarRegimen(new Regimen(Convert.ToInt32(celdas["ID"].Value), celdas["descripción"].Value.ToString()));
             Close();
         }
 

@@ -10,58 +10,42 @@ namespace FrbaHotel.Homes
 {
     public class HomeClientes:Home
     {
-        public static void registrarCliente(string nombre, string apellido, TipoDocumento tipoId, string nroId, string mail, string telefono, string calle,string localidad, DateTime fechaNacimiento, Pais pais)
+        public static void registrarCliente(string nombre, string apellido, TipoDocumento tipoId, string nroId, string mail, string telefono, string calle,string altura, string piso, string depto,string localidad, DateTime fechaNacimiento, Pais pais)
         {
-            DatabaseAdapter.insertarDatosEnTabla("cliente", nombre, apellido, tipoId.Id, nroId, mail, telefono, calle, localidad, fechaNacimiento,true);
+            DatabaseAdapter.insertarDatosEnTabla("cliente", nombre, apellido, tipoId.Id, nroId, mail, telefono, calle,altura,piso,depto, localidad, fechaNacimiento,pais.Id);
         }
 
         public static DataTable buscarClientes(string nombre, string apellido, string email, string nroId, TipoDocumento tipoId )
-        {/*TODO
-            return DatabaseAdapter.traerDataTable("buscar_clientes", nombre, apellido, email, nroId, tipoId.Id);
-          */
-            DataTable ej = new DataTable();
-            ej.Clear();
-            ej.Columns.Add("Nombre");
-            ej.Columns.Add("ID");
-            ej.Columns.Add("Edad");
-            ej.Columns.Add("apellido");
-            ej.Rows.Add(new object[] { "Juan", 1, 23, "Perez" });
-            return ej;
+        {
+            return DatabaseAdapter.traerDataTable("buscar_clientes", like(nombre), like(apellido), like(email), like(nroId), idDe(tipoId));
         }
 
-        public static void buscarPorId(int id, out  string nombre, out  string apellido, out  TipoDocumento tipoId, out  string nroId, out  string mail, out  string telefono, out  string calle, out string localidad, out DateTime fechaNacimiento,out Pais pais, out bool habilitado)
-        {/*TODO
-            DataRow usuario = DatabaseAdapter.traerDataTable("buscar_cliente_por_id", id).Rows[0];
+        public static void buscarPorId(int id, out  string nombre, out  string apellido, out  TipoDocumento tipoId, out  string nroId, out  string mail, out  string telefono, out  string calle,out string altura,out string piso, out string depto, out string localidad, out DateTime fechaNacimiento,out Pais pais, out bool habilitado)
+        {
+            DataRow cliente = DatabaseAdapter.traerDataTable("buscar_cliente_por_id", id).Rows[0];
             nombre = cliente["nombre"].ToString();
             apellido = cliente["apellido"].ToString();
-            nroId = cliente["numero_documento"].ToString();
+            nroId = cliente["numero_identificacion"].ToString();
             mail = cliente["mail"].ToString();
-            calle = cliente["direccion"].ToString();
+            calle = cliente["calle"].ToString();
+            altura = cliente["altura"].ToString();
+            piso = cliente["piso"].ToString();
+            depto = cliente["departamento"].ToString();
             telefono = cliente["telefono"].ToString();
             fechaNacimiento = Convert.ToDateTime(cliente["fecha_nacimiento"]);
             localidad = cliente["localidad"].ToString();
-            habilitado = Convert.ToBoolean(cliente["habilitado"]);
+            if (cliente["habilitado"].ToString().Equals("S"))
+                habilitado = true;
+            else
+                habilitado = false;
             Cliente c = new Cliente(id);
             tipoId = c.TipoId;
-            pais = c.Pais;       */
-
-            nombre = "Juan";
-            apellido = "Perez";
-            nroId = "37777777";
-            mail = "juanLoco@mimail.com";
-            calle = "Avenida Siemrpeviva";
-            localidad = "Esprinfil";
-            telefono = "45556659";
-            fechaNacimiento = new DateTime(1999, 12, 15);
-            habilitado = true;
-            Cliente c = new Cliente(id);
-            tipoId = c.TipoId;
-            pais = c.Pais;
+            pais = c.Pais;       
         }
 
-        public static void actualizarCliente(string nombre, string apellido, string mail, string telefono, string calle, string localidad, DateTime fechaNacimiento, Pais pais, bool habilitado)
+        public static void actualizarCliente(int id, string nombre, string apellido,TipoDocumento tipoId, string nroId, string mail, string telefono, string calle,string altura,string piso,string depto, string localidad, DateTime fechaNacimiento, Pais pais, string habilitado)
         {
-            DatabaseAdapter.actualizarDatosEnTabla("cliente", nombre, apellido, mail, telefono, calle, localidad, fechaNacimiento, habilitado);
+            DatabaseAdapter.actualizarDatosEnTabla("cliente",id, nombre, apellido,tipoId.Id, nroId, mail, telefono, calle,altura, piso,depto, localidad, fechaNacimiento, habilitado);
         }
 
     }

@@ -65,12 +65,13 @@
             this.checkBox1.TabIndex = 58;
             this.checkBox1.Text = "Habilitado";
             this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // ModificarCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 228);
+            this.ClientSize = new System.Drawing.Size(528, 262);
             this.Controls.Add(this.checkBox1);
             this.Name = "ModificarCliente";
             this.Text = "ModificarCliente";

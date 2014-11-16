@@ -109,11 +109,22 @@ namespace FrbaHotel.Administracion_Base_de_Datos
                 comando.ExecuteNonQuery();
                 return (int)comando.Parameters["@RETURN_VALUE"].Value;
             }
-            catch (Exception)
+            catch (InvalidCastException)
             {
                 throw new Exception("Problem when calling SP");
             }
-
+            catch (SqlException)
+            {
+                throw new Exception("Problem when calling SP");
+            }
+            catch (ObjectDisposedException)
+            {
+                throw new Exception("Problem when calling SP");
+            }
+            catch (InvalidOperationException)
+            {
+                throw new Exception("Problem when calling SP");
+            }
             finally
             {
                 if (conexion != null)

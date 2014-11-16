@@ -51,6 +51,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this._altura = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this._piso = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this._depto = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,7 +65,7 @@
             this.button2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.button2.Image = global::FrbaHotel.Properties.Resources.tilde;
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.Location = new System.Drawing.Point(430, 184);
+            this.button2.Location = new System.Drawing.Point(430, 219);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(86, 37);
             this.button2.TabIndex = 38;
@@ -73,7 +79,7 @@
             this.button1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.button1.Image = global::FrbaHotel.Properties.Resources.clean;
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button1.Location = new System.Drawing.Point(12, 184);
+            this.button1.Location = new System.Drawing.Point(12, 219);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(86, 37);
             this.button1.TabIndex = 37;
@@ -185,9 +191,9 @@
             // 
             // _direccion
             // 
-            this._direccion.Location = new System.Drawing.Point(99, 19);
+            this._direccion.Location = new System.Drawing.Point(80, 19);
             this._direccion.Name = "_direccion";
-            this._direccion.Size = new System.Drawing.Size(152, 20);
+            this._direccion.Size = new System.Drawing.Size(171, 20);
             this._direccion.TabIndex = 45;
             this._direccion.TextChanged += new System.EventHandler(this._direccion_TextChanged);
             // 
@@ -238,13 +244,19 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this._depto);
+            this.groupBox1.Controls.Add(this.label12);
+            this.groupBox1.Controls.Add(this._piso);
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this._altura);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this._direccion);
             this.groupBox1.Location = new System.Drawing.Point(12, 130);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(504, 48);
+            this.groupBox1.Size = new System.Drawing.Size(504, 83);
             this.groupBox1.TabIndex = 57;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Dirección";
@@ -273,15 +285,70 @@
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Location = new System.Drawing.Point(39, 22);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(54, 15);
+            this.label1.Size = new System.Drawing.Size(35, 15);
             this.label1.TabIndex = 46;
-            this.label1.Text = "Domicilio:";
+            this.label1.Text = "Calle:";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label4.Location = new System.Drawing.Point(39, 56);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(39, 15);
+            this.label4.TabIndex = 50;
+            this.label4.Text = "Altura:";
+            // 
+            // _altura
+            // 
+            this._altura.Location = new System.Drawing.Point(84, 53);
+            this._altura.Name = "_altura";
+            this._altura.Size = new System.Drawing.Size(88, 20);
+            this._altura.TabIndex = 49;
+            this._altura.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label12.Location = new System.Drawing.Point(214, 56);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(32, 15);
+            this.label12.TabIndex = 52;
+            this.label12.Text = "Piso:";
+            // 
+            // _piso
+            // 
+            this._piso.Location = new System.Drawing.Point(252, 53);
+            this._piso.Name = "_piso";
+            this._piso.Size = new System.Drawing.Size(84, 20);
+            this._piso.TabIndex = 51;
+            this._piso.TextChanged += new System.EventHandler(this._piso_TextChanged);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.label13.Location = new System.Drawing.Point(375, 56);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(44, 15);
+            this.label13.TabIndex = 54;
+            this.label13.Text = "Depto.:";
+            // 
+            // _depto
+            // 
+            this._depto.Location = new System.Drawing.Point(422, 53);
+            this._depto.Name = "_depto";
+            this._depto.Size = new System.Drawing.Size(75, 20);
+            this._depto.TabIndex = 53;
+            this._depto.TextChanged += new System.EventHandler(this._depto_TextChanged);
             // 
             // AltaCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(528, 228);
+            this.ClientSize = new System.Drawing.Size(528, 265);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this._pais);
             this.Controls.Add(this.comboBox1);
@@ -336,6 +403,12 @@
         protected System.Windows.Forms.Label label3;
         protected System.Windows.Forms.TextBox textBox1;
         protected System.Windows.Forms.Label label1;
+        protected System.Windows.Forms.Label label13;
+        protected System.Windows.Forms.TextBox _depto;
+        protected System.Windows.Forms.Label label12;
+        protected System.Windows.Forms.TextBox _piso;
+        protected System.Windows.Forms.Label label4;
+        protected System.Windows.Forms.TextBox _altura;
 
     }
 }

@@ -92,16 +92,7 @@ namespace FrbaHotel.Homes
 
         public static DataTable regimenesParaHotel(Hotel hotel)
         {
-            /*TODO return DatabaseAdapter.traerDataTable("regimenes_dipsonibles", hotel.Id);*/
-            DataTable ej = new DataTable();
-            ej.Clear();
-            ej.Columns.Add("ID");
-            ej.Columns.Add("Descripcion");
-            ej.Columns.Add("Precio ($)");
-            ej.Rows.Add(new object[] {1,"Media pension", 100.40});
-            ej.Rows.Add(new object[] {2, "All inclusive", 500.40 });
-            return ej;
-
+            return DatabaseAdapter.traerDataTable("obtener_regimenes", hotel.Id);
         }
 
         public static void actualizarReserva(int idReserva, Regimen regimen, DateTime fechaInicio, DateTime fechaFin, List<Habitacion> habitacionesNuevas, List<Habitacion>  habitacionesOriginales)

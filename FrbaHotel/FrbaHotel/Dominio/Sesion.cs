@@ -52,8 +52,7 @@ namespace FrbaHotel
             {
                 if (Usuario.esGuest())
                 {
-                    //TODO return elementosDisponibles<Hotel>((e) => new Hotel((int)e["id_hotel"], (string)e["nombre"]), "hoteles_disponibles");
-                    return new List<Hotel> { new Hotel(1, "SuperHote"), new Hotel(2, "HotelFeo"), new Hotel(3, "Hotelucho") };
+                    return HotelesDisponibles;
                 }
                 else
                 {
@@ -68,8 +67,7 @@ namespace FrbaHotel
         {
             get
             {
-                //TODO return elementosDisponibles<TipoDocumento>((e) => new TipoDocumento((int)e["id_tipo_documento"], (string)e["descripcion"]), "documentos_disponibles");
-                return new List<TipoDocumento> { new TipoDocumento(1, "DNI"), new TipoDocumento(2, "LC") };
+                return elementosDisponibles<TipoDocumento>((e) => new TipoDocumento(Convert.ToInt32(e["id_tipo_documento"]), e["descripcion"].ToString()), "documentos_disponibles");
             }
         }
 
@@ -77,8 +75,7 @@ namespace FrbaHotel
         {
             get
             {
-                //TODO return elementosDisponibles<TipoDocumento>((e) => new TipoDocumento((int)e["id_tipo_identificacion"], (string)e["descripcion"]), "identificaciones_disponibles");
-                return new List<TipoDocumento> { new TipoDocumento(1, "DNI"), new TipoDocumento(2, "Pasaporte") };
+                return TiposDocumentoDisponibles;
             }
         }
 
@@ -87,8 +84,7 @@ namespace FrbaHotel
         {
             get
             {
-                //TODO return elementosDisponibles<Funcionalidad>((e) => new Funcionalidad((int)e["id_funcionalidad"], (string)e["descripcion"]), "funcionalidades_disponibles");
-                return new List<Funcionalidad> { new Funcionalidad(1, "Habilitar gente"), new Funcionalidad(2, "Realizar check in"), new Funcionalidad(3, "Reservar") };
+                return elementosDisponibles<Funcionalidad>((e) => new Funcionalidad(Convert.ToInt32(e["id_funcionalidad"]), e["descripcion"].ToString()), "funcionalidades_disponibles");
             }
         }
 
@@ -96,8 +92,7 @@ namespace FrbaHotel
         {
             get
             {
-                //TODO return elementosDisponibles<Pais>((e) => new Pais((int)e["id_pais"], (string)e["descripcion"]), "paises_disponibles");
-                return new List<Pais> { new Pais(1,"Argentina"), new Pais(2,"Brasil"), new Pais(3,"España")};
+                return elementosDisponibles<Pais>((e) => new Pais(Convert.ToInt32(e["id_pais"]), e["nombre"].ToString()), "paises_disponibles");
             }
         }
 
@@ -124,8 +119,7 @@ namespace FrbaHotel
         {
             get
             {
-                //TODO return elementosDisponibles<TipoHabitaion>((e) => new TipoHabitacion(DATOS, "tipos_habitacion_disponibles");
-                return new List<TipoHabitacion> { new TipoHabitacion(1, "KingSize"), new TipoHabitacion(2, "TamanioBanio"), new TipoHabitacion(3, "TamanioStandar") };
+                return elementosDisponibles<TipoHabitacion>((e) => new TipoHabitacion(Convert.ToInt32(e["id_tipo_habitacion"]),e["descripcion"].ToString()), "tipos_habitacion_disponibles");
             }
         }
 

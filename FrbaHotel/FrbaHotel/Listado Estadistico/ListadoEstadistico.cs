@@ -68,7 +68,7 @@ namespace FrbaHotel.Listado_Estadistico
                 MessageBox.Show(e.Message, "Error");
                 errorMessage += "  ";
             }
-            catch (SystemException e)
+            catch (SystemException)
             {
                 MessageBox.Show("Ha ocurrido un error desconocido. Estamos trabajando para solucionarlo");
                 errorMessage += "  ";

@@ -593,6 +593,7 @@ CREATE TABLE [MAX_POWER].[Cliente](
 	[localidad] [VARCHAR](50) NULL,
 	[id_pais] [BIGINT] NULL,
 	[habilitado] [CHAR](1) NOT NULL,
+	CONSTRAINT id_unico UNIQUE(id_tipo_identificacion,numero_identificacion),
  CONSTRAINT [PK__Cliente__3213E83F5EBF139D] PRIMARY KEY CLUSTERED 
 (
 	[id_cliente] ASC
@@ -1395,7 +1396,7 @@ AS INSERT INTO MAX_POWER.Cliente (numero_identificacion, Apellido, Nombre, fecha
 						Calle, Altura, Piso, Departamento, id_pais, Habilitado)
 		SELECT pasaporte, Apellido, Nombre, Nacimiento, Cliente_Mail, 
 						Calle, Altura, Piso, Departamento, MAX_POWER.buscar_ID_Nacionalidad(Nacionalidad) AS id_pais, 
-						'T' AS Habilitado
+						'S' AS Habilitado
 				FROM MAX_POWER.V_Clientes
 GO
 
@@ -1428,7 +1429,7 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].IMP_Nacionalidad
 AS INSERT INTO MAX_POWER.Pais (nombre)
-		SELECT cliente_nacionalidad 
+		SELECT CASE WHEN cliente_nacionalidad='ARGENTINO' THEN 'Argentina' ELSE cliente_nacionalidad END
 				FROM MAX_POWER.V_nacionalidad
 GO
 
@@ -1439,7 +1440,7 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].IMP_Regimen
 AS INSERT INTO MAX_POWER.Regimen (Descripcion, precio_base, habilitado)
-		SELECT Descripcion, Precio, 'T' AS habilitado
+		SELECT Descripcion, Precio, 'S' AS habilitado
 			FROM MAX_POWER.v_Regimen
 GO
 
@@ -1746,7 +1747,7 @@ GO
 CREATE PROCEDURE [MAX_POWER].borrar_usuario_x_hotel(@id_usuario BIGINT, @id_hotel BIGINT)
 AS BEGIN
 	BEGIN TRY
-		DELETE FROM MAX_POWER.Hotel_X_Empleado
+		DELETE FROM MAX_POWER.Hotel_X_Usuario
 			WHERE id_usuario = @id_usuario
 			AND id_hotel = @id_hotel
 	END TRY
@@ -1797,14 +1798,16 @@ AS
 	SELECT * FROM MAX_POWER.Usuario WHERE Username = @usuario AND UPPER(habilitado)='S'
 GO
 
-
-CREATE PROCEDURE [MAX_POWER].buscar_clientes(@nombre VARCHAR(50), @apellido VARCHAR(50), @email VARCHAR(50), @nroId AS BIGINT, @Id_tipo_identificación AS BIGINT)
-AS SELECT * FROM MAX_POWER.Cliente 
-	WHERE UPPER(nombre) LIKE UPPER(@nombre)
+CREATE PROCEDURE [MAX_POWER].buscar_clientes(@nombre VARCHAR(50), @apellido VARCHAR(50), @email VARCHAR(50), @nroId VARCHAR(50), @Id_tipo_identificacion BIGINT)
+AS SELECT DISTINCT C.id_cliente as ID,nombre,apellido,mail,descripcion,numero_identificacion
+	FROM MAX_POWER.Cliente C
+		JOIN MAX_POWER.Tipo_documento D ON C.id_tipo_identificacion=D.id_tipo_documento
+	WHERE habilitado='S'
+		AND	UPPER(nombre) LIKE UPPER(@nombre)
 		AND UPPER(apellido) LIKE UPPER(@apellido)
 		AND UPPER(mail) LIKE UPPER(@email)
-		AND CAST(numero_identificacion AS VARCHAR(50)) LIKE (SELECT CASE WHEN @nroId = -1 THEN '%' ELSE CAST(@nroId AS VARCHAR(50)) END)
-		AND CAST(id_tipo_identificacion AS VARCHAR(50)) like (SELECT CASE WHEN @Id_tipo_identificación = -1 THEN '%' ELSE CAST(@Id_tipo_identificación AS VARCHAR(50)) END )
+		AND numero_identificacion LIKE @nroId 
+		AND id_tipo_identificacion LIKE (SELECT CASE WHEN @Id_tipo_identificacion = -1 THEN '%' ELSE CAST(@Id_tipo_identificacion AS VARCHAR(5)) END )
 GO
 
 CREATE PROCEDURE [MAX_POWER].buscar_habitacion_por_id(@id_habitacion BIGINT)
@@ -1831,6 +1834,24 @@ CREATE PROCEDURE [MAX_POWER].obtener_habitacion(@id_reserva BIGINT)
 AS SELECT DISTINCT H.id_habitacion, H.id_tipo_habitacion, H.descripcion
 	FROM MAX_POWER.Habitacion_reservada HR join MAX_POWER.Habitacion H on H.id_habitacion = HR.id_habitacion
 	WHERE HR.id_reserva = @id_reserva
+GO
+
+CREATE PROCEDURE [MAX_POWER].obtener_documento(@id_usuario BIGINT)
+AS SELECT T.id_tipo_documento, T.descripcion
+	FROM Usuario U JOIN Tipo_documento T ON U.id_tipo_documento=T.id_tipo_documento
+	WHERE U.id_usuario=@id_usuario
+GO
+
+CREATE PROCEDURE [MAX_POWER].obtener_identificacion(@id_cliente BIGINT)
+AS SELECT T.id_tipo_documento as id_tipo_identificacion,T.descripcion
+	FROM Cliente C JOIN Tipo_documento T ON T.id_tipo_documento=C.id_tipo_identificacion
+	WHERE C.id_cliente=@id_cliente
+GO
+
+CREATE PROCEDURE [MAX_POWER].obtener_pais_cliente(@id_cliente BIGINT)
+AS SELECT P.id_pais,P.nombre
+	FROM Cliente C JOIN Pais P ON P.id_pais=C.id_pais
+	WHERE C.id_cliente=@id_cliente
 GO
 
 CREATE PROCEDURE [MAX_POWER].cancelar_reserva_no_show(@id_reserva BIGINT)
@@ -1897,7 +1918,7 @@ CREATE PROCEDURE [MAX_POWER].buscar_Usuarios(@nombre VARCHAR(50), @apellido VARC
 AS SELECT distinct U.id_usuario as ID, username,Nombre,apellido,numero_documento,mail,direccion 
 	FROM [MAX_POWER].Usuario U 
 		join MAX_POWER.Usuario_X_Rol UR on UR.id_usuario=U.id_usuario 
-		join MAX_POWER.Hotel_X_Empleado UH on U.id_usuario=UH.id_usuario
+		join MAX_POWER.Hotel_X_Usuario UH on U.id_usuario=UH.id_usuario
 	WHERE U.habilitado LIKE 'S'
 		AND	UPPER(nombre) LIKE UPPER(@nombre)
 		AND UPPER(apellido) LIKE UPPER(@apellido)
@@ -1945,23 +1966,24 @@ AS BEGIN
 END
 GO
 
-CREATE PROCEDURE [MAX_POWER].insertar_cliente(@nombre VARCHAR(50), @apellido VARCHAR(50), @id_tipo_identificacion BIGINT, @nroId BIGINT, @mail VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50), @localidad VARCHAR(50), @fechaNacimiento DATETIME)
+CREATE PROCEDURE [MAX_POWER].insertar_cliente(@nombre VARCHAR(50), @apellido VARCHAR(50), @id_tipo_identificacion BIGINT, @nroId BIGINT, @mail VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50),@altura VARCHAR(10),@piso VARCHAR(10),@depto VARCHAR(50), @localidad VARCHAR(50), @fechaNacimiento DATETIME,@id_pais BIGINT)
 AS BEGIN
-	IF (SELECT COUNT (mail) FROM [MAX_POWER].Usuario WHERE mail = @mail) > 0
+	IF (SELECT COUNT (mail) FROM [MAX_POWER].Cliente WHERE mail = @mail) > 0
 		RETURN (-5)
 	BEGIN TRY
-		INSERT INTO [MAX_POWER].Cliente (nombre, apellido, id_tipo_identificacion, numero_identificacion, mail, telefono, calle, localidad, fecha_nacimiento, habilitado) VALUES (@nombre, @apellido, @id_tipo_identificacion, @nroId, @mail, @telefono, @calle, @localidad, @fechaNacimiento, 1)
+		INSERT INTO [MAX_POWER].Cliente (nombre, apellido, id_tipo_identificacion, numero_identificacion, mail, telefono, calle,altura,piso,departamento, localidad, fecha_nacimiento, id_pais, habilitado) VALUES (@nombre, @apellido, @id_tipo_identificacion, @nroId, @mail, @telefono, @calle,CAST(@altura AS BIGINT),CAST(@piso AS BIGINT),@depto, @localidad, @fechaNacimiento,@id_pais, 'S')
 	END TRY
 	BEGIN CATCH
 		IF @@ERROR = 2627
 			RETURN (-6)
 	END CATCH
-	RETURN(0)
 END
 GO
 
-CREATE PROCEDURE [MAX_POWER].actualizar_cliente(@id BIGINT, @nombre VARCHAR(50), @apellido VARCHAR(50), @id_tipo_identificacion BIGINT, @nroId BIGINT, @mail VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50), @localidad VARCHAR(50), @fechaNacimiento DATETIME, @habilitado CHAR(1))
+CREATE PROCEDURE [MAX_POWER].actualizar_cliente(@id BIGINT, @nombre VARCHAR(50), @apellido VARCHAR(50), @id_tipo_identificacion BIGINT, @nroId BIGINT, @mail VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50),@altura VARCHAR(10),@piso VARCHAR(10),@depto VARCHAR(50), @localidad VARCHAR(50), @fechaNacimiento DATETIME, @habilitado CHAR(1))
 AS BEGIN
+	IF (SELECT COUNT (mail) FROM [MAX_POWER].Usuario WHERE mail = @mail) > 0
+			RETURN (-5)
 	BEGIN TRY
 		UPDATE [MAX_POWER].Cliente SET
 		nombre = @nombre,
@@ -1971,18 +1993,18 @@ AS BEGIN
 		mail = @mail,
 		telefono = @telefono,
 		calle = @calle,
+		altura=@altura ,
+		piso=@piso ,
+		departamento=@depto,
 		localidad = @localidad,
 		fecha_nacimiento = @fechaNacimiento,
 		habilitado = @habilitado
 		WHERE id_cliente = @id
 	END TRY
 	BEGIN CATCH
-		IF (SELECT COUNT (mail) FROM [MAX_POWER].Usuario WHERE mail = @mail) > 0
-			RETURN (-5)
 		IF @@ERROR = 2627
 			RETURN (-6)
 	END CATCH
-	RETURN(0)
 END
 GO
 
@@ -2222,6 +2244,18 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].id_ultima_insercion(@tabla varchar(50)) AS
 RETURN IDENT_CURRENT(@tabla)
+GO
+
+CREATE PROCEDURE [MAX_POWER].paises_disponibles
+AS SELECT * FROM MAX_POWER.Pais;
+GO
+
+CREATE PROCEDURE [MAX_POWER].insertar_rol(@nombre VARCHAR(50),@habilitado VARCHAR(50))
+AS INSERT INTO MAX_POWER.Rol (nombre,habilitado) VALUES (@nombre,@habilitado)
+GO
+
+CREATE PROCEDURE [MAX_POWER].insertar_funcionalidad_X_rol(@id_rol BIGINT,@id_funcionalidad BIGINT)
+AS INSERT INTO MAX_POWER.Funcionalidad_X_Rol(id_rol,id_funcionalidad) VALUES (@id_rol,@id_funcionalidad)
 GO
 
 PRINT 'Finalizo la importacion de SP propios de la aplicacion.'

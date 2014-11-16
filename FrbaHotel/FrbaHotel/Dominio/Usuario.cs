@@ -55,9 +55,8 @@ namespace FrbaHotel
         {
             get
             {
-               /*TODO  DataRow documento = DatabaseAdapter.traerDataTable("obtener_documento", Id).Rows[0];
-                return new TipoDocumento(Convert.ToInt32(documento["id_tipo_documento"]), documento["descripcion"].ToString());*/
-                return new TipoDocumento(1, "DNI");
+               DataRow documento = DatabaseAdapter.traerDataTable("obtener_documento", Id).Rows[0];
+               return new TipoDocumento(Convert.ToInt32(documento["id_tipo_documento"]), documento["descripcion"].ToString());
             }
         }
 

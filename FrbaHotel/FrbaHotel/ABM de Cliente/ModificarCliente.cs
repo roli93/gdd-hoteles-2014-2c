@@ -36,6 +36,14 @@ namespace FrbaHotel.ABM_de_Cliente
             _nroDocumento.Text = nroId;
             dateTimePicker1.Value = fechaNacimiento;
             checkBox1.Checked = habilitado;
+            _altura.Text = altura;
+            _piso.Text = piso;
+            _depto.Text = depto;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            habilitado = checkBox1.Checked;
         }
 
     }

@@ -72,7 +72,7 @@ namespace FrbaHotel.Forms_genericos
             {
                 new DateTime(anio, mes, dia);
             }
-            catch (ArgumentOutOfRangeException e)
+            catch (ArgumentOutOfRangeException)
             {
                 errorMessage += "La fecha es inválida\n";
             }

@@ -42,6 +42,8 @@ namespace FrbaHotel
             DatabaseAdapter.Excepciones.Add(-1, new ExcepcionFrbaHoteles("La contraseña ingresada es incorrecta"));
             DatabaseAdapter.Excepciones.Add(-3, new ExcepcionFrbaHoteles("Se ha inhabilitado al usuario por realizarse 3 intentos fallidos de login"));
             DatabaseAdapter.Excepciones.Add(-4, new ExcepcionFrbaHoteles("El nombre de usuario ingresado no se encuentra disponible"));
+            DatabaseAdapter.Excepciones.Add(-5, new ExcepcionFrbaHoteles("La direccion de mail ingresada ya ha sido registrada"));
+            DatabaseAdapter.Excepciones.Add(-6, new ExcepcionFrbaHoteles("El tipo y número de identifiación ingresados ya pertenecen a un cliente de la cadena"));
 
             //------------------CONFIGURACIONES------------------->>
 

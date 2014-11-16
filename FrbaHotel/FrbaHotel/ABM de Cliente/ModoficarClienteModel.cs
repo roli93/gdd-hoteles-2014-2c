@@ -18,13 +18,16 @@ namespace FrbaHotel.ABM_de_Cliente
 
         public void CargarCliente()
         {
-            HomeClientes.buscarPorId(id, out nombre, out apellido, out tipoId, out nroId, out mail, out telefono, out calle, out localidad, out fechaNacimiento, out pais, out habilitado);
+            HomeClientes.buscarPorId(id, out nombre, out apellido, out tipoId, out nroId, out mail, out telefono, out calle,out altura,out piso, out depto, out localidad, out fechaNacimiento, out pais, out habilitado);
         }
 
         public override void Guardar()
         {
             ValidarErrores();
-            HomeClientes.actualizarCliente(nombre, apellido, mail, telefono, calle, localidad, fechaNacimiento, pais, habilitado);
+            string habilitacion="N";
+            if (habilitado)
+                habilitacion = "S";
+            HomeClientes.actualizarCliente(id,nombre, apellido,tipoId,nroId, mail, telefono, calle,altura,piso,depto, localidad, fechaNacimiento, pais, habilitacion);
 
         }
 

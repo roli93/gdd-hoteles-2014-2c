@@ -88,5 +88,25 @@ namespace FrbaHotel.ABM_de_Cliente
             bindCombo<Pais>(_pais, Sesion.PaisesDisponibles);
             bindCombo<TipoDocumento>(comboBox1, Sesion.TiposIdDisponibles);
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            altura=_altura.Text;
+        }
+
+        private void _piso_TextChanged(object sender, EventArgs e)
+        {
+            piso = _piso.Text;
+        }
+
+        private void _depto_TextChanged(object sender, EventArgs e)
+        {
+            depto = _depto.Text;
+        }
     }
 }

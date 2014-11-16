@@ -38,7 +38,7 @@ namespace FrbaHotel.ABM_de_Usuario
             _nroDocumento.Text = nroDocumento;
             _telefono.Text = telefono;
             dateTimePicker1.Value = fechaNacimiento;
-            comboBox1.SelectedIndex = comboBox1.FindStringExact(tipoDni.Descripcion,0);
+            comboBox1.SelectedIndex = comboBox1.FindStringExact(tipoDni.Descripcion);
         }
 
         private void SelectCheckBoxes<T>(CheckedListBox box, List<T> items) where T : Entidad 

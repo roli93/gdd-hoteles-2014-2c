@@ -13,22 +13,22 @@ namespace FrbaHotel.ABM_de_Cliente
 {
     public partial class AltaCliente
     {
-        protected string nombre, apellido, nroId, mail, telefono, calle, localidad;
+        protected string nombre, apellido, nroId, mail, telefono, calle,altura,piso,depto, localidad;
         protected TipoDocumento tipoId;
         protected Pais pais;
-        protected DateTime fechaNacimiento;
+        protected DateTime fechaNacimiento=DateTime.Now;
 
         public virtual void Guardar()
         {
             ValidarErrores();
-            HomeClientes.registrarCliente(nombre, apellido, tipoId, nroId, mail, telefono, calle, localidad, fechaNacimiento, pais);
+            HomeClientes.registrarCliente(nombre, apellido, tipoId, nroId, mail, telefono, calle,altura,piso,depto, localidad, fechaNacimiento, pais);
         }
 
         public override void ValidarErroresConcretos()
         {
-            ValidarVaciosYLongitud(new string[] { "Nombre", "Apellido", "Número de identidicación", "Mail", "Telefono", "Domicilio", "Localidad", "Tipo de identificación", "Pais", "Fecha de nacimiento" },
-                          new object[] { nombre, apellido, nroId, mail, telefono, calle, localidad, tipoId, pais, fechaNacimiento });
-            ValidarNumericos(nroId, telefono);
+            ValidarVaciosYLongitud(new string[] { "Nombre", "Apellido", "Número de identidicación", "Mail", "Telefono", "Calle","Altura", "Localidad", "Tipo de identificación", "Pais", "Fecha de nacimiento" },
+                          new object[] { nombre, apellido, nroId, mail, telefono, calle,altura, localidad, tipoId, pais, fechaNacimiento });
+            ValidarNumericos(nroId, telefono,altura,piso);
         }
 
 
