@@ -6,9 +6,6 @@ EXEC @return_status = MAX_POWER.(sp) (param1), (param2), ... ;
 print @return_status
 */
 
-
-/*  S I N   V E R I F I C A R  */
-
 -- QUE FUNCION CUMPLE ESTO??
 CREATE PROCEDURE [MAX_POWER].usuario_para_login(@usuario VARCHAR(50), @password VARCHAR(50))
 AS 
@@ -16,22 +13,8 @@ AS
 GO
 
 
-CREATE FUNCTION [MAX_POWER].habitacion_libre(@id_habitacion BIGINT, @fecha_inicio DATETIME, @fecha_fin DATETIME) RETURNS INT AS
-BEGIN
-DECLARE @esta_libre INT
-	IF (SELECT COUNT (*) FROM [MAX_POWER].Habitacion_reservada HR JOIN [MAX_POWER].reserva R ON HR.id_reserva != R.id_reserva 
-			WHERE HR.id_habitacion = @id_habitacion 
-			AND (@fecha_inicio BETWEEN R.fecha_inicio AND R.fecha_fin
-				OR @fecha_fin BETWEEN R.fecha_inicio AND R.fecha_fin
-				OR R.fecha_inicio BETWEEN @fecha_inicio AND @fecha_fin
-				OR R.fecha_fin BETWEEN @fecha_inicio AND @fecha_fin)
-		)>0
-		SET @esta_libre=0
-	ELSE
-		SET @esta_libre=1
-RETURN @esta_libre
-END
-GO
+/*  S I N   V E R I F I C A R  */
+
 
 CREATE PROCEDURE [MAX_POWER].buscar_habitacion_reserva(@id_hotel BIGINT, @id_tipo_habitacion BIGINT,@cantidad INT, @fecha_inicio DATETIME, @fecha_fin DATETIME)
 AS SELECT TOP (@CANTIDAD) * FROM habitacion WHERE id_hotel=@id_hotel 

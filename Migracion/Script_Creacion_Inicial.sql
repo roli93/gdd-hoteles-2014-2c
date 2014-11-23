@@ -1733,7 +1733,7 @@ GO
 CREATE PROCEDURE [MAX_POWER].obtener_roles(@id_usuario BIGINT)
 AS SELECT R.ID_ROL, R.NOMBRE
 	FROM MAX_POWER.Usuario_X_Rol UR join MAX_POWER.Rol R on R.id_rol = UR.id_rol
-	WHERE id_usuario = @id_usuario
+	WHERE id_usuario = @id_usuario and R.habilitado = 'S'
 GO
 
 CREATE PROCEDURE [MAX_POWER].obtener_Hoteles(@id_usuario BIGINT)
@@ -1813,7 +1813,7 @@ AS SELECT DISTINCT C.id_cliente as ID,nombre,apellido,mail,descripcion,numero_id
 		AND UPPER(apellido) LIKE UPPER(@apellido)
 		AND UPPER(mail) LIKE UPPER(@email)
 		AND numero_identificacion LIKE @nroId 
-		AND id_tipo_identificacion LIKE (SELECT CASE WHEN @Id_tipo_identificacion = -1 THEN '%' ELSE CAST(@Id_tipo_identificacion AS VARCHAR(5)) END )
+		AND id_tipo_identificacion LIKE (SELECT CASE WHEN @Id_tipo_identificacion = -1 THEN '%' ELSE CAST(@Id_tipo_identificacion AS VARCHAR(50)) END )
 GO
 
 CREATE PROCEDURE [MAX_POWER].buscar_habitacion_por_id(@id_habitacion BIGINT)
@@ -1878,6 +1878,10 @@ CREATE PROCEDURE [MAX_POWER].buscar_rol_por_id(@id BIGINT)
 AS SELECT * FROM [MAX_POWER].Rol WHERE id_rol = @id
 GO
 
+CREATE PROCEDURE [MAX_POWER].buscar_hotel_por_id(@id BIGINT)
+AS SELECT * FROM [MAX_POWER].Hotel WHERE id_hotel = @id
+GO
+
 CREATE PROCEDURE [MAX_POWER].buscar_roles(@nombre VARCHAR(50), @estado CHAR(1))
 AS SELECT * FROM [MAX_POWER].Rol 
 	WHERE UPPER(nombre) LIKE UPPER(@nombre)
@@ -1921,8 +1925,10 @@ END
 GO
 
 CREATE PROCEDURE [MAX_POWER].obtener_habitacion(@id_reserva BIGINT)
-AS SELECT DISTINCT H.id_habitacion, H.id_tipo_habitacion, H.descripcion
-	FROM MAX_POWER.Habitacion_reservada HR join MAX_POWER.Habitacion H on H.id_habitacion = HR.id_habitacion
+AS SELECT DISTINCT H.id_habitacion, H.id_tipo_habitacion, th.descripcion
+	FROM MAX_POWER.Habitacion_reservada HR 
+	join MAX_POWER.Habitacion H on H.id_habitacion = HR.id_habitacion
+	join MAX_POWER.Tipo_habitacion th on H.id_tipo_habitacion = th.id_tipo_habitacion
 	WHERE HR.id_reserva = @id_reserva
 GO
 
@@ -1944,7 +1950,7 @@ AS SELECT P.id_pais,P.nombre
 	WHERE C.id_cliente=@id_cliente
 GO
 
-CREATE PROCEDURE [MAX_POWER].buscar_habitacion(@id_hotel BIGINT, @numero_habitacion BIGINT, @piso_habitacion BIGINT, @ubicacion_habitacion VARCHAR(10), @id_tipo_habitacion BIGINT, @descripcion_habitacion VARCHAR(50))
+CREATE PROCEDURE [MAX_POWER].buscar_habitacion(@id_hotel BIGINT, @numero_habitacion BIGINT, @piso_habitacion BIGINT, @ubicacion_habitacion CHAR(1), @id_tipo_habitacion BIGINT, @descripcion_habitacion VARCHAR(50))
 AS SELECT * FROM [MAX_POWER].Habitacion 
 	WHERE CAST(id_hotel AS VARCHAR(50)) LIKE (SELECT CASE WHEN @id_hotel = -1 THEN '%' ELSE CAST(@id_hotel AS VARCHAR(50)) END)
 		AND CAST(numero AS VARCHAR(50)) LIKE (SELECT CASE WHEN @numero_habitacion = -1 THEN '%' ELSE CAST(@numero_habitacion AS VARCHAR(50)) END)
@@ -1964,8 +1970,8 @@ AS SELECT distinct U.id_usuario as ID, username,Nombre,apellido,numero_documento
 		AND UPPER(apellido) LIKE UPPER(@apellido)
 		AND UPPER(mail) LIKE UPPER(@email)
 		AND UPPER(username) LIKE UPPER(@username)
-		AND UR.id_rol like (SELECT CASE WHEN  @id_rol= -1 THEN '%' ELSE CAST(@id_rol AS VARCHAR(5)) END)
-		AND UH.id_hotel like (SELECT CASE WHEN @id_hotel = -1 THEN '%' ELSE CAST(@id_hotel AS VARCHAR(5)) END)
+		AND UR.id_rol like (SELECT CASE WHEN  @id_rol= -1 THEN '%' ELSE CAST(@id_rol AS VARCHAR(50)) END)
+		AND UH.id_hotel like (SELECT CASE WHEN @id_hotel = -1 THEN '%' ELSE CAST(@id_hotel AS VARCHAR(50)) END)
 GO
 
 CREATE PROCEDURE [MAX_POWER].total_factura(@id_factura BIGINT)
@@ -1990,13 +1996,115 @@ AS BEGIN
 END
 GO
 
+CREATE FUNCTION [MAX_POWER].habitacion_libre(@id_habitacion BIGINT, @fecha_inicio DATETIME, @fecha_fin DATETIME) RETURNS INT AS
+BEGIN
+DECLARE @esta_libre INT
+	IF (SELECT COUNT (*) FROM [MAX_POWER].Habitacion_reservada HR 
+		JOIN [MAX_POWER].reserva R ON HR.id_reserva = R.id_reserva 
+			WHERE HR.id_habitacion = @id_habitacion 
+			AND (@fecha_inicio BETWEEN R.fecha_inicio AND R.fecha_fin
+				OR @fecha_fin BETWEEN R.fecha_inicio AND R.fecha_fin
+				OR R.fecha_inicio BETWEEN @fecha_inicio AND @fecha_fin
+				OR R.fecha_fin BETWEEN @fecha_inicio AND @fecha_fin)
+		)>0
+		SET @esta_libre=0 -- OCUPADA
+	ELSE
+		SET @esta_libre=1 -- LIBRE
+RETURN @esta_libre
+END
+GO
+
 /*  S I N   V E R I F I C A R  -  ESTAN EN ARCHIVO APARTE */
+
+/*   L I S T A D O S   */
+CREATE PROCEDURE [MAX_POWER].top5estadistico_hoteles_mas_reservas_canceladas(@trimestre as bigint, @anio as bigint) as
+select top 5
+hot.*, canceladas
+from (select 
+		h.id_hotel,
+		COUNT(h.id_hotel) as canceladas
+
+	from MAX_POWER.Reserva r
+	join MAX_POWER.Estado e on e.id_estado = r.id_estado and e.descripcion like '%cancel%'
+	join MAX_POWER.Habitacion_reservada hr on hr.id_reserva = r.id_reserva 
+	join MAX_POWER.Habitacion h on h.id_habitacion = hr.id_habitacion
+
+	where (floor(MONTH(r.fecha_fin)/4) + 1) = @trimestre
+		and YEAR(r.fecha_fin) = @anio
+	group by h.id_hotel, h.frente
+)tabla
+join MAX_POWER.Hotel hot on hot.id_hotel = tabla.id_hotel
+order by canceladas desc
+
+GO
+
+CREATE PROCEDURE [MAX_POWER].top5estadistico_hoteles_mas_consumibles_facturados(@trimestre as bigint, @anio as bigint) as
+select top 5
+hot.*, consumibles
+from (select 
+		h.id_hotel,
+		sum(prod.cantidad) as consumibles
+	
+	from MAX_POWER.Estadia e
+	join MAX_POWER.Factura f on e.id_estadia = f.id_estadia and e.valida = 'S'
+	join MAX_POWER.Producto_X_Habitacion_reservada prod on prod.id_factura = f.id_factura
+	join MAX_POWER.Habitacion_reservada hr on prod.id_habitacion_reservada = hr.id_habitacion_reservada
+	join MAX_POWER.Habitacion h on h.id_habitacion = hr.id_habitacion
+
+	where (floor(MONTH(e.fecha_egreso)/4) + 1) = @trimestre
+		and YEAR(e.fecha_egreso) = @anio
+		
+	group by h.id_hotel
+)tabla
+join MAX_POWER.Hotel hot on hot.id_hotel = tabla.id_hotel
+order by consumibles desc
+
+GO
+
+CREATE PROCEDURE [MAX_POWER].top5estadistico_hoteles_con_mas_periodo_inactivo(@trimestre as bigint, @anio as bigint) as
+select top 5
+hot.*
+from (select 
+		pc.id_hotel,
+		sum( DATEDIFF(DAY,pc.fecha_inicio,coalesce(pc.fecha_fin, getdate())) ) as dias_inactivo
+	from MAX_POWER.Periodo_Cierre pc
+
+	where (floor(MONTH(pc.fecha_inicio)/4) + 1) = @trimestre
+		and YEAR(pc.fecha_inicio) = @anio
+		
+	group by pc.id_hotel
+)tabla
+join MAX_POWER.Hotel hot on hot.id_hotel = tabla.id_hotel
+order by dias_inactivo desc
+
+GO
+
+CREATE PROCEDURE [MAX_POWER].top5estadistico_habitaciones_mas_ocupadas(@trimestre as bigint, @anio as bigint) as
+select top 5
+hab.*, cantidad_dias, cantidad_veces, hot.nombre
+from (select 
+		h.id_habitacion,
+		COUNT( h.id_habitacion ) as cantidad_veces,
+		sum(DATEDIFF(DAY,e.fecha_ingreso,e.fecha_egreso)) as cantidad_dias
+		
+	from MAX_POWER.Estadia e
+	join MAX_POWER.Reserva r on e.id_reserva = r.id_reserva and e.valida = 'S'
+	join MAX_POWER.Habitacion_reservada hr on hr.id_reserva = r.id_reserva
+	join MAX_POWER.Habitacion h on h.id_habitacion = hr.id_habitacion
+
+	where (floor(MONTH(e.fecha_ingreso)/4) + 1) = @trimestre
+		and YEAR(e.fecha_ingreso) = @anio
+		
+	group by h.id_habitacion
+)tabla
+join MAX_POWER.Habitacion hab on hab.id_habitacion = tabla.id_habitacion
+join MAX_POWER.Hotel hot on hot.id_hotel = hab.id_hotel
+order by cantidad_veces desc, cantidad_dias desc
+
+GO
 
 
 PRINT 'Finalizo la importacion de SP propios de la aplicacion.'
-
-/*-----------------------------------------------------------STORED PROCEDURES PARA LA APP----------------------------------------------------------*/
-
 
 
 -- S E C U E N C I A 
@@ -2083,9 +2191,9 @@ EXEC [MAX_POWER].REGIMEN_HOTEL
 GO
 PRINT 'Importado: Regimenes por Hotel.'
 
-
+PRINT '---------------------'
 PRINT 'MIGRACION FINALIZADA.'
-
+PRINT '---------------------'
 
 EXEC [MAX_POWER].Detectar_Clientes_Repetidos
 GO
@@ -2146,6 +2254,3 @@ insert into MAX_POWER.Tipo_modificacion (descripcion) values ('Modificacion')
 insert into MAX_POWER.Tipo_modificacion (descripcion) values ('Cancelacion')
 
 PRINT 'Generados datos basicos'
-
-PRINT 'Comenzando migracion de SP de aplicaion'
-GO
