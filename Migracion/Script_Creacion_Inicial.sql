@@ -1820,8 +1820,8 @@ AS
 UPDATE MAX_POWER.Habitacion set habilitada = 'N' WHERE id_habitacion = @id_habitacion
 GO
 
-CREATE PROCEDURE [MAX_POWER].regimenes_disponibes(@id_hotel BIGINT)
-AS SELECT *
+CREATE PROCEDURE [MAX_POWER].obtener_regimenes(@id_hotel BIGINT)
+AS SELECT R.id_regimen as ID, descripcion as Descripción ,precio_base as Precio
 	FROM MAX_POWER.Regimen_X_Hotel RH join MAX_POWER.Regimen R on RH.id_regimen = R.id_regimen
 	WHERE RH.id_hotel = @id_hotel AND R.habilitado = 'S'
 GO
