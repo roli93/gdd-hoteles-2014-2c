@@ -704,7 +704,7 @@ BEGIN
 CREATE TABLE [MAX_POWER].[Usuario](
 	[id_usuario] [bigint] IDENTITY(1,1) NOT NULL,
 	[username] [varchar](50) NOT NULL,
-	[pw] [varchar](50) NOT NULL,
+	[pw] [varchar](100) NOT NULL,
 	[Nombre] [varchar](50) NOT NULL,
 	[Apellido] [varchar](50) NOT NULL,
 	[Estado] [int] NULL,
@@ -1538,10 +1538,14 @@ IF OBJECT_ID('MAX_POWER.IMP_Estadia', 'P') IS NOT NULL
 GO	
 
 CREATE PROCEDURE [MAX_POWER].IMP_Estadia
-AS insert into MAX_POWER.estadia (fecha_ingreso, fecha_egreso, id_reserva)
-	select fecha_inicio, fecha_fin, id_reserva from MAX_POWER.Reserva
+AS 
+declare @ahora as date
+set @ahora = GETDATE()
+insert into MAX_POWER.estadia (fecha_ingreso, fecha_egreso, id_reserva, valida)
+	select fecha_inicio, fecha_fin, id_reserva, 
+		case when fecha_inicio > @ahora then 'N' else 'S' end as valida
+	from MAX_POWER.Reserva
 GO
-
 
 /* SP - FACTURAS */
 IF OBJECT_ID('MAX_POWER.IMP_Factura', 'P') IS NOT NULL
@@ -1549,8 +1553,8 @@ IF OBJECT_ID('MAX_POWER.IMP_Factura', 'P') IS NOT NULL
 GO	
 
 CREATE PROCEDURE [MAX_POWER].IMP_Factura
-AS INSERT INTO MAX_POWER.Factura (id_factura, id_estadia, total)
-	SELECT Factura, (select id_estadia from MAX_POWER.Estadia where id_reserva = Reserva),	total
+AS INSERT INTO MAX_POWER.Factura (id_factura, id_estadia, total, id_medoto_pago)
+	SELECT Factura, (select id_estadia from MAX_POWER.Estadia where id_reserva = Reserva),	total, 1
 	FROM MAX_POWER.V_Facturas
 GO
 
@@ -1606,8 +1610,8 @@ IF OBJECT_ID('MAX_POWER.IMP_Hotel', 'P') IS NOT NULL
 GO	
 
 CREATE PROCEDURE [MAX_POWER].IMP_Hotel
-AS INSERT INTO MAX_POWER.Hotel (calle, altura, ciudad, estrellas, recarga_estrellas)
-	SELECT Calle, Altura, Ciudad, Estrellas, Recarga_Estrella
+AS INSERT INTO MAX_POWER.Hotel (calle, altura, ciudad, estrellas, recarga_estrellas, id_pais)
+	SELECT Calle, Altura, Ciudad, Estrellas, Recarga_Estrella, 1
 	FROM MAX_POWER.V_Hotel
 GO
 
@@ -1702,94 +1706,8 @@ CREATE PROCEDURE [MAX_POWER].Detectar_Clientes_Repetidos AS
 		having COUNT(numero_identificacion) <> 1)
 GO
 
-
 PRINT 'SP creados.'
-
-
-
--- S E C U E N C I A 
-
-EXEC [MAX_POWER].IMP_Nacionalidad 
 GO
-CREATE nonclustered index IDX_Pais on MAX_POWER.Pais(nombre);
-PRINT 'Importado: Nacionalidades.'
-
-insert into MAX_POWER.Tipo_documento (descripcion) values('DNI')
-
-EXEC [MAX_POWER].IMP_Cliente 
-GO
-CREATE nonclustered index IDX_Clientes on MAX_POWER.Cliente(numero_identificacion, nombre);
-PRINT 'Importado: Cliente.'
-
-EXEC [MAX_POWER].IMP_Consumible 
-GO
-CREATE nonclustered index IDX_Producto on MAX_POWER.Producto(descripcion);
-PRINT 'Importado: Consumible.'
-
-EXEC [MAX_POWER].IMP_Tipo_Habitacion 
-GO
-CREATE nonclustered index IDX_Tipo_habitacion on MAX_POWER.Tipo_habitacion(id_tipo_habitacion);
-PRINT 'Importado: Tipo de Habitacion.'
-
-EXEC [MAX_POWER].IMP_Regimen 
-GO
-CREATE nonclustered index IDX_Regimen on MAX_POWER.Regimen(descripcion);
-PRINT 'Importado: Regimen.'
-
-EXEC [MAX_POWER].IMP_Reserva 
-GO
-CREATE nonclustered index IDX_reserva on MAX_POWER.reserva(id_reserva, fecha_inicio, fecha_fin);
-PRINT 'Importado: Reserva.'
-
-EXEC [MAX_POWER].IMP_Estadia 
-GO
-CREATE nonclustered index IDX_Estadia on MAX_POWER.Estadia(id_estadia, id_reserva);
-PRINT 'Importado: Estadia.'
-
-EXEC [MAX_POWER].IMP_Factura 
-GO
-PRINT 'Importado: Factura.'
-
-EXEC [MAX_POWER].IMP_Hotel 
-GO
-CREATE nonclustered index IDX_Hotel on MAX_POWER.Hotel(id_hotel);
-PRINT 'Importado: Hotel.'
-
-EXEC [MAX_POWER].IMP_Habitacion 
-GO
-
-CREATE nonclustered index IDX_habitacion on MAX_POWER.Habitacion(id_habitacion, numero, piso);
-PRINT 'Importado: Habitacion.'
-
-EXEC [MAX_POWER].IMP_Habitacion_reservada
-GO
-CREATE nonclustered index IDX_habitacion_Reservadas on MAX_POWER.Habitacion_reservada(id_reserva, id_habitacion);
-PRINT 'Importado: Habitacion Reservada.'
-
-EXEC [MAX_POWER].IMP_Habitacion_reservada_Cliente
-GO
-PRINT 'Importado: Habitacion Reservada por Cliente.'
-
-EXEC [MAX_POWER].IMP_Producto_Habitacion_reservada
-GO
-PRINT 'Importado: Producto por Habitacion Reservada.'
-
-
-EXEC [MAX_POWER].REGIMEN_HOTEL
-GO
-PRINT 'Importado: Regimenes por Hotel.'
-
-
-PRINT 'MIGRACION FINALIZADA.'
-
-
-EXEC [MAX_POWER].Detectar_Clientes_Repetidos
-GO
-PRINT 'Clientes duplicados detectados.'
-
-PRINT 'Comenzando migracion de SP de aplicaion'
-GO
-
 /*-----------------------------------------------------------STORED PROCEDURES PARA LA APP----------------------------------------------------------*/
 
 CREATE PROCEDURE [MAX_POWER].roles_disponibles
@@ -2054,7 +1972,7 @@ AS SELECT distinct U.id_usuario as ID, username,Nombre,apellido,numero_documento
 		AND UH.id_hotel like (SELECT CASE WHEN @id_hotel = -1 THEN '%' ELSE CAST(@id_hotel AS VARCHAR(5)) END)
 GO
 
-CREATE PROCEDURE [MAX_POWER].insertar_usuario(@username VARCHAR(50), @password VARCHAR(50), @nombre VARCHAR(50), @apellido VARCHAR(50), @Id_tipo_dni BIGINT, @dni VARCHAR(50), @mail VARCHAR(50), @telefono VARCHAR(50), @direccion VARCHAR(50), @fechaNacimiento DATETIME)
+CREATE PROCEDURE [MAX_POWER].insertar_usuario(@username VARCHAR(50), @password VARCHAR(100), @nombre VARCHAR(50), @apellido VARCHAR(50), @Id_tipo_dni BIGINT, @dni VARCHAR(50), @mail VARCHAR(50), @telefono VARCHAR(50), @direccion VARCHAR(50), @fechaNacimiento date)
 AS BEGIN
 	BEGIN TRY
 		INSERT INTO [MAX_POWER].Usuario (username, pw, nombre, apellido, id_tipo_documento, numero_documento, mail, telefono, direccion, fecha_nacimiento,habilitado,intentos_fallidos) VALUES (@username, @password, @nombre, @apellido, @Id_tipo_dni, @dni, @mail, @telefono, @direccion, @fechaNacimiento,'S',0)
@@ -2385,3 +2303,151 @@ AS INSERT INTO MAX_POWER.Funcionalidad_X_Rol(id_rol,id_funcionalidad) VALUES (@i
 GO
 
 PRINT 'Finalizo la importacion de SP propios de la aplicacion.'
+
+
+-- S E C U E N C I A 
+
+EXEC [MAX_POWER].IMP_Nacionalidad 
+GO
+CREATE nonclustered index IDX_Pais on MAX_POWER.Pais(nombre);
+PRINT 'Importado: Nacionalidades.'
+
+insert into MAX_POWER.Tipo_documento (descripcion) values('DNI')
+
+EXEC [MAX_POWER].IMP_Cliente 
+GO
+CREATE nonclustered index IDX_Clientes on MAX_POWER.Cliente(numero_identificacion, nombre);
+PRINT 'Importado: Cliente.'
+
+EXEC [MAX_POWER].IMP_Consumible 
+GO
+CREATE nonclustered index IDX_Producto on MAX_POWER.Producto(descripcion);
+PRINT 'Importado: Consumible.'
+
+EXEC [MAX_POWER].IMP_Tipo_Habitacion 
+GO
+CREATE nonclustered index IDX_Tipo_habitacion on MAX_POWER.Tipo_habitacion(id_tipo_habitacion);
+PRINT 'Importado: Tipo de Habitacion.'
+
+EXEC [MAX_POWER].IMP_Regimen 
+GO
+CREATE nonclustered index IDX_Regimen on MAX_POWER.Regimen(descripcion);
+PRINT 'Importado: Regimen.'
+
+EXEC [MAX_POWER].IMP_Reserva 
+GO
+CREATE nonclustered index IDX_reserva on MAX_POWER.reserva(id_reserva, fecha_inicio, fecha_fin);
+PRINT 'Importado: Reserva.'
+
+EXEC [MAX_POWER].IMP_Estadia 
+GO
+CREATE nonclustered index IDX_Estadia on MAX_POWER.Estadia(id_estadia, id_reserva);
+PRINT 'Importado: Estadia.'
+insert into MAX_POWER.Metodo_pago (descripcion) values ('Efectivo')
+insert into MAX_POWER.Metodo_pago (descripcion) values ('Tarjeta de credito')
+
+EXEC [MAX_POWER].IMP_Factura 
+GO
+PRINT 'Importado: Factura.'
+
+EXEC [MAX_POWER].IMP_Hotel 
+GO
+CREATE nonclustered index IDX_Hotel on MAX_POWER.Hotel(id_hotel);
+PRINT 'Importado: Hotel.'
+
+EXEC [MAX_POWER].IMP_Habitacion 
+GO
+
+CREATE nonclustered index IDX_habitacion on MAX_POWER.Habitacion(id_habitacion, numero, piso);
+PRINT 'Importado: Habitacion.'
+
+EXEC [MAX_POWER].IMP_Habitacion_reservada
+GO
+CREATE nonclustered index IDX_habitacion_Reservadas on MAX_POWER.Habitacion_reservada(id_reserva, id_habitacion);
+PRINT 'Importado: Habitacion Reservada.'
+
+EXEC [MAX_POWER].IMP_Habitacion_reservada_Cliente
+GO
+PRINT 'Importado: Habitacion Reservada por Cliente.'
+
+EXEC [MAX_POWER].IMP_Producto_Habitacion_reservada
+GO
+PRINT 'Importado: Producto por Habitacion Reservada.'
+
+
+EXEC [MAX_POWER].REGIMEN_HOTEL
+GO
+PRINT 'Importado: Regimenes por Hotel.'
+
+
+PRINT 'MIGRACION FINALIZADA.'
+
+
+EXEC [MAX_POWER].Detectar_Clientes_Repetidos
+GO
+PRINT 'Clientes duplicados detectados.'
+
+
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Recepcionar')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Atender')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Reservar')
+
+exec MAX_POWER.insertar_rol 'Administrador General', 'S'
+GO
+exec MAX_POWER.insertar_rol 'Recepcionista', 'S'
+GO
+exec MAX_POWER.insertar_rol 'Guest', 'S'
+GO
+
+exec MAX_POWER.insertar_funcionalidad_X_rol 1, 1
+exec MAX_POWER.insertar_funcionalidad_X_rol 1, 2
+exec MAX_POWER.insertar_funcionalidad_X_rol 1, 3
+exec MAX_POWER.insertar_funcionalidad_X_rol 1, 4
+exec MAX_POWER.insertar_funcionalidad_X_rol 2, 2
+exec MAX_POWER.insertar_funcionalidad_X_rol 2, 3
+exec MAX_POWER.insertar_funcionalidad_X_rol 2, 4
+exec MAX_POWER.insertar_funcionalidad_X_rol 3, 4
+go
+
+PRINT 'Creadas las funcionalidades y roles.'
+
+declare @nacimiento as date
+set @nacimiento = CAST('01/01/1993' as DATE)
+exec MAX_POWER.insertar_usuario 'admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 'Max', 'Power', 1, '99999999', 'admin@power.max', '4444-4444', 'falsa 123', @nacimiento
+go
+
+exec MAX_POWER.insertar_usuario_x_rol 1, 1
+go
+
+exec MAX_POWER.insertar_usuario_x_hotel 1, 1
+exec MAX_POWER.insertar_usuario_x_hotel 1, 2
+exec MAX_POWER.insertar_usuario_x_hotel 1, 3
+exec MAX_POWER.insertar_usuario_x_hotel 1, 4
+exec MAX_POWER.insertar_usuario_x_hotel 1, 5
+exec MAX_POWER.insertar_usuario_x_hotel 1, 6
+exec MAX_POWER.insertar_usuario_x_hotel 1, 7
+exec MAX_POWER.insertar_usuario_x_hotel 1, 8
+exec MAX_POWER.insertar_usuario_x_hotel 1, 9
+exec MAX_POWER.insertar_usuario_x_hotel 1, 10
+exec MAX_POWER.insertar_usuario_x_hotel 1, 11
+exec MAX_POWER.insertar_usuario_x_hotel 1, 12
+exec MAX_POWER.insertar_usuario_x_hotel 1, 13
+exec MAX_POWER.insertar_usuario_x_hotel 1, 14
+exec MAX_POWER.insertar_usuario_x_hotel 1, 15
+exec MAX_POWER.insertar_usuario_x_hotel 1, 16
+GO
+
+insert into MAX_POWER.Tipo_modificacion (descripcion) values ('Modificacion')
+insert into MAX_POWER.Tipo_modificacion (descripcion) values ('Cancelacion')
+insert into MAX_POWER.Estado (descripcion) values ('Correcta')
+insert into MAX_POWER.Estado (descripcion) values ('Modificada')
+insert into MAX_POWER.Estado (descripcion) values ('Cancelada por Recepcion')
+insert into MAX_POWER.Estado (descripcion) values ('Cancelada por Cliente')
+insert into MAX_POWER.Estado (descripcion) values ('Cancelada por No-Show')
+insert into MAX_POWER.Estado (descripcion) values ('Con Ingreso')
+
+PRINT 'Generados datos basicos'
+
+PRINT 'Comenzando migracion de SP de aplicaion'
+GO
