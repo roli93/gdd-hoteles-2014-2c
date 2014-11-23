@@ -69,7 +69,7 @@ namespace FrbaHotel.ABM_de_Cliente
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            operacionConSeleccionado(dataGridView1, e);
+            operacionBotonConSeleccionado(dataGridView1, e);
         }
     }
 }

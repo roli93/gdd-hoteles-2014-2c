@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{BAFE3016-AC06-4C43-ABEF-87F21AB5699B}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -83,6 +83,18 @@
     </Compile>
     <Compile Include="ABM de Cliente\AltaClienteModel.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Cliente\AsistenteClientesRepetidos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Cliente\AsistenteClientesRepetidos.Designer.cs">
+      <DependentUpon>AsistenteClientesRepetidos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ABM de Cliente\EditarClienteRepetido.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ABM de Cliente\EditarClienteRepetido.Designer.cs">
+      <DependentUpon>EditarClienteRepetido.cs</DependentUpon>
     </Compile>
     <Compile Include="ABM de Cliente\ModificarCliente.cs">
       <SubType>Form</SubType>
@@ -397,6 +409,12 @@
     <EmbeddedResource Include="ABM de Cliente\AltaCliente.resx">
       <DependentUpon>AltaCliente.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Cliente\AsistenteClientesRepetidos.resx">
+      <DependentUpon>AsistenteClientesRepetidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Cliente\EditarClienteRepetido.resx">
+      <DependentUpon>EditarClienteRepetido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ABM de Cliente\ModificarCliente.resx">
       <DependentUpon>ModificarCliente.cs</DependentUpon>

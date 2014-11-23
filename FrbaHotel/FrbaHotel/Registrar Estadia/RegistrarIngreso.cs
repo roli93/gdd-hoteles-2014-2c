@@ -37,7 +37,7 @@ namespace FrbaHotel.Registrar_Estadia
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            operacionConSeleccionado(dataGridView1, e);
+            operacionBotonConSeleccionado(dataGridView1, e);
         }
 
         private void toolTip1_Popup(object sender, PopupEventArgs e)

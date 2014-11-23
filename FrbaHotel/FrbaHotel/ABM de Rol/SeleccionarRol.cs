@@ -45,7 +45,7 @@ namespace FrbaHotel.ABM_de_Rol
 
             private void _gridRoles_CellContentClick(object sender, DataGridViewCellEventArgs e)
             {
-                if (accion == "Editar") operacionConSeleccionado(_gridRoles, e);
+                if (accion == "Editar") operacionBotonConSeleccionado(_gridRoles, e);
                 else if (accion == "Eliminar") EliminarRol(_gridRoles, e);
             }
 

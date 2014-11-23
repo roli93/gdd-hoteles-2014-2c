@@ -48,5 +48,17 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.actualizarDatosEnTabla("cliente",id, nombre, apellido,tipoId.Id, nroId, mail, telefono, calle,altura, piso,depto, localidad, fechaNacimiento, habilitado);
         }
 
+        public static List<Cliente> clientesRepetidos(int idCliente)
+        {
+            //TODO 
+            return new List<Cliente>();
+        }
+
+        public static void bajaCliente(int idCliente)
+        {
+            //TODO 
+
+        }
+
     }
 }

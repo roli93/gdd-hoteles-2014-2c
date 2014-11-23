@@ -29,5 +29,26 @@ namespace FrbaHotel.ABM_de_Cliente
             ValidarNumericos(nroId);
         }
 
+        public override void gridClickAction(DataGridViewCellCollection celdas)
+        {
+            if (celdas["correcto"].Value.ToString() == "N")
+                corregirClienteRepetido(Convert.ToInt32(celdas["Número Identificación"].Value));
+            else
+                base.gridClickAction(celdas);
+        }
+
+        public void corregirClienteRepetido(int nroIdClienteRepetido)
+        {
+            string mensaje =
+                "El sistema ha detectado una inconsistencia de datos\n" +
+                "Hay varios clientes con el mismo tipo y número de identificación\n" +
+                "que el cliente que seleccionó. Para acceder a esos datos deberá\ncorregir esta inconsistencia\n" +
+                "¿Desea comenzar el asistente y solucionar la inconsistencia ahora?";                            
+            if (MessageBox.Show(mensaje, "Inconsistencia de datos", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                
+            }
+        }
+
     }
 }

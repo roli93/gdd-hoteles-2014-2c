@@ -156,7 +156,7 @@ namespace FrbaHotel.Forms_genericos
             grid.AutoResizeRows();
         }
 
-        public void operacionConSeleccionado(DataGridView grilla, DataGridViewCellEventArgs e)
+        public void operacionConSeleccionado(DataGridView grilla, DataGridViewCellEventArgs e, Func<DataGridViewCellEventArgs, DataGridViewCellCollection,Boolean> condicion)
         {
             try
             {
@@ -171,7 +171,7 @@ namespace FrbaHotel.Forms_genericos
             try
             {
                 DataGridViewCellCollection celdas = grilla.Rows[e.RowIndex].Cells;
-                if (e.ColumnIndex == celdas["Operación"].ColumnIndex)
+                if (condicion(e,celdas))
                 {
                     gridClickAction(celdas);
                 }
@@ -180,6 +180,19 @@ namespace FrbaHotel.Forms_genericos
             {
             }
         }
+
+        public void operacionConSeleccionado(DataGridView grilla, DataGridViewCellEventArgs e)
+        {
+            this.operacionConSeleccionado(grilla, e, (ev, c) => true);
+        }
+
+
+        public void operacionBotonConSeleccionado(DataGridView grilla, DataGridViewCellEventArgs e)
+        {
+            operacionConSeleccionado(grilla, e, (ev,celdas) => ev.ColumnIndex == celdas["Operación"].ColumnIndex);
+        }
+
+
 
         public virtual void gridClickAction(DataGridViewCellCollection celdas)
         {

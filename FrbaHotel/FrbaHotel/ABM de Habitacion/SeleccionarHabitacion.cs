@@ -71,7 +71,7 @@ namespace FrbaHotel.ABM_de_Habitacion
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (accion == "Editar") operacionConSeleccionado(dataGridView1, e);
+            if (accion == "Editar") operacionBotonConSeleccionado(dataGridView1, e);
             else if (accion == "Eliminar") EliminarHabitacion(dataGridView1, e);
         }
 

@@ -7,7 +7,7 @@ using FrbaHotel.Administracion_Base_de_Datos;
 
 namespace FrbaHotel.Dominio
 {
-    public class Cliente
+    public class Cliente:Entidad
     {
 
         public Cliente(int Id)
@@ -15,7 +15,21 @@ namespace FrbaHotel.Dominio
             this.Id = Id;
         }
 
-        public int Id { get; set; }
+        public Cliente(int Id,string nroId,string nombre, string apellido,string mail, TipoDocumento tipoId)
+        {
+            this.NumeroId = nroId;
+            this.TipoIdentificacion = tipoId;
+            this.Apellido = apellido;
+            this.Nombre = nombre;
+            this.Mail = mail;
+            this.Id = Id;
+        }
+
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Mail { get; set; }
+        public string NumeroId { get; set; }
+        public TipoDocumento TipoIdentificacion { get; set; }
 
         public TipoDocumento TipoId
         {

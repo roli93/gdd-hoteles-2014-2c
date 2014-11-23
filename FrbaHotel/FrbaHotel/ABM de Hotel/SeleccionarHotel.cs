@@ -47,7 +47,7 @@ namespace FrbaHotel.ABM_de_Hotel
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (accion == "Editar") operacionConSeleccionado(dataGridView1, e);
+            if (accion == "Editar") operacionBotonConSeleccionado(dataGridView1, e);
             else if (accion == "Eliminar") EliminarHotel(dataGridView1, e);
         }
 

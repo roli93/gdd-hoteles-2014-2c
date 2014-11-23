@@ -89,7 +89,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            operacionConSeleccionado(dataGridView1, e);
+            operacionBotonConSeleccionado(dataGridView1, e);
         }
 
 
