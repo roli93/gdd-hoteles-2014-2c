@@ -2256,10 +2256,14 @@ GO
 PRINT 'Clientes duplicados detectados.'
 
 
-insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar')
-insert into MAX_POWER.Funcionalidad (descripcion) values ('Recepcionar')
-insert into MAX_POWER.Funcionalidad (descripcion) values ('Atender')
-insert into MAX_POWER.Funcionalidad (descripcion) values ('Reservar')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Roles')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Usuarios')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Clientes')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Hoteles')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Habitaciones')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Reservas')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Registrar Estadías')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Facturaciones')
 
 exec MAX_POWER.insertar_rol 'Administrador General', 'S'
 GO
@@ -2272,10 +2276,14 @@ exec MAX_POWER.insertar_funcionalidad_X_rol 1, 1
 exec MAX_POWER.insertar_funcionalidad_X_rol 1, 2
 exec MAX_POWER.insertar_funcionalidad_X_rol 1, 3
 exec MAX_POWER.insertar_funcionalidad_X_rol 1, 4
+exec MAX_POWER.insertar_funcionalidad_X_rol 1, 5
+exec MAX_POWER.insertar_funcionalidad_X_rol 1, 6
+exec MAX_POWER.insertar_funcionalidad_X_rol 1, 7
+exec MAX_POWER.insertar_funcionalidad_X_rol 1, 8
 exec MAX_POWER.insertar_funcionalidad_X_rol 2, 2
 exec MAX_POWER.insertar_funcionalidad_X_rol 2, 3
 exec MAX_POWER.insertar_funcionalidad_X_rol 2, 4
-exec MAX_POWER.insertar_funcionalidad_X_rol 3, 4
+exec MAX_POWER.insertar_funcionalidad_X_rol 3, 7
 go
 
 PRINT 'Creadas las funcionalidades y roles.'
