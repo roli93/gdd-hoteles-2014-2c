@@ -50,7 +50,7 @@ namespace FrbaHotel.Login
                 throw new ExcepcionFrbaHoteles("Debe seleccionar un Rol y un Hotel para acceder");
             Sesion.Usuario.Rol = rol;
             Sesion.Usuario.Hotel = hotel;
-            new SeleccionFuncionalidad(this).StandaloneOpen();
+            new SeleccionFuncionalidad(this).FinalStandaloneOpen();
         }
     }
 }

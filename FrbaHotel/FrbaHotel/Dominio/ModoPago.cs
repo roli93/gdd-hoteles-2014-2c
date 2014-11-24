@@ -7,7 +7,7 @@ namespace FrbaHotel.Dominio
 {
     public class ModoPago:Entidad
     {
-        string Descripcion { get; set; }
+        public string Descripcion { get; set; }
 
         public ModoPago()
         {

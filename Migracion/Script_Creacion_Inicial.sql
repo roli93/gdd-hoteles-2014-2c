@@ -2334,8 +2334,8 @@ insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Clientes'
 insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Hoteles')
 insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Habitaciones')
 insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Reservas')
-insert into MAX_POWER.Funcionalidad (descripcion) values ('Registrar Estadías')
-insert into MAX_POWER.Funcionalidad (descripcion) values ('Facturaciones')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Check in/out')
+
 
 exec MAX_POWER.insertar_rol 'Administrador General', 'S'
 GO
@@ -2351,7 +2351,6 @@ exec MAX_POWER.insertar_funcionalidad_X_rol 1, 4
 exec MAX_POWER.insertar_funcionalidad_X_rol 1, 5
 exec MAX_POWER.insertar_funcionalidad_X_rol 1, 6
 exec MAX_POWER.insertar_funcionalidad_X_rol 1, 7
-exec MAX_POWER.insertar_funcionalidad_X_rol 1, 8
 exec MAX_POWER.insertar_funcionalidad_X_rol 2, 2
 exec MAX_POWER.insertar_funcionalidad_X_rol 2, 3
 exec MAX_POWER.insertar_funcionalidad_X_rol 2, 4
@@ -2362,7 +2361,7 @@ PRINT 'Creadas las funcionalidades y roles.'
 
 declare @nacimiento as date
 set @nacimiento = CAST('01/01/1993' as DATE)
-exec MAX_POWER.insertar_usuario 'admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 'Max', 'Power', 1, '99999999', 'admin@power.max', '4444-4444', 'falsa 123', @nacimiento
+exec MAX_POWER.insertar_usuario 'admin', 'w23e', 'Max', 'Power', 1, '99999999', 'admin@power.max', '4444-4444', 'falsa 123', @nacimiento
 go
 
 exec MAX_POWER.insertar_usuario_x_rol 1, 1
@@ -2388,5 +2387,9 @@ GO
 
 insert into MAX_POWER.Tipo_modificacion (descripcion) values ('Modificacion')
 insert into MAX_POWER.Tipo_modificacion (descripcion) values ('Cancelacion')
+
+/*Renombra los hoteles migrados para que no aparezcan en blanco en la app*/
+
+UPDATE MAX_POWER.Hotel SET nombre='Hotel sin nombre '+CAST(id_hotel AS VARCHAR(30)) WHERE nombre IS NULL
 
 PRINT 'Generados datos basicos'

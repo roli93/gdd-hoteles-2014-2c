@@ -18,6 +18,7 @@ namespace FrbaHotel.Registrar_Estadia
     {
         protected int idReserva;
         public ModoPago modoPago=null;
+        public Boolean consumiblesRegistrados=false;
 
         public RegistrarEgreso()
         {
@@ -32,20 +33,30 @@ namespace FrbaHotel.Registrar_Estadia
 
         private void button1_Click(object sender, EventArgs e)
         {
+            consumiblesRegistrados = true;
             new RegistrarConsumibles(this, idReserva).StandaloneOpen() ;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            new ElegirMetodoPago(this).StandaloneOpen(); 
+
+            if(!consumiblesRegistrados)
+                if (MessageBox.Show("Está a punto de finalizar el check-in sin registrar cnsumibles\n¿Desea continuar?", "Continuar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    return;
+                ElegirPago();
         }
 
-        public void Facturar()
+        public void ElegirPago()
+        {
+            new ElegirMetodoPago(this).FinalStandaloneOpen();
+        }
+
+        public void Facturar(NavegableForm owner,string nombre, string apellido,string codigo)
         {
             if (modoPago != null)
             {
-                HomeReservas.facturar(idReserva, dateTimePicker1.Value, modoPago);
-                new Factura(this, DatabaseAdapter.getIdUltimaInsercion("Factura")).FinalStandaloneOpen();
+                HomeReservas.facturar(idReserva, dateTimePicker1.Value, modoPago,nombre,apellido,codigo);
+                new Factura(owner, DatabaseAdapter.getIdUltimaInsercion("Factura")).FinalStandaloneOpen();
             }
         }
 

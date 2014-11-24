@@ -25,7 +25,13 @@ namespace FrbaHotel.Login
 
         private void comboBox1_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            VentanaFuncionalidad.FinalStandaloneOpen();
+            VentanaFuncionalidad.StandaloneOpen();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Sesion.Usuario = null;
+            Close();
         }
 
     }

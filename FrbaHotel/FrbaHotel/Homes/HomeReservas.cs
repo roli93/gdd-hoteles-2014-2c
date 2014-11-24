@@ -203,9 +203,9 @@ namespace FrbaHotel.Homes
         */
         }
 
-        public static void facturar(int idReserva, DateTime fechaSalida,ModoPago mp)
+        public static void facturar(int idReserva, DateTime fechaSalida,ModoPago mp,string nombre, string apellido, string codigo)
         {/*
-            DatabaseAdapter.ejecutarProcedure("facturar", idReserva, fechaSalida,mp.Id);*/
+            DatabaseAdapter.ejecutarProcedure("facturar", idReserva, fechaSalida,mp.Id,nombre,apellido, codigo);*/
         }
 
     }
