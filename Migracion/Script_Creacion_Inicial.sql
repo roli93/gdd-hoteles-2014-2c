@@ -2231,6 +2231,33 @@ order by cantidad_veces desc, cantidad_dias desc
 
 GO
 
+CREATE PROCEDURE [MAX_POWER].top5estadistico_clientes_por_puntaje(@trimestre as bigint, @anio as bigint) as
+select top 5
+floor(precio_estadia/10) + floor(
+(select SUM(p.precio * phr.cantidad) as precio_producto 
+	from MAX_POWER.Producto_X_Habitacion_reservada phr
+	join MAX_POWER.Producto p on p.id_producto = phr.id_producto
+	where phr.id_factura = tabla.factura ) /5) as puntos,
+c.*
+from (select 
+		r.id_cliente_titular as cliente,
+		e.id_estadia as estadia,
+		reg.precio_base * DATEDIFF(D,r.fecha_inicio, r.fecha_fin ) as precio_estadia,
+		f.id_factura as factura
+		
+	from MAX_POWER.Estadia e
+	join MAX_POWER.Reserva r on e.id_reserva = r.id_reserva and e.valida = 'S'
+	join MAX_POWER.Regimen reg on reg.id_regimen = r.id_regimen
+	join MAX_POWER.Factura f on f.id_estadia = e.id_estadia
+
+	where (floor(MONTH(e.fecha_ingreso)/4) + 1) = @trimestre
+		and YEAR(e.fecha_ingreso) = @anio
+)tabla
+join MAX_POWER.Cliente c on c.id_cliente = tabla.cliente
+order by puntos desc
+
+GO
+
 
 PRINT 'Finalizo la importacion de SP propios de la aplicacion.'
 
