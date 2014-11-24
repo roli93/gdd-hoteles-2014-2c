@@ -27,33 +27,26 @@ namespace FrbaHotel.Homes
         }
 
         public static DataTable buscarRoles(string nombre,bool estaActivo)
-        {/*TODO
-            return DatabaseAdapter.traerDataTable("buscar_roles", nombre, estaActivo);
-          */
-            DataTable ej = new DataTable();
-            ej.Clear();
-            ej.Columns.Add("ID"); 
-            ej.Columns.Add("Nombre");
-            ej.Columns.Add("EstaActivo");
-            ej.Rows.Add(new object[] { 1, "Healer", true});
-            return ej;
+        {
+            string habilitado = "N";
+            if (estaActivo)
+                habilitado = "S";
+            return DatabaseAdapter.traerDataTable("buscar_roles", like(nombre), like(habilitado));
         }
 
         public static void buscarPorId(int id, out string nombre, out bool estaActivo, out  List<Funcionalidad> funcionalidades)
-        {/*TODO
+        {
             DataRow rolTraido = DatabaseAdapter.traerDataTable("buscar_rol_por_id", id).Rows[0];
             nombre = rolTraido["nombre"].ToString();
-            estaActivo = rolTraido["estaActivo"].ToString();
-            
-            Rol rol = new Rol(id, nombre);
-          * rol.estaActivo = estaActivo;
-            funcionalidades = rol.Funcionalidades;      */
+            string habilitado = rolTraido["habilitado"].ToString();
 
-            nombre = "rolPiola";
             estaActivo = true;
-            
+            if (habilitado=="N")
+                estaActivo=false;
+
+
             Rol rol = new Rol(id, nombre);
-            funcionalidades = rol.Funcionalidades;
+            funcionalidades = rol.Funcionalidades;      
 
         }
 
@@ -68,8 +61,8 @@ namespace FrbaHotel.Homes
         }
 
         public static void bajaLogica(int id)
-        {/*TODO
-            DatabaseAdapter.ejecutarProcedure("baja_rol", id);*/
+        {
+            DatabaseAdapter.ejecutarProcedure("baja_rol", id);
         }
 
 

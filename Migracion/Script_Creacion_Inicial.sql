@@ -1877,6 +1877,12 @@ AS SELECT * FROM MAX_POWER.Habitacion
 	WHERE id_habitacion = @id_habitacion
 GO
 
+CREATE PROCEDURE [MAX_POWER].baja_rol(@id BIGINT)
+AS
+UPDATE [MAX_POWER].Rol SET habilitado = 'N' WHERE id_rol = @id
+GO
+
+
 CREATE PROCEDURE [MAX_POWER].baja_logica_habitacion(@id_habitacion BIGINT)
 AS
 UPDATE MAX_POWER.Habitacion set habilitada = 'N' WHERE id_habitacion = @id_habitacion

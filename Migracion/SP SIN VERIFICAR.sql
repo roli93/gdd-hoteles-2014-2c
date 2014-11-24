@@ -121,11 +121,6 @@ AS BEGIN
 END
 GO
 
-CREATE PROCEDURE [MAX_POWER].baja_rol(@id BIGINT)
-AS
-UPDATE [MAX_POWER].Rol SET habilitado = 'N' WHERE id_rol = @id
-GO
-
 CREATE PROCEDURE [MAX_POWER].insertar_cliente_x_habitacion(@id_habitacion_reservada BIGINT, @id_cliente BIGINT)
 AS BEGIN
 	BEGIN TRY
