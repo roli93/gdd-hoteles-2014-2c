@@ -38,9 +38,14 @@
             // 
             // dataGridView1
             // 
-            this.dataGridView1.Location = new System.Drawing.Point(15, 60);
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.dataGridView1.Location = new System.Drawing.Point(12, 48);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(272, 226);
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(615, 226);
             this.dataGridView1.TabIndex = 0;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -49,10 +54,10 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(278, 39);
+            this.label1.Size = new System.Drawing.Size(615, 26);
             this.label1.TabIndex = 1;
-            this.label1.Text = "A continuación deberá o bien cambiar las identificaciones\n de todos los clientes " +
-                "para que todas sean diferentes, o \nbien eliminar los clientes que se repitan. ";
+            this.label1.Text = "A continuación deberá o bien cambiar las identificaciones de todos los clientes p" +
+                "ara que todas sean diferentes, o bien eliminar los\nclientes que se repitan. ";
             // 
             // button1
             // 
@@ -66,7 +71,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(188, 292);
+            this.button2.Location = new System.Drawing.Point(528, 293);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(99, 23);
             this.button2.TabIndex = 3;
@@ -79,7 +84,7 @@
             this.button4.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.button4.Image = global::FrbaHotel.Properties.Resources.tilde;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.Location = new System.Drawing.Point(114, 321);
+            this.button4.Location = new System.Drawing.Point(282, 321);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(69, 37);
             this.button4.TabIndex = 39;
@@ -92,7 +97,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(304, 370);
+            this.ClientSize = new System.Drawing.Size(640, 370);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);

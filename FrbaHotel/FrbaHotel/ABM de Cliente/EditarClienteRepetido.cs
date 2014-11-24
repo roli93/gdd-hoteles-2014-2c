@@ -39,12 +39,14 @@ namespace FrbaHotel.ABM_de_Cliente
         private void EditarClienteRepetido_Load(object sender, EventArgs e)
         {
             textBox1.Text = cliente.NumeroId;
+            bindCombo<TipoDocumento>(comboBox1, Sesion.TiposDocumentoDisponibles);
             comboBox1.SelectedIndex = comboBox1.FindStringExact(cliente.TipoIdentificacion.Descripcion, 0);
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             ((AsistenteClientesRepetidos)Owner).ActualizarGrilla();
+            Close();
         }
 
 

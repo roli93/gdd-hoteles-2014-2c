@@ -1804,8 +1804,19 @@ AS SELECT * FROM MAX_POWER.Cliente
 	WHERE id_cliente = @id_cliente
 GO
 
+CREATE FUNCTION [MAX_POWER].es_valido(@id_tipo_documento BIGINT, @nro_id BIGINT)RETURNS CHAR(1) AS
+BEGIN
+DECLARE @retorno CHAR(1)
+	IF(EXISTS(SELECT 1 FROM MAX_POWER.Clientes_Repetidos WHERE id_tipo_identificacion=@id_tipo_documento AND numero_identificacion=@nro_id AND habilitado='S' AND controlado='N'))
+		SET @retorno='N'
+	ELSE
+		SET @retorno='S'
+RETURN @retorno
+END
+GO
+
 CREATE PROCEDURE [MAX_POWER].buscar_clientes(@nombre VARCHAR(50), @apellido VARCHAR(50), @email VARCHAR(50), @nroId VARCHAR(50), @Id_tipo_identificacion BIGINT)
-AS SELECT DISTINCT C.id_cliente as ID,nombre,apellido,mail,descripcion,numero_identificacion
+AS SELECT DISTINCT C.id_cliente as ID,Nombre,Apellido,Mail,descripcion as 'Tipo de Identificacion' ,numero_identificacion as 'Número de Identificación', MAX_POWER.es_valido(D.id_tipo_documento,C.numero_identificacion) as Correcto
 	FROM MAX_POWER.Cliente C
 		JOIN MAX_POWER.Tipo_documento D ON C.id_tipo_identificacion=D.id_tipo_documento
 	WHERE habilitado='S'
@@ -1814,6 +1825,51 @@ AS SELECT DISTINCT C.id_cliente as ID,nombre,apellido,mail,descripcion,numero_id
 		AND UPPER(mail) LIKE UPPER(@email)
 		AND numero_identificacion LIKE @nroId 
 		AND id_tipo_identificacion LIKE (SELECT CASE WHEN @Id_tipo_identificacion = -1 THEN '%' ELSE CAST(@Id_tipo_identificacion AS VARCHAR(50)) END )
+GO
+
+
+CREATE PROCEDURE [MAX_POWER].identificacion_cliente(@id_cli BIGINT, @id_tipo_identificacion BIGINT OUTPUT,@nro_identificacion VARCHAR(50) OUTPUT)AS
+BEGIN
+	SELECT @nro_identificacion=numero_identificacion, @id_tipo_identificacion= id_tipo_identificacion FROM MAX_POWER.Cliente WHERE id_cliente=@id_cli
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].clientes_repetidos_para(@id_cliente BIGINT)AS
+BEGIN 
+	DECLARE @nro_id VARCHAR(50)
+	DECLARE @id_tipo_id BIGINT
+	EXEC [MAX_POWER].identificacion_cliente @id_cli=@id_cliente, @id_tipo_identificacion=@id_tipo_id OUTPUT,@nro_identificacion=@nro_id OUTPUT
+	SELECT C.id_cliente,c.numero_identificacion, C.nombre, C.apellido, C.mail, C.id_tipo_identificacion, D.descripcion
+		FROM MAX_POWER.Cliente C INNER JOIN MAX_POWER.Tipo_documento D ON C.id_tipo_identificacion=D.id_tipo_documento
+		WHERE C.numero_identificacion=@nro_id AND C.id_tipo_identificacion=@id_tipo_id
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].baja_cliente_repetido(@id_cliente BIGINT)AS
+BEGIN 
+	UPDATE MAX_POWER.Cliente SET habilitado='N' WHERE id_cliente=@id_cliente
+END 
+GO
+
+CREATE PROCEDURE [MAX_POWER].reparar_cliente_repetido(@id_cliente BIGINT,@id_tipo_id BIGINT, @nro_id VARCHAR(50))AS
+BEGIN 
+	UPDATE MAX_POWER.Cliente SET id_tipo_identificacion=@id_tipo_id, numero_identificacion=@nro_id WHERE id_cliente=@id_cliente
+END 
+GO
+
+CREATE PROCEDURE [MAX_POWER].limpiar_repetidos(@id_tipo_id BIGINT, @nro_id VARCHAR(50))AS
+BEGIN 
+	UPDATE MAX_POWER.Clientes_Repetidos SET habilitado='N',controlado='S' WHERE id_tipo_identificacion=@id_tipo_id AND numero_identificacion=@nro_id
+END 
+GO
+
+CREATE PROCEDURE [MAX_POWER].validar_unicidad_cliente(@id_cliente BIGINT,@id_tipo_id BIGINT, @nro_id VARCHAR(50))AS
+BEGIN 
+	IF(EXISTS(SELECT 1 FROM MAX_POWER.Cliente WHERE id_tipo_identificacion=@id_tipo_id AND numero_identificacion=@nro_id AND id_cliente!=@id_cliente))
+		RETURN (1)
+	ELSE 
+		RETURN(0)
+END 
 GO
 
 CREATE PROCEDURE [MAX_POWER].buscar_habitacion_por_id(@id_habitacion BIGINT)

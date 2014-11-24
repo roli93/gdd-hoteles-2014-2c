@@ -50,15 +50,42 @@ namespace FrbaHotel.Homes
 
         public static List<Cliente> clientesRepetidos(int idCliente)
         {
-            //TODO 
-            return new List<Cliente>();
+            List<Cliente> clientes = new List<Cliente>();
+            DataTable tablaClientes = DatabaseAdapter.traerDataTable("clientes_repetidos_para", idCliente);
+            foreach(DataRow cliente in tablaClientes.Rows)
+                clientes.Add(new Cliente(Convert.ToInt32(cliente["id_cliente"]),
+                                         cliente["numero_identificacion"].ToString(),
+                                         cliente["nombre"].ToString(),
+                                         cliente["apellido"].ToString(),
+                                         cliente["mail"].ToString(),
+                                         new TipoDocumento(Convert.ToInt32(cliente["id_tipo_identificacion"]),
+                                                           cliente["descripcion"].ToString()
+                                                          )
+                                        )
+                            );
+            return clientes;
         }
 
-        public static void bajaCliente(int idCliente)
+        public static void bajaClienteRepetido(int idCliente)
         {
-            //TODO 
-
+            DatabaseAdapter.ejecutarProcedure("baja_cliente_repetido", idCliente);
         }
+
+        public static void repararClienteRepetido(int idCliente, TipoDocumento tipoID, string nroID)
+        {
+            DatabaseAdapter.ejecutarProcedure("reparar_cliente_repetido", idCliente, tipoID.Id, nroID);
+        }
+
+        public static void limpiarExRepetidos(TipoDocumento tipoID, string nroID)
+        {
+            DatabaseAdapter.ejecutarProcedure("limpiar_repetidos", tipoID.Id, nroID);
+        }
+
+        public static int validarUnicidadClienteAReparar(int idCliente, TipoDocumento tipoID, string nroID)
+        {
+            return DatabaseAdapter.ejecutarProcedureWithReturnValue("validar_unicidad_cliente", idCliente, tipoID.Id, nroID);
+        }
+
 
     }
 }

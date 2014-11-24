@@ -15,17 +15,19 @@ namespace FrbaHotel.ABM_de_Cliente
 {
     public partial class AsistenteClientesRepetidos : Alta
     {
-        List<Cliente> clientes,clientesEliminados;
+        List<Cliente> clientes,clientesEliminados=new List<Cliente>();
         int idCliente;
         Action<DataGridViewCellCollection> gridAction;
         DataGridViewCellEventArgs clienteSeleccionado;
+        TipoDocumento tipoID;
+        string nroID;
 
         public AsistenteClientesRepetidos()
         {
             InitializeComponent();
         }
 
-        public AsistenteClientesRepetidos(NavegableForm o, id idCliente):base(o)
+        public AsistenteClientesRepetidos(NavegableForm o, int idCliente):base(o)
         {
             this.idCliente=idCliente;
             InitializeComponent();
@@ -34,6 +36,9 @@ namespace FrbaHotel.ABM_de_Cliente
         private void AsistenteClientesRepetidos_Load(object sender, EventArgs e)
         {
             clientes = HomeClientes.clientesRepetidos(idCliente);
+            tipoID=clientes[0].TipoIdentificacion;
+            nroID = clientes[0].NumeroId;
+            ActualizarGrilla();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -45,7 +50,7 @@ namespace FrbaHotel.ABM_de_Cliente
         public void borrarCliente(DataGridViewCellCollection celdas)
         {
             Cliente aBorrar;
-            aBorrar = clientes.Find((c) => c.Id.Equals(Convert.ToInt32(celdas["ID"].Value)));
+            aBorrar = clientes.Find((c) => c.Id.Equals(Convert.ToInt32(celdas["Código"].Value)));
             clientesEliminados.Add(aBorrar);
             clientes.Remove(aBorrar);
             ActualizarGrilla();
@@ -53,7 +58,7 @@ namespace FrbaHotel.ABM_de_Cliente
 
         public void editarCliente(DataGridViewCellCollection celdas)
         {
-            new EditarClienteRepetido(this, clientes.Find((c) => c.Id.Equals(Convert.ToInt32(celdas["ID"].Value)))).OpenDialogue();
+            new EditarClienteRepetido(this, clientes.Find((c) => c.Id.Equals(Convert.ToInt32(celdas["Código"].Value)))).OpenDialogue();
         }
 
 
@@ -61,15 +66,16 @@ namespace FrbaHotel.ABM_de_Cliente
         {
             DataTable datos = new DataTable();
             datos.Clear();
-            datos.Columns.Add("Tipo ID");
-            datos.Columns.Add("Número ID");
+            datos.Columns.Add("Código");
+            datos.Columns.Add("Tipo Identificación");
+            datos.Columns.Add("Número Identificación");
             datos.Columns.Add("Nombre");
             datos.Columns.Add("Apellido");
             datos.Columns.Add("Mail");
 
             foreach (Cliente cliente in clientes)
             {
-                datos.Rows.Add(new object[] { cliente.TipoIdentificacion.Descripcion, cliente.NumeroId, cliente.Nombre, cliente.Apellido, cliente.Mail });
+                datos.Rows.Add(new object[] {cliente.Id, cliente.TipoIdentificacion.Descripcion, cliente.NumeroId, cliente.Nombre, cliente.Apellido, cliente.Mail });
             }
 
             cargarGrilla(dataGridView1, datos);
@@ -111,16 +117,29 @@ namespace FrbaHotel.ABM_de_Cliente
 
         private void button4_Click(object sender, EventArgs e)
         {
-            
-
+            ExcecuteAndShow(Persistir);
         }
 
         public void Persistir()
         {
             ValidarErrores();
             foreach (Cliente cliente in clientesEliminados)
-                HomeClientes.bajaCliente(cliente.Id);
-
+                HomeClientes.bajaClienteRepetido(cliente.Id);
+            foreach (Cliente cliente in clientes)
+            {
+                int error = 0;
+                if (cliente.NumeroId != nroID || !cliente.TipoIdentificacion.Equals(tipoID))
+                    error = HomeClientes.validarUnicidadClienteAReparar(cliente.Id, cliente.TipoIdentificacion, cliente.NumeroId);
+                if (error == 1)
+                    throw new ExcepcionFrbaHoteles("El numero de identificación " + cliente.NumeroId +
+                                                    " y el tipo de identificación " + cliente.TipoIdentificacion.Descripcion +
+                                                    "\n ya han sido utilizados por otro cliente almacenado. Por favor, cámbielos");
+            }
+            foreach (Cliente cliente in clientes)
+                HomeClientes.repararClienteRepetido(cliente.Id,cliente.TipoIdentificacion,cliente.NumeroId);
+            HomeClientes.limpiarExRepetidos(tipoID,nroID);
+            ((SeleccionarCliente)Owner).Buscar();
+            Close();
         }
 
     }

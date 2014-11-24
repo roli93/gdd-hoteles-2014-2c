@@ -158,26 +158,43 @@ namespace FrbaHotel.Forms_genericos
 
         public void operacionConSeleccionado(DataGridView grilla, DataGridViewCellEventArgs e, Func<DataGridViewCellEventArgs, DataGridViewCellCollection,Boolean> condicion)
         {
-            try
+            if (e != null)
             {
-                if (grilla[0, e.RowIndex].Value == null)
+                try
                 {
+                    if (grilla[0, e.RowIndex].Value == null)
+                    {
 
+                    }
                 }
-            }
-            catch (ArgumentOutOfRangeException)
-            {
-            }
-            try
-            {
-                DataGridViewCellCollection celdas = grilla.Rows[e.RowIndex].Cells;
-                if (condicion(e,celdas))
+                catch (ArgumentOutOfRangeException)
                 {
-                    gridClickAction(celdas);
+                }
+                try
+                {
+                    DataGridViewCellCollection celdas = grilla.Rows[e.RowIndex].Cells;
+                    if (condicion(e, celdas))
+                    {
+                        gridClickAction(celdas);
+                    }
+                }
+                catch (ArgumentOutOfRangeException)
+                {
                 }
             }
-            catch (ArgumentOutOfRangeException)
+            else
             {
+                try
+                {
+                    DataGridViewCellCollection celdas = grilla.Rows[grilla.SelectedRows[0].Index].Cells;
+                    if (condicion(e, celdas))
+                    {
+                        gridClickAction(celdas);
+                    }
+                }
+                catch (ArgumentOutOfRangeException)
+                {
+                }
             }
         }
 
