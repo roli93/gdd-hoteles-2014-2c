@@ -6,12 +6,6 @@ EXEC @return_status = MAX_POWER.(sp) (param1), (param2), ... ;
 print @return_status
 */
 
--- QUE FUNCION CUMPLE ESTO??
-CREATE PROCEDURE [MAX_POWER].usuario_para_login(@usuario VARCHAR(50), @password VARCHAR(50))
-AS 
-	SELECT * FROM MAX_POWER.Usuario WHERE Username = @usuario AND UPPER(habilitado)='S'
-GO
-
 
 /*  S I N   V E R I F I C A R  */
 

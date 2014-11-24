@@ -1980,6 +1980,78 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE [MAX_POWER].actualizar_usuario(@id BIGINT, @username VARCHAR(50), @password VARCHAR(50), @nombre VARCHAR(50), @apellido VARCHAR(50), @Id_tipo_dni BIGINT, @dni VARCHAR(50), @mail VARCHAR(50), @telefono VARCHAR(50), @direccion VARCHAR(50), @fechaNacimiento DATETIME)
+AS BEGIN
+	BEGIN TRY
+		UPDATE [MAX_POWER].Usuario SET
+			Username = @username,
+			pw = @password,
+			nombre = @nombre,
+			apellido = @apellido,
+			id_tipo_documento = @Id_tipo_dni,
+			numero_documento = @dni,
+			mail = @mail,
+			telefono = @telefono,
+			direccion = @direccion,
+			fecha_nacimiento = @fechaNacimiento
+			WHERE id_usuario = @id
+	END TRY
+	BEGIN CATCH
+		IF @@ERROR = 2627
+			RETURN (-4)
+	END CATCH
+	RETURN(0)
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].insertar_cliente(@nombre VARCHAR(50), @apellido VARCHAR(50), @id_tipo_identificacion BIGINT, @nroId BIGINT, @mail VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50),@altura VARCHAR(10),@piso VARCHAR(10),@depto VARCHAR(50), @localidad VARCHAR(50), @fechaNacimiento DATETIME,@id_pais BIGINT)
+AS BEGIN
+	IF (SELECT COUNT (mail) FROM [MAX_POWER].Cliente WHERE mail = @mail) > 0
+		RETURN (-5)
+	BEGIN TRY
+		INSERT INTO [MAX_POWER].Cliente (nombre, apellido, id_tipo_identificacion, numero_identificacion, mail, telefono, calle,altura,piso,departamento, localidad, fecha_nacimiento, id_pais, habilitado) 
+		VALUES (@nombre, @apellido, @id_tipo_identificacion, @nroId, @mail, @telefono, @calle,CAST(@altura AS BIGINT),CAST(@piso AS BIGINT),@depto, @localidad, @fechaNacimiento,@id_pais, 'S')
+	END TRY
+	BEGIN CATCH
+		IF @@ERROR = 2627
+			RETURN (-6)
+	END CATCH
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].actualizar_cliente(@id BIGINT, @nombre VARCHAR(50), @apellido VARCHAR(50), @id_tipo_identificacion BIGINT, @nroId BIGINT, @mail VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50),@altura VARCHAR(10),@piso VARCHAR(10),@depto VARCHAR(50), @localidad VARCHAR(50), @fechaNacimiento DATETIME, @habilitado CHAR(1))
+AS BEGIN
+	IF (SELECT COUNT (mail) FROM [MAX_POWER].Usuario WHERE mail = @mail) > 0
+			RETURN (-5)
+	BEGIN TRY
+		UPDATE [MAX_POWER].Cliente SET
+		nombre = @nombre,
+		apellido = @apellido,
+		id_tipo_identificacion = @id_tipo_identificacion,
+		numero_identificacion = @nroId,
+		mail = @mail,
+		telefono = @telefono,
+		calle = @calle,
+		altura=@altura ,
+		piso=@piso ,
+		departamento=@depto,
+		localidad = @localidad,
+		fecha_nacimiento = @fechaNacimiento,
+		habilitado = @habilitado
+		WHERE id_cliente = @id
+	END TRY
+	BEGIN CATCH
+		IF @@ERROR = 2627
+			RETURN (-6)
+	END CATCH
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].usuario_para_login(@usuario VARCHAR(50), @password VARCHAR(50))
+AS 
+	SELECT * FROM MAX_POWER.Usuario WHERE Username = @usuario AND UPPER(habilitado)='S'
+GO
+
 CREATE PROCEDURE [MAX_POWER].obtener_habitacion(@id_reserva BIGINT)
 AS SELECT DISTINCT H.id_habitacion, H.id_tipo_habitacion, th.descripcion
 	FROM MAX_POWER.Habitacion_reservada HR 
