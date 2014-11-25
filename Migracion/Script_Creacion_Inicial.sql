@@ -1882,6 +1882,31 @@ AS
 UPDATE [MAX_POWER].Rol SET habilitado = 'N' WHERE id_rol = @id
 GO
 
+CREATE PROCEDURE [MAX_POWER].buscar_hoteles(@nombre VARCHAR(50), @estrellas BIGINT, @id_pais BIGINT, @ciudad VARCHAR(50))
+ 
+AS 
+	SELECT distinct H.id_hotel as ID, H.nombre as HNOMBRE,mail,telefono,calle,altura,fecha_creacion,estrellas,recarga_estrellas,H.id_pais as HPais,ciudad
+ 
+	FROM [MAX_POWER].Hotel H  join MAX_POWER.Pais P on P.id_pais=H.id_pais
+	WHERE UPPER(H.nombre) LIKE UPPER(@nombre)
+	
+		AND UPPER(ciudad) LIKE UPPER(@ciudad)
+	
+		AND P.id_pais like (SELECT CASE WHEN  @id_pais= -1 THEN '%' ELSE CAST(@id_pais AS VARCHAR(50)) END)
+
+		AND CAST(estrellas as VARCHAR(50)) like (SELECT CASE WHEN @estrellas = 0 THEN '%' ELSE CAST(@estrellas AS VARCHAR(50)) END)
+
+GO
+
+CREATE PROCEDURE [MAX_POWER].ciudades_disponibles
+AS
+	SELECT DISTINCT ciudad FROM [MAX_POWER].Hotel
+GO
+
+CREATE PROCEDURE [MAX_POWER].buscar_pais_por_id(@id BIGINT)
+ AS
+  SELECT * FROM [mAX_POWER].Pais WHERE id_pais=@id
+GO
 
 CREATE PROCEDURE [MAX_POWER].baja_logica_habitacion(@id_habitacion BIGINT)
 AS
@@ -1900,7 +1925,7 @@ CREATE PROCEDURE [MAX_POWER].insertar_funcionalidad_X_rol(@id_rol BIGINT,@id_fun
 AS INSERT INTO MAX_POWER.Funcionalidad_X_Rol(id_rol,id_funcionalidad) VALUES (@id_rol,@id_funcionalidad)
 GO
 
-CREATE PROCEDURE [MAX_POWER].regimenes_disponibes(@id_hotel BIGINT)
+CREATE PROCEDURE [MAX_POWER].regimenes_disponibles(@id_hotel BIGINT)
 AS SELECT *
 	FROM MAX_POWER.Regimen_X_Hotel RH join MAX_POWER.Regimen R on RH.id_regimen = R.id_regimen
 	WHERE RH.id_hotel = @id_hotel AND R.habilitado = 'S'
@@ -1932,10 +1957,6 @@ CREATE PROCEDURE [MAX_POWER].productos_disponibles
 AS SELECT DISTINCT id_producto, descripcion FROM MAX_POWER.Producto
 GO
 
-CREATE PROCEDURE [MAX_POWER].regimenes_disponibles(@id_hotel BIGINT)
-AS SELECT * FROM MAX_POWER.Regimen r,MAX_POWER.Regimen_x_hotel rh WHERE r.id_regimen=rh.id_regimen AND rh.id_hotel=@id_hotel 
-GO
-
 CREATE PROCEDURE [MAX_POWER].buscar_rol_por_id(@id BIGINT)
 AS SELECT * FROM [MAX_POWER].Rol WHERE id_rol = @id
 GO
@@ -1948,6 +1969,11 @@ CREATE PROCEDURE [MAX_POWER].buscar_roles(@nombre VARCHAR(50), @estado CHAR(1))
 AS SELECT * FROM [MAX_POWER].Rol 
 	WHERE UPPER(nombre) LIKE UPPER(@nombre)
 		AND UPPER(habilitado) LIKE UPPER(@estado)
+GO
+
+CREATE PROCEDURE [MAX_POWER].insertar_periodo_cierre(@idHotel BIGINT, @fechaDesde VARCHAR(50), @fechaHasta VARCHAR(50))
+AS
+ INSERT INTO MAX_POWER.Periodo_Cierre (id_hotel,fecha_inicio,fecha_fin) VALUES (@idHotel,@fechaDesde,@fechaHasta)
 GO
 
 CREATE PROCEDURE [MAX_POWER].buscar_reserva_por_id(@id_reserva BIGINT) AS

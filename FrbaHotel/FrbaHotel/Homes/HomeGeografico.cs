@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Data;
+using FrbaHotel.Dominio;
 using FrbaHotel.Administracion_Base_de_Datos;
 
 namespace FrbaHotel.Homes
@@ -10,38 +11,15 @@ namespace FrbaHotel.Homes
     class HomeGeografico : Home
     {
         public static DataTable buscarPaises()
-        {/*TODO
-           
-            return DatabaseAdapter.traerDataTable("paises");
-                */
-            DataTable ej = new DataTable();
-            ej.Clear(); 
-            ej.Columns.Add("ID");
-            ej.Columns.Add("Descripcion");
-         
-            ej.Rows.Add(new object[] { 1,"Argentina"});
-            ej.Rows.Add(new object[] { 2, "Brasil" });
-            return ej;
-
+        {          
+            return DatabaseAdapter.traerDataTable("paises_disponibles");
         }
 
-        public static DataTable buscarCiudadesDe(int unIdPais)
+        public static Pais buscarPaisPorId(int unIdPais)
         {
-            /*TODO
-           
-            return DatabaseAdapter.traerDataTable("ciudades_de_pais",unIdPais);
-            */
-            DataTable ej = new DataTable();
-            ej.Clear();
-            ej.Columns.Add("ID");
-            ej.Columns.Add("Descripcion");
-
-            ej.Rows.Add(new object[] { 1, "Argentina" });
-            ej.Rows.Add(new object[] { 2, "Brasil" });
-            return ej;
-
-
+            DataRow DRpais = DatabaseAdapter.traerDataTable("buscar_pais_por_id", unIdPais).Rows[0];
+            Pais pais = new Pais(unIdPais, DRpais["descripcion"].ToString());
+            return pais;
         }
-
     }
 }
