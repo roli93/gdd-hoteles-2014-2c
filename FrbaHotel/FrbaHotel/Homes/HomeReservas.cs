@@ -14,25 +14,14 @@ namespace FrbaHotel.Homes
         public static int registrarReserva(Regimen regimen, DateTime fechaInicio, DateTime fechaFin, List<Habitacion> habitaciones, int IdCliente)
         {
             DatabaseAdapter.insertarDatosEnTabla("reserva", regimen.Id,fechaInicio,fechaFin, IdCliente,DateTime.Now);
-            int id = DatabaseAdapter.getIdUltimaInsercion("Reserva");
+            int id = DatabaseAdapter.ejecutarProcedureWithReturnValue("proximo_id_reserva")-1;
             agregarElementos("habitacion_reservada", id, IdsDe<Habitacion>(habitaciones));
-            /*TODO SACAR*/id = 238423879;
             return id;
         }
 
         public static void buscarReservaPorId(int id, out Hotel hotel, out Regimen regimen, out DateTime fechaInicio, out DateTime fechaFin, out List<Habitacion> habitaciones)
         {
-            DataTable ej = new DataTable();
-            ej.Clear();
-            ej.Columns.Add("fecha_fin");
-            ej.Columns.Add("fecha_inicio");
-            ej.Columns.Add("id_hotel_habitacion");
-            ej.Columns.Add("nombre_hotel_habitacion");
-            ej.Columns.Add("id_regimen_habitacion");
-            ej.Columns.Add("descripcion_regimen_habitacion");
-            ej.Rows.Add(new object[] {DateTime.Now, new DateTime(2014,1,2),3,"Hotelucho",1, "Media Pension"});
-
-            DataRow reserva = ej/*TODODatabaseAdapter.traerDataTable("buscar_reserva_por_id", id)*/.Rows[0];
+            DataRow reserva = DatabaseAdapter.traerDataTable("buscar_reserva_por_id", id).Rows[0];
 
             fechaFin = Convert.ToDateTime(reserva["fecha_fin"]);
             fechaInicio = Convert.ToDateTime(reserva["fecha_inicio"]);
@@ -44,50 +33,27 @@ namespace FrbaHotel.Homes
 
         public static List<Habitacion> HabitacionesParaReserva(int idReserva)
         {
-            DataTable ej = new DataTable();
-            ej.Clear();
-            ej.Columns.Add("id_tipo_habitacion");
-            ej.Columns.Add("id_habitacion");
-            ej.Columns.Add("descripcion_tipo_habitacion");
-            ej.Rows.Add(new object[] {1,5,"Doble"});
-            ej.Rows.Add(new object[] { 1, 6, "Doble" });
-            ej.Rows.Add(new object[] { 2, 7, "Simple" });
-            ej.Rows.Add(new object[] { 1, 8, "Doble" });
-            ej.Rows.Add(new object[] { 1, 9, "Doble" });
-            ej.Rows.Add(new object[] { 1, 10, "Doble" });
-            
-                DataTable elementos = ej/*DatabaseAdapter.traerDataTable("obtener_habitaciones", idReserva)*/;
-                List<Habitacion> habitaciones = new List<Habitacion>();
+            DataTable elementos = DatabaseAdapter.traerDataTable("obtener_habitacion", idReserva);
+            List<Habitacion> habitaciones = new List<Habitacion>();
 
-                foreach (DataRow elemento in elementos.Rows)
-                {
-                    TipoHabitacion tipoHab = new TipoHabitacion(Convert.ToInt32(elemento["id_tipo_habitacion"]), elemento["descripcion_tipo_habitacion"].ToString());
-                    habitaciones.Add(new Habitacion(Convert.ToInt32(elemento["id_habitacion"]), tipoHab));
-                }
-                return habitaciones;
+            foreach (DataRow elemento in elementos.Rows)
+            {
+                TipoHabitacion tipoHab = new TipoHabitacion(Convert.ToInt32(elemento["id_tipo_habitacion"]), elemento["descripcion"].ToString());
+                habitaciones.Add(new Habitacion(Convert.ToInt32(elemento["id_habitacion"]), tipoHab));
+            }
+            return habitaciones;
         }
 
-        public static List<Habitacion> BuscarHabitaciones(Hotel hotel,TipoHabitacion tipo,int cantidad, DateTime finicio, DateTime ffin)
-        {/*TODO
-            DataTable habitaciones = DatabaseAdapter.traerDataTable("buscar_habitaciones", hotel.Id, tipo.Id,cantidad,finicio, ffin);
+        public static List<Habitacion> BuscarHabitaciones(Hotel hotel,TipoHabitacion tipo, DateTime finicio, DateTime ffin)
+        {
+            DataTable habitaciones = DatabaseAdapter.traerDataTable("buscar_habitacion_reserva", hotel.Id, tipo.Id,finicio, ffin);
             List<Habitacion> listaHabitaciones = new List<Habitacion>();
 
-            foreach (DataRow habitacion in habitaciones.Rows)
-                listaHabitaciones.Add(new Habitacion(Convert.ToInt32(habitacion["id_habitacion"]),tipo));
-
-            return listaHabitaciones;*/
-
-        
-            Habitacion h1 = new Habitacion(1,new TipoHabitacion(1,"Doble"));
-            Habitacion h2 = new Habitacion(2,new TipoHabitacion(2,"Simple"));
-            Habitacion h3 = new Habitacion(3, new TipoHabitacion(1, "Doble"));
-            
-            List<Habitacion> l = new List<Habitacion>();
-            l.Add(h1);
-            l.Add(h2);
-            l.Add(h3);
-
-            return l;
+            if(habitaciones!=null)
+                foreach (DataRow habitacion in habitaciones.Rows)
+                    listaHabitaciones.Add(new Habitacion(Convert.ToInt32(habitacion["id_habitacion"]),tipo));
+               
+            return listaHabitaciones;
         }
 
         public static DataTable regimenesParaHotel(Hotel hotel)
@@ -103,29 +69,26 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.insertarDatosEnTabla("modificacion", DateTime.Now, idReserva, Sesion.Usuario.Id, "Modificación usual",0);
         }
 
-        public static bool reservaEsEditable(int idReserva)
-        {/*TODO
-            if (DatabaseAdapter.ejecutarProcedureWithReturnValue("reserva_editable", idReserva) == 1)
-                return true;
-            else
-                return false;*/
-            return true;
+        public static void verificarReservaEsEditable(int idReserva)
+        {
+            int error = 0;
+            error=DatabaseAdapter.ejecutarProcedureWithReturnValue("reserva_editable", idReserva);
+            DatabaseAdapter.CheckExcepcionPara(error);
         }
 
         public static void cancelarReserva(int idReserva, bool esPorNoShow, string motivo)
-        {/*TODO
+        {
             if (esPorNoShow)
             {
                 DatabaseAdapter.ejecutarProcedure("cancelar_reserva_no_show", idReserva);
-                DatabaseAdapter.insertarDatosEnTabla("modificacion", DateTime.Now, idReserva, Sesion.Usuario.Id, motivo,1);
             }
             else
             {   if(Sesion.Usuario.esGuest())
                     DatabaseAdapter.ejecutarProcedure("cancelar_reserva_cliente", idReserva);
                 else
                     DatabaseAdapter.ejecutarProcedure("cancelar_reserva_recepcion", idReserva);
-                DatabaseAdapter.insertarDatosEnTabla("modificacion", DateTime.Now, idReserva, Sesion.Usuario.Id, motivo,1);
-            }*/
+            }
+            DatabaseAdapter.insertarDatosEnTabla("modificacion", DateTime.Now, idReserva, Sesion.Usuario.Id, motivo, 1);
         }
 
         public static DataTable habitacionesReserva(int idReserva)

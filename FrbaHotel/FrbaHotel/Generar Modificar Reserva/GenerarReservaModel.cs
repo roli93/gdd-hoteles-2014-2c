@@ -48,7 +48,13 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         public override void ValidarErroresConcretos()
         {
             ValidarVaciosYLongitud(new string[] { "Régimen" }, new object[] { Regimen });
-            ValidarCollecionVacia<Habitacion>("Habitaciones", Habitaciones); 
+            ValidarCollecionVacia<Habitacion>("Habitaciones", Habitaciones);
+            if (FechaInicio.Date < DateTime.Now.Date)
+                errorMessage += "La fecha de inicio debe ser futura\n";
+            if (FechaFin.Date < DateTime.Now.Date)
+                errorMessage += "La fecha de fin debe ser futura\n";
+            if (FechaFin.Date < FechaInicio.Date)
+                errorMessage += "La fecha de inicio debe ser anterior a la fecha de fin\n";
         }
 
         public void ObtenerCliente()

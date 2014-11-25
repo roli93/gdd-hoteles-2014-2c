@@ -13,7 +13,7 @@ namespace FrbaHotel.ABM_de_Cliente
 {
     public partial class AltaCliente
     {
-        protected string nombre, apellido, nroId, mail, telefono, calle,altura,piso,depto, localidad;
+        protected string nombre, apellido, nroId, mail, telefono, calle,altura,piso="-1",depto="-", localidad;
         protected TipoDocumento tipoId;
         protected Pais pais;
         protected DateTime fechaNacimiento=DateTime.Now;

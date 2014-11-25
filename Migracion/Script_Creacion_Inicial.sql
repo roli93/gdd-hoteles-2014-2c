@@ -1894,8 +1894,8 @@ CREATE PROCEDURE [MAX_POWER].insertar_funcionalidad_X_rol(@id_rol BIGINT,@id_fun
 AS INSERT INTO MAX_POWER.Funcionalidad_X_Rol(id_rol,id_funcionalidad) VALUES (@id_rol,@id_funcionalidad)
 GO
 
-CREATE PROCEDURE [MAX_POWER].regimenes_disponibes(@id_hotel BIGINT)
-AS SELECT *
+CREATE PROCEDURE [MAX_POWER].obtener_regimenes(@id_hotel BIGINT)
+AS SELECT R.id_regimen as ID, R.descripcion as Descripción
 	FROM MAX_POWER.Regimen_X_Hotel RH join MAX_POWER.Regimen R on RH.id_regimen = R.id_regimen
 	WHERE RH.id_hotel = @id_hotel AND R.habilitado = 'S'
 GO
@@ -1906,20 +1906,17 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].cancelar_reserva_no_show(@id_reserva BIGINT)
 AS
-DECLARE @estado BIGINT
-UPDATE MAX_POWER.reserva SET id_estado = (SELECT id_Estado FROM MAX_POWER.Estado WHERE descripcion LIKE '%no-show') WHERE id_reserva = @id_reserva
+UPDATE MAX_POWER.reserva SET id_estado = (SELECT id_Estado FROM MAX_POWER.Estado WHERE descripcion LIKE '%no%show%') WHERE id_reserva = @id_reserva
 GO
 
 CREATE PROCEDURE [MAX_POWER].cancelar_reserva_cliente(@id_reserva BIGINT)
 AS
-DECLARE @estado BIGINT
-UPDATE MAX_POWER.reserva SET id_estado = (SELECT id_Estado FROM MAX_POWER.Estado WHERE descripcion LIKE '%cliente') WHERE id_reserva = @id_reserva
+UPDATE MAX_POWER.reserva SET id_estado = (SELECT id_Estado FROM MAX_POWER.Estado WHERE descripcion LIKE '%cliente%') WHERE id_reserva = @id_reserva
 GO
 
 CREATE PROCEDURE [MAX_POWER].cancelar_reserva_recepcion(@id_reserva BIGINT)
 AS
-DECLARE @estado BIGINT
-UPDATE MAX_POWER.reserva SET id_estado = (SELECT id_Estado FROM MAX_POWER.Estado WHERE descripcion LIKE '%recepcion') WHERE id_reserva = @id_reserva
+UPDATE MAX_POWER.reserva SET id_estado = (SELECT id_Estado FROM MAX_POWER.Estado WHERE descripcion LIKE '%recepci%') WHERE id_reserva = @id_reserva
 GO
 
 CREATE PROCEDURE [MAX_POWER].productos_disponibles
@@ -1948,6 +1945,62 @@ CREATE PROCEDURE [MAX_POWER].buscar_reserva_por_id(@id_reserva BIGINT) AS
 SELECT rs.id_reserva,RS.FECHA_FIN AS fecha_fin, RS.FECHA_INICIO AS fecha_inicio, H.id_hotel AS id_hotel_habitacion, H.NOMBRE AS nombre_hotel_habitacion ,RG.ID_REGIMEN AS id_regimen_habitacion, RG.DESCRIPCION AS descripcion_regimen_habitacion
 	FROM MAX_POWER.reserva RS, MAX_POWER.Hotel H, MAX_POWER.REGIMEN RG,MAX_POWER.HABITACION HAB, MAX_POWER.Habitacion_reservada HRS
 	WHERE HRS.id_reserva=RS.ID_RESERVA AND HAB.ID_HABITACION=HRS.id_habitacion AND HAB.ID_HOTEL=H.id_hotel AND RG.ID_REGIMEN=RS.ID_REGIMEN AND rs.id_reserva=@id_reserva
+GO
+
+CREATE PROCEDURE [MAX_POWER].reserva_editable(@id_reserva BIGINT) AS
+BEGIN
+	IF (NOT EXISTS (SELECT 1 FROM MAX_POWER.Reserva WHERE id_reserva=@id_reserva))
+		RETURN(-10)
+	ELSE IF ((SELECT fecha_inicio FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)>=GETDATE())
+		RETURN (-11)
+	ELSE IF ((SELECT UPPER(E.descripcion) 
+			FROM [MAX_POWER].reserva R INNER JOIN MAX_POWER.Estado E ON R.id_estado=E.id_estado
+			WHERE id_reserva = @id_reserva)LIKE UPPER('%CANCELAD%'))
+		RETURN (-12)
+	ELSE IF ((SELECT UPPER(E.descripcion) 
+			FROM [MAX_POWER].reserva R INNER JOIN MAX_POWER.Estado E ON R.id_estado=E.id_estado
+			WHERE id_reserva = @id_reserva)LIKE UPPER('%INGRES%'))
+		RETURN (-13)
+	ELSE
+		RETURN(0)
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].actualizar_reserva(@id_reserva BIGINT, @id_regimen BIGINT, @fecha_inicio DATETIME, @fecha_fin DATETIME)
+AS
+	UPDATE [MAX_POWER].reserva SET
+		id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE UPPER(descripcion) LIKE UPPER('%modific%')),
+		fecha_inicio = @fecha_inicio,
+		fecha_fin = @fecha_fin,
+		id_regimen = @id_regimen
+		WHERE id_reserva = @id_reserva
+GO
+
+CREATE PROCEDURE [MAX_POWER].borrar_habitacion_reservada(@id_reserva BIGINT, @id_habitacion BIGINT)
+AS BEGIN
+	BEGIN TRY
+		DELETE FROM [MAX_POWER].Habitacion_reservada 
+			WHERE id_reserva = @id_reserva
+				AND id_habitacion = @id_habitacion
+	END TRY
+	BEGIN CATCH
+		--raiseError
+	END CATCH
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].insertar_modificacion(@fecha DATETIME, @id_reserva BIGINT, @ide_usuario BIGINT, @motivo VARCHAR(50), @tipo BIGINT)
+AS BEGIN
+	BEGIN TRY
+		IF @tipo = 0
+			INSERT INTO [MAX_POWER].Modificacion (fecha, id_reserva, id_usuario, motivo, id_tipo_modificacion) VALUES (@fecha, @id_reserva, @ide_usuario, @motivo, (SELECT id_tipo_modificacion FROM [MAX_POWER].Tipo_modificacion WHERE descripcion LIKE '%modifica%'))
+		IF @tipo = 1
+			INSERT INTO [MAX_POWER].Modificacion (fecha, id_reserva, id_usuario, motivo, id_tipo_modificacion) VALUES (@fecha, @id_reserva, @ide_usuario, @motivo, (SELECT id_tipo_modificacion FROM [MAX_POWER].Tipo_modificacion WHERE descripcion LIKE '%cancela%'))
+	END TRY
+	BEGIN CATCH
+		--raiseError
+	END CATCH
+END
 GO
 
 CREATE PROCEDURE [MAX_POWER].chequear_login(@usuario VARCHAR(50), @password VARCHAR(50))
@@ -2008,42 +2061,34 @@ CREATE PROCEDURE [MAX_POWER].insertar_cliente(@nombre VARCHAR(50), @apellido VAR
 AS BEGIN
 	IF (SELECT COUNT (mail) FROM [MAX_POWER].Cliente WHERE mail = @mail) > 0
 		RETURN (-5)
-	BEGIN TRY
-		INSERT INTO [MAX_POWER].Cliente (nombre, apellido, id_tipo_identificacion, numero_identificacion, mail, telefono, calle,altura,piso,departamento, localidad, fecha_nacimiento, id_pais, habilitado) 
-		VALUES (@nombre, @apellido, @id_tipo_identificacion, @nroId, @mail, @telefono, @calle,CAST(@altura AS BIGINT),CAST(@piso AS BIGINT),@depto, @localidad, @fechaNacimiento,@id_pais, 'S')
-	END TRY
-	BEGIN CATCH
-		IF @@ERROR = 2627
-			RETURN (-6)
-	END CATCH
+	IF (EXISTS (SELECT 1 FROM MAX_POWER.Cliente WHERE id_tipo_identificacion=@id_tipo_identificacion AND numero_identificacion=@nroId))
+		RETURN (-6)
+	INSERT INTO [MAX_POWER].Cliente (nombre, apellido, id_tipo_identificacion, numero_identificacion, mail, telefono, calle,altura,piso,departamento, localidad, fecha_nacimiento, id_pais, habilitado) 
+	VALUES (@nombre, @apellido, @id_tipo_identificacion, @nroId, @mail, @telefono, @calle,CAST(@altura AS BIGINT),CASE WHEN @piso=-1 THEN NULL ELSE CAST(@piso AS BIGINT) END,CASE WHEN @depto='-' THEN NULL ELSE @depto END, @localidad, @fechaNacimiento,@id_pais, 'S')
 END
 GO
 
 CREATE PROCEDURE [MAX_POWER].actualizar_cliente(@id BIGINT, @nombre VARCHAR(50), @apellido VARCHAR(50), @id_tipo_identificacion BIGINT, @nroId BIGINT, @mail VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50),@altura VARCHAR(10),@piso VARCHAR(10),@depto VARCHAR(50), @localidad VARCHAR(50), @fechaNacimiento DATETIME, @habilitado CHAR(1))
 AS BEGIN
 	IF (SELECT COUNT (mail) FROM [MAX_POWER].Usuario WHERE mail = @mail) > 0
-			RETURN (-5)
-	BEGIN TRY
-		UPDATE [MAX_POWER].Cliente SET
-		nombre = @nombre,
-		apellido = @apellido,
-		id_tipo_identificacion = @id_tipo_identificacion,
-		numero_identificacion = @nroId,
-		mail = @mail,
-		telefono = @telefono,
-		calle = @calle,
-		altura=@altura ,
-		piso=@piso ,
-		departamento=@depto,
-		localidad = @localidad,
-		fecha_nacimiento = @fechaNacimiento,
-		habilitado = @habilitado
+		RETURN (-5)
+	IF (EXISTS (SELECT 1 FROM MAX_POWER.Cliente WHERE id_tipo_identificacion=@id_tipo_identificacion AND numero_identificacion=@nroId))
+		RETURN (-6)
+	UPDATE [MAX_POWER].Cliente SET
+	nombre = @nombre,
+	apellido = @apellido,
+	id_tipo_identificacion = @id_tipo_identificacion,
+	numero_identificacion = @nroId,
+	mail = @mail,
+	telefono = @telefono,
+	calle = @calle,
+	altura=@altura ,
+	piso=CASE WHEN @piso=-1 THEN NULL ELSE CAST(@piso AS BIGINT) END ,
+	departamento=CASE WHEN @depto='-' THEN NULL ELSE @depto END,
+	localidad = @localidad,
+	fecha_nacimiento = @fechaNacimiento,
+	habilitado = @habilitado
 		WHERE id_cliente = @id
-	END TRY
-	BEGIN CATCH
-		IF @@ERROR = 2627
-			RETURN (-6)
-	END CATCH
 END
 GO
 
@@ -2231,6 +2276,49 @@ order by cantidad_veces desc, cantidad_dias desc
 
 GO
 
+CREATE PROCEDURE [MAX_POWER].buscar_habitacion_reserva(@id_hotel BIGINT, @id_tipo_habitacion BIGINT, @fecha_inicio DATETIME, @fecha_fin DATETIME)
+AS SELECT * FROM Max_power.Habitacion WHERE id_hotel=@id_hotel 
+												AND id_tipo_habitacion=@id_tipo_habitacion 
+												AND MAX_POWER.habitacion_libre(id_habitacion,	@fecha_inicio,@fecha_fin)=1
+GO
+
+CREATE PROCEDURE [MAX_POWER].proximo_id_reserva AS
+BEGIN
+	DECLARE @proximo_id BIGINT
+	SELECT @proximo_id=MAX(id_reserva) FROM MAX_POWER.Reserva
+	SET @proximo_id=@proximo_id+1
+	RETURN (@proximo_id)
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].insertar_reserva(@id_regimen BIGINT, @fecha_inicio DATETIME, @fecha_fin DATETIME, @id_cliente BIGINT, @fecha_realizacion DATETIME)
+AS BEGIN
+	BEGIN TRY
+	DECLARE @id BIGINT
+	EXEC @id=MAX_POWER.proximo_id_reserva
+		INSERT INTO [MAX_POWER].reserva (id_reserva,id_regimen, fecha_inicio, fecha_fin, id_cliente_titular, fecha_realizacion, id_estado) VALUES (@id, @id_regimen, @fecha_inicio, @fecha_fin, @id_cliente, @fecha_realizacion, (SELECT id_Estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%correcta'))
+	END TRY
+	BEGIN CATCH
+		--raiseError
+	END CATCH
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].insertar_habitacion_reservada(@id_reserva BIGINT, @id_habitacion BIGINT)
+AS BEGIN
+	DECLARE @fechaReservaInicial DATETIME
+	SET @fechaReservaInicial = (SELECT fecha_inicio FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)
+	DECLARE @fechaReservaFinal DATETIME
+	SET @fechaReservaFinal = (SELECT fecha_fin FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)
+	IF (MAX_POWER.habitacion_libre(@id_habitacion,@fechaReservaInicial,@fechaReservaFinal)=0)
+		RETURN (-7)
+	ELSE
+		BEGIN
+		INSERT INTO [MAX_POWER].Habitacion_reservada (id_reserva, id_habitacion) VALUES (@id_reserva, @id_habitacion)
+		RETURN (0)
+		END
+END
+GO
 
 PRINT 'Finalizo la importacion de SP propios de la aplicacion.'
 
@@ -2361,7 +2449,7 @@ PRINT 'Creadas las funcionalidades y roles.'
 
 declare @nacimiento as date
 set @nacimiento = CAST('01/01/1993' as DATE)
-exec MAX_POWER.insertar_usuario 'admin', 'w23e', 'Max', 'Power', 1, '99999999', 'admin@power.max', '4444-4444', 'falsa 123', @nacimiento
+exec MAX_POWER.insertar_usuario 'admin', 'e6b87050bfcb8143fcb8db0170a4dc9ed00d904ddd3e2a4ad1b1e8dc0fdc9be7', 'Max', 'Power', 1, '99999999', 'admin@power.max', '4444-4444', 'falsa 123', @nacimiento
 go
 
 exec MAX_POWER.insertar_usuario_x_rol 1, 1

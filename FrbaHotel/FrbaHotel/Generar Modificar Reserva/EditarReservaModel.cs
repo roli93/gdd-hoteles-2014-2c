@@ -33,10 +33,12 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         public override void Guardar()
         {
-            if (MessageBox.Show("¿Confirma la reserva realizada?", "Ingresar Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            ValidarErrores();
+            if (MessageBox.Show("¿Confirma la reserva realizada?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 HomeReservas.actualizarReserva(idReserva, Regimen, FechaInicio, FechaFin, Habitaciones, habitacionesOriginales);
-            }
+                MessageBox.Show("La reserva se ha almacenado con éxito");
+            }            
         }
 
 

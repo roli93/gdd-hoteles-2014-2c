@@ -27,7 +27,7 @@ namespace FrbaHotel.ABM_de_Usuario
         protected override void Guardar()
         {
             ValidarErrores();
-            HomeUsuarios.actualizarUsuario(IdUsuario, username, password, rolesOriginales, roles, nombre, apellido, tipoDni, nroDocumento, mail, telefono, direccion, fechaNacimiento, hotelesOriginales, hoteles);
+            HomeUsuarios.actualizarUsuario(IdUsuario, username, getSha256(password), rolesOriginales, roles, nombre, apellido, tipoDni, nroDocumento, mail, telefono, direccion, fechaNacimiento, hotelesOriginales, hoteles);
         }
 
     }

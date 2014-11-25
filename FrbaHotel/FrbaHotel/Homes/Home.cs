@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using FrbaHotel.Administracion_Base_de_Datos;
+using System.Security.Cryptography;
 
 namespace FrbaHotel.Homes
 {

@@ -29,8 +29,8 @@ namespace FrbaHotel.Generar_Modificar_Reserva
             CargarReserva();
             _hotel.SelectedIndex = _hotel.FindStringExact(Hotel.Nombre,0);
             _regimen.Text = Regimen.Descripcion;
-            dateTimePicker1.Value = FechaInicio;
-            dateTimePicker2.Value = FechaFin;
+            dateTimePicker1.Value = FechaFin;
+            dateTimePicker2.Value = FechaInicio;
             ActualizarHabitaciones();
         }
 

@@ -23,10 +23,11 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         public void Agregar()
         {
             ValidarErrores();
-            List<Habitacion> habitaciones =  HomeReservas.BuscarHabitaciones(hotel, tipoHabitacion, cantidad,fechaInicio,fechaFin);
+            List<Habitacion> habitaciones =  HomeReservas.BuscarHabitaciones(hotel, tipoHabitacion,fechaInicio,fechaFin);
+            habitaciones.RemoveAll(h => generarReserva.Habitaciones.Any<Habitacion>(h2 => h2.Equals(h)));
             if(habitaciones.Count<cantidad)
                 throw new ExcepcionFrbaHoteles("No hay tantas habiatciones disponibles del tipo que ud. solicita");
-            generarReserva.AgregarHabitaciones(habitaciones);
+            generarReserva.AgregarHabitaciones(habitaciones.Take<Habitacion>(cantidad).ToList<Habitacion>());
             Close();
 
         }

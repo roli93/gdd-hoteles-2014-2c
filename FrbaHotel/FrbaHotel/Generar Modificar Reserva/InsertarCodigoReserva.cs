@@ -41,10 +41,8 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         public void AbrirEditor()
         {
             ValidarErrores();
-            if (!HomeReservas.reservaEsEditable(Convert.ToInt32(textBox1.Text)))
-                throw new ExcepcionFrbaHoteles("La reserva no es editable, esto puede deberse a las siguientes causas: \n -La reserva ya fue cancelada o efectivizada\n-La reserva no existe \n-La reserva se encuentra a menos de un día de su comienzo");
-            else
-                constructorEdicion(Convert.ToInt32(textBox1.Text)).FinalStandaloneOpen();
+            HomeReservas.verificarReservaEsEditable(Convert.ToInt32(textBox1.Text));
+            constructorEdicion(Convert.ToInt32(textBox1.Text)).FinalStandaloneOpen();
             this.Close();
         }
 

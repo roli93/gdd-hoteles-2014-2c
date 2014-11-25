@@ -22,7 +22,7 @@ namespace FrbaHotel.ABM_de_Usuario
         protected virtual void Guardar()
         {
             ValidarErrores();
-            HomeUsuarios.registrarUsuario(username, password, roles, nombre, apellido, tipoDni, nroDocumento, mail, telefono, direccion, fechaNacimiento, hoteles);
+            HomeUsuarios.registrarUsuario(username, getSha256(password), roles, nombre, apellido, tipoDni, nroDocumento, mail, telefono, direccion, fechaNacimiento, hoteles);
         }
 
         public override void ValidarErroresConcretos()
@@ -41,7 +41,6 @@ namespace FrbaHotel.ABM_de_Usuario
             if (password != confirmarPassword)
                 errorMessage += "Las contraseñas ingresadas no coinciden\n";
         }
-
 
     }
 }

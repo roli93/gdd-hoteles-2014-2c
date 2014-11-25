@@ -44,6 +44,10 @@ namespace FrbaHotel
             DatabaseAdapter.Excepciones.Add(-4, new ExcepcionFrbaHoteles("El nombre de usuario ingresado no se encuentra disponible"));
             DatabaseAdapter.Excepciones.Add(-5, new ExcepcionFrbaHoteles("La direccion de mail ingresada ya ha sido registrada"));
             DatabaseAdapter.Excepciones.Add(-6, new ExcepcionFrbaHoteles("El tipo y número de identifiación ingresados ya pertenecen a un cliente de la cadena"));
+            DatabaseAdapter.Excepciones.Add(-10, new ExcepcionFrbaHoteles("El código de reserva indicado no corresponde a ninguna reserva registrada en el sistema"));
+            DatabaseAdapter.Excepciones.Add(-11, new ExcepcionFrbaHoteles("La reserva es inmodificable dado que su fecha de inicio es hoy o ya ha pasado"));
+            DatabaseAdapter.Excepciones.Add(-12, new ExcepcionFrbaHoteles("La reserva es inmodificable porque ya ha sido cancelada"));
+            DatabaseAdapter.Excepciones.Add(-13, new ExcepcionFrbaHoteles("La reserva es inmodificable porque ya ha sido realizado el check-in sobre ella"));
 
             //------------------CONFIGURACIONES------------------->>
 

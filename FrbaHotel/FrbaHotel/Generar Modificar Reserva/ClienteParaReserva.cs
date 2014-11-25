@@ -24,9 +24,18 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         public override void  gridClickAction(DataGridViewCellCollection celdas)
         {
- 	         ((GenerarReserva) this.Owner).ClienteId=Convert.ToInt32(celdas["id"].Value);
-             ((GenerarReserva)this.Owner).FinalizarGuardado();
-             Close();
+            if (celdas["correcto"].Value.ToString() == "N")
+                MessageBox.Show("Existen varios clientes con el tipo\n" +
+                                "y número de identificacion del cliente\n" +
+                                "seleccionado. Por favor contáctese con \n" +
+                                "el personal de la compañía para que\n" +
+                                "resuelvan esta inconsistencia", "Error");
+            else
+            {
+                ((GenerarReserva)this.Owner).ClienteId = Convert.ToInt32(celdas["id"].Value);
+                ((GenerarReserva)this.Owner).FinalizarGuardado();
+                Close();
+            }
         }
 
         private void ClienteParaReserva_Load(object sender, EventArgs e)
