@@ -100,8 +100,7 @@ namespace FrbaHotel
         {
             get
             {
-                //TODO return elementosDisponibles<string>((e) => (string)e["ciudad"]), "ciudades_disponibles");
-                return new List<string> {"Buenos Aires","Bariloche","Trelew","Cataluña"};
+                return elementosDisponibles<string>(((e) => e["ciudad"].ToString()), "ciudades_disponibles");
             }
         }
 
@@ -109,8 +108,7 @@ namespace FrbaHotel
         {
             get
             {
-                //TODO return elementosDisponibles<Regimen>((e) => new Regimen((int)e["Id"],(string)e("Descripcion")), "regimenes_disponibles");
-                return new List<Regimen> { new Regimen(1,"MediaPension"), new Regimen(2,"FullBreikfasth") };
+                return elementosDisponibles<Regimen>((e) => new Regimen(Convert.ToInt32(e["Id"]),e["Descripcion"].ToString()), "regimenes_disponibles");
             }
         }
 

@@ -15,7 +15,7 @@
     <ManifestCertificateThumbprint>92652145E76A0F507E19A6F3E01EBA51BFD4A846</ManifestCertificateThumbprint>
     <ManifestKeyFile>FrbaHotel_TemporaryKey.pfx</ManifestKeyFile>
     <GenerateManifests>true</GenerateManifests>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <PublishUrl>publish\</PublishUrl>

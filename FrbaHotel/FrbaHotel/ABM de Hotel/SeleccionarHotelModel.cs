@@ -28,8 +28,8 @@ namespace FrbaHotel.ABM_de_Hotel
         {
             DataGridViewCellCollection celdas = grilla.Rows[e.RowIndex].Cells;
             int aModificar = Convert.ToInt32(celdas["ID"].Value);
-            string nombreAux = celdas["nombre"].Value.ToString();
-            if (MessageBox.Show("¿Realmente desea dar de baja el rol " + nombreAux + "?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            string nombreAux = celdas["HNOMBRE"].Value.ToString();
+            if (MessageBox.Show("¿Realmente desea dar de baja el hotel " + nombreAux + "?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 new BajaHotel(this, aModificar).StandaloneOpen();
             }
