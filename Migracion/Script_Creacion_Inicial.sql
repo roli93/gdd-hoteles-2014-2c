@@ -1971,10 +1971,17 @@ AS SELECT * FROM [MAX_POWER].Rol
 		AND UPPER(habilitado) LIKE UPPER(@estado)
 GO
 
-CREATE PROCEDURE [MAX_POWER].insertar_periodo_cierre(@idHotel BIGINT, @fechaDesde VARCHAR(50), @fechaHasta VARCHAR(50))
+CREATE PPROCEDURE [MAX_POWER].[insertar_periodo_cierre](@idHotel BIGINT, @fechaDesde VARCHAR(50), @fechaHasta VARCHAR(50))
 AS
- INSERT INTO MAX_POWER.Periodo_Cierre (id_hotel,fecha_inicio,fecha_fin) VALUES (@idHotel,@fechaDesde,@fechaHasta)
-GO
+	BEGIN TRY
+		INSERT INTO MAX_POWER.Periodo_Cierre (id_periodo,id_hotel,fecha_inicio,fecha_fin) 
+		SELECT (SELECT COUNT(*) FROM [MAX_POWER].Periodo_Cierre)+1,@idHotel,@fechaDesde,@fechaHasta
+	END TRY
+	BEGIN CATCH
+		IF @@ERROR = 2627
+			RETURN (-6)
+	END CATCH
+
 
 CREATE PROCEDURE [MAX_POWER].buscar_reserva_por_id(@id_reserva BIGINT) AS
 SELECT rs.id_reserva,RS.FECHA_FIN AS fecha_fin, RS.FECHA_INICIO AS fecha_inicio, H.id_hotel AS id_hotel_habitacion, H.NOMBRE AS nombre_hotel_habitacion ,RG.ID_REGIMEN AS id_regimen_habitacion, RG.DESCRIPCION AS descripcion_regimen_habitacion
