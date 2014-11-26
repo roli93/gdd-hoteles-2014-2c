@@ -25,6 +25,8 @@ namespace FrbaHotel.ABM_de_Hotel
         {
             InitializeComponent();
             this.idHotel = idIngresado;
+            this.fechaDesde = _desde.Value.ToShortDateString();
+            this.fechaHasta = _hasta.Value.ToShortDateString();
         }
 
         private void _desde_ValueChanged(object sender, EventArgs e)

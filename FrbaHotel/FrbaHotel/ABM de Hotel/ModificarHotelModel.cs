@@ -15,7 +15,7 @@ namespace FrbaHotel.ABM_de_Hotel
 
         public void CargarHotel()
         {
-            HomeHoteles.buscarPorId(idHotel, out nombre, out email, out telefono, out direccion, out estrellas, out pais, out ciudad, out regimenes, out fechaCreacion);
+            HomeHoteles.buscarPorId(idHotel, out nombre, out email, out telefono, out calle,out altura, out estrellas, out pais, out ciudad, out regimenes, out fechaCreacion);
             regimenesOriginales.AddRange(regimenes);
             _nombre.Text = nombre;
         }

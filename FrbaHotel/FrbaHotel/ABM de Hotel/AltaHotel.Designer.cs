@@ -40,7 +40,7 @@
             this._nombre = new System.Windows.Forms.TextBox();
             this._email = new System.Windows.Forms.TextBox();
             this._telefono = new System.Windows.Forms.TextBox();
-            this._direccion = new System.Windows.Forms.TextBox();
+            this._calle = new System.Windows.Forms.TextBox();
             this._estrellas = new System.Windows.Forms.ComboBox();
             this._paises = new System.Windows.Forms.ComboBox();
             this._ciudades = new System.Windows.Forms.ComboBox();
@@ -48,6 +48,8 @@
             this._fecha = new System.Windows.Forms.DateTimePicker();
             this._aceptar = new System.Windows.Forms.Button();
             this._limpiar = new System.Windows.Forms.Button();
+            this._altura = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -82,9 +84,9 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(13, 93);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 13);
+            this.label4.Size = new System.Drawing.Size(30, 13);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Direccion";
+            this.label4.Text = "Calle";
             // 
             // label5
             // 
@@ -155,13 +157,13 @@
             this._telefono.TabIndex = 11;
             this._telefono.TextChanged += new System.EventHandler(this._telefono_TextChanged);
             // 
-            // _direccion
+            // _calle
             // 
-            this._direccion.Location = new System.Drawing.Point(71, 90);
-            this._direccion.Name = "_direccion";
-            this._direccion.Size = new System.Drawing.Size(194, 20);
-            this._direccion.TabIndex = 12;
-            this._direccion.TextChanged += new System.EventHandler(this._direccion_TextChanged);
+            this._calle.Location = new System.Drawing.Point(49, 90);
+            this._calle.Name = "_calle";
+            this._calle.Size = new System.Drawing.Size(135, 20);
+            this._calle.TabIndex = 12;
+            this._calle.TextChanged += new System.EventHandler(this._calle_TextChanged);
             // 
             // _estrellas
             // 
@@ -239,11 +241,30 @@
             this._limpiar.UseVisualStyleBackColor = true;
             this._limpiar.Click += new System.EventHandler(this._limpiar_Click);
             // 
+            // _altura
+            // 
+            this._altura.Location = new System.Drawing.Point(230, 90);
+            this._altura.Name = "_altura";
+            this._altura.Size = new System.Drawing.Size(85, 20);
+            this._altura.TabIndex = 22;
+            this._altura.TextChanged += new System.EventHandler(this._altura_TextChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(190, 93);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(34, 13);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Altura";
+            // 
             // AltaHotel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(330, 376);
+            this.Controls.Add(this._altura);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this._aceptar);
             this.Controls.Add(this._limpiar);
             this.Controls.Add(this._fecha);
@@ -251,7 +272,7 @@
             this.Controls.Add(this._ciudades);
             this.Controls.Add(this._paises);
             this.Controls.Add(this._estrellas);
-            this.Controls.Add(this._direccion);
+            this.Controls.Add(this._calle);
             this.Controls.Add(this._telefono);
             this.Controls.Add(this._email);
             this.Controls.Add(this._nombre);
@@ -283,7 +304,7 @@
         protected System.Windows.Forms.TextBox _nombre;
         protected System.Windows.Forms.TextBox _email;
         protected System.Windows.Forms.TextBox _telefono;
-        protected System.Windows.Forms.TextBox _direccion;
+        protected System.Windows.Forms.TextBox _calle;
         protected System.Windows.Forms.ComboBox _estrellas;
         protected System.Windows.Forms.ComboBox _paises;
         protected System.Windows.Forms.ComboBox _ciudades;
@@ -294,5 +315,7 @@
         protected System.Windows.Forms.Label label3;
         protected System.Windows.Forms.Label label4;
         protected System.Windows.Forms.Label label5;
+        protected System.Windows.Forms.TextBox _altura;
+        protected System.Windows.Forms.Label label10;
     }
 }

@@ -12,7 +12,8 @@ namespace FrbaHotel.ABM_de_Hotel
         protected string nombre;
         protected string email;
         protected string telefono;
-        protected string direccion;
+        protected string calle;
+        protected int altura;
         protected int estrellas;
         protected Pais pais;
         protected string ciudad;
@@ -22,13 +23,13 @@ namespace FrbaHotel.ABM_de_Hotel
         protected virtual void Guardar()
         {
             ValidarErrores();
-            HomeHoteles.insertarHotel(nombre,email,telefono,direccion,estrellas,pais,ciudad,regimenes,fechaCreacion.ToString());
+            HomeHoteles.insertarHotel(nombre,email,telefono,calle,altura,estrellas,pais,ciudad,regimenes,fechaCreacion.ToString());
 
         }
         
         public override void ValidarErroresConcretos()
         {
-            ValidarVaciosYLongitud(new string[] { "Nombre","Email","Telefono","Direccion","Estrellas","Pais","Ciudad","Fecha de Creacion" }, new object[] { nombre,email,telefono,direccion,estrellas,pais.Descripcion,ciudad,fechaCreacion });
+            ValidarVaciosYLongitud(new string[] { "Nombre","Email","Telefono","Calle","Altura","Estrellas","Pais","Fecha de Creacion" }, new object[] { nombre,email,telefono,calle,altura,estrellas,pais.Descripcion,fechaCreacion });
         }
     }
 }

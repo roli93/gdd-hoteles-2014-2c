@@ -10,9 +10,9 @@ namespace FrbaHotel.Homes
 {
     public class HomeHoteles:Home
     {
-        static public void insertarHotel(string nombre, string email, string telefono, string direccion, int estrellas, Pais pais, string ciudad, List<Regimen> regimenes, string fechaCreacion)
+        static public void insertarHotel(string nombre, string email, string telefono, string calle,int altura, int estrellas, Pais pais, string ciudad, List<Regimen> regimenes, string fechaCreacion)
         {
-            DatabaseAdapter.insertarDatosEnTabla("hotel", nombre, email, telefono, direccion, estrellas, pais.Id, ciudad, fechaCreacion);
+            DatabaseAdapter.insertarDatosEnTabla("hotel", nombre, email, telefono, calle, altura, estrellas, pais.Id, ciudad, fechaCreacion);
             int id = idParaHotel(nombre);
             agregarElementos("regimen_x_hotel",id, IdsDe<Regimen>(regimenes));
 
@@ -23,15 +23,16 @@ namespace FrbaHotel.Homes
             return DatabaseAdapter.ejecutarProcedureWithReturnValue("id_hotel", like(nombre));
         }
 
-        static public void buscarPorId(int idHotel,out string nombre, out string email, out string telefono, out string direccion, out int estrellas, out Pais pais, out string ciudad, out List<Regimen> regimenes, out DateTime fechaCreacion)
+        static public void buscarPorId(int idHotel,out string nombre, out string email, out string telefono, out string calle,out int altura, out int estrellas, out Pais pais, out string ciudad, out List<Regimen> regimenes, out DateTime fechaCreacion)
         { 
             DataRow hotel = DatabaseAdapter.traerDataTable("buscar_hotel_por_id", idHotel).Rows[0];
             nombre = hotel["nombre"].ToString();
-            email = hotel["email"].ToString();
-            direccion = hotel["direccion"].ToString();
+            email = hotel["mail"].ToString();
+            calle = hotel["calle"].ToString();
+            altura = Convert.ToInt32(hotel["altura"]);
             telefono = hotel["telefono"].ToString();
             estrellas = Convert.ToInt32(hotel["estrellas"]);
-            fechaCreacion = Convert.ToDateTime(hotel["fecha_nacimiento"]);
+            fechaCreacion = Convert.ToDateTime(hotel["fecha_creacion"]);
             ciudad = hotel["ciudad"].ToString();
             pais= HomeGeografico.buscarPaisPorId(Convert.ToInt32(hotel["id_pais"]));
 
@@ -46,7 +47,7 @@ namespace FrbaHotel.Homes
 
         static public void bajaLogica(int idHotel,string fechaDesde,string fechaHasta)
         {
-            DatabaseAdapter.insertarDatosEnTabla("insertar_periodo_cierre", idHotel, fechaDesde, fechaHasta);
+            DatabaseAdapter.insertarDatosEnTabla("periodo_cierre", idHotel, fechaDesde, fechaHasta);
         }
 
     }

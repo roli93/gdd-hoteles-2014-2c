@@ -42,7 +42,8 @@ namespace FrbaHotel.ABM_de_Hotel
             _nombre.Text = nombre;
             _email.Text = email;
             _telefono.Text = telefono;
-            _direccion.Text = direccion;
+            _calle.Text = calle;
+            _altura.Text = altura.ToString();
             _estrellas.SelectedIndex = _estrellas.FindStringExact(estrellas.ToString());
             _paises.SelectedIndex = _paises.FindStringExact(pais.Descripcion.ToString());
             _ciudades.SelectedIndex = _ciudades.FindStringExact(ciudad.ToString());

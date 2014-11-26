@@ -18,7 +18,7 @@ namespace FrbaHotel.Homes
         public static Pais buscarPaisPorId(int unIdPais)
         {
             DataRow DRpais = DatabaseAdapter.traerDataTable("buscar_pais_por_id", unIdPais).Rows[0];
-            Pais pais = new Pais(unIdPais, DRpais["descripcion"].ToString());
+            Pais pais = new Pais(unIdPais, DRpais["nombre"].ToString());
             return pais;
         }
     }

@@ -48,6 +48,7 @@ namespace FrbaHotel
             DatabaseAdapter.Excepciones.Add(-11, new ExcepcionFrbaHoteles("La reserva es inmodificable dado que su fecha de inicio es hoy o ya ha pasado"));
             DatabaseAdapter.Excepciones.Add(-12, new ExcepcionFrbaHoteles("La reserva es inmodificable porque ya ha sido cancelada"));
             DatabaseAdapter.Excepciones.Add(-13, new ExcepcionFrbaHoteles("La reserva es inmodificable porque ya ha sido realizado el check-in sobre ella"));
+            DatabaseAdapter.Excepciones.Add(-20, new ExcepcionFrbaHoteles("El pais indicado no existe"));
 
             //------------------CONFIGURACIONES------------------->>
 

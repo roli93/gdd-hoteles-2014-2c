@@ -40,9 +40,9 @@ namespace FrbaHotel.ABM_de_Hotel
             telefono = _telefono.Text;
         }
 
-        private void _direccion_TextChanged(object sender, EventArgs e)
+        private void _calle_TextChanged(object sender, EventArgs e)
         {
-            direccion = _direccion.Text;
+            calle = _calle.Text;
         }
 
         private void _estrellas_SelectedIndexChanged(object sender, EventArgs e)
@@ -86,5 +86,11 @@ namespace FrbaHotel.ABM_de_Hotel
             bindCombo<string>(_ciudades, Sesion.CiudadesDisponibles);
             bindCheckedListBox<Regimen>(_regimenes, Sesion.RegimenesDisponibles);
         }
+
+        private void _altura_TextChanged(object sender, EventArgs e)
+        {
+            altura = Convert.ToInt32(_altura.Text);
+        }
+
     }
 }

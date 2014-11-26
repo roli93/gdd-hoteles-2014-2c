@@ -108,7 +108,7 @@ namespace FrbaHotel
         {
             get
             {
-                return elementosDisponibles<Regimen>((e) => new Regimen(Convert.ToInt32(e["Id"]),e["Descripcion"].ToString()), "regimenes_disponibles");
+                return elementosDisponibles<Regimen>((e) => new Regimen(Convert.ToInt32(e["id_regimen"]),e["descripcion"].ToString()), "regimenes_disponibles");
             }
         }
 

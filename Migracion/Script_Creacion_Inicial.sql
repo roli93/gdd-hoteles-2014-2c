@@ -1882,12 +1882,13 @@ AS
 UPDATE [MAX_POWER].Rol SET habilitado = 'N' WHERE id_rol = @id
 GO
 
-CREATE PROCEDURE [MAX_POWER].buscar_hoteles(@nombre VARCHAR(50), @estrellas BIGINT, @id_pais BIGINT, @ciudad VARCHAR(50))
+CREATE PROCEDURE [MAX_POWER].[buscar_hoteles](@nombre VARCHAR(50), @estrellas BIGINT, @id_pais BIGINT, @ciudad VARCHAR(50))
  
 AS 
-	SELECT distinct H.id_hotel as ID, H.nombre as HNOMBRE,mail,telefono,calle,altura,fecha_creacion,estrellas,recarga_estrellas,H.id_pais as HPais,ciudad
+	SELECT H.id_hotel as ID, H.nombre as HNOMBRE,mail,telefono,calle,altura,fecha_creacion,estrellas,recarga_estrellas,H.id_pais as HPais,ciudad
  
 	FROM [MAX_POWER].Hotel H  join MAX_POWER.Pais P on P.id_pais=H.id_pais
+	
 	WHERE UPPER(H.nombre) LIKE UPPER(@nombre)
 	
 		AND UPPER(ciudad) LIKE UPPER(@ciudad)
@@ -1895,6 +1896,11 @@ AS
 		AND P.id_pais like (SELECT CASE WHEN  @id_pais= -1 THEN '%' ELSE CAST(@id_pais AS VARCHAR(50)) END)
 
 		AND CAST(estrellas as VARCHAR(50)) like (SELECT CASE WHEN @estrellas = 0 THEN '%' ELSE CAST(@estrellas AS VARCHAR(50)) END)
+		
+		AND (SELECT COUNT(*) from Hotel Hot join Periodo_Cierre Per on Hot.id_hotel=Per.id_hotel 
+				where Per.fecha_fin>CONVERT(DATE,getDate(),102)
+					and Per.fecha_inicio<CONVERT(DATE,getDate(),102)
+					and Hot.id_hotel = H.id_hotel)=0
 
 GO
 
@@ -1972,18 +1978,10 @@ AS SELECT * FROM [MAX_POWER].Rol
 		AND UPPER(habilitado) LIKE UPPER(@estado)
 GO
 
-CREATE PROCEDURE [MAX_POWER].insertar_periodo_cierre(@idHotel BIGINT, @fechaDesde VARCHAR(50), @fechaHasta VARCHAR(50))
+CREATE PROCEDURE [MAX_POWER].[insertar_periodo_cierre](@idHotel BIGINT, @fechaDesde VARCHAR(50), @fechaHasta VARCHAR(50))
 AS
-	BEGIN TRY
-		INSERT INTO MAX_POWER.Periodo_Cierre (id_periodo,id_hotel,fecha_inicio,fecha_fin) 
-		SELECT (SELECT COUNT(*) FROM [MAX_POWER].Periodo_Cierre)+1,@idHotel,@fechaDesde,@fechaHasta
-	END TRY
-	BEGIN CATCH
-		IF @@ERROR = 2627
-			RETURN (-6)
-	END CATCH
-GO
-
+		INSERT INTO MAX_POWER.Periodo_Cierre (id_hotel,fecha_inicio,fecha_fin) 
+		SELECT @idHotel,@fechaDesde,@fechaHasta
 
 CREATE PROCEDURE [MAX_POWER].buscar_reserva_por_id(@id_reserva BIGINT) AS
 SELECT rs.id_reserva,RS.FECHA_FIN AS fecha_fin, RS.FECHA_INICIO AS fecha_inicio, H.id_hotel AS id_hotel_habitacion, H.NOMBRE AS nombre_hotel_habitacion ,RG.ID_REGIMEN AS id_regimen_habitacion, RG.DESCRIPCION AS descripcion_regimen_habitacion
@@ -2390,6 +2388,48 @@ AS BEGIN
 END
 GO
 
+CREATE PROCEDURE [MAX_POWER].[insertar_hotel](
+ @nombre VARCHAR(50), @email VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50), @altura BIGINT, @estrellas BIGINT, @id_pais BIGINT, @ciudad VARCHAR(50), @fechaCreacion VARCHAR(50))
+ 
+ AS BEGIN
+	BEGIN TRY
+	INSERT INTO [MAX_POWER].Hotel (nombre,mail,telefono,calle,altura,fecha_creacion,estrellas,recarga_estrellas,id_pais,ciudad) 
+		VALUES (	@nombre,
+					@email,
+					@telefono,
+					@calle,
+					@altura,
+					CONVERT(DATE,getDate(),102),
+					@estrellas,
+					10,
+					@id_pais,
+					@ciudad)
+	END TRY
+	
+	BEGIN CATCH		
+	print 'CATCH, @@error=' 
+	print @@error
+		IF @@ERROR = 2627
+			RETURN (-20)
+	END CATCH
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].[id_hotel](@nombre VARCHAR(50))
+AS 
+	SELECT id_hotel FROM [MAX_POWER].hotel WHERE nombre like @nombre
+GO
+
+CREATE PROCEDURE [MAX_POWER].[insertar_regimen_x_hotel](@id_hotel BIGINT,@id_regimen BIGINT)
+AS 
+	INSERT INTO [MAX_POWER].Regimen_X_Hotel (id_hotel,id_regimen) VALUES (@id_hotel,@id_regimen)
+GO
+
+CREATE PROCEDURE [MAX_POWER].[id_hotel](@nombre VARCHAR(50))
+AS 
+	SELECT TOP 1 id_hotel FROM [MAX_POWER].hotel WHERE nombre like @nombre
+GO
+
 PRINT 'Finalizo la importacion de SP propios de la aplicacion.'
 
 
@@ -2549,5 +2589,7 @@ insert into MAX_POWER.Tipo_modificacion (descripcion) values ('Cancelacion')
 /*Renombra los hoteles migrados para que no aparezcan en blanco en la app*/
 
 UPDATE MAX_POWER.Hotel SET nombre='Hotel sin nombre '+CAST(id_hotel AS VARCHAR(30)) WHERE nombre IS NULL
+
+UPDATE MAX_POWER.Hotel SET fecha_creacion='2000.06.25' WHERE fecha_creacion IS NULL
 
 PRINT 'Generados datos basicos'

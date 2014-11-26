@@ -27,9 +27,22 @@ namespace FrbaHotel
         public int Estrellas { get; set; }
         public string Pais { get; set; }
         public string Ciudad { get; set; }
-        public List<Regimen> Regimenes { get; set; }
+     
         public string FechaCreacion { get; set; }
+        public List<Regimen> Regimenes
+        {
+            get
+            {
+                DataTable elementos = DatabaseAdapter.traerDataTable("obtener_regimenes", Id);
+                List<Regimen> regimenes = new List<Regimen>();
 
+                foreach (DataRow elemento in elementos.Rows)
+                {
+                    regimenes.Add(new Regimen(Convert.ToInt32(elemento["ID"]), elemento["Descripción"].ToString()));
+                }
+                return regimenes;
+            }
+        }
 
         public override string ToString()
         {
