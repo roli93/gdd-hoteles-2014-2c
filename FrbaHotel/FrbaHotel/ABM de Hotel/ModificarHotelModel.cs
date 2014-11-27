@@ -22,8 +22,13 @@ namespace FrbaHotel.ABM_de_Hotel
 
         protected override void Guardar()
         {
+            regimenes = CheckListToList<Regimen>(_regimenes); //Y forzando esto evitamos que se omita la actualizacion antes del guardado
+            string Oldemail = email; //Con esto evitamos un error de chequeo incorrecto
+            email = "a";
             ValidarErrores();
-            HomeHoteles.actualizarHotel(idHotel, nombre, email, telefono, calle, altura, estrellas, pais, ciudad, regimenesOriginales, fechaCreacion.ToShortDateString());
+            email = Oldemail;
+
+            HomeHoteles.actualizarHotel(idHotel, nombre, email, telefono, calle, altura, estrellas, pais, ciudad, regimenes, fechaCreacion.ToShortDateString());
             
         }
 

@@ -2330,6 +2330,25 @@ RETURN @esta_libre
 END
 GO
 
+CREATE PROCEDURE [MAX_POWER].actualizar_hotel( @idHotel BIGINT, @nombre VARCHAR(50), @email VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50), @altura BIGINT, @estrellas BIGINT, @idPais BIGINT, @ciudad VARCHAR(50), @fechaCreacion VARCHAR(50))
+AS
+	UPDATE [MAX_POWER].Hotel set nombre=@nombre WHERE id_hotel=@idHotel
+	UPDATE [MAX_POWER].Hotel set mail=@email WHERE id_hotel=@idHotel
+	UPDATE [MAX_POWER].Hotel set telefono=@telefono WHERE id_hotel=@idHotel
+	UPDATE [MAX_POWER].Hotel set calle=@calle WHERE id_hotel=@idHotel
+	UPDATE [MAX_POWER].Hotel set altura=@altura WHERE id_hotel=@idHotel
+	UPDATE [MAX_POWER].Hotel set estrellas=@estrellas WHERE id_hotel=@idHotel
+	UPDATE [MAX_POWER].Hotel set id_pais=@idPais WHERE id_hotel=@idHotel
+	UPDATE [MAX_POWER].Hotel set ciudad=@ciudad WHERE id_hotel=@idHotel
+	UPDATE [MAX_POWER].Hotel set fecha_creacion=@fechaCreacion WHERE id_hotel=@idHotel
+GO
+	
+
+CREATE PROCEDURE [MAX_POWER].borrar_regimen_x_hotel_idHotel(@idHotel BIGINT)
+AS
+	DELETE [MAX_POWER].Regimen_X_Hotel WHERE id_hotel=@idHotel
+GO
+
 /*  S I N   V E R I F I C A R  -  ESTAN EN ARCHIVO APARTE */
 
 /*   L I S T A D O S   */
