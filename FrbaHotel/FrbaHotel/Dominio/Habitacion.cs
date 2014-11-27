@@ -13,6 +13,13 @@ namespace FrbaHotel.Dominio
             this.tipo = tipo;
         }
 
+        public Habitacion(int id, TipoHabitacion tipo, int costo)
+        {
+            this.Id = id;
+            this.tipo = tipo;
+            this.Costo = costo;
+        }
+
         public Habitacion()
         {
         }
@@ -23,5 +30,12 @@ namespace FrbaHotel.Dominio
         public string ubicacion { get; set; }
         public TipoHabitacion tipo { get; set; }
         public string descripcion { get; set; }
+        public int IdHabitacionReservada { get; set; }
+        public double Costo { get; set; }
+
+        public override string ToString()
+        {
+            return numeroHabitacion.ToString();
+        }
     }
 }

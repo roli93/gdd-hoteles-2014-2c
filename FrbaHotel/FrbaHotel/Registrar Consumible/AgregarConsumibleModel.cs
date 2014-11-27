@@ -15,12 +15,13 @@ namespace FrbaHotel.Registrar_Consumible
     {
         protected int cantidad;
         protected Producto producto;
+        protected Habitacion habitación;
         protected int idReserva;
 
         public void Agregar()
         {
             ValidarErrores();
-            HomeReservas.agregarConsumible(idReserva, producto, cantidad);
+            HomeReservas.agregarConsumible(habitación, producto, cantidad);
             ((RegistrarConsumibles)this.Owner).ActualizarGrilla();
             Close();
         }

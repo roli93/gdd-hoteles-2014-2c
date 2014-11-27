@@ -41,7 +41,9 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         public void PersistirReserva()
         {
             int id = HomeReservas.registrarReserva(Regimen, FechaInicio, FechaFin, Habitaciones, ClienteId);
-            successMessage+="\nIMPORTANTE: Su código de reserva para futuras modificaciones es "+id.ToString();
+            double costo = Habitaciones.Sum<Habitacion>(h => h.Costo);
+            successMessage+="\nEl costo de la reserva es de $"+costo+" por día"+
+                            "\nIMPORTANTE: Su código de reserva para futuras modificaciones es "+id.ToString();
             Close();
         }
 
