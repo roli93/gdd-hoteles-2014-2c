@@ -1973,9 +1973,15 @@ AS SELECT * FROM [MAX_POWER].Hotel WHERE id_hotel = @id
 GO
 
 CREATE PROCEDURE [MAX_POWER].buscar_roles(@nombre VARCHAR(50), @estado CHAR(1))
-AS SELECT * FROM [MAX_POWER].Rol 
+AS SELECT id_rol as ID,nombre,habilitado FROM [MAX_POWER].Rol 
 	WHERE UPPER(nombre) LIKE UPPER(@nombre)
 		AND UPPER(habilitado) LIKE UPPER(@estado)
+GO
+
+CREATE PROCEDURE [MAX_POWER].actualizar_rol(@idRol BIGINT, @nombre VARCHAR(50), @estaActivo VARCHAR(1))
+AS
+	UPDATE MAX_POWER.Rol set nombre=@nombre where id_rol=@idRol
+	UPDATE MAX_POWER.Rol set habilitado=@estaActivo where id_rol=@idRol
 GO
 
 CREATE PROCEDURE [MAX_POWER].[insertar_periodo_cierre](@idHotel BIGINT, @fechaDesde VARCHAR(50), @fechaHasta VARCHAR(50))

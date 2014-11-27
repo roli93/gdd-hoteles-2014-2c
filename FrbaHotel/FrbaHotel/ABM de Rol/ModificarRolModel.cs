@@ -16,7 +16,6 @@ namespace FrbaHotel.ABM_de_Rol
 
         public void CargarRol()
         {
-            IdRol= HomeRoles.idParaNombre(nombre);
             HomeRoles.buscarPorId(IdRol, out nombre, out estaActivo, out funcOriginales);
             
             _nombre.Text = nombre;
@@ -28,7 +27,7 @@ namespace FrbaHotel.ABM_de_Rol
         {
             ValidarErrores();
             List<Funcionalidad> Funcionalidades = CheckListToList<Funcionalidad>(_funcionalidadesCLB);
-            HomeRoles.actualizarRol(nombre,estaActivo,funcOriginales,Funcionalidades);
+            HomeRoles.actualizarRol(IdRol,nombre,estaActivo,funcOriginales,Funcionalidades);
             }
 
     }

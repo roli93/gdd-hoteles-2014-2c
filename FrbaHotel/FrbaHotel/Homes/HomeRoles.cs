@@ -50,13 +50,13 @@ namespace FrbaHotel.Homes
 
         }
 
-        public static void actualizarRol(string nombre, bool estaActivo, List<Funcionalidad> funcionalidadesOriginales,List<Funcionalidad> funcionalidades)
+        public static void actualizarRol(int idRol, string nombre, bool estaActivo, List<Funcionalidad> funcionalidadesOriginales,List<Funcionalidad> funcionalidades)
         {
-            DatabaseAdapter.insertarDatosEnTabla("rol", nombre, estaActivo);
-            int id = idParaNombre(nombre);
-            agregarElementos("funcionalidad_x_rol", id, IdsDe<Funcionalidad>(diferencia<Funcionalidad>(funcionalidades, funcionalidadesOriginales)));
+            DatabaseAdapter.actualizarDatosEnTabla("rol", idRol, nombre, estaActivo);
 
-            removerElementos("funcionalidad_x_rol", id, IdsDe<Funcionalidad>(diferencia<Funcionalidad>(funcionalidadesOriginales, funcionalidades)));
+            agregarElementos("funcionalidad_x_rol", idRol, IdsDe<Funcionalidad>(diferencia<Funcionalidad>(funcionalidades, funcionalidadesOriginales)));
+
+            removerElementos("funcionalidad_x_rol", idRol, IdsDe<Funcionalidad>(diferencia<Funcionalidad>(funcionalidadesOriginales, funcionalidades)));
             
         }
 
