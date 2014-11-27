@@ -44,14 +44,14 @@ namespace FrbaHotel.Homes
             return habitaciones;
         }
 
-        public static List<Habitacion> BuscarHabitaciones(Hotel hotel,TipoHabitacion tipo, DateTime finicio, DateTime ffin)
+        public static List<Habitacion> BuscarHabitaciones(Hotel hotel,TipoHabitacion tipo, DateTime finicio, DateTime ffin,Regimen regimen)
         {
-            DataTable habitaciones = DatabaseAdapter.traerDataTable("buscar_habitacion_reserva", hotel.Id, tipo.Id,finicio, ffin);
+            DataTable habitaciones = DatabaseAdapter.traerDataTable("buscar_habitacion_reserva", hotel.Id, tipo.Id,finicio, ffin,regimen);
             List<Habitacion> listaHabitaciones = new List<Habitacion>();
 
             if(habitaciones!=null)
                 foreach (DataRow habitacion in habitaciones.Rows)
-                    listaHabitaciones.Add(new Habitacion(Convert.ToInt32(habitacion["id_habitacion"]),tipo));
+                    listaHabitaciones.Add(new Habitacion(Convert.ToInt32(habitacion["id_habitacion"]),tipo,Convert.ToInt32(habitacion["costo"])));
                
             return listaHabitaciones;
         }
@@ -144,9 +144,9 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.ejecutarProcedure("registrar_ingreso_reserva", idReserva);
         }
 
-        public static void agregarConsumible(int idReserva, Producto producto, int cantidad)
+        public static void agregarConsumible(Habitacion habitacion, Producto producto, int cantidad)
         {/*TODO
-            DatabaseAdapter.insertarDatosEnTabla("producto_x_habitacion_reservada", idReserva, producto.Id,cantidad);
+            DatabaseAdapter.insertarDatosEnTabla("producto_x_habitacion_reservada", habitacion.IdHabitacionreservada, producto.Id,cantidad);
         */}
 
         public static void removerConsumible(int idReserva, int idProducto)
@@ -160,5 +160,20 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.ejecutarProcedure("facturar", idReserva, fechaSalida,mp.Id,nombre,apellido, codigo);*/
         }
 
+        public static List<Habitacion> habitacionesReservadas(int idReserva)
+        {
+            DataTable tabla = DatabaseAdapter.traerDataTable("habitaciones_reservadas", idReserva);
+            List<Habitacion> habitaciones = new List<Habitacion>();
+
+            foreach(DataRow habitacion in tabla.Rows)
+            {
+                Habitacion h = new Habitacion();
+                h.Id = Convert.ToInt32(habitacion["id_habitacion"]);
+                h.IdHabitacionReservada = Convert.ToInt32(habitacion["id_habitacion_reservada"]);
+                h.numeroHabitacion = Convert.ToInt32(habitacion["numero"]);
+                habitaciones.Add(h);
+            }
+            return habitaciones;
+        }
     }
 }
