@@ -19,5 +19,14 @@ namespace FrbaHotel.ABM_de_Hotel
             regimenesOriginales.AddRange(regimenes);
             _nombre.Text = nombre;
         }
+
+        protected override void Guardar()
+        {
+            ValidarErrores();
+            HomeHoteles.actualizarHotel(idHotel, nombre, email, telefono, calle, altura, estrellas, pais, ciudad, regimenesOriginales, fechaCreacion.ToShortDateString());
+            
+        }
+
+
     }
 }
