@@ -13,14 +13,9 @@ namespace FrbaHotel.Homes
         static public void insertarHotel(string nombre, string email, string telefono, string calle,int altura, int estrellas, Pais pais, string ciudad, List<Regimen> regimenes, string fechaCreacion)
         {
             DatabaseAdapter.insertarDatosEnTabla("hotel", nombre, email, telefono, calle, altura, estrellas, pais.Id, ciudad, fechaCreacion);
-            int id = idParaHotel(nombre);
+            int id = DatabaseAdapter.getIdUltimaInsercion("hotel");
             agregarElementos("regimen_x_hotel",id, IdsDe<Regimen>(regimenes));
 
-        }
-
-        public static int idParaHotel(string nombre)
-        {
-            return DatabaseAdapter.ejecutarProcedureWithReturnValue("id_hotel", like(nombre));
         }
 
         static public void buscarPorId(int idHotel,out string nombre, out string email, out string telefono, out string calle,out int altura, out int estrellas, out Pais pais, out string ciudad, out List<Regimen> regimenes, out DateTime fechaCreacion)
