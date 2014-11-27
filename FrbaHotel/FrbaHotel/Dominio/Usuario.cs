@@ -14,9 +14,25 @@ namespace FrbaHotel
     {
         public int Id { get; set; }
         public string Username { get; set; }
-        public Hotel Hotel { get; set; }
+        private Hotel hotel;
         public Rol Rol { get; set; }
-               
+
+        public Hotel Hotel
+        {
+            get
+            {
+                if (!this.esGuest())
+                    return hotel;
+                else
+                    return new Hotel(-1, "HotelGuest");
+            }
+            set
+            {
+                hotel = value;
+            }
+        }
+
+
         public Usuario(int id, string username)
         {
             Username = username;

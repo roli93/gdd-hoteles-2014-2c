@@ -32,8 +32,7 @@ namespace FrbaHotel.Registrar_Estadia
         public void RegistrarIngreso()
         {
             ValidarErrores();
-            if (!HomeReservas.reservaEsIngresable(Convert.ToInt32(textBox1.Text)))
-                throw new ExcepcionFrbaHoteles("No puede registrarse el ingreso para esta reserva porque no existe,\n se pasó la fecha, ya fue registrado o el usuario no tiene permisos");
+            HomeReservas.verificarReservaEsIngresable(Convert.ToInt32(textBox1.Text),Sesion.Usuario.Hotel.Id);
             new RegistrarIngreso(this, Convert.ToInt32(textBox1.Text)).FinalStandaloneOpen();
         }
 

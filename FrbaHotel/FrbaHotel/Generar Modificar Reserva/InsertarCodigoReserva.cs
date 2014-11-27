@@ -41,7 +41,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         public void AbrirEditor()
         {
             ValidarErrores();
-            HomeReservas.verificarReservaEsEditable(Convert.ToInt32(textBox1.Text));
+            HomeReservas.verificarReservaEsEditable(Convert.ToInt32(textBox1.Text),Sesion.Usuario.Hotel.Id);
             constructorEdicion(Convert.ToInt32(textBox1.Text)).FinalStandaloneOpen();
             this.Close();
         }

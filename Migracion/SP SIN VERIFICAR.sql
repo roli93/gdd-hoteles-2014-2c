@@ -87,19 +87,6 @@ AS SELECT hc.id_habitacion_reservada AS id, h.numero AS numero, COUNT(hc.id_clie
 		group by hc.id_habitacion_reservada, h.numero
 GO
 
-CREATE PROCEDURE [MAX_POWER].cambiar_habitacion(@id_habitacion_reservada BIGINT, @numero BIGINT)
-AS DECLARE @id_tipo_habitacion_anterior BIGINT
-	DECLARE @id_hotel_habitacion_anterior BIGINT
-	SET @id_tipo_habitacion_anterior = (SELECT H.id_tipo_habitacion FROM [MAX_POWER].Habitacion_reservada HR JOIN [MAX_POWER].Habitacion H ON H.id_habitacion = HR.id_habitacion WHERE HR.id_habitacion_reservada = @id_habitacion_reservada)
-	SET @id_hotel_habitacion_anterior = (SELECT H.id_hotel FROM [MAX_POWER].Habitacion_reservada HR JOIN [MAX_POWER].Habitacion H ON H.id_habitacion = HR.id_habitacion WHERE HR.id_habitacion_reservada = @id_habitacion_reservada)
-	IF (SELECT COUNT (*) FROM [MAX_POWER].Habitacion WHERE id_hotel = @id_hotel_habitacion_anterior AND id_tipo_habitacion = @id_tipo_habitacion_anterior) > 0
-		BEGIN
-		UPDATE [MAX_POWER].Habitacion_reservada SET id_habitacion = (SELECT TOP 1 id_habitacion FROM [MAX_POWER].Habitacion WHERE id_hotel = @id_hotel_habitacion_anterior AND id_tipo_habitacion = @id_tipo_habitacion_anterior) WHERE id_habitacion_reservada = @id_habitacion_reservada
-		RETURN(0)
-		END
-	ELSE
-		RETURN (-8)
-GO
 
 CREATE PROCEDURE [MAX_POWER].reserva_ingresable(@id_reserva BIGINT, @id_hotel BIGINT)
 AS 

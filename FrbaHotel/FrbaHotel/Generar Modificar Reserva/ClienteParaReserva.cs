@@ -27,8 +27,9 @@ namespace FrbaHotel.Generar_Modificar_Reserva
             if (celdas["correcto"].Value.ToString() == "N")
                 MessageBox.Show("Existen varios clientes con el tipo\n" +
                                 "y número de identificacion del cliente\n" +
-                                "seleccionado. Por favor contáctese con \n" +
-                                "el personal de la compañía para que\n" +
+                                "seleccionado. Por favor corriga esto desde\n" +
+                                "el Administrador de Clientes o contáctese\n" +
+                                "con el personal de la compañía para que\n" +
                                 "resuelvan esta inconsistencia", "Error");
             else
             {

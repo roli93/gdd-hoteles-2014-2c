@@ -69,10 +69,10 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.insertarDatosEnTabla("modificacion", DateTime.Now, idReserva, Sesion.Usuario.Id, "Modificación usual",0);
         }
 
-        public static void verificarReservaEsEditable(int idReserva)
+        public static void verificarReservaEsEditable(int idReserva,int idHotel)
         {
             int error = 0;
-            error=DatabaseAdapter.ejecutarProcedureWithReturnValue("reserva_editable", idReserva);
+            error=DatabaseAdapter.ejecutarProcedureWithReturnValue("reserva_editable", idReserva,idHotel);
             DatabaseAdapter.CheckExcepcionPara(error);
         }
 
@@ -92,16 +92,8 @@ namespace FrbaHotel.Homes
         }
 
         public static DataTable habitacionesReserva(int idReserva)
-        {/* TODO
-            return DatabaseAdapter.traerDataTable("habitaciones_de_reserva", idReserva);*/
-            DataTable ej = new DataTable();
-            ej.Clear();
-            ej.Columns.Add("id");
-            ej.Columns.Add("Numero");
-            ej.Columns.Add("Clientes");
-            ej.Rows.Add(new object[] { 142, 2, 0 });
-            ej.Rows.Add(new object[] { 24242, 12, 2 });
-            return ej;
+        {
+            return DatabaseAdapter.traerDataTable("habitaciones_de_reserva", idReserva);
         }
 
         public static DataTable consumiblesReserva(int idReserva)
@@ -120,9 +112,9 @@ namespace FrbaHotel.Homes
         }
 
         public static void cambiarHabitacion(int idHabitacionreservada, int numero)
-        {/*TODO
+        {
             int error = DatabaseAdapter.ejecutarProcedureWithReturnValue("cambiar_habitacion", idHabitacionreservada, numero);
-            DatabaseAdapter.CheckExcepcionPara(error);*/
+            DatabaseAdapter.CheckExcepcionPara(error);
         }
 
         public static void agregarClienteHabitacion(int idHabitacionReservada, int idCliente)
@@ -130,14 +122,11 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.insertarDatosEnTabla("cliente_x_habitacion", idHabitacionReservada, idCliente);*/
         }
 
-        public static bool reservaEsIngresable(int idReserva)
+        public static void verificarReservaEsIngresable(int idReserva, int idHotel)
         {
-            /*TODO
-            if (DatabaseAdapter.ejecutarProcedureWithReturnValue("reserva_ingresable", idReserva, Sesion.Usuario.Hotel.Id) == 1)
-                return true;
-            else
-                return false;*/
-            return true;
+            int error = 0;
+            error = DatabaseAdapter.ejecutarProcedureWithReturnValue("reserva_ingresable", idReserva, idHotel);
+            DatabaseAdapter.CheckExcepcionPara(error);
         }
 
         public static bool reservaEsEgresable(int idReserva)

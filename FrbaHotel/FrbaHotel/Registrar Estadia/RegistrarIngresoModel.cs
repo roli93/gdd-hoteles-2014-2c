@@ -20,7 +20,7 @@ namespace FrbaHotel.Registrar_Estadia
         public override void gridClickAction(DataGridViewCellCollection celdas)
         {
             if (inicio)
-                new CambiarHabitacion(this, Convert.ToInt32(celdas["id"].Value), Convert.ToInt32(celdas["Numero"].Value)).StandaloneOpen();
+                new CambiarHabitacion(this, Convert.ToInt32(celdas["id"].Value), Convert.ToInt32(celdas["Número de habitación"].Value)).StandaloneOpen();
             else
             {
                 if (MessageBox.Show("¿El cliente a ingresar ya está registrado?", "Ingresar Cliente", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -38,6 +38,7 @@ namespace FrbaHotel.Registrar_Estadia
         public void ActualizarGrilla()
         {
             cargarGrilla(dataGridView1,HomeReservas.habitacionesReserva(idReserva));
+            dataGridView1.Columns["id"].Visible = false;
         }
 
 

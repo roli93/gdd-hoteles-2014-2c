@@ -23,7 +23,7 @@ namespace FrbaHotel
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            Sesion.iniciar("Guest", "Guest");
+            Sesion.iniciar("Guest", "");
             Sesion.Usuario.Rol = Sesion.Usuario.Roles.ElementAt<Rol>(0);//Asigna el único rol del usuario Guest que es Guest :P
             new SeleccionFuncionalidad(this).StandaloneOpen(); ;
         }
