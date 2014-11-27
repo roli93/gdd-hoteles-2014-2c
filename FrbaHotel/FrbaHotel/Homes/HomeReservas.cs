@@ -118,8 +118,8 @@ namespace FrbaHotel.Homes
         }
 
         public static void agregarClienteHabitacion(int idHabitacionReservada, int idCliente)
-        {/*TODO
-            DatabaseAdapter.insertarDatosEnTabla("cliente_x_habitacion", idHabitacionReservada, idCliente);*/
+        {
+            DatabaseAdapter.insertarDatosEnTabla("cliente_x_habitacion", idHabitacionReservada, idCliente);
         }
 
         public static void verificarReservaEsIngresable(int idReserva, int idHotel)
@@ -140,8 +140,8 @@ namespace FrbaHotel.Homes
         }
 
         public static void ingresarReserva(int idReserva)
-        {/*TODO
-            DatabaseAdapter.ejecutarProcedure("registrar_ingreso_reserva", idReserva);*/
+        {
+            DatabaseAdapter.ejecutarProcedure("registrar_ingreso_reserva", idReserva);
         }
 
         public static void agregarConsumible(int idReserva, Producto producto, int cantidad)

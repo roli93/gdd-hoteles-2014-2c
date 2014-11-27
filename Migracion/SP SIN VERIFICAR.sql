@@ -23,23 +23,9 @@ AS
 UPDATE [MAX_POWER].Rol SET habilitado = 'N' WHERE id_rol = @id
 GO
 
-CREATE PROCEDURE [MAX_POWER].insertar_cliente_x_habitacion(@id_habitacion_reservada BIGINT, @id_cliente BIGINT)
-AS BEGIN
-	BEGIN TRY
-		INSERT INTO [MAX_POWER].Habitacion_reservada_X_Cliente (id_habitacion_reservada, id_cliente) VALUES (@id_habitacion_reservada, @id_cliente)
-	END TRY
-	BEGIN CATCH
-		IF @@ERROR = 2627
-			RETURN (-9)
-	END CATCH
-	RETURN(0)
-	END
-GO
 
-CREATE PROCEDURE [MAX_POWER].registrar_ingreso_reserva(@id_reserva BIGINT)
-AS
-UPDATE [MAX_POWER].reserva SET id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%ingresa%') WHERE id_reserva = @id_reserva
-GO
+
+
 
 CREATE PROCEDURE [MAX_POWER].insertar_producto_x_habitacion_reservada(@id_reserva BIGINT,@id_habitacion BIGINT, @id_producto BIGINT, @cantidad BIGINT)
 AS BEGIN

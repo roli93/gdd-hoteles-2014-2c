@@ -2055,7 +2055,7 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].habitaciones_de_reserva(@id_reserva BIGINT) AS
 BEGIN
-	SELECT  H.id_habitacion as ID,H.numero as 'Número de Habitación',H.piso as Piso,
+	SELECT  HR.id_habitacion_reservada as ID,H.numero as 'Número de Habitación',H.piso as Piso,
 				CASE WHEN C.nombre IS NULL THEN 'Nadie aún' ELSE C.nombre END AS 'Nombre del cliente',
 				CASE WHEN C.apellido IS NULL THEN '-' ELSE C.apellido END AS 'Apellido del cliente',
 				CASE WHEN C.numero_identificacion IS NULL THEN '-' ELSE cast(C.numero_identificacion as varchar) END AS 'Identificación del cliente'
@@ -2089,6 +2089,25 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE [MAX_POWER].insertar_cliente_x_habitacion(@id_habitacion_reservada BIGINT, @id_cliente BIGINT)
+AS BEGIN
+	BEGIN TRY
+		INSERT INTO [MAX_POWER].Habitacion_reservada_X_Cliente (id_habitacion_reservada, id_cliente) VALUES (@id_habitacion_reservada, @id_cliente)
+	END TRY
+	BEGIN CATCH
+		IF @@ERROR = 2627
+			RETURN (-16)
+	END CATCH
+	RETURN(0)
+	END
+GO
+
+CREATE PROCEDURE [MAX_POWER].registrar_ingreso_reserva(@id_reserva BIGINT)AS
+BEGIN
+	UPDATE [MAX_POWER].reserva SET id_estado = (SELECT id_estado FROM [MAX_POWER].Estado WHERE descripcion LIKE '%ingre%') WHERE id_reserva = @id_reserva
+	INSERT [MAX_POWER].Estadia (id_reserva,fecha_ingreso,valida) VALUES (@id_reserva,(SELECT fecha_inicio FROM MAX_POWER.Reserva WHERE id_reserva=@id_reserva),'S')
+END	
+GO
 
 CREATE PROCEDURE [MAX_POWER].actualizar_reserva(@id_reserva BIGINT, @id_regimen BIGINT, @fecha_inicio DATETIME, @fecha_fin DATETIME)
 AS

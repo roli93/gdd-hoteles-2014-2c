@@ -45,11 +45,14 @@ namespace FrbaHotel
             DatabaseAdapter.Excepciones.Add(-5, new ExcepcionFrbaHoteles("La direccion de mail ingresada ya ha sido registrada"));
             DatabaseAdapter.Excepciones.Add(-6, new ExcepcionFrbaHoteles("El tipo y número de identifiación ingresados ya pertenecen a un cliente de la cadena"));
             DatabaseAdapter.Excepciones.Add(-10, new ExcepcionFrbaHoteles("El código de reserva indicado no corresponde a ninguna reserva registrada en el sistema"));
+            DatabaseAdapter.Excepciones.Add(-8, new ExcepcionFrbaHoteles("No existe una habitación con ese número en el hotel"));
+            DatabaseAdapter.Excepciones.Add(-9, new ExcepcionFrbaHoteles("La habitación seleccionada debe ser del mismo tipo que la anterior"));
             DatabaseAdapter.Excepciones.Add(-11, new ExcepcionFrbaHoteles("La reserva es inmodificable dado que su fecha de inicio es hoy o ya ha pasado"));
             DatabaseAdapter.Excepciones.Add(-12, new ExcepcionFrbaHoteles("La reserva es inmodificable porque ya ha sido cancelada"));
             DatabaseAdapter.Excepciones.Add(-13, new ExcepcionFrbaHoteles("La reserva es inmodificable porque ya ha sido realizado el check-in sobre ella"));
             DatabaseAdapter.Excepciones.Add(-14, new ExcepcionFrbaHoteles("La reserva solo es modificable por usuarios logueados en el hotel donde se realizó o invitados"));
             DatabaseAdapter.Excepciones.Add(-15, new ExcepcionFrbaHoteles("Solo se puede registrar el ingreso el día que la reserva comienza"));
+            DatabaseAdapter.Excepciones.Add(-16, new ExcepcionFrbaHoteles("No se puede cargar varias veces al mismo cliente en la misma habitación"));
             DatabaseAdapter.Excepciones.Add(-20, new ExcepcionFrbaHoteles("El pais indicado no existe"));
 
             //------------------CONFIGURACIONES------------------->>
