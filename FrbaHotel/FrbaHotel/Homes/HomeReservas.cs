@@ -46,7 +46,7 @@ namespace FrbaHotel.Homes
 
         public static List<Habitacion> BuscarHabitaciones(Hotel hotel,TipoHabitacion tipo, DateTime finicio, DateTime ffin,Regimen regimen)
         {
-            DataTable habitaciones = DatabaseAdapter.traerDataTable("buscar_habitacion_reserva", hotel.Id, tipo.Id,finicio, ffin,regimen);
+            DataTable habitaciones = DatabaseAdapter.traerDataTable("buscar_habitacion_reserva", hotel.Id, tipo.Id,finicio, ffin,regimen.Id);
             List<Habitacion> listaHabitaciones = new List<Habitacion>();
 
             if(habitaciones!=null)

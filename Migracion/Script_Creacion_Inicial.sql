@@ -2473,11 +2473,20 @@ join MAX_POWER.Cliente c on c.id_cliente = tabla.cliente
 order by puntos desc
 GO
 
+CREATE FUNCTION [MAX_POWER].costo_diario_habitacion(@id_hotel BIGINT,@id_habitacion BIGINT,@id_regimen BIGINT)RETURNS DECIMAL AS
+BEGIN
+	DECLARE @costo DECIMAL
+	SELECT @costo=((R.precio_base*T.porcentual)+(O.recarga_estrellas*O.estrellas))
+				FROM MAX_POWER.Habitacion H, MAX_POWER.Hotel O, MAX_POWER.Regimen R, MAX_POWER.Tipo_habitacion T
+				WHERE H.id_habitacion=24 AND O.id_hotel=1 AND R.id_regimen=1 AND T.id_tipo_habitacion=H.id_tipo_habitacion
+	RETURN @costo
+END
+GO
 
-
-CREATE PROCEDURE [MAX_POWER].buscar_habitacion_reserva(@id_hotel BIGINT, @id_tipo_habitacion BIGINT, @fecha_inicio DATETIME, @fecha_fin DATETIME)
-AS SELECT * FROM Max_power.Habitacion WHERE id_hotel=@id_hotel 
+CREATE PROCEDURE [MAX_POWER].buscar_habitacion_reserva(@id_hotel BIGINT, @id_tipo_habitacion BIGINT, @fecha_inicio DATETIME, @fecha_fin DATETIME,@id_regimen BIGINT)
+AS SELECT id_habitacion,MAX_POWER.costo_diario_habitacion(@id_hotel,id_habitacion,@id_regimen)as costo FROM Max_power.Habitacion WHERE id_hotel=@id_hotel 
 												AND id_tipo_habitacion=@id_tipo_habitacion 
+												AND habilitada='S'
 												AND MAX_POWER.habitacion_libre(id_habitacion,	@fecha_inicio,@fecha_fin)=1
 GO
 

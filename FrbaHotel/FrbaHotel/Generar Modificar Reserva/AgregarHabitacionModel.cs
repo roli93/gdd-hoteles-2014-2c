@@ -30,7 +30,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
             generarReserva.AgregarHabitaciones(habitaciones.Take<Habitacion>(cantidad).ToList<Habitacion>());
             Habitacion habitacion = habitaciones.ElementAt<Habitacion>(0);
             MessageBox.Show("Se han agregado " + cantidad + " habitaciones con un costo diario de $"
-                             + habitacion.Costo + " cada una\ntotalizando unos $" + habitacion.Costo * cantidad);
+                             + habitacion.Costo + " cada una\ntotalizando unos $" + habitacion.Costo * cantidad+" por día");
             Close();
         }
 

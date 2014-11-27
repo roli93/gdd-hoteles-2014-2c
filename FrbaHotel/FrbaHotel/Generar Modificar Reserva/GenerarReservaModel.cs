@@ -42,8 +42,9 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         {
             int id = HomeReservas.registrarReserva(Regimen, FechaInicio, FechaFin, Habitaciones, ClienteId);
             double costo = Habitaciones.Sum<Habitacion>(h => h.Costo);
-            successMessage+="\nEl costo de la reserva es de $"+costo+" por día"+
-                            "\nIMPORTANTE: Su código de reserva para futuras modificaciones es "+id.ToString();
+            successMessage+="\nEl costo de la reserva es de $"+costo+" por día por "+(FechaFin-FechaInicio).TotalDays+
+                            " dias totalizando: $"+costo*(FechaFin-FechaInicio).TotalDays+
+                            "\n\nIMPORTANTE: Su código de reserva para futuras modificaciones es "+id.ToString();
             Close();
         }
 
