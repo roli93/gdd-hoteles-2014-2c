@@ -22,7 +22,7 @@ namespace FrbaHotel.Registrar_Consumible
 
         public override void gridClickAction(DataGridViewCellCollection celdas)
         {
-            HomeReservas.removerConsumible(idReserva, Convert.ToInt32(celdas["id"].Value));
+            HomeReservas.removerConsumible(Convert.ToInt32(celdas["IDHR"].Value), Convert.ToInt32(celdas["id"].Value));
             ActualizarGrilla();
         }
 

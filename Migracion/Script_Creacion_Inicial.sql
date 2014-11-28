@@ -981,7 +981,7 @@ CREATE TABLE [MAX_POWER].[Producto_X_Habitacion_reservada](
 	[id_habitacion_reservada] [bigint] NOT NULL,
 	[id_producto] [bigint] NOT NULL,
 	[cantidad] [bigint] NOT NULL,
-	[id_factura] [bigint] NOT NULL,
+	[id_factura] [bigint],
  CONSTRAINT [PK_Producto_X_Habitacion_reservada] PRIMARY KEY CLUSTERED 
 (
 	[id_habitacion_reservada] ASC,
@@ -2055,6 +2055,28 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE [MAX_POWER].reserva_egresable(@id_reserva BIGINT,@id_hotel BIGINT) AS
+BEGIN
+	IF (NOT EXISTS (SELECT 1 FROM MAX_POWER.Reserva WHERE id_reserva=@id_reserva))
+		RETURN(-10)
+	ELSE IF ((SELECT UPPER(E.descripcion) 
+			FROM [MAX_POWER].reserva R INNER JOIN MAX_POWER.Estado E ON R.id_estado=E.id_estado
+			WHERE id_reserva = @id_reserva)LIKE UPPER('%CANCELAD%'))
+		RETURN (-12)
+	ELSE IF ((SELECT UPPER(E.descripcion) 
+			FROM [MAX_POWER].reserva R INNER JOIN MAX_POWER.Estado E ON R.id_estado=E.id_estado
+			WHERE id_reserva = @id_reserva)NOT LIKE UPPER('%INGRES%'))
+		RETURN (-17)
+	ELSE IF (EXISTS(SELECT 1 FROM MAX_POWER.Estadia WHERE id_reserva=@id_reserva AND fecha_egreso IS NOT NULL))
+		RETURN (-18)
+	ELSE IF(@id_hotel!=-1)
+		IF(MAX_POWER.reserva_es_de_hotel(@id_reserva, @id_hotel)=0)
+			RETURN (-14)
+	ELSE
+		RETURN(0)
+END
+GO
+
 CREATE PROCEDURE [MAX_POWER].habitaciones_de_reserva(@id_reserva BIGINT) AS
 BEGIN
 	SELECT  HR.id_habitacion_reservada as ID,H.numero as 'Número de Habitación',H.piso as Piso,
@@ -2072,6 +2094,32 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE [MAX_POWER].habitaciones_reservadas_para_consumibles(@id_reserva BIGINT)AS
+BEGIN
+	SELECT * 
+		FROM MAX_POWER.Habitacion H, MAX_POWER.Habitacion_reservada HR
+		WHERE H.id_habitacion=HR.id_habitacion AND HR.id_reserva=@id_reserva
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].consumibles_de_reserva(@id_reserva BIGINT)AS
+BEGIN
+	SELECT  PHR.id_producto as ID,P.descripcion as Descripción,H.numero as 'Número de Habitación',P.precio as ' Precio Unitario',PHR.Cantidad, PHR.cantidad*P.precio AS Total
+		FROM MAX_POWER.Habitacion_reservada HR, MAX_POWER.Producto_X_Habitacion_reservada PHR, MAX_POWER.Producto P,MAX_POWER.Habitacion H
+		WHERE  @id_reserva=HR.id_reserva AND HR.id_habitacion_reservada=PHR.id_habitacion_reservada 
+			AND PHR.id_producto=P.id_producto AND H.id_habitacion=HR.id_habitacion
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].insertar_producto_x_habitacion_reservada(@id_habitacion_reservada BIGINT, @id_producto BIGINT, @cantidad BIGINT)
+AS BEGIN
+	IF (EXISTS(SELECT 1 FROM MAX_POWER.Producto_X_Habitacion_reservada WHERE id_producto=@id_producto AND id_habitacion_reservada=@id_habitacion_reservada))
+		UPDATE [MAX_POWER].Producto_X_Habitacion_reservada SET cantidad = cantidad + @cantidad WHERE id_habitacion_reservada = @id_habitacion_reservada AND id_producto = @id_producto
+	ELSE
+		INSERT INTO [MAX_POWER].Producto_X_Habitacion_reservada (id_habitacion_reservada, id_producto, cantidad) VALUES (@id_habitacion_reservada, @id_producto, @cantidad)
+END
+GO
+
 CREATE PROCEDURE [MAX_POWER].cambiar_habitacion(@id_habitacion_reservada BIGINT, @numero BIGINT) AS
 BEGIN
 	DECLARE @id_hotel BIGINT
@@ -2084,8 +2132,12 @@ BEGIN
 	SELECT @id_tipo_hab_pedido=id_tipo_habitacion FROM MAX_POWER.Habitacion WHERE id_hotel=@id_hotel AND numero=@numero
 	IF(@id_tipo_hab_original!=@id_tipo_hab_pedido)
 		RETURN (-9)
+	DECLARE @id_reserva BIGINT
+	SELECT @id_reserva=id_reserva FROM MAX_POWER.Habitacion_reservada WHERE id_habitacion_reservada=@id_habitacion_reservada
 	DECLARE @id_nueva_hab BIGINT
 	SELECT @id_nueva_hab=id_habitacion FROM MAX_POWER.Habitacion WHERE id_hotel=@id_hotel AND NUMERO=@numero
+	IF(EXISTS(SELECT 1 FROM MAX_POWER.Habitacion_reservada WHERE id_habitacion=@id_nueva_hab AND id_reserva=@id_reserva))
+		RETURN(-19)	
 	UPDATE MAX_POWER.Habitacion_reservada SET id_habitacion = @id_nueva_hab WHERE id_habitacion_reservada=@id_habitacion_reservada
 	RETURN(0)	
 END
@@ -2478,7 +2530,7 @@ BEGIN
 	DECLARE @costo DECIMAL
 	SELECT @costo=((R.precio_base*T.porcentual)+(O.recarga_estrellas*O.estrellas))
 				FROM MAX_POWER.Habitacion H, MAX_POWER.Hotel O, MAX_POWER.Regimen R, MAX_POWER.Tipo_habitacion T
-				WHERE H.id_habitacion=24 AND O.id_hotel=1 AND R.id_regimen=1 AND T.id_tipo_habitacion=H.id_tipo_habitacion
+				WHERE H.id_habitacion=@id_habitacion AND O.id_hotel=@id_hotel AND R.id_regimen=@id_regimen AND T.id_tipo_habitacion=H.id_tipo_habitacion
 	RETURN @costo
 END
 GO

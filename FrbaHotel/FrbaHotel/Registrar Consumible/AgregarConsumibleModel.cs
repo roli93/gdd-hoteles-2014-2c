@@ -28,7 +28,7 @@ namespace FrbaHotel.Registrar_Consumible
 
         public override void ValidarErroresConcretos()
         {
-            ValidarVaciosYLongitud(new string[] { "Producto" }, new object[] { producto });
+            ValidarVaciosYLongitud(new string[] { "Producto","Habitación" }, new object[] { producto,habitación });
         }
 
     }

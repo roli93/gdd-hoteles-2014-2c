@@ -53,6 +53,9 @@ namespace FrbaHotel
             DatabaseAdapter.Excepciones.Add(-14, new ExcepcionFrbaHoteles("La reserva solo es modificable por usuarios logueados en el hotel donde se realizó o invitados"));
             DatabaseAdapter.Excepciones.Add(-15, new ExcepcionFrbaHoteles("Solo se puede registrar el ingreso el día que la reserva comienza"));
             DatabaseAdapter.Excepciones.Add(-16, new ExcepcionFrbaHoteles("No se puede cargar varias veces al mismo cliente en la misma habitación"));
+            DatabaseAdapter.Excepciones.Add(-17, new ExcepcionFrbaHoteles("No se puede realizar el check-out ya que aún no se ha realizado el ckeck-in"));
+            DatabaseAdapter.Excepciones.Add(-18, new ExcepcionFrbaHoteles("Ya fue realizado el check-out y la reserva fue facturada"));
+            DatabaseAdapter.Excepciones.Add(-19, new ExcepcionFrbaHoteles("La habitación seleccionada ya pertenece a la reserva"));
             DatabaseAdapter.Excepciones.Add(-20, new ExcepcionFrbaHoteles("El pais indicado no existe"));
 
             //------------------CONFIGURACIONES------------------->>

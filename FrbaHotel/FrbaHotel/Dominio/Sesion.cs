@@ -125,8 +125,7 @@ namespace FrbaHotel
         {
             get
             {
-                //TODO return elementosDisponibles<Producto>((e) => new Producto((int)e["id_producto"], (string)e["descripcion"]), "productos_disponibles");
-                return new List<Producto> { new Producto(1, "Coca-Cola"), new Producto(2, "Rhodesia"), new Producto(3, "Dr. Lemon") };
+                return elementosDisponibles<Producto>((e) => new Producto(Convert.ToInt32(e["id_producto"]), e["descripcion"].ToString()), "productos_disponibles");
             }
         }
 

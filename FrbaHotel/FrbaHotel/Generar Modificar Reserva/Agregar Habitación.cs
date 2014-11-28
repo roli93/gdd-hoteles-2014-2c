@@ -22,6 +22,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         {
             generarReserva = o;
             InitializeComponent();
+            numericUpDown1.Minimum = 1;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

@@ -36,12 +36,20 @@ namespace FrbaHotel.Registrar_Consumible
         private void RegistrarConsumibles_Load(object sender, EventArgs e)
         {
             cargarBotonModificarDatos(dataGridView1, "Eliminar");
+            ActualizarGrilla();
+            dataGridView1.Columns["ID"].Visible = false;
+            dataGridView1.Columns["IDHR"].Visible = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Los consumibles fueron agregados");
             Close();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            operacionBotonConSeleccionado(dataGridView1, e);
         }
     }
 }

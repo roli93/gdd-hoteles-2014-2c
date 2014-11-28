@@ -97,18 +97,8 @@ namespace FrbaHotel.Homes
         }
 
         public static DataTable consumiblesReserva(int idReserva)
-        {/* TODO
-            return DatabaseAdapter.traerDataTable("consumibles_de_reserva", idReserva);*/
-            DataTable ej = new DataTable();
-            ej.Clear();
-            ej.Columns.Add("id");
-            ej.Columns.Add("descripcion");
-            ej.Columns.Add("Cantidad");
-            ej.Columns.Add("Precio Unitario");
-            ej.Columns.Add("Total");
-            ej.Rows.Add(new object[] { 142,"Coca", 2, 2,4 });
-            ej.Rows.Add(new object[] { 24242,"Lays", 12, 2,24 });
-            return ej;
+        {
+            return DatabaseAdapter.traerDataTable("consumibles_de_reserva", idReserva);
         }
 
         public static void cambiarHabitacion(int idHabitacionreservada, int numero)
@@ -129,14 +119,11 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.CheckExcepcionPara(error);
         }
 
-        public static bool reservaEsEgresable(int idReserva)
+        public static void verificarReservaEsEgresable(int idReserva, int idHotel)
         {
-            /*TODO
-            if (DatabaseAdapter.ejecutarProcedureWithReturnValue("reserva_egresable", idReserva, Sesion.Usuario.Hotel.Id) == 1)
-                return true;
-            else
-                return false;*/
-            return true;
+            int error = 0;
+            error = DatabaseAdapter.ejecutarProcedureWithReturnValue("reserva_egresable", idReserva, idHotel);
+            DatabaseAdapter.CheckExcepcionPara(error);
         }
 
         public static void ingresarReserva(int idReserva)
@@ -145,14 +132,13 @@ namespace FrbaHotel.Homes
         }
 
         public static void agregarConsumible(Habitacion habitacion, Producto producto, int cantidad)
-        {/*TODO
-            DatabaseAdapter.insertarDatosEnTabla("producto_x_habitacion_reservada", habitacion.IdHabitacionreservada, producto.Id,cantidad);
-        */}
+        {
+            DatabaseAdapter.insertarDatosEnTabla("producto_x_habitacion_reservada", habitacion.IdHabitacionReservada, producto.Id,cantidad);
+        }
 
-        public static void removerConsumible(int idReserva, int idProducto)
-        {/*
-            DatabaseAdapter.borrarDatosEnTabla("producto_x_habitacion_reservada", idReserva, idProducto);
-        */
+        public static void removerConsumible(int idHabitacionreservada, int idProducto)
+        {
+            DatabaseAdapter.borrarDatosEnTabla("producto_x_habitacion_reservada", idHabitacionreservada, idProducto);
         }
 
         public static void facturar(int idReserva, DateTime fechaSalida,ModoPago mp,string nombre, string apellido, string codigo)
@@ -162,8 +148,13 @@ namespace FrbaHotel.Homes
 
         public static List<Habitacion> habitacionesReservadas(int idReserva)
         {
-            DataTable tabla = DatabaseAdapter.traerDataTable("habitaciones_reservadas", idReserva);
+            DataTable tabla = DatabaseAdapter.traerDataTable("habitaciones_reservadas_para_consumibles", idReserva);
             List<Habitacion> habitaciones = new List<Habitacion>();
+
+            //Esto no debería pasar nunca, y no sé si es más negrada oner este if... o el comentario que le agrego arriba.
+            //Si alguien lee esto sepa que nunca programo así U.U
+            if (tabla == null)
+                return habitaciones;
 
             foreach(DataRow habitacion in tabla.Rows)
             {

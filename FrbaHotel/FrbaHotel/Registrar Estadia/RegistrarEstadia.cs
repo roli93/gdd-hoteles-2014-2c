@@ -39,8 +39,7 @@ namespace FrbaHotel.Registrar_Estadia
         public void RegistrarEgreso()
         {
             ValidarErrores();
-            if (!HomeReservas.reservaEsEgresable(Convert.ToInt32(textBox1.Text)))
-                throw new ExcepcionFrbaHoteles("No puede registrarse el egreso para esta reserva porque no existe,\n ya fue registrado o el usuario no tiene permisos");
+            HomeReservas.verificarReservaEsEgresable(Convert.ToInt32(textBox1.Text),Sesion.Usuario.Hotel.Id);
             new RegistrarEgreso(this, Convert.ToInt32(textBox1.Text)).FinalStandaloneOpen();
         }
 

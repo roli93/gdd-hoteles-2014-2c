@@ -29,6 +29,7 @@ namespace FrbaHotel.Registrar_Consumible
         {
             bindCombo<Producto>(comboBox1, Sesion.ProductosDisponibles);
             bindCombo<Habitacion>(comboBox2, HomeReservas.habitacionesReservadas(idReserva));
+            numericUpDown1.Minimum = 1;
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
