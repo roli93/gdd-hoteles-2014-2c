@@ -32,14 +32,14 @@ namespace FrbaHotel.Registrar_Estadia
         private void Factura_Load(object sender, EventArgs e)
         {
             _nroFact.Text = idFactura.ToString();
-            items= HomeFacturas.itemsFactura(idReserva);
+            items= HomeFacturas.itemsFactura(idReserva,idFactura);
             cargarGrilla(dataGridView1, items);
             _total.Text = Total().ToString();
         }
 
         public double Total()
         {
-            int total=0;
+            double total=0;
             foreach (DataRow item in items.Rows)
                 total += Convert.ToInt32(item["total"]);
             HomeFacturas.GuardarTotal(idFactura, total);

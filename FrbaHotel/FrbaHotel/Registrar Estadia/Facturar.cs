@@ -15,6 +15,7 @@ namespace FrbaHotel.Registrar_Estadia
     public partial class Facturar : Alta
     {
         int codigo;
+        string cod;
 
         public Facturar()
         {
@@ -40,6 +41,7 @@ namespace FrbaHotel.Registrar_Estadia
         public void ComenzarFacturacion()
         {
             ValidarErrores();
+            codigo = Convert.ToInt32(cod);
             HomeReservas.verificarReservaEsFacturable(codigo, Sesion.Usuario.Hotel.Id);
             RegistrarEgreso RE = new RegistrarEgreso(this, codigo);
             RE.FinalStandaloneOpen();
@@ -49,13 +51,13 @@ namespace FrbaHotel.Registrar_Estadia
 
         public override void ValidarErroresConcretos()
         {
-            ValidarVaciosYLongitud(new string[] { "Código de reserva" }, new object[] { codigo });
+            ValidarVaciosYLongitud(new string[] { "Código de reserva" }, new object[] { cod });
             ValidarNumericos(textBox1.Text);
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            codigo = Convert.ToInt32(textBox1.Text);
+            cod = textBox1.Text;
         }
     }
 }

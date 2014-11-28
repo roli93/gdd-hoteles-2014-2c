@@ -9,25 +9,14 @@ namespace FrbaHotel.Homes
 {
     public class HomeFacturas:Home
     {
-        public static DataTable itemsFactura(int idr)
-        {/*TODO
-            return DatabaseAdapter.traerDataTable("items_factura", idr);*/
-            DataTable ej = new DataTable();
-            ej.Clear();
-            ej.Columns.Add("id");
-            ej.Columns.Add("descripcion");
-            ej.Columns.Add("Cantidad");
-            ej.Columns.Add("Precio Unitario");
-            ej.Columns.Add("Total");
-            ej.Rows.Add(new object[] { 142, "Coca", 2, 2, 4 });
-            ej.Rows.Add(new object[] { 24242, "Lays", 12, 2, 24 });
-            return ej;
+        public static DataTable itemsFactura(int idReserva,int idFactura)
+        {
+            return DatabaseAdapter.traerDataTable("items_factura", idReserva,idFactura);
         }
 
         public static void GuardarTotal(int idFactura,double total)
         {
-            return; /*TODODatabaseAdapter.ejecutarProcedureWithReturnDecimal("total_factura", idFactura)*/
-            ;
+            DatabaseAdapter.ejecutarProcedure("guardar_total_factura", idFactura, total);
         }
     }
 }

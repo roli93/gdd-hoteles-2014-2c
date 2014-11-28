@@ -2111,6 +2111,30 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE [MAX_POWER].reserva_facturable(@id_reserva BIGINT,@id_hotel BIGINT) AS
+BEGIN
+	IF (NOT EXISTS (SELECT 1 FROM MAX_POWER.Reserva WHERE id_reserva=@id_reserva))
+		RETURN(-10)
+	ELSE IF ((SELECT UPPER(E.descripcion) 
+			FROM [MAX_POWER].reserva R INNER JOIN MAX_POWER.Estado E ON R.id_estado=E.id_estado
+			WHERE id_reserva = @id_reserva)LIKE UPPER('%CANCELAD%'))
+		RETURN (-12)
+	ELSE IF ((SELECT UPPER(E.descripcion) 
+			FROM [MAX_POWER].reserva R INNER JOIN MAX_POWER.Estado E ON R.id_estado=E.id_estado
+			WHERE id_reserva = @id_reserva)NOT LIKE UPPER('%INGRES%'))
+		RETURN (-17)
+	ELSE IF (EXISTS(SELECT 1 FROM MAX_POWER.Estadia WHERE id_reserva=@id_reserva AND fecha_egreso IS NULL))
+		RETURN (-22)
+	ELSE IF (EXISTS(SELECT 1 FROM MAX_POWER.Factura F,MAX_POWER.Estadia E WHERE E.id_estadia=F.id_estadia AND E.id_reserva=@id_reserva ))
+		RETURN (-23)
+	ELSE IF(@id_hotel!=-1)
+		IF(MAX_POWER.reserva_es_de_hotel(@id_reserva, @id_hotel)=0)
+			RETURN (-14)
+	ELSE
+		RETURN(0)
+END
+GO
+
 CREATE PROCEDURE [MAX_POWER].habitaciones_de_reserva(@id_reserva BIGINT) AS
 BEGIN
 	SELECT  HR.id_habitacion_reservada as ID,H.numero as 'Número de Habitación',H.piso as Piso,
@@ -2195,6 +2219,43 @@ BEGIN
 	UPDATE MAX_POWER.Producto_X_Habitacion_reservada SET id_factura=@id_factura 
 		WHERE id_habitacion_reservada IN (SELECT id_habitacion_reservada FROM MAX_POWER.Habitacion_reservada WHERE id_reserva=@id_reserva)
 END
+GO
+
+drop PROCEDURE [MAX_POWER].items_factura(@id_reserva BIGINT, @id_factura BIGINT) AS
+BEGIN
+	DECLARE @costo DECIMAL
+	SELECT @costo= MAX_POWER.costo_diario_habitacion(H.id_hotel,H.id_habitacion,R.id_regimen)
+		FROM MAX_POWER. Reserva R, MAX_POWER.Habitacion H,	MAX_POWER.Habitacion_reservada HR
+		WHERE HR.id_reserva=R.id_reserva AND H.id_habitacion=HR.id_habitacion AND R.id_reserva=@id_reserva
+	DECLARE @diasA INT
+	SELECT @diasA=DATEDIFF(DAY, E.fecha_ingreso,E.fecha_egreso)
+		FROM MAX_POWER.Estadia E, MAX_POWER. Reserva R
+		WHERE E.id_reserva=R.id_reserva AND R.id_reserva=@id_reserva
+	DECLARE @diasNA INT
+	SELECT @diasNA=DATEDIFF(DAY, E.fecha_egreso,R.fecha_fin)
+		FROM MAX_POWER.Estadia E, MAX_POWER. Reserva R
+		WHERE E.id_reserva=R.id_reserva AND R.id_reserva=@id_reserva
+	SELECT P.descripcion AS Descripción, SUM(PHR.cantidad) AS  Cantidad,P.precio AS 'Precio Unitario', (P.precio*SUM(PHR.cantidad)) AS Total
+		FROM MAX_POWER.Producto_X_Habitacion_reservada PHR, MAX_POWER.Producto P
+		WHERE P.id_producto=PHR.id_producto AND id_factura=@id_factura
+		GROUP BY P.descripcion,P.precio
+	UNION
+	SELECT '*Días Alojado' as Descripción, 
+			@diasA AS Cantidad,
+			@costo AS 'Precio Unitario',
+			@costo*@diasA AS Total
+	UNION
+	SELECT '*Días No Alojado' as Descripción, 
+			@diasNA AS Cantidad,
+			@costo AS 'Precio Unitario',
+			@costo*@diasNA AS Total
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].guardar_total_factura(@id_factura BIGINT, @total DECIMAL) AS 
+BEGIN
+	UPDATE MAX_POWER.Factura SET total=@total WHERE id_factura=@id_factura
+END 
 GO
 
 CREATE PROCEDURE [MAX_POWER].ID_ULTIMA_FACTURA AS 
@@ -2844,6 +2905,8 @@ insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Hoteles')
 insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Habitaciones')
 insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Reservas')
 insert into MAX_POWER.Funcionalidad (descripcion) values ('Check in/out')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Listado Estadístico')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Facturar Estadías')
 
 
 exec MAX_POWER.insertar_rol 'Administrador General', 'S'
@@ -2860,6 +2923,8 @@ exec MAX_POWER.insertar_funcionalidad_X_rol 1, 4
 exec MAX_POWER.insertar_funcionalidad_X_rol 1, 5
 exec MAX_POWER.insertar_funcionalidad_X_rol 1, 6
 exec MAX_POWER.insertar_funcionalidad_X_rol 1, 7
+exec MAX_POWER.insertar_funcionalidad_X_rol 1, 8
+exec MAX_POWER.insertar_funcionalidad_X_rol 1, 9
 exec MAX_POWER.insertar_funcionalidad_X_rol 2, 2
 exec MAX_POWER.insertar_funcionalidad_X_rol 2, 3
 exec MAX_POWER.insertar_funcionalidad_X_rol 2, 4

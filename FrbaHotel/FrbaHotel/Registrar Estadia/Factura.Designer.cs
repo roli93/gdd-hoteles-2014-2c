@@ -44,7 +44,7 @@
             this.dataGridView1.Location = new System.Drawing.Point(12, 38);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(268, 186);
+            this.dataGridView1.Size = new System.Drawing.Size(450, 186);
             this.dataGridView1.TabIndex = 0;
             // 
             // label1
@@ -59,11 +59,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(174, 241);
+            this.label2.Location = new System.Drawing.Point(356, 237);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 13);
+            this.label2.Size = new System.Drawing.Size(43, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Total:";
+            this.label2.Text = "Total $:";
             // 
             // _nroFact
             // 
@@ -75,7 +75,7 @@
             // 
             // _total
             // 
-            this._total.Location = new System.Drawing.Point(214, 234);
+            this._total.Location = new System.Drawing.Point(396, 234);
             this._total.Name = "_total";
             this._total.ReadOnly = true;
             this._total.Size = new System.Drawing.Size(66, 20);
@@ -86,7 +86,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 266);
+            this.ClientSize = new System.Drawing.Size(474, 266);
             this.Controls.Add(this._total);
             this.Controls.Add(this._nroFact);
             this.Controls.Add(this.label2);
