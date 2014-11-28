@@ -2104,9 +2104,9 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].consumibles_de_reserva(@id_reserva BIGINT)AS
 BEGIN
-	SELECT  PHR.id_producto as ID,P.descripcion as Descripción,H.numero as 'Número de Habitación',P.precio as ' Precio Unitario',PHR.Cantidad, PHR.cantidad*P.precio AS Total
+SELECT  PHR.id_producto as ID, HR.id_habitacion_reservada as IDHR, P.descripcion as Descripción,H.numero as 'Número de Habitación',P.precio as ' Precio Unitario',PHR.Cantidad, PHR.cantidad*P.precio AS Total
 		FROM MAX_POWER.Habitacion_reservada HR, MAX_POWER.Producto_X_Habitacion_reservada PHR, MAX_POWER.Producto P,MAX_POWER.Habitacion H
-		WHERE  @id_reserva=HR.id_reserva AND HR.id_habitacion_reservada=PHR.id_habitacion_reservada 
+		WHERE 110741=HR.id_reserva AND HR.id_habitacion_reservada=PHR.id_habitacion_reservada 
 			AND PHR.id_producto=P.id_producto AND H.id_habitacion=HR.id_habitacion
 END
 GO
@@ -2119,6 +2119,50 @@ AS BEGIN
 		INSERT INTO [MAX_POWER].Producto_X_Habitacion_reservada (id_habitacion_reservada, id_producto, cantidad) VALUES (@id_habitacion_reservada, @id_producto, @cantidad)
 END
 GO
+
+CREATE PROCEDURE [MAX_POWER].borrar_producto_x_habitacion_reservada(@id_habitacion_reservada BIGINT, @id_producto BIGINT)
+AS BEGIN
+	DELETE FROM [MAX_POWER].Producto_X_Habitacion_reservada 
+		WHERE id_producto = @id_producto AND id_habitacion_reservada =@id_habitacion_reservada
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].registrar_egreso(@id_reserva BIGINT, @fecha DATETIME)
+AS BEGIN
+	IF(CONVERT(DATE, @fecha)>(SELECT fecha_fin FROM MAX_POWER.Reserva WHERE id_reserva=@id_reserva))
+		RETURN(-21)
+	UPDATE MAX_POWER.Estadia SET fecha_egreso=@fecha WHERE id_reserva=@id_reserva
+	RETURN (0)
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].metodos_pago_disponibles
+AS BEGIN
+	SELECT * FROM MAX_POWER.Metodo_pago
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].facturar(@id_reserva BIGINT, @id_metodo_pago BIGINT, @nombre VARCHAR(50), @apellido VARCHAR(50) , @codigo VARCHAR(50)) AS
+BEGIN
+	DECLARE @id_tarjeta BIGINT 
+	IF(@id_metodo_pago!=1)
+	BEGIN
+		IF(NOT EXISTS(SELECT 1 FROM MAX_POWER.Tarjeta_credito WHERE codigo_seguridad=@codigo))
+			INSERT INTO Tarjeta_credito (nombre,apellido,codigo_seguridad) VALUES (@nombre,@apellido,@codigo)
+		SELECT @id_tarjeta=id_tarjeta FROM MAX_POWER.Tarjeta_credito WHERE codigo_seguridad=@codigo
+	END
+	ELSE
+		SET @id_tarjeta=NULL
+	DECLARE @id_estadia BIGINT 
+	SELECT @id_estadia=id_estadia FROM MAX_POWER.Estadia WHERE id_reserva=@id_reserva
+	INSERT INTO MAX_POWER.Factura (id_estadia,id_medoto_pago,id_tarjeta) VALUES (@id_estadia,@id_metodo_pago,@id_tarjeta)
+	DECLARE @id_factura BIGINT
+	EXEC @id_factura=MAX_POWER.id_ultima_insercion @tabla = 'MAX_POWER.Factura'
+	UPDATE MAX_POWER.Producto_X_Habitacion_reservada SET id_factura=@id_factura 
+		WHERE id_habitacion_reservada IN (SELECT id_habitacion_reservada FROM MAX_POWER.Habitacion_reservada WHERE id_reserva=@id_reserva)
+END
+GO
+
 
 CREATE PROCEDURE [MAX_POWER].cambiar_habitacion(@id_habitacion_reservada BIGINT, @numero BIGINT) AS
 BEGIN

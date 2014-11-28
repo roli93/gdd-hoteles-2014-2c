@@ -56,8 +56,8 @@ namespace FrbaHotel
             DatabaseAdapter.Excepciones.Add(-17, new ExcepcionFrbaHoteles("No se puede realizar el check-out ya que aún no se ha realizado el ckeck-in"));
             DatabaseAdapter.Excepciones.Add(-18, new ExcepcionFrbaHoteles("Ya fue realizado el check-out y la reserva fue facturada"));
             DatabaseAdapter.Excepciones.Add(-19, new ExcepcionFrbaHoteles("La habitación seleccionada ya pertenece a la reserva"));
-            DatabaseAdapter.Excepciones.Add(-20, new ExcepcionFrbaHoteles("El pais indicado no existe"));
-
+            DatabaseAdapter.Excepciones.Add(-20, new ExcepcionFrbaHoteles("El país indicado no existe"));
+            DatabaseAdapter.Excepciones.Add(-21, new ExcepcionFrbaHoteles("La fecha de salida no puede ser mayor que la fecha de fin de la reserva"));
             //------------------CONFIGURACIONES------------------->>
 
             Application.Run(new PantallaBienvenida());

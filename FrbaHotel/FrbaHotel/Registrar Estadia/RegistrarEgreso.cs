@@ -41,22 +41,30 @@ namespace FrbaHotel.Registrar_Estadia
         {
 
             if(!consumiblesRegistrados)
-                if (MessageBox.Show("Está a punto de finalizar el check-out y generar la factura sin registrar consumibles\n¿Desea continuar?", "Continuar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                if (MessageBox.Show("Está a punto de finalizar el check-out y generar la factura sin haber editado los consumibles\n¿Desea continuar?", "Continuar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                     return;
-                ElegirPago();
+            Execute(Registrarlo);
+        }
+
+        public void Registrarlo()
+        {
+            HomeReservas.registrarEgreso(idReserva, dateTimePicker1.Value);
+            MessageBox.Show("Se realizó el check-out con éxito");
+            if (MessageBox.Show("¿Desea emitir la factura ahora?", "Facturar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                new ElegirMetodoPago(this).FinalStandaloneOpen();
         }
 
         public void ElegirPago()
         {
-            new ElegirMetodoPago(this).FinalStandaloneOpen();
+            new ElegirMetodoPago(this).OpenDialogue();
         }
 
         public void Facturar(NavegableForm owner,string nombre, string apellido,string codigo)
         {
             if (modoPago != null)
             {
-                HomeReservas.facturar(idReserva, dateTimePicker1.Value, modoPago,nombre,apellido,codigo);
-                new Factura(owner, DatabaseAdapter.getIdUltimaInsercion("Factura")).FinalStandaloneOpen();
+                HomeReservas.facturar(idReserva, modoPago,nombre,apellido,codigo);
+                new Factura(owner, HomeReservas.idUltimaFactura(),idReserva).FinalStandaloneOpen();
             }
         }
 

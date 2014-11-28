@@ -126,6 +126,13 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.CheckExcepcionPara(error);
         }
 
+        public static void verificarReservaEsFacturable(int idReserva, int idHotel)
+        {
+            int error = 0;
+            error = DatabaseAdapter.ejecutarProcedureWithReturnValue("reserva_facturable", idReserva, idHotel);
+            DatabaseAdapter.CheckExcepcionPara(error);
+        }
+
         public static void ingresarReserva(int idReserva)
         {
             DatabaseAdapter.ejecutarProcedure("registrar_ingreso_reserva", idReserva);
@@ -141,9 +148,16 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.borrarDatosEnTabla("producto_x_habitacion_reservada", idHabitacionreservada, idProducto);
         }
 
-        public static void facturar(int idReserva, DateTime fechaSalida,ModoPago mp,string nombre, string apellido, string codigo)
-        {/*
-            DatabaseAdapter.ejecutarProcedure("facturar", idReserva, fechaSalida,mp.Id,nombre,apellido, codigo);*/
+        public static void registrarEgreso(int idReserva, DateTime fechaSalida)
+        {
+            int error = 0;
+            error= DatabaseAdapter.ejecutarProcedureWithReturnValue("registrar_egreso", idReserva, fechaSalida);
+            DatabaseAdapter.CheckExcepcionPara(error);
+        }
+
+        public static void facturar(int idReserva,ModoPago mp,string nombre, string apellido, string codigo)
+        {
+            DatabaseAdapter.ejecutarProcedure("facturar", idReserva,mp.Id,nombre,apellido, codigo);
         }
 
         public static List<Habitacion> habitacionesReservadas(int idReserva)
@@ -165,6 +179,11 @@ namespace FrbaHotel.Homes
                 habitaciones.Add(h);
             }
             return habitaciones;
+        }
+
+        public static int idUltimaFactura()
+        {
+            return DatabaseAdapter.ejecutarProcedureWithReturnValue("id_ultima_factura");
         }
     }
 }

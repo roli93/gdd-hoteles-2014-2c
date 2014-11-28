@@ -56,6 +56,8 @@ namespace FrbaHotel.Registrar_Estadia
                     ValidarVaciosYLongitud(new string[] { "Nombre", "Apellido", "Código" }, new object[] { nombre, apellido, codigo });
                     ValidarNumericos(new string[] { codigo });
                 }
+                else
+                    nombre=apellido=codigo="";
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

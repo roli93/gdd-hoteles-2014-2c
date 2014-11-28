@@ -9,9 +9,9 @@ namespace FrbaHotel.Homes
 {
     public class HomeFacturas:Home
     {
-        public static DataTable itemsFactura(int idFactura)
+        public static DataTable itemsFactura(int idr)
         {/*TODO
-            return DatabaseAdapter.traerDataTable("items_factura", idFactura);*/
+            return DatabaseAdapter.traerDataTable("items_factura", idr);*/
             DataTable ej = new DataTable();
             ej.Clear();
             ej.Columns.Add("id");
@@ -24,9 +24,9 @@ namespace FrbaHotel.Homes
             return ej;
         }
 
-        public static decimal totalFactura(int idFactura)
+        public static void GuardarTotal(int idFactura,double total)
         {
-            return 1.2m/*TODODatabaseAdapter.ejecutarProcedureWithReturnDecimal("total_factura", idFactura)*/
+            return; /*TODODatabaseAdapter.ejecutarProcedureWithReturnDecimal("total_factura", idFactura)*/
             ;
         }
     }

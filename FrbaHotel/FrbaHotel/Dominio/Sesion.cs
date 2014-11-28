@@ -133,8 +133,7 @@ namespace FrbaHotel
         {
             get
             {
-                //TODO return elementosDisponibles<Producto>((e) => new ModoPago((int)e["id_metodo_pago"], (string)e["descripcion"]), "metodos_pago_disponibles");
-                return new List<ModoPago> { new ModoPago(1, "Tarjeta de crédito"), new ModoPago(2, "Tarjeta de Débito"), new ModoPago(3, "Efectivo") };
+                return elementosDisponibles<ModoPago>((e) => new ModoPago(Convert.ToInt32(e["id_metodo_pago"]), e["descripcion"].ToString()), "metodos_pago_disponibles");
             }
         }
 
