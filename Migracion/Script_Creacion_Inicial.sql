@@ -1801,6 +1801,18 @@ AS BEGIN
 END
 GO
 
+CREATE PROCEDURE [MAX_POWER].borrar_funcionalidad_x_rol( @idRol BIGINT, @idFuncionalidad BIGINT)
+AS BEGIN
+	BEGIN TRY
+		DELETE FROM MAX_POWER.Funcionalidad_X_Rol
+			WHERE id_funcionalidad = @idFuncionalidad
+			AND id_rol = @idRol
+	END TRY
+	BEGIN CATCH
+		--raiseError
+	END CATCH
+END
+
 CREATE PROCEDURE [MAX_POWER].buscar_cliente_por_id(@id_cliente BIGINT)
 AS SELECT * FROM MAX_POWER.Cliente
 	WHERE id_cliente = @id_cliente
@@ -2396,6 +2408,13 @@ AS
 	UPDATE [MAX_POWER].Hotel set ciudad=@ciudad WHERE id_hotel=@idHotel
 	UPDATE [MAX_POWER].Hotel set fecha_creacion=@fechaCreacion WHERE id_hotel=@idHotel
 GO
+
+CREATE PROCEDURE [MAX_POWER].actualizar_rol( @idRol BIGINT, @nombre VARCHAR(50), @habilitado VARCHAR(1))
+AS
+	UPDATE [MAX_POWER].Rol set nombre=@nombre WHERE id_rol=@idRol
+	UPDATE [MAX_POWER].Rol set habilitado=@habilitado WHERE id_rol=@idRol
+GO
+	
 	
 
 CREATE PROCEDURE [MAX_POWER].borrar_regimen_x_hotel_idHotel(@idHotel BIGINT)
