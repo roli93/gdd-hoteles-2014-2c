@@ -18,6 +18,7 @@ namespace FrbaHotel.ABM_de_Hotel
         public SeleccionarHotel()
         {
             InitializeComponent();
+            constructorEdicion = (id) => { return new ModificarHotel(this, id); };
         }
 
         public SeleccionarHotel(NavegableForm owner, string accion)

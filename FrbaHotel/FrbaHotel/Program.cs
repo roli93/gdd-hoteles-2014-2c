@@ -36,6 +36,7 @@ namespace FrbaHotel
             funcionalidadesSistema.Add(5, (owner) => new ABMHabitacion(owner));
             funcionalidadesSistema.Add(6, (owner) => new ABMReservas(owner));
             funcionalidadesSistema.Add(7, (owner) => new RegistrarEstadia(owner));
+            funcionalidadesSistema.Add(8, (owner) => new ListadoEstadistico(owner));
             SeleccionFuncionalidad.FuncionalidadesPosibles= funcionalidadesSistema;
             //Excepciones globales
             DatabaseAdapter.Excepciones.Add(-2, new ExcepcionFrbaHoteles("El usuario no existe o fue dado de baja"));
@@ -57,6 +58,7 @@ namespace FrbaHotel
             DatabaseAdapter.Excepciones.Add(-18, new ExcepcionFrbaHoteles("Ya fue realizado el check-out y la reserva fue facturada"));
             DatabaseAdapter.Excepciones.Add(-19, new ExcepcionFrbaHoteles("La habitación seleccionada ya pertenece a la reserva"));
             DatabaseAdapter.Excepciones.Add(-20, new ExcepcionFrbaHoteles("El pais indicado no existe"));
+            DatabaseAdapter.Excepciones.Add(-25, new ExcepcionFrbaHoteles("Ya se ha registrado una habitacion con esa configuración de hotel, piso y numero"));
 
             //------------------CONFIGURACIONES------------------->>
 

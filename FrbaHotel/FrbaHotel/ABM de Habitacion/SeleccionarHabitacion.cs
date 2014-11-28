@@ -77,6 +77,7 @@ namespace FrbaHotel.ABM_de_Habitacion
 
         private void SeleccionarHabitacion_Load(object sender, EventArgs e)
         {
+            cargarBotonModificarDatos(dataGridView1, accion);
             bindCombo<Hotel>(_hotel, Sesion.HotelesDisponibles);
             bindCombo<TipoHabitacion>(_tipo, Sesion.TiposHabitacionDisponibles);
             bindCombo<string>(_ubicacion,new List<string>( new string[]{"Interior","Exterior"} ));

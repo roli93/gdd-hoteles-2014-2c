@@ -29,7 +29,7 @@ namespace FrbaHotel.ABM_de_Habitacion
 
         public override void alta()
         {
-            new AltaHabitacion(this).FinalStandaloneOpen();
+            new AltaHabitacion(this).StandaloneOpen();
         }
 
         public override void modificacion()
