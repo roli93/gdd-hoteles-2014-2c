@@ -2135,6 +2135,16 @@ BEGIN
 END
 GO
 
+
+CREATE PROCEDURE [MAX_POWER].hay_inconsistencia(@id_reserva BIGINT) AS
+BEGIN
+	IF(EXISTS (SELECT 1 FROM MAX_POWER.Estadia WHERE id_reserva=@id_reserva AND valida='N'))
+		RETURN (1)
+	ELSE
+		RETURN (0)
+END
+GO
+
 CREATE PROCEDURE [MAX_POWER].habitaciones_de_reserva(@id_reserva BIGINT) AS
 BEGIN
 	SELECT  HR.id_habitacion_reservada as ID,H.numero as 'Número de Habitación',H.piso as Piso,
@@ -2152,6 +2162,30 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE [MAX_POWER].fechas_estadia(@id_reserva BIGINT)AS
+SELECT fecha_ingreso AS 'Fecha de ingreso', fecha_egreso AS 'Fecha de egreso' FROM MAX_POWER.Estadia WHERE id_reserva=@id_reserva
+GO
+
+CREATE PROCEDURE [MAX_POWER].restaurar_estadia_mala(@id_reserva BIGINT)AS
+BEGIN
+	UPDATE MAX_POWER.Estadia SET valida='S' WHERE id_reserva=@id_reserva
+	UPDATE MAX_POWER.Reserva SET id_estado=6 WHERE id_reserva=@id_reserva
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].borrar_estadia_mala(@id_reserva BIGINT)AS
+BEGIN
+	DELETE FROM MAX_POWER.Habitacion_reservada_X_Cliente 
+		WHERE id_habitacion_reservada IN (SELECT id_habitacion_reservada FROM MAX_POWER.Habitacion_reservada
+												WHERE id_reserva=@id_reserva)
+	DELETE FROM MAX_POWER.Producto_X_Habitacion_reservada
+		WHERE id_habitacion_reservada IN (SELECT id_habitacion_reservada FROM MAX_POWER.Habitacion_reservada
+												WHERE id_reserva=@id_reserva)
+	DELETE FROM MAX_POWER.Factura WHERE id_estadia=(SELECT id_estadia FROM MAX_POWER.Estadia WHERE id_reserva=@id_reserva)
+	DELETE FROM MAX_POWER.Estadia WHERE id_reserva=@id_reserva
+END
+GO
+
 CREATE PROCEDURE [MAX_POWER].habitaciones_reservadas_para_consumibles(@id_reserva BIGINT)AS
 BEGIN
 	SELECT * 
@@ -2164,7 +2198,7 @@ CREATE PROCEDURE [MAX_POWER].consumibles_de_reserva(@id_reserva BIGINT)AS
 BEGIN
 SELECT  PHR.id_producto as ID, HR.id_habitacion_reservada as IDHR, P.descripcion as Descripción,H.numero as 'Número de Habitación',P.precio as ' Precio Unitario',PHR.Cantidad, PHR.cantidad*P.precio AS Total
 		FROM MAX_POWER.Habitacion_reservada HR, MAX_POWER.Producto_X_Habitacion_reservada PHR, MAX_POWER.Producto P,MAX_POWER.Habitacion H
-		WHERE 110741=HR.id_reserva AND HR.id_habitacion_reservada=PHR.id_habitacion_reservada 
+		WHERE @id_reserva=HR.id_reserva AND HR.id_habitacion_reservada=PHR.id_habitacion_reservada 
 			AND PHR.id_producto=P.id_producto AND H.id_habitacion=HR.id_habitacion
 END
 GO

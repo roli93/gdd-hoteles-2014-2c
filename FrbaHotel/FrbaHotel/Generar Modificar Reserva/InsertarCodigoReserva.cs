@@ -25,6 +25,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         {
             this.accion = accion;
             this.constructorEdicion = constructor;
+            this.FormClosing += ShowOwner;
             InitializeComponent();
         }
 
@@ -41,15 +42,23 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         public void AbrirEditor()
         {
             ValidarErrores();
-            HomeReservas.verificarReservaEsEditable(Convert.ToInt32(textBox1.Text),Sesion.Usuario.Hotel.Id);
-            constructorEdicion(Convert.ToInt32(textBox1.Text)).FinalStandaloneOpen();
-            this.Close();
+            ChequearInconsistenciaEstadia(() =>
+            {
+                HomeReservas.verificarReservaEsEditable(Convert.ToInt32(textBox1.Text), Sesion.Usuario.Hotel.Id);
+                constructorEdicion(Convert.ToInt32(textBox1.Text)).FinalStandaloneOpen();
+                Close();
+            }, Convert.ToInt32(textBox1.Text));
         }
 
         public override void ValidarErroresConcretos()
         {
             ValidarVaciosYLongitud(new string[] { "Código de reserva" }, new object[] { textBox1.Text });
             ValidarNumericos(textBox1.Text);
+        }
+
+        public void ShowOwner(object sender, FormClosingEventArgs e)
+        {
+            Owner.Show();
         }
     }
 }

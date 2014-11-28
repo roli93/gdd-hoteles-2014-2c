@@ -185,5 +185,25 @@ namespace FrbaHotel.Homes
         {
             return DatabaseAdapter.ejecutarProcedureWithReturnValue("id_ultima_factura");
         }
+
+        public static bool hayInconsistencia(int idReserva)
+        {
+            return DatabaseAdapter.ejecutarProcedureWithReturnValue("hay_inconsistencia", idReserva) != 0;
+        }
+
+        public static DataTable fechasEstadia(int idReserva)
+        {
+            return DatabaseAdapter.traerDataTable("fechas_estadia", idReserva);
+        }
+
+        public static void borrarEstadiaMala(int idr)
+        {
+            DatabaseAdapter.ejecutarProcedure("borrar_estadia_mala", idr);
+        }
+        public static void restaurarEstadiaMala(int idr)
+        {
+            DatabaseAdapter.ejecutarProcedure("restaurar_estadia_mala", idr);
+        }
+
     }
 }

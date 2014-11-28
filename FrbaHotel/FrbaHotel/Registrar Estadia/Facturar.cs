@@ -40,13 +40,17 @@ namespace FrbaHotel.Registrar_Estadia
 
         public void ComenzarFacturacion()
         {
+
             ValidarErrores();
             codigo = Convert.ToInt32(cod);
-            HomeReservas.verificarReservaEsFacturable(codigo, Sesion.Usuario.Hotel.Id);
-            RegistrarEgreso RE = new RegistrarEgreso(this, codigo);
-            RE.FinalStandaloneOpen();
-            RE.Hide();
-            RE.ElegirPago();
+            ChequearInconsistenciaEstadia(() =>
+            {
+                HomeReservas.verificarReservaEsFacturable(codigo, Sesion.Usuario.Hotel.Id);
+                RegistrarEgreso RE = new RegistrarEgreso(this, codigo);
+                RE.FinalStandaloneOpen();
+                RE.Hide();
+                RE.ElegirPago();
+            }, codigo);
         }
 
         public override void ValidarErroresConcretos()

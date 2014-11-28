@@ -217,5 +217,28 @@ namespace FrbaHotel.Forms_genericos
             constructorEdicion(aModificar).StandaloneOpen();
         }
 
+        //Métodos de reservas, los pongo aca porque el VS se puso en puto y no me diseña si le hago una subclase a esta
+
+        public void ChequearInconsistenciaEstadia(ExceptionableTask afterCheckTask, int idReserva)
+        {
+            if (Homes.HomeReservas.hayInconsistencia(idReserva))
+            {
+                if (Sesion.Usuario.esGuest())
+                    MessageBox.Show("Se ha detectado una inconsitencia en la reserva y su estadía\n Contáctese con personal de la empresa para solucionar el problema");
+                else
+                {
+                    MessageBox.Show("Se ha detectado que en el sistema existe una estadía ya\n" +
+                                "registrada para la reserva. Dicha estadía se anuló\n" +
+                                "por referenciar una fecha futura. A continuación se le\n" +
+                                "presentara con los datos de la estadía para que decida\n" +
+                                "si eliminarla definitivamente o restaurarala", "Inconsistencia");
+                    new Registrar_Estadia.EstadiaInconsistente(this, idReserva).StandaloneOpen();
+                }
+            }
+            else
+                afterCheckTask();
+        }
+
+
     }
 }

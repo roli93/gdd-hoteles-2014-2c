@@ -32,15 +32,21 @@ namespace FrbaHotel.Registrar_Estadia
         public void RegistrarIngreso()
         {
             ValidarErrores();
-            HomeReservas.verificarReservaEsIngresable(Convert.ToInt32(textBox1.Text),Sesion.Usuario.Hotel.Id);
-            new RegistrarIngreso(this, Convert.ToInt32(textBox1.Text)).FinalStandaloneOpen();
+            ChequearInconsistenciaEstadia(() =>
+            {
+                HomeReservas.verificarReservaEsIngresable(Convert.ToInt32(textBox1.Text), Sesion.Usuario.Hotel.Id);
+                new RegistrarIngreso(this, Convert.ToInt32(textBox1.Text)).FinalStandaloneOpen();
+            }, Convert.ToInt32(textBox1.Text));
         }
 
         public void RegistrarEgreso()
         {
             ValidarErrores();
-            HomeReservas.verificarReservaEsEgresable(Convert.ToInt32(textBox1.Text),Sesion.Usuario.Hotel.Id);
-            new RegistrarEgreso(this, Convert.ToInt32(textBox1.Text)).FinalStandaloneOpen();
+            ChequearInconsistenciaEstadia(() =>
+            {
+                HomeReservas.verificarReservaEsEgresable(Convert.ToInt32(textBox1.Text),Sesion.Usuario.Hotel.Id);
+                new RegistrarEgreso(this, Convert.ToInt32(textBox1.Text)).FinalStandaloneOpen();
+            }, Convert.ToInt32(textBox1.Text));
         }
 
         private void button1_Click(object sender, EventArgs e)
