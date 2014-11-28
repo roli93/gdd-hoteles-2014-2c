@@ -32,7 +32,7 @@ namespace FrbaHotel.ABM_de_Rol
             if (MessageBox.Show("¿Realmente desea dar de baja el rol "+nombre +"?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 HomeRoles.bajaLogica(aModificar);
-                cargarGrilla(grilla, roles);
+                Buscar();
             }
         }
 

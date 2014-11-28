@@ -52,8 +52,15 @@ namespace FrbaHotel.Homes
 
         public static void actualizarRol(int idRol, string nombre, bool estaActivo, List<Funcionalidad> funcionalidadesOriginales,List<Funcionalidad> funcionalidades)
         {
-            DatabaseAdapter.actualizarDatosEnTabla("rol", idRol, nombre, estaActivo);
+            string habilitado;
+            if (!estaActivo)
+                habilitado = "N";
+            else
+                habilitado = "S";
 
+
+            DatabaseAdapter.actualizarDatosEnTabla("rol", idRol, nombre, habilitado);
+             
             agregarElementos("funcionalidad_x_rol", idRol, IdsDe<Funcionalidad>(diferencia<Funcionalidad>(funcionalidades, funcionalidadesOriginales)));
 
             removerElementos("funcionalidad_x_rol", idRol, IdsDe<Funcionalidad>(diferencia<Funcionalidad>(funcionalidadesOriginales, funcionalidades)));

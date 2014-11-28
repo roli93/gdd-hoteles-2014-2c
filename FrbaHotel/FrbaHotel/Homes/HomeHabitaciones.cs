@@ -12,67 +12,68 @@ namespace FrbaHotel.Homes
     {
         static public void bajaLogica(int unId)
         {
-         //DatabaseAdapter.ejecutarProcedure("baja_logica_habitacion",unId);
+            DatabaseAdapter.ejecutarProcedure("baja_logica_habitacion",unId);
         }
 
         static public DataTable buscarHabitaciones(Hotel unHotel, int unNumero, int unPiso, string unaUbicacion, TipoHabitacion unTipo, string unaDescripcion)
         {
-            /*TODO
             return DatabaseAdapter.traerDataTable("buscar_habitaciones", unHotel.Id, unNumero, unPiso, unaUbicacion, unTipo.Id, unaDescripcion);
-          */
-            DataTable ej = new DataTable();
-            ej.Clear(); 
-            ej.Columns.Add("ID");
-            ej.Columns.Add("Hotel");
-            ej.Columns.Add("Numero");
-            ej.Columns.Add("Piso");
-            ej.Columns.Add("Ubicacion"); 
-            ej.Columns.Add("Operación");
-            ej.Rows.Add(new object[] {1, new Hotel(2, "Hotel Con Vista al Puto"), 21, 2, "Exterior", "Seleccionar" });
-            ej.Rows.Add(new object[] {2, new Hotel(1,"Hotel Aca no vuelvo ni en pedo"), 23, 1, "Interior","Seleccionar" });
-            return ej;
+         
         }
 
         static public Habitacion buscarPorId(int unIdHabitacion,out Hotel unHotel,out int unNumero,out int unPiso,out TipoHabitacion unTipo, out string unaUbicacion, out string unaDescripcion)
         {
-            //DataRow laHabitacion = DatabaseAdapter.traerDataTable("buscar_habitacion_por_id", unIdHabitacion).Rows[0];
-            //HomeHoteles.buscarPorId(laHabitacion["id_hotel"],unHotel);
-            //This.buscarTipoPorId(laHabitacion["id_tipo"],unTipo);
-            //unNumero = (int)laHabitacion["numero"];
-            //unPiso = (int)laHabitacion["piso"];
-            //unaUbicacion = laHabitacion["ubicacion"].ToString();
-            //unaDescripcion = laHabitacion["descripcion"].ToString();
+            DataRow laHabitacion = DatabaseAdapter.traerDataTable("buscar_habitacion_por_id", unIdHabitacion).Rows[0];
             
-            Habitacion laHabitacion = new Habitacion();
-            laHabitacion.Id = unIdHabitacion;
-            unHotel = new Hotel(1, "Hotel Aca no vuelvo ni en pedo");
-            laHabitacion.hotel = unHotel;
-            laHabitacion.numeroHabitacion = 23;
-            unNumero = 23;
-            laHabitacion.piso = 1;
-            unPiso = 1;
-            unTipo = new TipoHabitacion(1, "Habitacion fea");
-            laHabitacion.tipo = unTipo;
-            unaUbicacion = "Interior";
-            laHabitacion.ubicacion = unaUbicacion;
-            unaDescripcion = "Desastre";
-            laHabitacion.descripcion = unaDescripcion;
+            string nombreHotel = "foo",auxa,auxb,auxc,auxd;
+            int aux2;
+            Pais aux2a = new Pais(-1,"foo");
+            List<Regimen> aux3 = new List<Regimen>();
+            DateTime aux4 = new DateTime();
 
-            return laHabitacion;
-            
+            HomeHoteles.buscarPorId(Convert.ToInt32(laHabitacion["id_hotel"]),out nombreHotel,out auxa,out auxb,out auxc,out aux2,out aux2,out aux2a,out auxd,out aux3,out aux4);
+
+            unHotel = new Hotel(Convert.ToInt32(laHabitacion["id_hotel"]), nombreHotel);
+            unNumero = Convert.ToInt32(laHabitacion["numero"]);
+            unPiso = Convert.ToInt32(laHabitacion["piso"]);
+
+            unTipo = new TipoHabitacion(-1, "Tipo no encontrado");
+            unTipo = Sesion.TiposHabitacionDisponibles.Find((e) => e.Id == Convert.ToInt32(laHabitacion["id_tipo_habitacion"]));
+
+            unaUbicacion = "Exterior";
+            if (laHabitacion["frente"].ToString() == "N")
+                unaUbicacion = "Interior";
+
+            unaDescripcion = laHabitacion["descripcion"].ToString();
+
+            Habitacion habitacion = new Habitacion(unIdHabitacion, unTipo);
+
+            return habitacion;
             
         }
 
         static public void actualizarHabitacion(int idHabitacion,Hotel unHotel,int unNumero,int unPiso,TipoHabitacion unTipo,string unaUbicacion,string unaDescripcion)
         {
-            //TODO actualizar_habitacion
-            //DatabaseAdapter.actualizarDatosEnTabla("habitacion", idHabitacion, unHotel.Id, unNumero, unPiso, unTipo.Id, unaUbicacion, unaDescripcion);
+            string frente;
+            if (unaUbicacion == "Interior")
+                frente = "N";
+            else
+                frente = "S";
+
+
+          DatabaseAdapter.actualizarDatosEnTabla("habitacion", idHabitacion, unHotel.Id, unNumero, unPiso, unTipo.Id, frente, unaDescripcion);
         }
 
         static public void agregarHabitacion(Hotel unHotel, int unPiso, int unNumero, string unaUbicacion, TipoHabitacion unTipo, string unaDescripcion)
         {
-            //TODO agregar habitacion a base de datos
-            //DatabaseAdapter.insertarDatosEnTabla("habitacion", unHotel.Id, unNumero, unPiso, unTipo.Id, unaUbicacion, unaDescripcion);
+            string frente;
+            if (unaUbicacion == "Interior")
+                frente = "N";
+            else
+                frente = "S";
+
+
+            DatabaseAdapter.insertarDatosEnTabla("habitacion", unHotel.Id, unNumero, unPiso, unTipo.Id, frente, unaDescripcion);
         }
 
 

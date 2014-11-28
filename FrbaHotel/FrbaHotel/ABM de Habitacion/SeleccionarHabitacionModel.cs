@@ -11,10 +11,10 @@ namespace FrbaHotel.ABM_de_Habitacion
 {
     public partial class SeleccionarHabitacion
     {
-        private string descripcion = "", ubicacion = "";
-        private int numero = 0, piso = 0;
-        private TipoHabitacion tipo = new TipoHabitacion(-1, "");
-        private Hotel hotel = new Hotel(-1, "");
+        private string descripcion = "%", ubicacion = "%";
+        private int numero = -1, piso = -1;
+        private TipoHabitacion tipo = new TipoHabitacion(-1, "%");
+        private Hotel hotel = new Hotel(-1, "%");
         private DataTable habitaciones;
 
         public void Buscar()
@@ -32,7 +32,7 @@ namespace FrbaHotel.ABM_de_Habitacion
             if (MessageBox.Show("¿Realmente desea dar de baja la habitacion " + numeroString + "?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 HomeHabitaciones.bajaLogica(aModificar);
-                
+                Execute(Buscar);
                 cargarGrilla(grilla, habitaciones);
             }
         }

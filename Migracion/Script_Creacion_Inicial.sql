@@ -1801,6 +1801,18 @@ AS BEGIN
 END
 GO
 
+CREATE PROCEDURE [MAX_POWER].borrar_funcionalidad_x_rol( @idRol BIGINT, @idFuncionalidad BIGINT)
+AS BEGIN
+	BEGIN TRY
+		DELETE FROM MAX_POWER.Funcionalidad_X_Rol
+			WHERE id_funcionalidad = @idFuncionalidad
+			AND id_rol = @idRol
+	END TRY
+	BEGIN CATCH
+		--raiseError
+	END CATCH
+END
+
 CREATE PROCEDURE [MAX_POWER].buscar_cliente_por_id(@id_cliente BIGINT)
 AS SELECT * FROM MAX_POWER.Cliente
 	WHERE id_cliente = @id_cliente
@@ -1903,6 +1915,27 @@ AS
 				where Per.fecha_fin>CONVERT(DATE,getDate(),102)
 					and Per.fecha_inicio<CONVERT(DATE,getDate(),102)
 					and Hot.id_hotel = H.id_hotel)=0
+
+GO
+
+CREATE PROCEDURE [MAX_POWER].[buscar_habitaciones](@idHotel BIGINT,@unNumero BIGINT, @unPiso BIGINT, @unaUbicacion VARCHAR(1), @idTipo BIGINT, @unaDescripcion VARCHAR(50))
+ 
+AS 
+	SELECT id_habitacion as ID, id_hotel, id_tipo_habitacion,numero,piso,frente,descripcion
+ 
+	FROM [MAX_POWER].Habitacion
+	
+	WHERE CAST(id_hotel as VARCHAR(50)) like (SELECT CASE WHEN  @idHotel = -1 THEN '%' ELSE CAST(@idHotel AS VARCHAR(50)) END)
+	
+		AND CAST(numero as VARCHAR(50)) like (SELECT CASE WHEN  @unNumero = -1 THEN '%' ELSE CAST(@unNumero AS VARCHAR(50)) END)
+	
+		AND CAST(piso as VARCHAR(50)) like (SELECT CASE WHEN  @unPiso= -1 THEN '%' ELSE CAST(@unPiso AS VARCHAR(50)) END)
+		
+		AND UPPER(frente) like UPPER(@unaUbicacion)
+
+		AND CAST(id_tipo_habitacion as VARCHAR(50)) like (SELECT CASE WHEN @idTipo = -1 THEN '%' ELSE CAST(@idTipo AS VARCHAR(50)) END)
+		
+		AND UPPER(habilitada) like UPPER('S')
 
 GO
 
@@ -2440,6 +2473,33 @@ AS
 	UPDATE [MAX_POWER].Hotel set ciudad=@ciudad WHERE id_hotel=@idHotel
 	UPDATE [MAX_POWER].Hotel set fecha_creacion=@fechaCreacion WHERE id_hotel=@idHotel
 GO
+
+CREATE PROCEDURE [MAX_POWER].actualizar_habitacion(@idHabitacion BIGINT,@idHotel BIGINT, @Numero BIGINT, @unPiso BIGINT, @IdTipoHabitacion BIGINT,@unaUbicacion VARCHAR(1),@unaDescripcion VARCHAR(50))
+ AS
+	UPDATE [MAX_POWER].Habitacion set id_hotel=@idHotel where id_habitacion=@idHabitacion
+	UPDATE [MAX_POWER].Habitacion set id_tipo_habitacion=@IdTipoHabitacion where id_habitacion=@idHabitacion
+	UPDATE [MAX_POWER].Habitacion set numero=@Numero where id_habitacion=@idHabitacion
+	UPDATE [MAX_POWER].Habitacion set piso=@unPiso where id_habitacion=@idHabitacion
+	UPDATE [MAX_POWER].Habitacion set frente=@unaUbicacion where id_habitacion=@idHabitacion
+	UPDATE [MAX_POWER].Habitacion set descripcion=@unaDescripcion where id_habitacion=@idHabitacion
+GO
+
+CREATE PROCEDURE [MAX_POWER].insertar_habitacion(@idHotel BIGINT,@unNumero BIGINT, @unPiso BIGINT , @idTipo BIGINT, @frente VARCHAR(1), @unaDescripcion VARCHAR(50))
+AS BEGIN
+	
+		IF (EXISTS(SELECT 1 FROM [MAX_POWER].Habitacion where id_hotel = @idHotel and piso=@unPiso and numero=@unNumero)) RETURN -25
+	
+		INSERT INTO [MAX_POWER].Habitacion(id_hotel,numero,piso,id_tipo_habitacion,frente,descripcion) VALUES (@idHotel,@unNumero,@unPiso,@idTipo,@frente,@unaDescripcion)
+	
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].actualizar_rol( @idRol BIGINT, @nombre VARCHAR(50), @habilitado VARCHAR(1))
+AS
+	UPDATE [MAX_POWER].Rol set nombre=@nombre WHERE id_rol=@idRol
+	UPDATE [MAX_POWER].Rol set habilitado=@habilitado WHERE id_rol=@idRol
+GO
+	
 	
 
 CREATE PROCEDURE [MAX_POWER].borrar_regimen_x_hotel_idHotel(@idHotel BIGINT)
