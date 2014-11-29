@@ -2919,8 +2919,9 @@ PRINT 'Importado: Regimenes por Hotel.'
 update MAX_POWER.Reserva set MAX_POWER.Reserva.id_estado = 6
 from MAX_POWER.Reserva
 join MAX_POWER.Estadia on MAX_POWER.Estadia.id_reserva = MAX_POWER.Reserva.id_reserva
-where MAX_POWER.Estadia.valida = 'N'
+where MAX_POWER.Estadia.valida = 'S'
 GO
+
 PRINT 'Actualizo estado de estadias invalidas'
 
 
