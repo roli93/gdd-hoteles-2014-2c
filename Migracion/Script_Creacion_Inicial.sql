@@ -2846,7 +2846,7 @@ GO
 CREATE nonclustered index IDX_Clientes on MAX_POWER.Cliente(numero_identificacion, nombre);
 PRINT 'Importado: Cliente.'
 
-zEXEC [MAX_POWER].IMP_Consumible 
+EXEC [MAX_POWER].IMP_Consumible 
 GO
 CREATE nonclustered index IDX_Producto on MAX_POWER.Producto(descripcion);
 PRINT 'Importado: Consumible.'
