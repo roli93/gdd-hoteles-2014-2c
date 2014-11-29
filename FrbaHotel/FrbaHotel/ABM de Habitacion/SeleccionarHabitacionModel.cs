@@ -16,11 +16,12 @@ namespace FrbaHotel.ABM_de_Habitacion
         private TipoHabitacion tipo = new TipoHabitacion(-1, "%");
         private Hotel hotel = new Hotel(-1, "%");
         private DataTable habitaciones;
+        private string habilitacionString;
 
         public void Buscar()
         {
             ValidarErrores();
-            habitaciones = HomeHabitaciones.buscarHabitaciones(hotel, numero, piso, ubicacion, tipo, descripcion);
+            habitaciones = HomeHabitaciones.buscarHabitaciones(hotel, numero, piso, ubicacion, tipo, descripcion,habilitacionString);
             cargarGrilla(dataGridView1, habitaciones);
         }
 

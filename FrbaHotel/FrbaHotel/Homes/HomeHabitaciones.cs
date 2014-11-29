@@ -15,21 +15,23 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.ejecutarProcedure("baja_logica_habitacion",unId);
         }
 
-        static public DataTable buscarHabitaciones(Hotel unHotel, int unNumero, int unPiso, string unaUbicacion, TipoHabitacion unTipo, string unaDescripcion)
+        static public DataTable buscarHabitaciones(Hotel unHotel, int unNumero, int unPiso, string unaUbicacion, TipoHabitacion unTipo, string unaDescripcion, string unaHabilitacionString)
         {
-            return DatabaseAdapter.traerDataTable("buscar_habitaciones", unHotel.Id, unNumero, unPiso, unaUbicacion, unTipo.Id, unaDescripcion);
+            return DatabaseAdapter.traerDataTable("buscar_habitaciones", unHotel.Id, unNumero, unPiso, unaUbicacion, unTipo.Id, unaDescripcion, unaHabilitacionString);
          
         }
 
-        static public Habitacion buscarPorId(int unIdHabitacion,out Hotel unHotel,out int unNumero,out int unPiso,out TipoHabitacion unTipo, out string unaUbicacion, out string unaDescripcion)
+        static public Habitacion buscarPorId(int unIdHabitacion,out Hotel unHotel,out int unNumero,out int unPiso,out TipoHabitacion unTipo, out string unaUbicacion, out string unaDescripcion, out bool habilitada)
         {
             DataRow laHabitacion = DatabaseAdapter.traerDataTable("buscar_habitacion_por_id", unIdHabitacion).Rows[0];
             
+            //Auxiliares Begin
             string nombreHotel = "foo",auxa,auxb,auxc,auxd;
             int aux2;
             Pais aux2a = new Pais(-1,"foo");
             List<Regimen> aux3 = new List<Regimen>();
             DateTime aux4 = new DateTime();
+            //Auxiliares End
 
             HomeHoteles.buscarPorId(Convert.ToInt32(laHabitacion["id_hotel"]),out nombreHotel,out auxa,out auxb,out auxc,out aux2,out aux2,out aux2a,out auxd,out aux3,out aux4);
 
@@ -48,11 +50,15 @@ namespace FrbaHotel.Homes
 
             Habitacion habitacion = new Habitacion(unIdHabitacion, unTipo);
 
+            habilitada = true;
+            if (laHabitacion["habilitada"].ToString() == "N")
+                habilitada = false;
+
             return habitacion;
             
         }
 
-        static public void actualizarHabitacion(int idHabitacion,Hotel unHotel,int unNumero,int unPiso,TipoHabitacion unTipo,string unaUbicacion,string unaDescripcion)
+        static public void actualizarHabitacion(int idHabitacion,Hotel unHotel,int unNumero,int unPiso,TipoHabitacion unTipo,string unaUbicacion,string unaDescripcion,bool habilitada)
         {
             string frente;
             if (unaUbicacion == "Interior")
@@ -60,8 +66,14 @@ namespace FrbaHotel.Homes
             else
                 frente = "S";
 
+            string habilitacion;
+            if (habilitada)
+                habilitacion = "S";
+            else
+                habilitacion = "N";
 
-          DatabaseAdapter.actualizarDatosEnTabla("habitacion", idHabitacion, unHotel.Id, unNumero, unPiso, unTipo.Id, frente, unaDescripcion);
+
+          DatabaseAdapter.actualizarDatosEnTabla("habitacion", idHabitacion, unHotel.Id, unNumero, unPiso, unTipo.Id, frente, unaDescripcion,habilitacion);
         }
 
         static public void agregarHabitacion(Hotel unHotel, int unPiso, int unNumero, string unaUbicacion, TipoHabitacion unTipo, string unaDescripcion)
@@ -73,7 +85,7 @@ namespace FrbaHotel.Homes
                 frente = "S";
 
 
-            DatabaseAdapter.insertarDatosEnTabla("habitacion", unHotel.Id, unNumero, unPiso, unTipo.Id, frente, unaDescripcion);
+            DatabaseAdapter.insertarDatosEnTabla("habitacion", unHotel.Id, unNumero, unPiso, unTipo.Id, frente, unaDescripcion,"S");
         }
 
 

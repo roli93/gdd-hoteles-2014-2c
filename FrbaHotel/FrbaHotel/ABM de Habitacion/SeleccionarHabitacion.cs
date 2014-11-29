@@ -77,10 +77,21 @@ namespace FrbaHotel.ABM_de_Habitacion
 
         private void SeleccionarHabitacion_Load(object sender, EventArgs e)
         {
+            habilitacionString = "S";
+            checkBox1.Checked = true;
             cargarBotonModificarDatos(dataGridView1, accion);
             bindCombo<Hotel>(_hotel, Sesion.HotelesDisponibles);
             bindCombo<TipoHabitacion>(_tipo, Sesion.TiposHabitacionDisponibles);
             bindCombo<string>(_ubicacion,new List<string>( new string[]{"Interior","Exterior"} ));
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+           if (checkBox1.Checked)
+               habilitacionString="S";
+           else 
+               habilitacionString="N";
+
         }
 
     }

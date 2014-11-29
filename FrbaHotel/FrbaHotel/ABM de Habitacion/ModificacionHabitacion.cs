@@ -39,6 +39,11 @@ namespace FrbaHotel.ABM_de_Habitacion
             
         }
 
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            habilitada = checkBox1.Checked;
+        }
+
        
 
     }

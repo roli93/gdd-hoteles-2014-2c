@@ -1919,7 +1919,7 @@ AS
 
 GO
 
-CREATE PROCEDURE [MAX_POWER].[buscar_habitaciones](@idHotel BIGINT,@unNumero BIGINT, @unPiso BIGINT, @unaUbicacion VARCHAR(1), @idTipo BIGINT, @unaDescripcion VARCHAR(50))
+CREATE PROCEDURE [MAX_POWER].[buscar_habitaciones](@idHotel BIGINT,@unNumero BIGINT, @unPiso BIGINT, @unaUbicacion VARCHAR(1), @idTipo BIGINT, @unaDescripcion VARCHAR(50), @Habilitada VARCHAR(1))
  
 AS 
 	SELECT id_habitacion as ID, id_hotel, id_tipo_habitacion,numero,piso,frente,descripcion
@@ -1936,7 +1936,7 @@ AS
 
 		AND CAST(id_tipo_habitacion as VARCHAR(50)) like (SELECT CASE WHEN @idTipo = -1 THEN '%' ELSE CAST(@idTipo AS VARCHAR(50)) END)
 		
-		AND UPPER(habilitada) like UPPER('S')
+		AND UPPER(habilitada) like UPPER(@Habilitada)
 
 GO
 
@@ -2579,7 +2579,7 @@ AS
 GO
 
 
-CREATE PROCEDURE [MAX_POWER].actualizar_habitacion(@idHabitacion BIGINT,@idHotel BIGINT, @Numero BIGINT, @unPiso BIGINT, @IdTipoHabitacion BIGINT,@unaUbicacion VARCHAR(1),@unaDescripcion VARCHAR(50))
+CREATE PROCEDURE [MAX_POWER].actualizar_habitacion(@idHabitacion BIGINT,@idHotel BIGINT, @Numero BIGINT, @unPiso BIGINT, @IdTipoHabitacion BIGINT,@unaUbicacion VARCHAR(1),@unaDescripcion VARCHAR(50),@habilitada VARCHAR(1))
  AS
 	UPDATE [MAX_POWER].Habitacion set id_hotel=@idHotel where id_habitacion=@idHabitacion
 	UPDATE [MAX_POWER].Habitacion set id_tipo_habitacion=@IdTipoHabitacion where id_habitacion=@idHabitacion
@@ -2587,17 +2587,19 @@ CREATE PROCEDURE [MAX_POWER].actualizar_habitacion(@idHabitacion BIGINT,@idHotel
 	UPDATE [MAX_POWER].Habitacion set piso=@unPiso where id_habitacion=@idHabitacion
 	UPDATE [MAX_POWER].Habitacion set frente=@unaUbicacion where id_habitacion=@idHabitacion
 	UPDATE [MAX_POWER].Habitacion set descripcion=@unaDescripcion where id_habitacion=@idHabitacion
+	UPDATE [MAX_POWER].Habitacion set habilitada=@habilitada where id_habitacion=@idHabitacion
 GO
 
-CREATE PROCEDURE [MAX_POWER].insertar_habitacion(@idHotel BIGINT,@unNumero BIGINT, @unPiso BIGINT , @idTipo BIGINT, @frente VARCHAR(1), @unaDescripcion VARCHAR(50))
+CREATE PROCEDURE [MAX_POWER].[insertar_habitacion](@idHotel BIGINT,@unNumero BIGINT, @unPiso BIGINT , @idTipo BIGINT, @frente VARCHAR(1), @unaDescripcion VARCHAR(50),@Habilitada VARCHAR(1))
 AS BEGIN
 	
 		IF (EXISTS(SELECT 1 FROM [MAX_POWER].Habitacion where id_hotel = @idHotel and piso=@unPiso and numero=@unNumero)) RETURN -25
 	
-		INSERT INTO [MAX_POWER].Habitacion(id_hotel,numero,piso,id_tipo_habitacion,frente,descripcion) VALUES (@idHotel,@unNumero,@unPiso,@idTipo,@frente,@unaDescripcion)
+		INSERT INTO [MAX_POWER].Habitacion(id_hotel,numero,piso,id_tipo_habitacion,frente,descripcion,habilitada) VALUES (@idHotel,@unNumero,@unPiso,@idTipo,@frente,@unaDescripcion,@Habilitada)
 	
 END
-GO	
+GO
+
 	
 	
 
