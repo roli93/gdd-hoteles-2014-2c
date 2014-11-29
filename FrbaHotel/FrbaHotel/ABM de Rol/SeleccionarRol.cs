@@ -64,6 +64,11 @@ namespace FrbaHotel.ABM_de_Rol
                  Limpiar();
              }
 
+             private void label1_Click(object sender, EventArgs e)
+             {
+
+             }
+
         
         }
     }

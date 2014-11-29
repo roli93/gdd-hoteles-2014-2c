@@ -46,16 +46,7 @@ namespace FrbaHotel.Listado_Estadistico
 
         private void button1_Click(object sender, EventArgs e)
         {
-            //TODO resultados = DatabaseAdapter.traerDataTable(procedureAEjecutar, trimestre, anio);
-            resultados = new DataTable();
-            resultados.Columns.Add("Id");
-            resultados.Columns.Add("MockProperty");
-
-            resultados.Rows.Add(new object[] { 1, "Mira" });
-            resultados.Rows.Add(new object[] { 2, "Que" });
-            resultados.Rows.Add(new object[] { 3, "Loco" });
-            resultados.Rows.Add(new object[] { 4, "Todo" });
-            resultados.Rows.Add(new object[] { 5, "Che" });
+            resultados = DatabaseAdapter.traerDataTable(procedureAEjecutar, trimestre, anio);
 
             cargarGrilla(dataGridView1, resultados);
 

@@ -34,6 +34,7 @@
             this._gridRoles = new System.Windows.Forms.DataGridView();
             this._buscar = new System.Windows.Forms.Button();
             this._limpiar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this._gridRoles)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,11 +104,24 @@
             this._limpiar.UseVisualStyleBackColor = true;
             this._limpiar.Click += new System.EventHandler(this._limpiar_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(14, 301);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(462, 12);
+            this.label1.TabIndex = 53;
+            this.label1.Text = "*tenga en cuenta que de estar logueado con el rol a editar, debera reloguearse pa" +
+                "ra que los cambios surtan efecto";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
             // SeleccionarRol
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(485, 306);
+            this.ClientSize = new System.Drawing.Size(487, 322);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this._limpiar);
             this.Controls.Add(this._buscar);
             this.Controls.Add(this._gridRoles);
@@ -131,5 +145,6 @@
         private System.Windows.Forms.DataGridView _gridRoles;
         private System.Windows.Forms.Button _buscar;
         private System.Windows.Forms.Button _limpiar;
+        private System.Windows.Forms.Label label1;
     }
 }
