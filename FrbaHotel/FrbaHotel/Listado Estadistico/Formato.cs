@@ -28,15 +28,16 @@ namespace FrbaHotel.Listado_Estadistico
         {
             anio = anioIngresado;
             trimestre = trimestreElegido;
+            
+            proceduresPorIdFormato.Add(0, "top5estadistico_hoteles_mas_reservas_canceladas");
+            proceduresPorIdFormato.Add(1, "top5estadistico_hoteles_mas_consumibles_facturados");
+            proceduresPorIdFormato.Add(2, "top5estadistico_hoteles_con_mas_periodo_inactivo");
+            proceduresPorIdFormato.Add(3, "top5estadistico_habitaciones_mas_ocupadas");
+            proceduresPorIdFormato.Add(4, "top5estadistico_clientes_por_puntaje");
 
-            proceduresPorIdFormato.Add(1, "top5estadistico_hoteles_mas_reservas_canceladas");
-            proceduresPorIdFormato.Add(2, "top5estadistico_hoteles_mas_consumibles_facturados");
-            proceduresPorIdFormato.Add(3, "top5estadistico_hoteles_con_mas_periodo_inactivo");
-            proceduresPorIdFormato.Add(4, "top5estadistico_habitaciones_mas_ocupadas");
-            proceduresPorIdFormato.Add(5, "top5estadistico_clientes_por_puntaje");
             
             InitializeComponent();
-
+         
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -48,8 +49,20 @@ namespace FrbaHotel.Listado_Estadistico
         {
             resultados = DatabaseAdapter.traerDataTable(procedureAEjecutar, trimestre, anio);
 
+            if (resultados.Columns.Count.Equals(0))
+            {
+                resultados = new DataTable();
+                resultados.Columns.Add("Lo Sentimos");
+                resultados.Rows.Add(" No hay datos que cumplan este criterio");
+            }
+
             cargarGrilla(dataGridView1, resultados);
 
+        }
+
+        private void Formato_Load(object sender, EventArgs e)
+        {
+            comboBox1.SelectedIndex = 1;
         }
 
 

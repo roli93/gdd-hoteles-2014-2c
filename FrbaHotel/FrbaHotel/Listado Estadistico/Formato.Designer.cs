@@ -91,6 +91,7 @@
             this.Controls.Add(this.comboBox1);
             this.Name = "Formato";
             this.Text = "Formato";
+            this.Load += new System.EventHandler(this.Formato_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
