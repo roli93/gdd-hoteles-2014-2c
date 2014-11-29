@@ -49,7 +49,7 @@ namespace FrbaHotel.Listado_Estadistico
         {
             resultados = DatabaseAdapter.traerDataTable(procedureAEjecutar, trimestre, anio);
 
-            if (resultados.Columns.Count.Equals(0))
+            if (resultados.Rows.Count.Equals(0))
             {
                 resultados = new DataTable();
                 resultados.Columns.Add("Lo Sentimos");
