@@ -29,14 +29,12 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         public override void modificacion()
         {
-            new InsertarCodigoReserva(this, "Editar Reserva", id=>new EditarReserva(this,id)).Show();
-            this.Hide();
+            new InsertarCodigoReserva(this, "Editar Reserva", id => new EditarReserva(this, id)).StandaloneOpen();
         }
 
         public override void baja()
         {
-            new InsertarCodigoReserva(this, "Cancelar Reserva", id => new CancelarReserva(this, id)).Show();
-            this.Hide();
+            new InsertarCodigoReserva(this, "Cancelar Reserva", id => new CancelarReserva(this, id)).StandaloneOpen();
         }
 
     }

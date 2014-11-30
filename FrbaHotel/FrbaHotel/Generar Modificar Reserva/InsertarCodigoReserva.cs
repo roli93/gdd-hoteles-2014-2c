@@ -44,8 +44,9 @@ namespace FrbaHotel.Generar_Modificar_Reserva
             ChequearInconsistenciaEstadia(() =>
             {
                 HomeReservas.verificarReservaEsEditable(Convert.ToInt32(textBox1.Text), Sesion.Usuario.Hotel.Id);
-                constructorEdicion(Convert.ToInt32(textBox1.Text)).FinalStandaloneOpen();
-                Close();
+                NavegableForm hija = constructorEdicion(Convert.ToInt32(textBox1.Text));
+                hija.Owner = this;
+                hija.FinalStandaloneOpen();
             }, Convert.ToInt32(textBox1.Text));
         }
 

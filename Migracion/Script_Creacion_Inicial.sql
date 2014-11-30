@@ -2288,6 +2288,17 @@ BEGIN
 			@diasNA AS Cantidad,
 			@costo AS 'Precio Unitario',
 			@costo*@diasNA AS Total
+			
+END
+GO
+
+CREATE PROCEDURE [MAX_POWER].tiene_all_inclusive(@id_reserva BIGINT) AS
+BEGIN
+	IF((SELECT UPPER(RG.descripcion) FROM MAX_POWER.Reserva RS, MAX_POWER.Regimen RG 
+			WHERE RS.id_regimen=RG.id_regimen AND RS.id_reserva=@id_reserva) LIKE UPPER('%All%Inclusive%'))
+		RETURN (1)
+	ELSE
+		RETURN (0)
 END
 GO
 
@@ -2608,7 +2619,7 @@ GO
 	
 	
 
-CREATE PROCEDURE [MAX_POWER].actualizar_rol( @idRol BIGhbngvhINT, @nombre VARCHAR(50), @habilitado VARCHAR(1))
+CREATE PROCEDURE [MAX_POWER].actualizar_rol( @idRol BIGINT, @nombre VARCHAR(50), @habilitado VARCHAR(1))
 AS
 	UPDATE [MAX_POWER].Rol set nombre=@nombre WHERE id_rol=@idRol
 	UPDATE [MAX_POWER].Rol set habilitado=@habilitado WHERE id_rol=@idRol
@@ -3025,5 +3036,19 @@ insert into MAX_POWER.Tipo_modificacion (descripcion) values ('Cancelacion')
 UPDATE MAX_POWER.Hotel SET nombre='Hotel sin nombre '+CAST(id_hotel AS VARCHAR(30)) WHERE nombre IS NULL
 
 UPDATE MAX_POWER.Hotel SET fecha_creacion='2000.06.25' WHERE fecha_creacion IS NULL
+
+UPDATE MAX_POWER.Pais SET nombre='Argentina' where nombre='ARGENTINO'
+
+INSERT INTO MAX_POWER.Pais (nombre) VALUES ('Brasil')
+INSERT INTO MAX_POWER.Pais (nombre) VALUES ('Estados Unidos')
+INSERT INTO MAX_POWER.Pais (nombre) VALUES ('Canadá')
+INSERT INTO MAX_POWER.Pais (nombre) VALUES ('España')
+INSERT INTO MAX_POWER.Pais (nombre) VALUES ('Perú')
+INSERT INTO MAX_POWER.Pais (nombre) VALUES ('Sudáfrica')
+INSERT INTO MAX_POWER.Pais (nombre) VALUES ('India')
+
+INSERT INTO MAX_POWER.Tipo_documento (descripcion) VALUES ('LC')
+INSERT INTO MAX_POWER.Tipo_documento (descripcion) VALUES ('LE')
+INSERT INTO MAX_POWER.Tipo_documento (descripcion) VALUES ('Pasaporte')
 
 PRINT 'Generados datos basicos'

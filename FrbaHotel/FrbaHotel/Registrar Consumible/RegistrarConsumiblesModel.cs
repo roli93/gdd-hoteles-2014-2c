@@ -17,7 +17,13 @@ namespace FrbaHotel.Registrar_Consumible
 
         public void ActualizarGrilla()
         {
-            cargarGrilla(dataGridView1, HomeReservas.consumiblesReserva(idReserva));
+            DataTable consumibles =HomeReservas.consumiblesReserva(idReserva);
+            cargarGrilla(dataGridView1, consumibles );
+            if (consumibles.Rows.Count > 0)
+            {
+                dataGridView1.Columns["ID"].Visible = false;
+                dataGridView1.Columns["IDHR"].Visible = false;
+            }
         }
 
         public override void gridClickAction(DataGridViewCellCollection celdas)

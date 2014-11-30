@@ -34,6 +34,7 @@ namespace FrbaHotel.Registrar_Estadia
             _nroFact.Text = idFactura.ToString();
             items= HomeFacturas.itemsFactura(idReserva,idFactura);
             cargarGrilla(dataGridView1, items);
+            AgregarDescuentoAI();
             _total.Text = Total().ToString();
         }
 
@@ -44,6 +45,18 @@ namespace FrbaHotel.Registrar_Estadia
                 total += Convert.ToInt32(item["total"]);
             HomeFacturas.GuardarTotal(idFactura, total);
             return total;
+        }
+
+        public void AgregarDescuentoAI()
+        {
+            if (HomeReservas.tieneAI(idReserva))
+            {
+                double total = 0;
+                foreach (DataRow item in items.Rows)
+                    if (!item["Descripción"].ToString().Equals("*Días Alojado") && !item["Descripción"].ToString().Equals("*Días No Alojado"))
+                        total -= Convert.ToInt32(item["total"]);
+                items.Rows.Add(new object[] { "*Descuento All Inclusive", 1, total, total });
+            }
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)

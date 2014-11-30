@@ -210,5 +210,10 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.ejecutarProcedure("restaurar_estadia_mala", idr);
         }
 
+        public static bool tieneAI(int idreserva)
+        {
+            return DatabaseAdapter.ejecutarProcedureWithReturnValue("tiene_all_inclusive", idreserva)!=0 ;
+        }
+
     }
 }
