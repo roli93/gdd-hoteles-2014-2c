@@ -39,7 +39,7 @@ namespace FrbaHotel.ABM_de_Rol
 
             private void _nombre_TextChanged(object sender, EventArgs e)
             {
-                nombre = _nombre.Text;
+                nombre = _nombre.Text.ToString();
             }
 
 
@@ -63,12 +63,6 @@ namespace FrbaHotel.ABM_de_Rol
              {
                  Limpiar();
              }
-
-             private void label1_Click(object sender, EventArgs e)
-             {
-
-             }
-
         
         }
     }

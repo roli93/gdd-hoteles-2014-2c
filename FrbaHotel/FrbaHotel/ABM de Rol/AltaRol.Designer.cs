@@ -122,10 +122,9 @@
             this.Controls.Add(this.label1);
             this.Name = "AltaRol";
             this.Text = "AltaRol";
+            this.Load += new System.EventHandler(this.AltaRol_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
-            this.Load += new System.EventHandler(this.AltaRol_Load);
-
 
         }
 
@@ -137,6 +136,6 @@
         protected System.Windows.Forms.CheckBox _habilitado;
         protected System.Windows.Forms.CheckedListBox _funcionalidadesCLB;
         protected System.Windows.Forms.Label FuncLabel;
-        private System.Windows.Forms.Button _limpiar;
+        protected System.Windows.Forms.Button _limpiar;
     }
 }

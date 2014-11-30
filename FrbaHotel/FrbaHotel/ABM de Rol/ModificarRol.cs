@@ -41,5 +41,10 @@ namespace FrbaHotel.ABM_de_Rol
                     box.SetItemChecked(count, true);
             }
         }
+
+        private void _habilitado_CheckedChanged(object sender, EventArgs e)
+        {
+            estaActivo = _habilitado.Checked;
+        }
     }
 }

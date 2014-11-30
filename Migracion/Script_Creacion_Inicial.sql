@@ -2010,7 +2010,7 @@ AS SELECT * FROM [MAX_POWER].Hotel WHERE id_hotel = @id
 GO
 
 CREATE PROCEDURE [MAX_POWER].buscar_roles(@nombre VARCHAR(50), @estado CHAR(1))
-AS SELECT * FROM [MAX_POWER].Rol 
+AS SELECT id_rol as ID,nombre,habilitado FROM [MAX_POWER].Rol 
 	WHERE UPPER(nombre) LIKE UPPER(@nombre)
 		AND UPPER(habilitado) LIKE UPPER(@estado)
 GO

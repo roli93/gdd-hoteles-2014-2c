@@ -13,7 +13,7 @@ namespace FrbaHotel.ABM_de_Rol
 {
     public partial class SeleccionarRol
     {
-        private string nombre = "";
+        private string nombre;
         private bool estaActivo;
         private DataTable roles;
 

@@ -53,6 +53,7 @@
             this._nombre.Name = "_nombre";
             this._nombre.Size = new System.Drawing.Size(100, 20);
             this._nombre.TabIndex = 1;
+            this._nombre.TextChanged += new System.EventHandler(this._nombre_TextChanged);
             // 
             // _estaActivo
             // 
@@ -114,7 +115,7 @@
             this.label1.TabIndex = 53;
             this.label1.Text = "*tenga en cuenta que de estar logueado con el rol a editar, debera reloguearse pa" +
                 "ra que los cambios surtan efecto";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+
             // 
             // SeleccionarRol
             // 
