@@ -30,6 +30,10 @@
         {
             this.SuspendLayout();
             // 
+            // _nombre
+            // 
+            this._nombre.TextChanged += new System.EventHandler(this._nombre_TextChanged);
+            // 
             // _habilitado
             // 
             this._habilitado.CheckedChanged += new System.EventHandler(this._habilitado_CheckedChanged);

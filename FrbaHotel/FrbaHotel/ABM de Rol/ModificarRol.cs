@@ -46,5 +46,10 @@ namespace FrbaHotel.ABM_de_Rol
         {
             estaActivo = _habilitado.Checked;
         }
+
+        private void _nombre_TextChanged(object sender, EventArgs e)
+        {
+            nombre = _nombre.Text;
+        }
     }
 }
