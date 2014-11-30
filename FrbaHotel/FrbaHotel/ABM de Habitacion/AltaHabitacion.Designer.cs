@@ -138,6 +138,7 @@
             this._piso.Name = "_piso";
             this._piso.Size = new System.Drawing.Size(43, 20);
             this._piso.TabIndex = 11;
+            this._piso.TextChanged += new System.EventHandler(this._piso_TextChanged);
             // 
             // _ubicacion
             // 

@@ -41,7 +41,7 @@ namespace FrbaHotel.ABM_de_Habitacion
 
         private void _numero_TextChanged(object sender, EventArgs e)
         {
-            numero = Convert.ToInt32(_numero.Text);
+            numero = _numero.Text;
         }
 
         private void _ubicacion_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,7 +63,17 @@ namespace FrbaHotel.ABM_de_Habitacion
         {
             bindCombo<Hotel>(_hotel, Sesion.HotelesDisponibles);
             bindCombo<TipoHabitacion>(_tipo, Sesion.TiposHabitacionDisponibles);
+            if (!Sesion.Usuario.esGuest())
+            {
+                _hotel.SelectedIndex = _hotel.FindStringExact(Sesion.Usuario.Hotel.Nombre);
+                _hotel.Enabled = false;
+            }
 
+        }
+
+        private void _piso_TextChanged(object sender, EventArgs e)
+        {
+            piso = _piso.Text;
         }
             
 

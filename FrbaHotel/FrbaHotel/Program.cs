@@ -62,6 +62,7 @@ namespace FrbaHotel
             DatabaseAdapter.Excepciones.Add(-21, new ExcepcionFrbaHoteles("La fecha de salida no puede ser mayor que la fecha de fin de la reserva"));
             DatabaseAdapter.Excepciones.Add(-22, new ExcepcionFrbaHoteles("Aún no se ha realizado el check-out sobre la reserva indicada"));
             DatabaseAdapter.Excepciones.Add(-23, new ExcepcionFrbaHoteles("La reserva ya ha sido facturada"));
+            DatabaseAdapter.Excepciones.Add(-24, new ExcepcionFrbaHoteles("La reserva ha sido invalidada dado que el titular fue inhabilitado"));
             DatabaseAdapter.Excepciones.Add(-25, new ExcepcionFrbaHoteles("Ya se ha registrado una habitacion con esa configuración de hotel, piso y numero"));
 
             //------------------CONFIGURACIONES------------------->>

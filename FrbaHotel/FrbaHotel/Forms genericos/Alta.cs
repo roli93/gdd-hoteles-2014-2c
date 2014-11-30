@@ -156,8 +156,14 @@ namespace FrbaHotel.Forms_genericos
                 dataTable = new DataTable();
                 dataTable.Columns.Add("Lo Sentimos");
                 dataTable.Rows.Add(" No hay datos que cumplan este criterio");
+                if (grid.Columns.Contains("Operación"))
+                    grid.Columns["Operación"].Visible=false;
             }
+            else
+                if (grid.Columns.Contains("Operación"))
+                    grid.Columns["Operación"].Visible = true;
             grid.DataSource = dataTable;
+            
             grid.AutoResizeColumns(); //ajusta el tamaño de las columnas y filas a su contenido
             grid.AutoResizeRows();
         }
