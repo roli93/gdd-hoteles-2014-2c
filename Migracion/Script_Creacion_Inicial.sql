@@ -1937,6 +1937,8 @@ AS
 
 		AND CAST(id_tipo_habitacion as VARCHAR(50)) like (SELECT CASE WHEN @idTipo = -1 THEN '%' ELSE CAST(@idTipo AS VARCHAR(50)) END)
 		
+		AND UPPER(descripcion) LIKE UPPER(@unaDescripcion)
+		
 		AND UPPER(habilitada) like UPPER(@Habilitada)
 
 GO
@@ -2606,7 +2608,7 @@ GO
 	
 	
 
-CREATE PROCEDURE [MAX_POWER].actualizar_rol( @idRol BIGINT, @nombre VARCHAR(50), @habilitado VARCHAR(1))
+CREATE PROCEDURE [MAX_POWER].actualizar_rol( @idRol BIGhbngvhINT, @nombre VARCHAR(50), @habilitado VARCHAR(1))
 AS
 	UPDATE [MAX_POWER].Rol set nombre=@nombre WHERE id_rol=@idRol
 	UPDATE [MAX_POWER].Rol set habilitado=@habilitado WHERE id_rol=@idRol
