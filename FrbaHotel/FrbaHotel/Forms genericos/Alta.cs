@@ -23,7 +23,7 @@ namespace FrbaHotel.Forms_genericos
             {typeof(DomainUpDown), c => {}},
             {typeof(Button), c => {}},
             {typeof(Label), c => {}},
-            {typeof(ComboBox), c => ((ComboBox)c).SelectedIndex=-1},
+            {typeof(ComboBox), c => ClearCombo((ComboBox)c)},
             {typeof(CheckedListBox), c => ClearItems((CheckedListBox)c)},
             {typeof(DateTimePicker), c => ((DateTimePicker)c).Value=DateTime.Now},
             {typeof(DataGridView), c => ((DataGridView)c).DataSource=null},
@@ -45,6 +45,12 @@ namespace FrbaHotel.Forms_genericos
 
         public Alta()
         {
+        }
+
+        public static void ClearCombo(ComboBox c)
+        {
+            if (c.Enabled)
+                c.SelectedIndex = -1;
         }
 
         public static void ClearControls(Control.ControlCollection controls)

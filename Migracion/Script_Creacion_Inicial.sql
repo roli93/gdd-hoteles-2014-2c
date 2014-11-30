@@ -2019,8 +2019,20 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].[insertar_periodo_cierre](@idHotel BIGINT, @fechaDesde VARCHAR(50), @fechaHasta VARCHAR(50))
 AS
-		INSERT INTO MAX_POWER.Periodo_Cierre (id_hotel,fecha_inicio,fecha_fin) 
-		SELECT @idHotel,@fechaDesde,@fechaHasta
+BEGIN
+	IF(EXISTS (SELECT 1 FROM MAX_POWER.Reserva R, MAX_POWER.Habitacion_reservada HR, MAX_POWER.Habitacion H
+					WHERE R.id_reserva=HR.id_reserva AND HR.id_habitacion=H.id_habitacion 
+						AND(R.fecha_inicio BETWEEN @fechaDesde AND @fechaHasta OR
+							R.fecha_fin BETWEEN @fechaDesde AND @fechaHasta OR
+							@fechaDesde BETWEEN R.fecha_inicio AND R.fecha_fin OR
+							@fechaHasta BETWEEN R.fecha_inicio AND R.fecha_fin)))
+		RETURN(-26)	
+	ELSE
+	BEGIN			
+		INSERT INTO MAX_POWER.Periodo_Cierre (id_hotel,fecha_inicio,fecha_fin) SELECT @idHotel,@fechaDesde,@fechaHasta
+		RETURN (0)
+	END
+END
 GO
 
 CREATE PROCEDURE [MAX_POWER].buscar_reserva_por_id(@id_reserva BIGINT) AS
@@ -2563,10 +2575,10 @@ AS BEGIN
 END
 GO
 
-CREATE FUNCTION [MAX_POWER].habitacion_libre(@id_habitacion BIGINT, @fecha_inicio DATETIME, @fecha_fin DATETIME) RETURNS INT AS
+CREATE FUNCTION [MAX_POWER].habitacion_libre(@id_habitacion BIGINT, @fecha_inicio DATE, @fecha_fin DATE) RETURNS INT AS
 BEGIN
 DECLARE @esta_libre INT
-	IF (SELECT COUNT (*) FROM [MAX_POWER].Habitacion_reservada HR 
+	IF ((SELECT COUNT (*) FROM [MAX_POWER].Habitacion_reservada HR 
 		JOIN [MAX_POWER].reserva R ON HR.id_reserva = R.id_reserva 
 			WHERE HR.id_habitacion = @id_habitacion 
 			AND (@fecha_inicio BETWEEN R.fecha_inicio AND R.fecha_fin
@@ -2574,6 +2586,14 @@ DECLARE @esta_libre INT
 				OR R.fecha_inicio BETWEEN @fecha_inicio AND @fecha_fin
 				OR R.fecha_fin BETWEEN @fecha_inicio AND @fecha_fin)
 		)>0
+		OR
+		EXISTS (SELECT 1 FROM MAX_POWER.Periodo_Cierre P, MAX_POWER.Habitacion H
+					WHERE P.id_hotel=H.id_hotel 
+					AND(P.fecha_inicio BETWEEN @fecha_inicio AND @fecha_fin OR
+						P.fecha_fin BETWEEN @fecha_inicio AND @fecha_fin OR
+						@fecha_inicio BETWEEN P.fecha_inicio AND P.fecha_fin OR
+						@fecha_fin BETWEEN P.fecha_inicio AND P.fecha_fin))
+		)
 		SET @esta_libre=0 -- OCUPADA
 	ELSE
 		SET @esta_libre=1 -- LIBRE

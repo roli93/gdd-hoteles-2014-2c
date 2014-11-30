@@ -17,7 +17,7 @@ namespace FrbaHotel.Homes
 
         static public DataTable buscarHabitaciones(Hotel unHotel, int unNumero, int unPiso, string unaUbicacion, TipoHabitacion unTipo, string unaDescripcion, string unaHabilitacionString)
         {
-            return DatabaseAdapter.traerDataTable("buscar_habitaciones", unHotel.Id, unNumero, unPiso, unaUbicacion, unTipo.Id, unaDescripcion, unaHabilitacionString);
+            return DatabaseAdapter.traerDataTable("buscar_habitaciones", idDe(unHotel), like(unNumero.ToString()), like(unPiso.ToString()), like(unaUbicacion), idDe(unTipo), like(unaDescripcion), like(unaHabilitacionString));
          
         }
 
