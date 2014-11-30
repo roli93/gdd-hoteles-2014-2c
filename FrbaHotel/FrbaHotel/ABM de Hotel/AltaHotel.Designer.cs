@@ -50,6 +50,8 @@
             this._limpiar = new System.Windows.Forms.Button();
             this._altura = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -258,11 +260,31 @@
             this.label10.TabIndex = 21;
             this.label10.Text = "Altura";
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(230, 116);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(85, 20);
+            this.textBox1.TabIndex = 24;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(134, 119);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(90, 13);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "Recargo Estrellas";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
+            // 
             // AltaHotel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(330, 376);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this._altura);
             this.Controls.Add(this.label10);
             this.Controls.Add(this._aceptar);
@@ -317,5 +339,7 @@
         protected System.Windows.Forms.Label label5;
         protected System.Windows.Forms.TextBox _altura;
         protected System.Windows.Forms.Label label10;
+        protected System.Windows.Forms.TextBox textBox1;
+        protected System.Windows.Forms.Label label11;
     }
 }

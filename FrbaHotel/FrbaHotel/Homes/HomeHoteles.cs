@@ -10,15 +10,15 @@ namespace FrbaHotel.Homes
 {
     public class HomeHoteles:Home
     {
-        static public void insertarHotel(string nombre, string email, string telefono, string calle,int altura, int estrellas, Pais pais, string ciudad, List<Regimen> regimenes, string fechaCreacion)
+        static public void insertarHotel(string nombre, string email, string telefono, string calle,int altura, int estrellas, Pais pais, string ciudad, List<Regimen> regimenes, string fechaCreacion,int recargoEstrellas)
         {
-            DatabaseAdapter.insertarDatosEnTabla("hotel", nombre, email, telefono, calle, altura, estrellas, pais.Id, ciudad, fechaCreacion);
+            DatabaseAdapter.insertarDatosEnTabla("hotel", nombre, email, telefono, calle, altura, estrellas, pais.Id, ciudad, fechaCreacion,recargoEstrellas);
             int id = DatabaseAdapter.getIdUltimaInsercion("hotel");
             agregarElementos("regimen_x_hotel",id, IdsDe<Regimen>(regimenes));
             DatabaseAdapter.insertarDatosEnTabla("usuario_x_hotel",Sesion.Usuario.Id,id);
         }
 
-        static public void buscarPorId(int idHotel,out string nombre, out string email, out string telefono, out string calle,out int altura, out int estrellas, out Pais pais, out string ciudad, out List<Regimen> regimenes, out DateTime fechaCreacion)
+        static public void buscarPorId(int idHotel, out string nombre, out string email, out string telefono, out string calle, out int altura, out int estrellas, out Pais pais, out string ciudad, out List<Regimen> regimenes, out DateTime fechaCreacion, out string recargoEstrellas)
         { 
             DataRow hotel = DatabaseAdapter.traerDataTable("buscar_hotel_por_id", idHotel).Rows[0];
             nombre = hotel["nombre"].ToString();
@@ -27,6 +27,7 @@ namespace FrbaHotel.Homes
             altura = Convert.ToInt32(hotel["altura"]);
             telefono = hotel["telefono"].ToString();
             estrellas = Convert.ToInt32(hotel["estrellas"]);
+            recargoEstrellas = hotel["recarga_estrellas"].ToString();
             fechaCreacion = Convert.ToDateTime(hotel["fecha_creacion"]);
             ciudad = hotel["ciudad"].ToString();
             pais= HomeGeografico.buscarPaisPorId(Convert.ToInt32(hotel["id_pais"]));
@@ -45,9 +46,9 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.insertarDatosEnTabla("periodo_cierre", idHotel, fechaDesde, fechaHasta);
         }
 
-        static public void actualizarHotel(int idHotel, string nombre, string email, string telefono, string calle, int altura, int estrellas, Pais pais, string ciudad, List<Regimen> regimenes, string fechaCreacion)
+        static public void actualizarHotel(int idHotel, string nombre, string email, string telefono, string calle, int altura, int estrellas, Pais pais, string ciudad, List<Regimen> regimenes, string fechaCreacion, int recargoEstrellas)
         {
-            DatabaseAdapter.actualizarDatosEnTabla("hotel", idHotel, nombre, email, telefono, calle, altura, estrellas, pais.Id, ciudad, fechaCreacion);
+            DatabaseAdapter.actualizarDatosEnTabla("hotel", idHotel, nombre, email, telefono, calle, altura, estrellas, pais.Id, ciudad, fechaCreacion,recargoEstrellas);
             DatabaseAdapter.ejecutarProcedure("borrar_regimen_x_hotel_idHotel", idHotel);
             agregarElementos("regimen_x_hotel", idHotel, IdsDe<Regimen>(regimenes));
         }

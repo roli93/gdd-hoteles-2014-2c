@@ -2601,7 +2601,7 @@ RETURN @esta_libre
 END
 GO
 
-CREATE PROCEDURE [MAX_POWER].actualizar_hotel( @idHotel BIGINT, @nombre VARCHAR(50), @email VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50), @altura BIGINT, @estrellas BIGINT, @idPais BIGINT, @ciudad VARCHAR(50), @fechaCreacion VARCHAR(50))
+CREATE PROCEDURE [MAX_POWER].actualizar_hotel( @idHotel BIGINT, @nombre VARCHAR(50), @email VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50), @altura BIGINT, @estrellas BIGINT, @idPais BIGINT, @ciudad VARCHAR(50), @fechaCreacion VARCHAR(50),@recargaEstrellas BIGINT)
 AS
 	UPDATE [MAX_POWER].Hotel set nombre=@nombre WHERE id_hotel=@idHotel
 	UPDATE [MAX_POWER].Hotel set mail=@email WHERE id_hotel=@idHotel
@@ -2612,6 +2612,7 @@ AS
 	UPDATE [MAX_POWER].Hotel set id_pais=@idPais WHERE id_hotel=@idHotel
 	UPDATE [MAX_POWER].Hotel set ciudad=@ciudad WHERE id_hotel=@idHotel
 	UPDATE [MAX_POWER].Hotel set fecha_creacion=@fechaCreacion WHERE id_hotel=@idHotel
+	UPDATE [MAX_POWER].Hotel set recarga_estrellas=@recargaEstrellas WHERE id_hotel=@idHotel
 GO
 
 
@@ -2824,7 +2825,7 @@ END
 GO
 
 CREATE PROCEDURE [MAX_POWER].[insertar_hotel](
- @nombre VARCHAR(50), @email VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50), @altura BIGINT, @estrellas BIGINT, @id_pais BIGINT, @ciudad VARCHAR(50), @fechaCreacion VARCHAR(50))
+ @nombre VARCHAR(50), @email VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50), @altura BIGINT, @estrellas BIGINT, @id_pais BIGINT, @ciudad VARCHAR(50), @fechaCreacion VARCHAR(50), @recargaEstrellas BIGINT)
  
  AS BEGIN
 	BEGIN TRY
@@ -2836,7 +2837,7 @@ CREATE PROCEDURE [MAX_POWER].[insertar_hotel](
 					@altura,
 					CONVERT(DATE,getDate(),102),
 					@estrellas,
-					10,
+					@recargaEstrellas,
 					@id_pais,
 					@ciudad)
 	END TRY

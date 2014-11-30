@@ -15,7 +15,7 @@ namespace FrbaHotel.ABM_de_Hotel
 
         public void CargarHotel()
         {
-            HomeHoteles.buscarPorId(idHotel, out nombre, out email, out telefono, out calle,out altura, out estrellas, out pais, out ciudad, out regimenes, out fechaCreacion);
+            HomeHoteles.buscarPorId(idHotel, out nombre, out email, out telefono, out calle,out altura, out estrellas, out pais, out ciudad, out regimenes, out fechaCreacion,out recargoEstrellas);
             regimenesOriginales.AddRange(regimenes);
             _nombre.Text = nombre;
         }
@@ -28,7 +28,7 @@ namespace FrbaHotel.ABM_de_Hotel
             ValidarErrores();
             email = Oldemail;
 
-            HomeHoteles.actualizarHotel(idHotel, nombre, email, telefono, calle, altura, estrellas, pais, ciudad, regimenes, fechaCreacion.ToShortDateString());
+            HomeHoteles.actualizarHotel(idHotel, nombre, email, telefono, calle, altura, estrellas, pais, ciudad, regimenes, fechaCreacion.ToShortDateString(),Convert.ToInt32(recargoEstrellas));
             
         }
 

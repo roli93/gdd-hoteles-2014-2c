@@ -26,14 +26,14 @@ namespace FrbaHotel.Homes
             DataRow laHabitacion = DatabaseAdapter.traerDataTable("buscar_habitacion_por_id", unIdHabitacion).Rows[0];
             
             //Auxiliares Begin
-            string nombreHotel = "foo",auxa,auxb,auxc,auxd;
+            string nombreHotel = "foo",auxa,auxb,auxc,auxd,aux5;
             int aux2;
             Pais aux2a = new Pais(-1,"foo");
             List<Regimen> aux3 = new List<Regimen>();
             DateTime aux4 = new DateTime();
             //Auxiliares End
 
-            HomeHoteles.buscarPorId(Convert.ToInt32(laHabitacion["id_hotel"]),out nombreHotel,out auxa,out auxb,out auxc,out aux2,out aux2,out aux2a,out auxd,out aux3,out aux4);
+            HomeHoteles.buscarPorId(Convert.ToInt32(laHabitacion["id_hotel"]),out nombreHotel,out auxa,out auxb,out auxc,out aux2,out aux2,out aux2a,out auxd,out aux3,out aux4,out aux5);
 
             unHotel = new Hotel(Convert.ToInt32(laHabitacion["id_hotel"]), nombreHotel);
             unNumero = Convert.ToInt32(laHabitacion["numero"]);

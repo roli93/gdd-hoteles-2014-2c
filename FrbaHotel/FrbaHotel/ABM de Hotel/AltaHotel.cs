@@ -92,5 +92,15 @@ namespace FrbaHotel.ABM_de_Hotel
             altura = Convert.ToInt32(_altura.Text);
         }
 
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            recargoEstrellas = textBox1.Text.ToString();
+        }
+
     }
 }
