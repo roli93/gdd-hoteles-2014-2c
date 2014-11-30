@@ -48,6 +48,7 @@ namespace FrbaHotel.ABM_de_Hotel
             _paises.SelectedIndex = _paises.FindStringExact(pais.Descripcion.ToString());
             _ciudades.SelectedIndex = _ciudades.FindStringExact(ciudad.ToString());
             _fecha.Value = Convert.ToDateTime(fechaCreacion);
+            textBox1.Text = recargoEstrellas.ToString();
             SelectCheckBoxes<Regimen>(_regimenes, regimenesOriginales);
         }
 
