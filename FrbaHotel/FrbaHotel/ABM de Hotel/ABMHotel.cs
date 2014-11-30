@@ -24,7 +24,7 @@ namespace FrbaHotel.ABM_de_Hotel
 
         public override void alta()
         {
-            new AltaHotel(this).FinalStandaloneOpen();
+            new AltaHotel(this).StandaloneOpen();
         }
 
         public override void modificacion()

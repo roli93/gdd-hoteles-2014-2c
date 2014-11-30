@@ -22,6 +22,7 @@ namespace FrbaHotel.ABM_de_Hotel
 
         protected virtual void Guardar()
         {
+            regimenes = CheckListToList<Regimen>(_regimenes);
             ValidarErrores();
             HomeHoteles.insertarHotel(nombre,email,telefono,calle,altura,estrellas,pais,ciudad,regimenes,fechaCreacion.ToString());
 
