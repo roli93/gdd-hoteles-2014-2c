@@ -52,6 +52,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -292,6 +293,9 @@
     </Compile>
     <Compile Include="Forms genericos\Alta.cs">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms genericos\CustomDateTimePicker.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Forms genericos\NavegableForm.cs">
       <SubType>Form</SubType>
@@ -720,6 +724,7 @@
     <None Include="Resources\clean.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="Resources\document-scroll-icon1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

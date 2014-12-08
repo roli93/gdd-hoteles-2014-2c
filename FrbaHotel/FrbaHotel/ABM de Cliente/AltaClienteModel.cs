@@ -16,7 +16,7 @@ namespace FrbaHotel.ABM_de_Cliente
         protected string nombre, apellido, nroId, mail, telefono, calle,altura,piso="-1",depto="-", localidad;
         protected TipoDocumento tipoId;
         protected Pais pais;
-        protected DateTime fechaNacimiento=DateTime.Now;
+        protected DateTime fechaNacimiento=Sesion.FechaActual;
 
         public virtual void Guardar()
         {

@@ -13,7 +13,7 @@ namespace FrbaHotel.Homes
     {
         public static int registrarReserva(Regimen regimen, DateTime fechaInicio, DateTime fechaFin, List<Habitacion> habitaciones, int IdCliente)
         {
-            DatabaseAdapter.insertarDatosEnTabla("reserva", regimen.Id,fechaInicio,fechaFin, IdCliente,DateTime.Now);
+            DatabaseAdapter.insertarDatosEnTabla("reserva", regimen.Id,fechaInicio,fechaFin, IdCliente,Sesion.FechaActual);
             int id = DatabaseAdapter.ejecutarProcedureWithReturnValue("proximo_id_reserva")-1;
             agregarElementos("habitacion_reservada", id, IdsDe<Habitacion>(habitaciones));
             return id;
@@ -71,7 +71,7 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.actualizarDatosEnTabla("reserva", idReserva, regimen.Id, fechaInicio, fechaFin);
             agregarElementos("habitacion_reservada", idReserva, IdsDe<Habitacion>(diferencia<Habitacion>(habitacionesNuevas,habitacionesOriginales)));
             removerElementos("habitacion_reservada", idReserva, IdsDe<Habitacion>(diferencia<Habitacion>(habitacionesOriginales, habitacionesNuevas)));
-            DatabaseAdapter.insertarDatosEnTabla("modificacion", DateTime.Now, idReserva, Sesion.Usuario.Id, "Modificación usual",0);
+            DatabaseAdapter.insertarDatosEnTabla("modificacion", Sesion.FechaActual, idReserva, Sesion.Usuario.Id, "Modificación usual",0);
         }
 
         public static void verificarReservaEsEditable(int idReserva,int idHotel)
@@ -93,7 +93,7 @@ namespace FrbaHotel.Homes
                 else
                     DatabaseAdapter.ejecutarProcedure("cancelar_reserva_recepcion", idReserva);
             }
-            DatabaseAdapter.insertarDatosEnTabla("modificacion", DateTime.Now, idReserva, Sesion.Usuario.Id, motivo, 1);
+            DatabaseAdapter.insertarDatosEnTabla("modificacion", Sesion.FechaActual, idReserva, Sesion.Usuario.Id, motivo, 1);
         }
 
         public static DataTable habitacionesReserva(int idReserva)

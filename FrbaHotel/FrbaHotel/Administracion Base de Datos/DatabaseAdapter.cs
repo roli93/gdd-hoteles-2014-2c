@@ -7,6 +7,7 @@ using System.Text;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.Data;
+using FrbaHotel;
 
 namespace FrbaHotel.Administracion_Base_de_Datos
 {
@@ -344,7 +345,7 @@ namespace FrbaHotel.Administracion_Base_de_Datos
         {
             try
             {
-                string sconcompleto = @"Data Source=localhost\SQLSERVER2008; Initial catalog=GD2C2014; user id=gd; password=gd2014";
+                string sconcompleto = ConfigurationManager.ConnectionStrings["db"].ConnectionString;
                 conexion.ConnectionString = sconcompleto;
                 cm.Connection = conexion;
                 conexion.Open();

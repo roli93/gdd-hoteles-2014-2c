@@ -32,7 +32,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new FrbaHotel.Forms_genericos.CustomDateTimePicker();
             this.label11 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this._telefono = new System.Windows.Forms.TextBox();
@@ -384,7 +384,7 @@
         protected System.Windows.Forms.Button button1;
         protected System.Windows.Forms.ComboBox comboBox1;
         protected System.Windows.Forms.Label label5;
-        protected System.Windows.Forms.DateTimePicker dateTimePicker1;
+        protected FrbaHotel.Forms_genericos.CustomDateTimePicker dateTimePicker1;
         protected System.Windows.Forms.Label label11;
         protected System.Windows.Forms.Label label10;
         protected System.Windows.Forms.TextBox _telefono;

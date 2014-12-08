@@ -30,12 +30,12 @@
         {
             this._hotel = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new FrbaHotel.Forms_genericos.CustomDateTimePicker();
             this.labelHotel = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this._regimen = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker2 = new FrbaHotel.Forms_genericos.CustomDateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
             this._seleccionarRegimen = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -221,14 +221,14 @@
 
         protected System.Windows.Forms.ComboBox _hotel;
         protected System.Windows.Forms.Label label5;
-        protected System.Windows.Forms.DateTimePicker dateTimePicker1;
+        protected FrbaHotel.Forms_genericos.CustomDateTimePicker dateTimePicker1;
         protected System.Windows.Forms.Button button2;
         protected System.Windows.Forms.Button button1;
         protected System.Windows.Forms.Label labelHotel;
         protected System.Windows.Forms.Label label8;
         protected System.Windows.Forms.TextBox _regimen;
         protected System.Windows.Forms.Label label1;
-        protected System.Windows.Forms.DateTimePicker dateTimePicker2;
+        protected FrbaHotel.Forms_genericos.CustomDateTimePicker dateTimePicker2;
         protected System.Windows.Forms.Label label2;
         protected System.Windows.Forms.Button _seleccionarRegimen;
         protected System.Windows.Forms.DataGridView dataGridView1;

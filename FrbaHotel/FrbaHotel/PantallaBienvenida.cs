@@ -32,6 +32,17 @@ namespace FrbaHotel
         {
             new LoginUsuarios(this).StandaloneOpen();
         }
+
+        private void PantallaBienvenida_Load(object sender, EventArgs e)
+        {
+            DateTime hoy = Sesion.FechaActual;
+            label2.Text="Fecha y hora actuales: "+hoy.ToString();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
             

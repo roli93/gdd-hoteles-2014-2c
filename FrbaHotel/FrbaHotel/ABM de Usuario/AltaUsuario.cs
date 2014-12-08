@@ -103,7 +103,7 @@ namespace FrbaHotel.ABM_de_Usuario
 
         private void AltaUsuario_Load(object sender, EventArgs e)
         {
-            dateTimePicker1.Value = DateTime.Now;
+            dateTimePicker1.Value = Sesion.FechaActual;
             bindCheckedListBox<Rol>(checkedListBox1, Sesion.RolesDisponibles);
             bindCheckedListBox<Hotel>(checkedListBox2, Sesion.HotelesDisponibles);
             bindCombo<TipoDocumento>(comboBox1, Sesion.TiposDocumentoDisponibles);            

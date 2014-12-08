@@ -65,8 +65,8 @@ namespace FrbaHotel.Generar_Modificar_Reserva
             _hotel.SelectedIndex = 0;
             _hotel.Enabled = false;
             cargarBotonModificarDatos(dataGridView1, "Eliminar");
-            FechaFin = DateTime.Now;
-            FechaInicio = DateTime.Now;
+            FechaFin = Sesion.FechaActual;
+            FechaInicio = Sesion.FechaActual;
         }
 
         private void button2_Click(object sender, EventArgs e)

@@ -27,6 +27,9 @@ namespace FrbaHotel
             Application.SetCompatibleTextRenderingDefault(false);
 
             //<<------------------CONFIGURACIONES-------------------
+            //Carga de fecha actual
+            string stringFecha = System.Configuration.ConfigurationManager.AppSettings["fechaSistema"];
+            Sesion.FechaActual = DateTime.Parse(stringFecha);
             //Asociación funcionalidad-vista
             Dictionary<int, SeleccionFuncionalidad.NavegableFormInstanciator> funcionalidadesSistema = new Dictionary<int, SeleccionFuncionalidad.NavegableFormInstanciator>();
             funcionalidadesSistema.Add(1,(owner) => new ABMRol(owner));

@@ -14,7 +14,7 @@ namespace FrbaHotel.ABM_de_Usuario
     public partial class AltaUsuario
     {
         protected string confirmarPassword, password, nombre, apellido, nroDocumento, mail, telefono, direccion,username;
-        protected DateTime fechaNacimiento=DateTime.Now;
+        protected DateTime fechaNacimiento=Sesion.FechaActual;
         protected List<Hotel> hoteles = new List<Hotel>();
         protected List<Rol> roles = new List<Rol>();
         protected TipoDocumento tipoDni;

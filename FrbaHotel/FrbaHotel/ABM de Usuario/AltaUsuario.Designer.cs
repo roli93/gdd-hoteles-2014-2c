@@ -52,7 +52,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this._telefono = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePicker1 = new FrbaHotel.Forms_genericos.CustomDateTimePicker();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -408,7 +408,7 @@
         protected System.Windows.Forms.Label label12;
         protected System.Windows.Forms.Button button1;
         protected System.Windows.Forms.Button button2;
-        protected System.Windows.Forms.DateTimePicker dateTimePicker1;
+        protected FrbaHotel.Forms_genericos.CustomDateTimePicker dateTimePicker1;
         protected System.Windows.Forms.CheckedListBox checkedListBox1;
         protected System.Windows.Forms.CheckedListBox checkedListBox2;
         protected System.Windows.Forms.Label label5;

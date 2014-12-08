@@ -45,7 +45,7 @@
             this._paises = new System.Windows.Forms.ComboBox();
             this._ciudades = new System.Windows.Forms.ComboBox();
             this._regimenes = new System.Windows.Forms.CheckedListBox();
-            this._fecha = new System.Windows.Forms.DateTimePicker();
+            this._fecha = new FrbaHotel.Forms_genericos.CustomDateTimePicker();
             this._aceptar = new System.Windows.Forms.Button();
             this._limpiar = new System.Windows.Forms.Button();
             this._altura = new System.Windows.Forms.TextBox();
@@ -331,7 +331,7 @@
         protected System.Windows.Forms.ComboBox _paises;
         protected System.Windows.Forms.ComboBox _ciudades;
         protected System.Windows.Forms.CheckedListBox _regimenes;
-        protected System.Windows.Forms.DateTimePicker _fecha;
+        protected FrbaHotel.Forms_genericos.CustomDateTimePicker _fecha;
         protected System.Windows.Forms.Label label1;
         protected System.Windows.Forms.Label label2;
         protected System.Windows.Forms.Label label3;

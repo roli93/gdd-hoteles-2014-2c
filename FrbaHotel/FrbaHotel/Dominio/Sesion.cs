@@ -16,6 +16,7 @@ namespace FrbaHotel
     {
         private static Usuario usuario;
         public delegate TResul Constructor<T,TResul>(T entrada);
+        public static DateTime FechaActual { get; set; }
 
         public static Usuario Usuario
         {

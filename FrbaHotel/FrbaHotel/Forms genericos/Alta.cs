@@ -25,7 +25,7 @@ namespace FrbaHotel.Forms_genericos
             {typeof(Label), c => {}},
             {typeof(ComboBox), c => ClearCombo((ComboBox)c)},
             {typeof(CheckedListBox), c => ClearItems((CheckedListBox)c)},
-            {typeof(DateTimePicker), c => ((DateTimePicker)c).Value=DateTime.Now},
+            {typeof(DateTimePicker), c => ((DateTimePicker)c).Value=Sesion.FechaActual},
             {typeof(DataGridView), c => ((DataGridView)c).DataSource=null},
     };
 

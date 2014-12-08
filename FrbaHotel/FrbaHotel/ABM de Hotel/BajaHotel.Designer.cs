@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this._desde = new System.Windows.Forms.DateTimePicker();
+            this._desde = new FrbaHotel.Forms_genericos.CustomDateTimePicker();
             this.label2 = new System.Windows.Forms.Label();
-            this._hasta = new System.Windows.Forms.DateTimePicker();
+            this._hasta = new FrbaHotel.Forms_genericos.CustomDateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -102,9 +102,9 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DateTimePicker _desde;
+        private FrbaHotel.Forms_genericos.CustomDateTimePicker _desde;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker _hasta;
+        private FrbaHotel.Forms_genericos.CustomDateTimePicker _hasta;
         private System.Windows.Forms.Button button1;
     }
 }
