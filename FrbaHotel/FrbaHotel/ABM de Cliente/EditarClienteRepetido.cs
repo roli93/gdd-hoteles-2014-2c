@@ -49,6 +49,11 @@ namespace FrbaHotel.ABM_de_Cliente
             Close();
         }
 
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            cliente.Mail = textBox2.Text;
+        }
+
 
     }
 }

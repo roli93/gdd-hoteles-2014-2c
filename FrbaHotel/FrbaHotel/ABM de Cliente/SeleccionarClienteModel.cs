@@ -42,7 +42,7 @@ namespace FrbaHotel.ABM_de_Cliente
             string mensaje =
                 "El sistema ha detectado una inconsistencia de datos\n" +
                 "Hay varios clientes con el mismo tipo y número de identificación\n" +
-                "que el cliente que seleccionó.\nPara acceder a esos datos deberá corregir esta inconsistencia\n" +
+                "o el mismo mail que el cliente que seleccionó.\nPara acceder a esos datos deberá corregir esta inconsistencia\n" +
                 "¿Desea comenzar el asistente y solucionar la inconsistencia ahora?";                            
             if (MessageBox.Show(mensaje, "Inconsistencia de datos", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {

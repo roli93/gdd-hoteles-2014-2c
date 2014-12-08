@@ -12,6 +12,8 @@ namespace FrbaHotel.ABM_de_Rol
 {
     public partial class AltaRol : Alta
     {
+        private bool habilitadoMarcado=false;
+
         public AltaRol()
         {
             InitializeComponent();
@@ -35,11 +37,18 @@ namespace FrbaHotel.ABM_de_Rol
         private void _habilitado_CheckedChanged(object sender, EventArgs e)
         {
             EstaActivo = _habilitado.Checked;
+            habilitadoMarcado = true;
         }
 
         private void _aceptar_Click(object sender, EventArgs e)
         {
-            ExcecuteAndShow(Guardar);
+            if (!habilitadoMarcado)
+            {
+                if (MessageBox.Show("Ha dejado sin marcar la casilla de verificación del estado del rol\n¿Confirma que desea guardar el rol de todos modos?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    ExcecuteAndShow(Guardar);
+            }
+            else
+                ExcecuteAndShow(Guardar);
         }
 
         private void AltaRol_Load(object sender, EventArgs e)

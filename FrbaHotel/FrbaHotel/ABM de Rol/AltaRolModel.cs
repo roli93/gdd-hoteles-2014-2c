@@ -24,6 +24,7 @@ namespace FrbaHotel.ABM_de_Rol
         public override void ValidarErroresConcretos()
         {
             ValidarVaciosYLongitud(new string[] { "Nombre" }, new object[] { nombre });
+            ValidarCollecionVacia<Funcionalidad>("Funcionalidades",Funcionalidades);
         }
             
         }

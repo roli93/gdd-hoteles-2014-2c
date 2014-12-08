@@ -100,13 +100,13 @@ namespace FrbaHotel.ABM_de_Cliente
         public void ValidarRepetidos()
         {
             if(clientes.Exists((cliente) => estaRepetido(cliente)))
-                errorMessage+="Los clientes siguen teniendo nímero y tipo de ID repetidos";
+                errorMessage+="Los clientes siguen teniendo número y tipo de ID o mail repetidos";
         }
 
         private Boolean estaRepetido(Cliente cliente)
         {
             return clientes
-                .Where<Cliente>((c) => { return c.NumeroId.Equals(cliente.NumeroId) && c.TipoIdentificacion.Equals(cliente.TipoIdentificacion); })
+                .Where<Cliente>((c) => { return (c.NumeroId.Equals(cliente.NumeroId) && c.TipoIdentificacion.Equals(cliente.TipoIdentificacion))||c.Mail.Equals(cliente.Mail); })
                 .Count()>1;
         }
 
