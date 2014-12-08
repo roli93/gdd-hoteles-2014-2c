@@ -179,10 +179,6 @@ namespace FrbaHotel.Administracion_Base_de_Datos
                 dataTable.Load(dataReader);
                 return dataTable;
             }
-            catch (Exception)
-            {
-                return null;
-            }
 
             finally
             {

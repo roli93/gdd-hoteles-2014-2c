@@ -14,7 +14,7 @@ namespace FrbaHotel.ABM_de_Hotel
         protected string telefono;
         protected string calle;
         protected string recargoEstrellas;
-        protected int altura;
+        protected string altura;
         protected int estrellas;
         protected Pais pais;
         protected string ciudad;
@@ -25,14 +25,18 @@ namespace FrbaHotel.ABM_de_Hotel
         {
             regimenes = CheckListToList<Regimen>(_regimenes);
             ValidarErrores();
-            HomeHoteles.insertarHotel(nombre,email,telefono,calle,altura,estrellas,pais,ciudad,regimenes,fechaCreacion.ToString(),Convert.ToInt32(recargoEstrellas));
+            HomeHoteles.insertarHotel(nombre,email,telefono,calle,Convert.ToInt32(altura),estrellas,pais,ciudad,regimenes,fechaCreacion.ToString(),Convert.ToInt32(recargoEstrellas));
 
         }
         
         public override void ValidarErroresConcretos()
         {
-            ValidarNumericos(recargoEstrellas);
-            ValidarVaciosYLongitud(new string[] { "Nombre","Email","Telefono","Calle","Altura","Estrellas","Pais","Fecha de Creacion","Recargo Por Estrellas" }, new object[] { nombre,email,telefono,calle,altura,estrellas,pais.Descripcion,fechaCreacion,recargoEstrellas });
+            ValidarNumericos(recargoEstrellas,telefono,altura);
+            ValidarVaciosYLongitud(new string[] { "Nombre","Email","Telefono","Calle","Altura","Pais","Ciudad","Fecha de Creacion","Recargo Por Estrellas" }, new object[] { nombre,email,telefono,calle,altura,pais,ciudad,fechaCreacion,recargoEstrellas });
+            if(estrellas.Equals(0))
+                errorMessage+="El campo Estrellas no ha sido completado\n";
+            ValidarCollecionVacia<Regimen>("Regímenes", regimenes);
+
         }
     }
 }

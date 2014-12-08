@@ -89,7 +89,7 @@ namespace FrbaHotel.ABM_de_Hotel
 
         private void _altura_TextChanged(object sender, EventArgs e)
         {
-            altura = Convert.ToInt32(_altura.Text);
+            altura = _altura.Text;
         }
 
         private void label11_Click(object sender, EventArgs e)

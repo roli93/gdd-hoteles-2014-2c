@@ -57,7 +57,7 @@ namespace FrbaHotel
         {
             get
             {
-                DataTable elementos = DatabaseAdapter.traerDataTable("obtener_hoteles", Id);
+                DataTable elementos = DatabaseAdapter.traerDataTable("obtener_hoteles", Id,Sesion.FechaActual);
                 List<Hotel> hoteles = new List<Hotel>();
 
                 foreach (DataRow elemento in elementos.Rows)

@@ -42,7 +42,11 @@ namespace FrbaHotel
         {
             get
             {
-                 return elementosDisponibles<Hotel>((e) => new Hotel((Convert.ToInt32(e["id_hotel"])), e["nombre"].ToString()), "hoteles_disponibles");
+                DataTable elementos = DatabaseAdapter.traerDataTable("hoteles_disponibles",Sesion.FechaActual);
+                List<Hotel> listaElementos = new List<Hotel>();
+                foreach (DataRow elemento in elementos.Rows)
+                    listaElementos.Add(new Hotel(Convert.ToInt32(elemento["id_hotel"]),elemento["nombre"].ToString()));
+                return listaElementos;
                 
             }
         }

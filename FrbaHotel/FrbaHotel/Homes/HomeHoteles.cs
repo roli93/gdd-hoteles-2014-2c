@@ -46,11 +46,12 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.insertarDatosEnTabla("periodo_cierre", idHotel, fechaDesde, fechaHasta);
         }
 
-        static public void actualizarHotel(int idHotel, string nombre, string email, string telefono, string calle, int altura, int estrellas, Pais pais, string ciudad, List<Regimen> regimenes, string fechaCreacion, int recargoEstrellas)
+        static public void actualizarHotel(int idHotel, string nombre, string email, string telefono, string calle, int altura, int estrellas, Pais pais, string ciudad, List<Regimen> regimenes, string fechaCreacion, int recargoEstrellas,List<Regimen> regimenesOriginales)
         {
             DatabaseAdapter.actualizarDatosEnTabla("hotel", idHotel, nombre, email, telefono, calle, altura, estrellas, pais.Id, ciudad, fechaCreacion,recargoEstrellas);
-            DatabaseAdapter.ejecutarProcedure("borrar_regimen_x_hotel_idHotel", idHotel);
-            agregarElementos("regimen_x_hotel", idHotel, IdsDe<Regimen>(regimenes));
+            removerElementosChequeo("regimen_x_hotel_chequeo", idHotel, IdsDe<Regimen>(diferencia<Regimen>(regimenesOriginales, regimenes)));
+            removerElementos("regimen_x_hotel", idHotel,IdsDe<Regimen>(diferencia<Regimen>(regimenesOriginales,regimenes)));
+            agregarElementos("regimen_x_hotel", idHotel, IdsDe<Regimen>(diferencia<Regimen>(regimenes, regimenesOriginales)));
         }
 
 

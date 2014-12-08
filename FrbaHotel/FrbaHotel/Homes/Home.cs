@@ -21,6 +21,13 @@ namespace FrbaHotel.Homes
                 DatabaseAdapter.borrarDatosEnTabla(tablaIntermedia, idOneSide, id);
         }
 
+        public static void removerElementosChequeo(string tablaIntermedia, int idOneSide, List<int> idsManySide)
+        {
+            foreach (int id in idsManySide)
+                DatabaseAdapter.borrarDatosEnTabla(tablaIntermedia, idOneSide, id,Sesion.FechaActual);
+        }
+
+
         public static List<T> diferencia<T>(List<T> original, List<T> nuevo)
         {
             return original.Cast<Entidad>().ToList().Except(nuevo.Cast<Entidad>().ToList()).ToList<Entidad>().Cast<T>().ToList();

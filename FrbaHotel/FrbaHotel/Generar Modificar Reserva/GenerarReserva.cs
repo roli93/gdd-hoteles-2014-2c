@@ -62,8 +62,11 @@ namespace FrbaHotel.Generar_Modificar_Reserva
             HomeReservas.bajaReservasViejas();
             _seleccionarRegimen.Enabled = false;
             bindCombo<Hotel>(_hotel, Sesion.HotelesDisponiblesUsuario);
-            _hotel.SelectedIndex = 0;
-            _hotel.Enabled = false;
+            if (!Sesion.Usuario.esGuest())
+            {
+                _hotel.SelectedIndex = 0;
+                _hotel.Enabled = false;
+            }
             cargarBotonModificarDatos(dataGridView1, "Eliminar");
             FechaFin = Sesion.FechaActual;
             FechaInicio = Sesion.FechaActual;
