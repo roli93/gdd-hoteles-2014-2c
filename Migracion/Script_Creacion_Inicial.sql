@@ -1624,11 +1624,12 @@ IF OBJECT_ID('MAX_POWER.IMP_Habitacion', 'P') IS NOT NULL
 GO	
 
 CREATE PROCEDURE [MAX_POWER].IMP_Habitacion
-AS INSERT INTO MAX_POWER.Habitacion (id_hotel, id_tipo_habitacion, numero, piso, frente, habilitada)
+AS INSERT INTO MAX_POWER.Habitacion (id_hotel, id_tipo_habitacion, numero, piso, frente, habilitada, descripcion)
 	SELECT MAX_POWER.buscar_ID_Hotel(Ciudad_Hotel, Calle_Hotel, Altura_Hotel) AS id_hotel, Tipo, Numero, 
 			Piso, 
 			Frente,
-			'S' AS habilitada
+			'S' AS habilitada,
+			'' as descripcion
 	FROM MAX_POWER.V_habitacion
 GO
 
