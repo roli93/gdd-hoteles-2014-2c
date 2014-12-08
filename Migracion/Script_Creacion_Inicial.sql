@@ -1393,6 +1393,7 @@ FROM         gd_esquema.Maestra
 ORDER BY Codigo
 GO
 
+
 PRINT 'Vistas creadas.'
 
 	/*	F U N C I O N E S	*/
@@ -1544,7 +1545,7 @@ AS
 declare @ahora as date
 set @ahora = GETDATE()
 insert into MAX_POWER.estadia (fecha_ingreso, fecha_egreso, id_reserva, valida)
-	select fecha_inicio, fecha_fin, id_reserva, 
+	select fecha_inicio, fecha_fin, id_reserva,
 		case when fecha_inicio > @ahora then 'N' else 'S' end as valida
 	from MAX_POWER.Reserva
 GO
@@ -2948,6 +2949,14 @@ EXEC [MAX_POWER].REGIMEN_HOTEL
 GO
 PRINT 'Importado: Regimenes por Hotel.'
 
+delete from MAX_POWER.Estadia where id_reserva in ( 
+	SELECT DISTINCT 
+		Reserva_Codigo AS Codigo
+	FROM gd_esquema.Maestra
+	group by Reserva_Codigo
+	having count(Estadia_Fecha_Inicio) = 0)
+	
+GO
 
 update MAX_POWER.Reserva set MAX_POWER.Reserva.id_estado = 6
 from MAX_POWER.Reserva
