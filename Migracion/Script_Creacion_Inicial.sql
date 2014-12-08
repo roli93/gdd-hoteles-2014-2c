@@ -2668,7 +2668,8 @@ GO
 /*   L I S T A D O S   */
 CREATE PROCEDURE [MAX_POWER].top5estadistico_hoteles_mas_reservas_canceladas(@trimestre as bigint, @anio as bigint) as
 select top 5
-hot.*, canceladas
+	hot.nombre, hot.mail, hot.telefono, hot.calle, hot.altura, hot.fecha_creacion, 
+	hot.estrellas, hot.recarga_estrellas, hot.ciudad, p.nombre, canceladas
 from (select 
 		h.id_hotel,
 		COUNT(h.id_hotel) as canceladas
@@ -2677,19 +2678,21 @@ from (select
 	join MAX_POWER.Estado e on e.id_estado = r.id_estado and e.descripcion like '%cancel%'
 	join MAX_POWER.Habitacion_reservada hr on hr.id_reserva = r.id_reserva
 	join MAX_POWER.Habitacion h on h.id_habitacion = hr.id_habitacion
-	join MAX_POWER.Modificacion m on m.id_reserva = r.id_reserva and m.id_tipo_modificacion = (SELECT id_tipo_modificacion FROM [MAX_POWER].Tipo_modificacion WHERE descripcion LIKE '%cancel%')
+	left join MAX_POWER.Modificacion m on m.id_reserva = r.id_reserva and m.id_tipo_modificacion = (SELECT id_tipo_modificacion FROM [MAX_POWER].Tipo_modificacion WHERE descripcion LIKE '%cancel%')
 
 	where (floor(MONTH(m.fecha)/4) + 1) = @trimestre
 		and YEAR(m.fecha) = @anio
 	group by h.id_hotel, h.frente
 )tabla
 join MAX_POWER.Hotel hot on hot.id_hotel = tabla.id_hotel
+join MAX_POWER.Pais p on p.id_pais = hot.id_pais
 order by canceladas desc
 GO
 
 CREATE PROCEDURE [MAX_POWER].top5estadistico_hoteles_mas_consumibles_facturados(@trimestre as bigint, @anio as bigint) as
 select top 5
-hot.*, consumibles
+	hot.nombre, hot.mail, hot.telefono, hot.calle, hot.altura, hot.fecha_creacion, 
+	hot.estrellas, hot.recarga_estrellas, hot.ciudad, p.nombre, consumibles
 from (select 
 		h.id_hotel,
 		sum(prod.cantidad) as consumibles
@@ -2706,13 +2709,15 @@ from (select
 	group by h.id_hotel
 )tabla
 join MAX_POWER.Hotel hot on hot.id_hotel = tabla.id_hotel
+join MAX_POWER.Pais p on p.id_pais = hot.id_pais
 order by consumibles desc
 
 GO
 
 CREATE PROCEDURE [MAX_POWER].top5estadistico_hoteles_con_mas_periodo_inactivo(@trimestre as bigint, @anio as bigint) as
 select top 5
-hot.*
+	hot.nombre, hot.mail, hot.telefono, hot.calle, hot.altura, hot.fecha_creacion, 
+	hot.estrellas, hot.recarga_estrellas, hot.ciudad, p.nombre, dias_inactivo
 from (select 
 		pc.id_hotel,
 		sum( DATEDIFF(DAY,pc.fecha_inicio,coalesce(pc.fecha_fin,getdate())) ) as dias_inactivo
@@ -2724,13 +2729,15 @@ from (select
 	group by pc.id_hotel
 )tabla
 join MAX_POWER.Hotel hot on hot.id_hotel = tabla.id_hotel
+join MAX_POWER.Pais p on p.id_pais = hot.id_pais
 order by dias_inactivo desc
 
 GO
 
 CREATE PROCEDURE [MAX_POWER].top5estadistico_habitaciones_mas_ocupadas(@trimestre as bigint, @anio as bigint) as
 select top 5
-hab.*, cantidad_dias, cantidad_veces, hot.nombre
+	hot.nombre, th.descripcion, hab.numero, hab.piso, hab.frente, 
+	hab.descripcion, hab.habilitada, cantidad_dias, cantidad_veces
 from (select 
 		h.id_habitacion,
 		COUNT( h.id_habitacion ) as cantidad_veces,
@@ -2748,6 +2755,7 @@ from (select
 )tabla
 join MAX_POWER.Habitacion hab on hab.id_habitacion = tabla.id_habitacion
 join MAX_POWER.Hotel hot on hot.id_hotel = hab.id_hotel
+join MAX_POWER.Tipo_habitacion th on th.id_tipo_habitacion = hab.id_tipo_habitacion
 order by cantidad_veces desc, cantidad_dias desc
 
 GO
@@ -2759,7 +2767,9 @@ floor(precio_estadia/10) + floor(
 	from MAX_POWER.Producto_X_Habitacion_reservada phr
 	join MAX_POWER.Producto p on p.id_producto = phr.id_producto
 	where phr.id_factura = tabla.factura ) /5) as puntos,
-c.*
+	c.numero_identificacion, td.descripcion, c.apellido, c.nombre, 
+	c.fecha_nacimiento, c.mail, c.calle, c.altura, c.piso, c.departamento, 
+	c.telefono, c.localidad, p.nombre, c.habilitado
 from (select 
 		r.id_cliente_titular as cliente,
 		e.id_estadia as estadia, 
@@ -2781,6 +2791,8 @@ from (select
 		and YEAR(e.fecha_ingreso) = @anio
 )tabla
 join MAX_POWER.Cliente c on c.id_cliente = tabla.cliente
+join MAX_POWER.Tipo_documento td on td.id_tipo_documento = c.id_tipo_identificacion
+join MAX_POWER.Pais p on p.id_pais = c.id_pais
 order by puntos desc
 GO
 
