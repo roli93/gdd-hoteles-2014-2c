@@ -1,0 +1,40 @@
+* ABM CLIENTE:
+
+> Al modificar un cliente, cuando apretás el botón de limpiar, se borra el DNI.
+
+> Cómo se habilita a un cliente inhabilitado?
+
+> Cuando modifico/inhabilito un cliente no me deja guardarlo porque el mail ya existe: esto es porque
+hay mails duplicados en la DB; debería sacarse la validación sobre la repetición de emails.
+
+
+* ABM RESERVA:
+
+> Creo una reserva con fechas en el 2020, después la modifico y la fecha de inicio se la pongo
+el 24 de diciembre de 2013. Me deja hacerlo. Sin embargo, cuando borro esa reserva y quiero
+crear una nueva con esas mismas fechas (y nombre del hotel, habitaciones, régimen) no me deja.
+
+
+* ABM HOTEL:
+
+> Nombre de la ventana de hoteles = hotels
+
+> Al crear un hotel: Brasil - Córdoba? se deja así?
+
+> Me deja crear el hotel en una fecha futura: está bien que se pueda?
+
+> Respecto al período de cierre:
+   - Validar fecha fin anterior a fecha inicio: al dar de baja un hotel, me deja poner una fecha de
+     fin anterior a la fecha de inicio.
+
+   - Validar repeticion de fechas: se puede hacer el período de cierre dos veces para la misma fecha.
+
+
+* AMB HABITACION
+
+> Nombre de la ventana de habitaciones = Habitacions.
+
+> Cuando modifico una habitación de interior a exterior o viceversa, no actualiza el campo "frente"
+en la pantalla de búsqueda de habitaciones; siempre aparece como S.
+
+> No me deja hacer búsquedas de habitaciones mediante el campo Interior/Exterior.
