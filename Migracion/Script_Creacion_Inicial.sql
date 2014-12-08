@@ -1700,8 +1700,13 @@ CREATE PROCEDURE [MAX_POWER].Detectar_Clientes_Repetidos AS
 			mail, nombre, numero_identificacion, piso, telefono, controlado)
 	SELECT altura, apellido, calle, departamento, fecha_nacimiento, 
 			habilitado, id_pais, id_tipo_identificacion, localidad, 
-			mail, nombre, numero_identificacion, piso, telefono, 'N' AS controlado
-	FROM MAX_POWER.Cliente where numero_identificacion in (SELECT numero_identificacion FROM MAX_POWER.Cliente
+			c.mail, nombre, numero_identificacion, piso, telefono, 'N' AS controlado
+	from MAX_POWER.Cliente c 
+	where c.mail in 
+		(select mail from MAX_POWER.Cliente
+		group by mail
+		having COUNT(mail) > 1 ) OR 
+		numero_identificacion in (SELECT numero_identificacion FROM MAX_POWER.Cliente
 		group by numero_identificacion 
 		having COUNT(numero_identificacion) <> 1)
 GO
