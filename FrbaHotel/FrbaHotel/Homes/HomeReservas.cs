@@ -21,7 +21,7 @@ namespace FrbaHotel.Homes
 
         public static void bajaReservasViejas()
         {
-            DatabaseAdapter.ejecutarProcedure("baja_reservas_viejas");
+            DatabaseAdapter.ejecutarProcedure("baja_reservas_viejas",Sesion.FechaActual);
         }
 
         public static void buscarReservaPorId(int id, out Hotel hotel, out Regimen regimen, out DateTime fechaInicio, out DateTime fechaFin, out List<Habitacion> habitaciones)
@@ -77,7 +77,7 @@ namespace FrbaHotel.Homes
         public static void verificarReservaEsEditable(int idReserva,int idHotel)
         {
             int error = 0;
-            error=DatabaseAdapter.ejecutarProcedureWithReturnValue("reserva_editable", idReserva,idHotel);
+            error=DatabaseAdapter.ejecutarProcedureWithReturnValue("reserva_editable", idReserva,idHotel,Sesion.FechaActual);
             DatabaseAdapter.CheckExcepcionPara(error);
         }
 
@@ -120,7 +120,7 @@ namespace FrbaHotel.Homes
         public static void verificarReservaEsIngresable(int idReserva, int idHotel)
         {
             int error = 0;
-            error = DatabaseAdapter.ejecutarProcedureWithReturnValue("reserva_ingresable", idReserva, idHotel);
+            error = DatabaseAdapter.ejecutarProcedureWithReturnValue("reserva_ingresable", idReserva, idHotel,Sesion.FechaActual);
             DatabaseAdapter.CheckExcepcionPara(error);
         }
 

@@ -1899,7 +1899,7 @@ AS
 UPDATE [MAX_POWER].Rol SET habilitado = 'N' WHERE id_rol = @id
 GO
 
-CREATE PROCEDURE [MAX_POWER].[buscar_hoteles](@nombre VARCHAR(50), @estrellas BIGINT, @id_pais BIGINT, @ciudad VARCHAR(50))
+CREATE PROCEDURE [MAX_POWER].[buscar_hoteles](@nombre VARCHAR(50), @estrellas BIGINT, @id_pais BIGINT, @ciudad VARCHAR(50), @fecha_sistema datetime)
  
 AS 
 	SELECT H.id_hotel as ID, H.nombre as HNOMBRE,mail,telefono,calle,altura,fecha_creacion,estrellas,recarga_estrellas,H.id_pais as HPais,ciudad
@@ -1915,8 +1915,8 @@ AS
 		AND CAST(estrellas as VARCHAR(50)) like (SELECT CASE WHEN @estrellas = 0 THEN '%' ELSE CAST(@estrellas AS VARCHAR(50)) END)
 		
 		AND (SELECT COUNT(*) from Hotel Hot join Periodo_Cierre Per on Hot.id_hotel=Per.id_hotel 
-				where Per.fecha_fin>CONVERT(DATE,getDate(),102)
-					and Per.fecha_inicio<CONVERT(DATE,getDate(),102)
+				where Per.fecha_fin>CONVERT(DATE,@fecha_sistema,102)
+					and Per.fecha_inicio<CONVERT(DATE,@fecha_sistema,102)
 					and Hot.id_hotel = H.id_hotel)=0
 
 GO
@@ -2061,7 +2061,7 @@ RETURN @ret
 END
 GO
 
-CREATE PROCEDURE [MAX_POWER].reserva_editable(@id_reserva BIGINT,@id_hotel BIGINT) AS
+CREATE PROCEDURE [MAX_POWER].reserva_editable(@id_reserva BIGINT,@id_hotel BIGINT, @fecha_sistema datetime) AS
 BEGIN
 	IF (NOT EXISTS (SELECT 1 FROM MAX_POWER.Reserva WHERE id_reserva=@id_reserva))
 		RETURN(-10)
@@ -2073,7 +2073,7 @@ BEGIN
 			FROM [MAX_POWER].reserva R INNER JOIN MAX_POWER.Estado E ON R.id_estado=E.id_estado
 			WHERE id_reserva = @id_reserva)LIKE UPPER('%INGRES%'))
 		RETURN (-13)
-	ELSE IF ((SELECT fecha_inicio FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)<=CONVERT(DATE,GETDATE()))
+	ELSE IF ((SELECT fecha_inicio FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)<=CONVERT(DATE,@fecha_sistema))
 		RETURN (-11)
 	ELSE IF(@id_hotel!=-1)
 		IF(MAX_POWER.reserva_es_de_hotel(@id_reserva, @id_hotel)=0)
@@ -2083,7 +2083,7 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE [MAX_POWER].reserva_ingresable(@id_reserva BIGINT,@id_hotel BIGINT) AS
+CREATE PROCEDURE [MAX_POWER].reserva_ingresable(@id_reserva BIGINT,@id_hotel BIGINT, @fecha_sistema datetime) AS
 BEGIN
 	IF (NOT EXISTS (SELECT 1 FROM MAX_POWER.Reserva WHERE id_reserva=@id_reserva))
 		RETURN(-10)
@@ -2095,7 +2095,7 @@ BEGIN
 			FROM [MAX_POWER].reserva R INNER JOIN MAX_POWER.Estado E ON R.id_estado=E.id_estado
 			WHERE id_reserva = @id_reserva)LIKE UPPER('%INGRES%'))
 		RETURN (-13)
-	ELSE IF ((SELECT fecha_inicio FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)!=CONVERT(DATE,GETDATE()))
+	ELSE IF ((SELECT fecha_inicio FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)!=CONVERT(DATE,@fecha_sistema))
 		RETURN (-15)
 	ELSE IF ((SELECT C.habilitado FROM MAX_POWER.Reserva R,MAX_POWER.Cliente C WHERE C.id_cliente=R.id_cliente_titular and id_reserva=@id_reserva)='N')
 		RETURN(-24)
@@ -2477,9 +2477,9 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].actualizar_cliente(@id BIGINT, @nombre VARCHAR(50), @apellido VARCHAR(50), @id_tipo_identificacion BIGINT, @nroId BIGINT, @mail VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50),@altura VARCHAR(10),@piso VARCHAR(10),@depto VARCHAR(50), @localidad VARCHAR(50), @fechaNacimiento DATETIME, @habilitado CHAR(1))
 AS BEGIN
-	IF (SELECT COUNT (mail) FROM [MAX_POWER].Usuario WHERE mail = @mail) > 0
+	IF EXISTS(SELECT 1 FROM [MAX_POWER].Cliente WHERE mail = @mail AND id_cliente!=@id)
 		RETURN (-5)
-	IF (EXISTS (SELECT 1 FROM MAX_POWER.Cliente WHERE id_tipo_identificacion=@id_tipo_identificacion AND numero_identificacion=@nroId))
+	IF (EXISTS (SELECT 1 FROM MAX_POWER.Cliente WHERE id_tipo_identificacion=@id_tipo_identificacion AND numero_identificacion=@nroId AND id_cliente!=@id))
 		RETURN (-6)
 	UPDATE [MAX_POWER].Cliente SET
 	nombre = @nombre,
@@ -2704,7 +2704,7 @@ select top 5
 hot.*
 from (select 
 		pc.id_hotel,
-		sum( DATEDIFF(DAY,pc.fecha_inicio,coalesce(pc.fecha_fin, getdate())) ) as dias_inactivo
+		sum( DATEDIFF(DAY,pc.fecha_inicio,coalesce(pc.fecha_fin,getdate())) ) as dias_inactivo
 	from MAX_POWER.Periodo_Cierre pc
 
 	where (floor(MONTH(pc.fecha_inicio)/4) + 1) = @trimestre
@@ -2790,9 +2790,9 @@ AS SELECT id_habitacion,MAX_POWER.costo_diario_habitacion(@id_hotel,id_habitacio
 												AND MAX_POWER.habitacion_libre(id_habitacion,	@fecha_inicio,@fecha_fin)=1
 GO
 
-CREATE PROCEDURE [MAX_POWER].baja_reservas_viejas AS
+CREATE PROCEDURE [MAX_POWER].baja_reservas_viejas(@fecha_sistema datetime) AS
 UPDATE MAX_POWER.Reserva SET id_estado=(SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%no%show%'))
-	WHERE fecha_inicio<GETDATE() AND id_estado != (SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%ingres%'))
+	WHERE fecha_inicio<@fecha_sistema AND id_estado != (SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%ingres%'))
 GO
 
 CREATE PROCEDURE [MAX_POWER].proximo_id_reserva AS
@@ -2826,7 +2826,7 @@ END
 GO
 
 CREATE PROCEDURE [MAX_POWER].[insertar_hotel](
- @nombre VARCHAR(50), @email VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50), @altura BIGINT, @estrellas BIGINT, @id_pais BIGINT, @ciudad VARCHAR(50), @fechaCreacion VARCHAR(50), @recargaEstrellas BIGINT)
+ @nombre VARCHAR(50), @email VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50), @altura BIGINT, @estrellas BIGINT, @id_pais BIGINT, @ciudad VARCHAR(50), @fechaCreacion VARCHAR(50), @recargaEstrellas BIGINT, @fecha_sistema datetime)
  
  AS BEGIN
 	BEGIN TRY
@@ -2836,7 +2836,7 @@ CREATE PROCEDURE [MAX_POWER].[insertar_hotel](
 					@telefono,
 					@calle,
 					@altura,
-					CONVERT(DATE,getDate(),102),
+					CONVERT(DATE,@fecha_sistema,102),
 					@estrellas,
 					@recargaEstrellas,
 					@id_pais,

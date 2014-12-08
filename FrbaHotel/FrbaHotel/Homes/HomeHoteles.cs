@@ -12,7 +12,7 @@ namespace FrbaHotel.Homes
     {
         static public void insertarHotel(string nombre, string email, string telefono, string calle,int altura, int estrellas, Pais pais, string ciudad, List<Regimen> regimenes, string fechaCreacion,int recargoEstrellas)
         {
-            DatabaseAdapter.insertarDatosEnTabla("hotel", nombre, email, telefono, calle, altura, estrellas, pais.Id, ciudad, fechaCreacion,recargoEstrellas);
+            DatabaseAdapter.insertarDatosEnTabla("hotel", nombre, email, telefono, calle, altura, estrellas, pais.Id, ciudad, fechaCreacion,recargoEstrellas,Sesion.FechaActual);
             int id = DatabaseAdapter.getIdUltimaInsercion("hotel");
             agregarElementos("regimen_x_hotel",id, IdsDe<Regimen>(regimenes));
             DatabaseAdapter.insertarDatosEnTabla("usuario_x_hotel",Sesion.Usuario.Id,id);
@@ -38,7 +38,7 @@ namespace FrbaHotel.Homes
 
         static public DataTable buscarHoteles(string nombre,int estrellas,Pais pais,string ciudad) 
         {
-           return DatabaseAdapter.traerDataTable("buscar_hoteles", like(nombre), estrellas, pais.Id, like(ciudad));
+           return DatabaseAdapter.traerDataTable("buscar_hoteles", like(nombre), estrellas, pais.Id, like(ciudad),Sesion.FechaActual);
         }
 
         static public void bajaLogica(int idHotel,string fechaDesde,string fechaHasta)
