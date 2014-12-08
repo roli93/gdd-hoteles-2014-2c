@@ -38,3 +38,33 @@ crear una nueva con esas mismas fechas (y nombre del hotel, habitaciones, régim
 en la pantalla de búsqueda de habitaciones; siempre aparece como S.
 
 > No me deja hacer búsquedas de habitaciones mediante el campo Interior/Exterior.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Nuevos derechos y garantías %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+> Respecto a las funcionalidades. Según el enunciado:
+ - No dice nada sobre la funcionalidad administrar roles.
+ - Solo el administrador tiene acceso a la funcionalidad administrar usuarios.
+ - El administrador no deberia poder crear un usuario con Rol = guest, porque un guest no necesita
+   loguearse para entrar.
+ - Recepcionista tiene acceso a ABM Cliente.
+ - ABM Hoteles solo puede ser accedida por administradores.
+ - ABM Habitaciones dice que la acceden los administradores, pero tiene sentido que lo hagan
+   también los recepcionistas.
+ - Registrar estadía es accedido por la recepción.
+ - También factura el recepcionista.
+
+
+> En los datos del cliente: País <> Nacionalidad. No aparece el campo Nacionalidad con el cual buscar
+clientes.
+
+> Si el usuario tiene un solo rol asignado se ingresará al sistema directamente, pero si el
+mismo tiene más de uno, se deberá dar la posibilidad de seleccionar uno de ellos.
+
+> Cuando intento eliminar repetidos por duplicacion de mails, me deja eliminar uno solo
+de los tres jose_Mendoza@gmail.com, por ejemplo, que aparecen. Después sí me dejó eliminarlos, pero
+tiró excepción "error de aplicacion". CUando abrí la app de nuevo, figuraba uno solo de esos tres
+y cuando apreto editar me seguía diciendo que había mails duplicados y si quería solucionarlo.
+Me mostraba a un solo jose, pero cuando apreto de solucionar la inconsistencia volvian a aparecer
+los tres y al apretar listo volvía a tirar la excepción.
