@@ -68,6 +68,9 @@ namespace FrbaHotel
             DatabaseAdapter.Excepciones.Add(-24, new ExcepcionFrbaHoteles("La reserva ha sido invalidada dado que el titular fue inhabilitado"));
             DatabaseAdapter.Excepciones.Add(-25, new ExcepcionFrbaHoteles("Ya se ha registrado una habitacion con esa configuración de hotel, piso y numero"));
             DatabaseAdapter.Excepciones.Add(-26, new ExcepcionFrbaHoteles("No se puede cerrar el hotel en ese período dado que existen reservas que se superponen con él"));
+            DatabaseAdapter.Excepciones.Add(-27, new ExcepcionFrbaHoteles("Imposible volver a habilitar al cliente dado que sus datos son inconsistentes (identificación o mail repetidos)"));
+            DatabaseAdapter.Excepciones.Add(-28, new ExcepcionFrbaHoteles("Ya existe un período de cierre que se superpone con el indicado"));
+            DatabaseAdapter.Excepciones.Add(-29, new ExcepcionFrbaHoteles("Al menos una de las habitaciones originales de la reserva no está disponible en las nuevas fechas especificadas\n Puede intentar volvíendolas a cargar"));
             DatabaseAdapter.Excepciones.Add(-31, new ExcepcionFrbaHoteles("No se puede quitar el régimen \"Pensión Completa\" ya que hay reservas presentes o futuras hechas con él"));
             DatabaseAdapter.Excepciones.Add(-32, new ExcepcionFrbaHoteles("No se puede quitar el régimen \"Media Pensión\" ya que hay reservas presentes o futuras hechas con él"));
             DatabaseAdapter.Excepciones.Add(-33, new ExcepcionFrbaHoteles("No se puede quitar el régimen \"All Inclusive\" ya que hay reservas presentes o futuras hechas con él"));

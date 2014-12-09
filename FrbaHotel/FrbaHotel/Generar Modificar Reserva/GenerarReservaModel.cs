@@ -22,6 +22,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         public Hotel Hotel { get; set; }
         public List<Habitacion> Habitaciones { get; set; }
         public int ClienteId { get; set; }
+        public DataTable habitacionesTable;
 
         public virtual void Guardar()
         {
@@ -41,10 +42,16 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         public void PersistirReserva()
         {
             int id = HomeReservas.registrarReserva(Regimen, FechaInicio, FechaFin, Habitaciones, ClienteId);
+            InformarYFinalizar();
+            successMessage += "\n\nIMPORTANTE: Su código de reserva para futuras modificaciones es " + id.ToString();
+        }
+            
+
+        public void InformarYFinalizar()
+        {
             double costo = Habitaciones.Sum<Habitacion>(h => h.Costo);
             successMessage += "\nEl costo de la reserva es de $" + costo + " por día por " + Convert.ToInt32((FechaFin - FechaInicio).TotalDays) +
-                            " dias totalizando: $"+costo*Convert.ToInt32((FechaFin-FechaInicio).TotalDays)+
-                            "\n\nIMPORTANTE: Su código de reserva para futuras modificaciones es "+id.ToString();
+                            " dias totalizando: $" + costo * Convert.ToInt32((FechaFin - FechaInicio).TotalDays);
             Close();
         }
 
@@ -82,7 +89,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
 
         public void ActualizarHabitaciones()
         {
-            DataTable habitacionesTable = GenerarTableHabitaciones();
+            habitacionesTable = GenerarTableHabitaciones();
             cargarGrilla(dataGridView1, habitacionesTable);
         }
 

@@ -1850,6 +1850,35 @@ AS SELECT DISTINCT C.id_cliente as ID,Nombre,Apellido,Mail,descripcion as 'Tipo 
 		AND id_tipo_identificacion LIKE (SELECT CASE WHEN @Id_tipo_identificacion = -1 THEN '%' ELSE CAST(@Id_tipo_identificacion AS VARCHAR(50)) END )
 GO
 
+CREATE PROCEDURE [MAX_POWER].buscar_clientes_inhabilitados(@nombre VARCHAR(50), @apellido VARCHAR(50), @email VARCHAR(50), @nroId VARCHAR(50), @Id_tipo_identificacion BIGINT)
+AS SELECT DISTINCT C.id_cliente as ID,Nombre,Apellido,Mail,descripcion as 'Tipo de Identificacion' ,numero_identificacion as 'Número de Identificación', MAX_POWER.es_valido(D.id_tipo_documento,C.numero_identificacion) as Correcto
+	FROM MAX_POWER.Cliente C
+		JOIN MAX_POWER.Tipo_documento D ON C.id_tipo_identificacion=D.id_tipo_documento
+	WHERE habilitado='N'
+		AND	UPPER(nombre) LIKE UPPER(@nombre)
+		AND UPPER(apellido) LIKE UPPER(@apellido)
+		AND UPPER(mail) LIKE UPPER(@email)
+		AND numero_identificacion LIKE @nroId 
+		AND id_tipo_identificacion LIKE (SELECT CASE WHEN @Id_tipo_identificacion = -1 THEN '%' ELSE CAST(@Id_tipo_identificacion AS VARCHAR(50)) END )
+GO
+
+
+CREATE PROCEDURE [MAX_POWER].rehabilitar_cliente(@id_cliente BIGINT)AS
+BEGIN
+	DECLARE @id_tipo_id BIGINT
+	DECLARE @nro_id VARCHAR(50)
+	DECLARE @mail VARCHAR(50)
+	SELECT @id_tipo_id=id_tipo_identificacion,@nro_id=numero_identificacion, @mail = mail FROM MAX_POWER.Cliente WHERE id_cliente=@id_cliente
+	IF(EXISTS(SELECT 1 FROM MAX_POWER.Cliente
+				 WHERE habilitado='S' AND ((id_tipo_identificacion=@id_tipo_id AND numero_identificacion=@nro_id) OR mail=@mail)))
+		RETURN (-27)
+	ELSE
+	BEGIN
+		UPDATE MAX_POWER.Cliente SET habilitado='S' WHERE id_cliente=@id_cliente
+		RETURN (0)
+	END
+END
+GO
 
 CREATE PROCEDURE [MAX_POWER].identificacion_cliente(@id_cli BIGINT, @id_tipo_identificacion BIGINT OUTPUT,@nro_identificacion VARCHAR(50) OUTPUT,@email VARCHAR(50) OUTPUT)AS
 BEGIN
@@ -2038,6 +2067,13 @@ BEGIN
 							@fechaDesde BETWEEN R.fecha_inicio AND R.fecha_fin OR
 							@fechaHasta BETWEEN R.fecha_inicio AND R.fecha_fin)))
 		RETURN(-26)	
+	IF(EXISTS (SELECT 1 FROM MAX_POWER.Periodo_Cierre P
+					WHERE  P.id_hotel=@idHotel
+						AND (P.fecha_inicio BETWEEN @fechaDesde AND @fechaHasta OR
+							P.fecha_fin BETWEEN @fechaDesde AND @fechaHasta OR
+							@fechaDesde BETWEEN P.fecha_inicio AND P.fecha_fin OR
+							@fechaHasta BETWEEN P.fecha_inicio AND P.fecha_fin)))
+		RETURN(-28)
 	ELSE
 	BEGIN			
 		INSERT INTO MAX_POWER.Periodo_Cierre (id_hotel,fecha_inicio,fecha_fin) SELECT @idHotel,@fechaDesde,@fechaHasta
@@ -2391,7 +2427,9 @@ AS
 		fecha_fin = @fecha_fin,
 		id_regimen = @id_regimen
 		WHERE id_reserva = @id_reserva
+		RETURN(0)
 GO
+
 
 CREATE PROCEDURE [MAX_POWER].borrar_habitacion_reservada(@id_reserva BIGINT, @id_habitacion BIGINT)
 AS BEGIN

@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using FrbaHotel.Homes;
+using FrbaHotel.Forms_genericos;
 
 namespace FrbaHotel.ABM_de_Hotel
 {
-    public partial class BajaHotel : NavegableForm
+    public partial class BajaHotel : Alta
     {
         private int idHotel;
         private string fechaDesde;
@@ -46,8 +47,15 @@ namespace FrbaHotel.ABM_de_Hotel
 
         private void BajaLogicaHotel()
         {
+            ValidarErrores();
             HomeHoteles.bajaLogica(idHotel,fechaDesde,fechaHasta);
             this.Close();
+        }
+
+        public override void ValidarErroresConcretos()
+        {
+            if (_hasta.Value < _desde.Value)
+                errorMessage += "La fecha de inicio debe ser anterior a la de fin\n";
         }
     }
 }

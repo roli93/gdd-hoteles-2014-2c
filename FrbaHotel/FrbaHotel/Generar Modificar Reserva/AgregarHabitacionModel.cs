@@ -15,10 +15,11 @@ namespace FrbaHotel.Generar_Modificar_Reserva
     public partial class Agregar_Habitación : Alta
     {
         private GenerarReserva generarReserva;
-        private Hotel hotel;
-        private int cantidad;
-        private TipoHabitacion tipoHabitacion;
-        private DateTime fechaInicio, fechaFin;
+        public Hotel hotel;
+        public int cantidad;
+        public TipoHabitacion tipoHabitacion;
+        public DateTime fechaInicio, fechaFin;
+        public bool informar = true;
 
         public void Agregar()
         {
@@ -29,8 +30,11 @@ namespace FrbaHotel.Generar_Modificar_Reserva
                 throw new ExcepcionFrbaHoteles("No hay tantas habiatciones disponibles del tipo que ud. solicita");
             generarReserva.AgregarHabitaciones(habitaciones.Take<Habitacion>(cantidad).ToList<Habitacion>());
             Habitacion habitacion = habitaciones.ElementAt<Habitacion>(0);
-            MessageBox.Show("Se han agregado " + cantidad + " habitaciones con un costo diario de $"
-                             + habitacion.Costo + " cada una\ntotalizando unos $" + habitacion.Costo * cantidad+" por día");
+            if (informar)
+            {
+                MessageBox.Show("Se han agregado " + cantidad + " habitaciones con un costo diario de $"
+                             + habitacion.Costo + " cada una\ntotalizando unos $" + habitacion.Costo * cantidad + " por día");
+            }
             Close();
         }
 

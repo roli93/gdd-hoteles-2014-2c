@@ -24,6 +24,15 @@ namespace FrbaHotel.ABM_de_Cliente
             accion = "Editar";
         }
 
+        public SeleccionarCliente(NavegableForm owner,bool soloHabilitados,string accion)
+            : base(owner)
+        {
+            InitializeComponent();
+            this.soloHabilitados = soloHabilitados;
+            constructorEdicion = (id) => { return new ModificarCliente(this, id); };
+            this.accion = accion;
+        }
+
         protected string accion;
 
         private void SeleccionarCliente_Load(object sender, EventArgs e)

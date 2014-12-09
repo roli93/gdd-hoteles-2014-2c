@@ -16,11 +16,16 @@ namespace FrbaHotel.ABM_de_Cliente
         private string nombre="", apellido="", mail="", nroId="";
         private TipoDocumento tipoId=new TipoDocumento(-1,"");
         DataTable clientes;
+        bool soloHabilitados=true;
+        private int idClienteAManejar;
 
         public void Buscar()
         {
             ValidarErrores();
-            clientes = HomeClientes.buscarClientes(nombre, apellido, mail, nroId, tipoId);
+            if(soloHabilitados)
+                clientes = HomeClientes.buscarClientes(nombre, apellido, mail, nroId, tipoId);
+            else
+                clientes = HomeClientes.buscarClientesInhabilitados(nombre, apellido, mail, nroId, tipoId);
             cargarGrilla(dataGridView1, clientes);
         }
 
@@ -31,10 +36,22 @@ namespace FrbaHotel.ABM_de_Cliente
 
         public override void gridClickAction(DataGridViewCellCollection celdas)
         {
+            idClienteAManejar= Convert.ToInt32(celdas["ID"].Value);
             if (celdas["correcto"].Value.ToString() == "N")
-                corregirClienteRepetido(Convert.ToInt32(celdas["ID"].Value));
+                corregirClienteRepetido(idClienteAManejar);
+            else if (accion.Equals("Rehabilitar"))
+            {
+                if (MessageBox.Show("¿Confirma que desea vovler a dar de alta al cliente?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    ExcecuteAndShow(Rehabilitar);
+            }
             else
                 base.gridClickAction(celdas);
+        }
+
+        public void Rehabilitar()
+        {
+            HomeClientes.rehabilitarCliente(idClienteAManejar);
+            Buscar();
         }
 
         public void corregirClienteRepetido(int IdClienteRepetido)

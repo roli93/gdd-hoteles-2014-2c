@@ -34,12 +34,12 @@ namespace FrbaHotel.ABM_de_Cliente
 
         public override void baja()
         {
-           // new SeleccionarUsuario(this, "Eliminar").StandaloneOpen();
+            new SeleccionarCliente(this, false, "Rehabilitar").StandaloneOpen();
         }
 
         private void ABMClientes_Load(object sender, EventArgs e)
         {
-            radioBaja.Hide();
+            radioBaja.Text="Volver a habilitar un cliente inhabilitado";
             radioModificacion.Text = "Editar o inhabilitar un cliente existente";
         }
     }

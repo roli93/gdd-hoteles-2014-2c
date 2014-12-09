@@ -21,6 +21,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
             : base(o)
         {
             this.idReserva = idReserva;
+
             InitializeComponent();
         }
 

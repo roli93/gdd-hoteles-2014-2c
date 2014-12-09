@@ -20,6 +20,7 @@ namespace FrbaHotel.ABM_de_Hotel
             : base(owner,"un","Hotel")
         {
             InitializeComponent();
+
         }
 
         public override void alta()
@@ -35,6 +36,11 @@ namespace FrbaHotel.ABM_de_Hotel
         public override void baja()
         {
             new SeleccionarHotel(this, "Eliminar").StandaloneOpen();
+        }
+
+        private void ABMHotel_Load(object sender, EventArgs e)
+        {
+            radioBaja.Text = "Cerrar temporalmente un Hotel";
         }
 
     }

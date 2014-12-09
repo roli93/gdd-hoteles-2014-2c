@@ -444,6 +444,9 @@
       <DependentUpon>SeleccionarHabitacion.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="ABM de Hotel\ABMHotel.resx">
+      <DependentUpon>ABMHotel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ABM de Hotel\AltaHotel.resx">
       <DependentUpon>AltaHotel.cs</DependentUpon>
       <SubType>Designer</SubType>

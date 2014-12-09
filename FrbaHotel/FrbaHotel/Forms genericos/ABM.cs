@@ -36,7 +36,7 @@ namespace FrbaHotel
             radioAlta.Text = "Crear " + article + " " + entityName + " desde cero";
             radioModificacion.Text = "Ver y/o modificar " + article + " " + entityName + " existente";
             radioBaja.Text = "Eliminar " + article + " " + entityName;
-            this.Text = entityName.Substring(0, 1).ToUpper() + entityName.Substring(1)+"s";
+            this.Text = entityName.Substring(0, 1).ToUpper() + entityName.Substring(1);
         }
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)

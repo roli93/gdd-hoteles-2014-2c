@@ -13,7 +13,7 @@ namespace FrbaHotel.Forms_genericos
     public class Alta : NavegableForm
     {
         protected static Dictionary<Type, Action<Control>> cleaners = new Dictionary<Type, Action<Control>>() { 
-            {typeof(TextBox), c => ((TextBox)c).Clear()},
+            {typeof(TextBox), c => ClearTextBox((TextBox)c)},
             {typeof(CheckBox), c => ((CheckBox)c).Checked = false},
             {typeof(ListBox), c =>{} },
             {typeof(RadioButton), c => ((RadioButton)c).Checked = false},
@@ -53,6 +53,14 @@ namespace FrbaHotel.Forms_genericos
             if (c.Enabled)
                 c.SelectedIndex = -1;
         }
+
+
+        public static void ClearTextBox(TextBox c)
+        {
+            if (c.Enabled)
+                c.Clear();
+        }
+
 
         public static void ClearControls(Control.ControlCollection controls)
         {

@@ -34,12 +34,43 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         public override void Guardar()
         {
             ValidarErrores();
+            ValidarHabitacionesOriginalesDisponibles();
             if (MessageBox.Show("¿Confirma la reserva realizada?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 HomeReservas.actualizarReserva(idReserva, Regimen, FechaInicio, FechaFin, Habitaciones, habitacionesOriginales);
-                MessageBox.Show("La reserva se ha almacenado con éxito");
+                InformarYFinalizar();
+                MessageBox.Show(successMessage);
             }            
         }
+
+        public void ValidarHabitacionesOriginalesDisponibles()
+        {
+            List<Habitacion> habitacionesElegidas = new List<Habitacion>();
+            habitacionesElegidas.AddRange(Habitaciones);
+            Habitaciones = new List<Habitacion>();
+            Agregar_Habitación agregador = new Agregar_Habitación(this);
+            agregador.informar = false;
+            foreach (Habitacion habitacion in habitacionesElegidas)
+            {
+                agregador.hotel = Hotel;
+                agregador.fechaFin = FechaFin;
+                agregador.fechaInicio = FechaInicio;
+                agregador.cantidad = 1;
+                agregador.tipoHabitacion = habitacion.tipo;
+                try
+                {
+                    agregador.Agregar();
+                }
+                catch (ExcepcionFrbaHoteles e)
+                {
+                    Habitaciones = new List<Habitacion>();
+                    Habitaciones.AddRange(habitacionesElegidas);
+                    ActualizarHabitaciones();
+                    throw e;
+                }
+            }
+            ActualizarHabitaciones();
+       }
 
 
 

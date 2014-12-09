@@ -28,9 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // radioAlta
+            // 
+            this.radioAlta.Size = new System.Drawing.Size(147, 17);
+            this.radioAlta.Text = "Crear  un algo desde cero";
+            // 
+            // radioModificacion
+            // 
+            this.radioModificacion.Size = new System.Drawing.Size(191, 17);
+            this.radioModificacion.Text = "Ver y/o modificar  un algo existente";
+            // 
+            // radioBaja
+            // 
+            this.radioBaja.Size = new System.Drawing.Size(102, 17);
+            this.radioBaja.Text = "Eliminar  un algo";
+            // 
+            // ABMHotel
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(249, 139);
+            this.Name = "ABMHotel";
             this.Text = "ABMHotel";
+            this.Load += new System.EventHandler(this.ABMHotel_Load);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion

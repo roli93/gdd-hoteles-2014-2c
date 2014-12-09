@@ -20,6 +20,18 @@ namespace FrbaHotel.Homes
             return DatabaseAdapter.traerDataTable("buscar_clientes", like(nombre), like(apellido), like(email), like(nroId), idDe(tipoId));
         }
 
+        public static DataTable buscarClientesInhabilitados(string nombre, string apellido, string email, string nroId, TipoDocumento tipoId)
+        {
+            return DatabaseAdapter.traerDataTable("buscar_clientes_inhabilitados", like(nombre), like(apellido), like(email), like(nroId), idDe(tipoId));
+        }
+
+        public static void rehabilitarCliente(int idCliente)
+        {
+            int error = 0;
+            error=DatabaseAdapter.ejecutarProcedureWithReturnValue("rehabilitar_cliente", idCliente);
+            DatabaseAdapter.CheckExcepcionPara(error);
+        }
+
         public static void buscarPorId(int id, out  string nombre, out  string apellido, out  TipoDocumento tipoId, out  string nroId, out  string mail, out  string telefono, out  string calle,out string altura,out string piso, out string depto, out string localidad, out DateTime fechaNacimiento,out Pais pais, out bool habilitado)
         {
             DataRow cliente = DatabaseAdapter.traerDataTable("buscar_cliente_por_id", id).Rows[0];
