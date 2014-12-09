@@ -5,7 +5,7 @@
 > Cómo se habilita a un cliente inhabilitado?
 
 > Cuando modifico/inhabilito un cliente no me deja guardarlo porque el mail ya existe: esto es porque
-hay mails duplicados en la DB; debería sacarse la validación sobre la repetición de emails.
+hay mails duplicados en la DB; debería sacarse la validación sobre la repetición de emails.CORREGIDO
 
 
 * ABM RESERVA:
@@ -19,9 +19,9 @@ crear una nueva con esas mismas fechas (y nombre del hotel, habitaciones, régim
 
 > Nombre de la ventana de hoteles = hotels
 
-> Al crear un hotel: Brasil - Córdoba? se deja así?
+> Al crear un hotel: Brasil - Córdoba? se deja así? SÍ
 
-> Me deja crear el hotel en una fecha futura: está bien que se pueda?
+> Me deja crear el hotel en una fecha futura: está bien que se pueda? NO ACLARAN
 
 > Respecto al período de cierre:
    - Validar fecha fin anterior a fecha inicio: al dar de baja un hotel, me deja poner una fecha de
@@ -44,20 +44,20 @@ en la pantalla de búsqueda de habitaciones; siempre aparece como S.
 
 
 > Respecto a las funcionalidades. Según el enunciado:
- - No dice nada sobre la funcionalidad administrar roles.
- - Solo el administrador tiene acceso a la funcionalidad administrar usuarios.
+ - No dice nada sobre la funcionalidad administrar roles. ABM ROL (?)
+ - Solo el administrador tiene acceso a la funcionalidad administrar usuarios. NO ES PROBLEMA
  - El administrador no deberia poder crear un usuario con Rol = guest, porque un guest no necesita
    loguearse para entrar.
- - Recepcionista tiene acceso a ABM Cliente.
- - ABM Hoteles solo puede ser accedida por administradores.
+ - Recepcionista tiene acceso a ABM Cliente. NO ES PROBLEMA/TEMA DE CARGA
+ - ABM Hoteles solo puede ser accedida por administradores. NO ES PROBLEMA/TEMA DE CARGA
  - ABM Habitaciones dice que la acceden los administradores, pero tiene sentido que lo hagan
-   también los recepcionistas.
- - Registrar estadía es accedido por la recepción.
- - También factura el recepcionista.
+   también los recepcionistas. NO ES PROBLEMA/TEMA DE CARGA
+ - Registrar estadía es accedido por la recepción. NO ES PROBLEMA/TEMA DE CARGA
+ - También factura el recepcionista. NO ES PROBLEMA/TEMA DE CARGA
 
 
 > En los datos del cliente: País <> Nacionalidad. No aparece el campo Nacionalidad con el cual buscar
-clientes.
+clientes. ESTÁ BIEN COMO ESTÁ, PAIS ~ NACIONALIDAD
 
 > Si el usuario tiene un solo rol asignado se ingresará al sistema directamente, pero si el
 mismo tiene más de uno, se deberá dar la posibilidad de seleccionar uno de ellos.
@@ -67,7 +67,7 @@ de los tres jose_Mendoza@gmail.com, por ejemplo, que aparecen. Después sí me d
 tiró excepción "error de aplicacion". CUando abrí la app de nuevo, figuraba uno solo de esos tres
 y cuando apreto editar me seguía diciendo que había mails duplicados y si quería solucionarlo.
 Me mostraba a un solo jose, pero cuando apreto de solucionar la inconsistencia volvian a aparecer
-los tres y al apretar listo volvía a tirar la excepción.
+los tres y al apretar listo volvía a tirar la excepción. APARENTEMENTE CORREGIDO
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Nuevos %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
