@@ -35,9 +35,10 @@ CORREGIDO
 > Nombre de la ventana de habitaciones = Habitacions. CORREGIDO
 
 > Cuando modifico una habitación de interior a exterior o viceversa, no actualiza el campo "frente"
-en la pantalla de búsqueda de habitaciones; siempre aparece como S.
+en la pantalla de búsqueda de habitaciones; siempre aparece como S. CORREGIDO
 
 > No me deja hacer búsquedas de habitaciones mediante el campo Interior/Exterior.
+CORREGIDO
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Nuevos derechos y garantías %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
