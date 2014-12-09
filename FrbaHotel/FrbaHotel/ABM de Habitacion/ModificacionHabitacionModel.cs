@@ -24,6 +24,13 @@ namespace FrbaHotel.ABM_de_Habitacion
         protected override void Guardar()
         {
             ValidarErrores();
+            if (ubicacion != null)
+            {
+                if (ubicacion.Equals("Interior"))
+                    ubicacion = "N";
+                else if (ubicacion.Equals("Exterior"))
+                    ubicacion = "S";
+            }
             HomeHabitaciones.actualizarHabitacion(idHabitacion, hotel, Convert.ToInt32(numero), Convert.ToInt32(piso), tipo, ubicacion, descripcion,habilitada);
         }
 

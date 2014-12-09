@@ -11,18 +11,33 @@ namespace FrbaHotel.ABM_de_Habitacion
 {
     public partial class SeleccionarHabitacion
     {
-        private string descripcion = "%", ubicacion = "%";
-        private int numero = -1, piso = -1;
-        private TipoHabitacion tipo = new TipoHabitacion(-1, "%");
-        private Hotel hotel = new Hotel(-1, "%");
+        private string descripcion = "", ubicacion = "";
+        private string numero = "", piso = "";
+        private TipoHabitacion tipo = null;
+        private Hotel hotel = null;
         private DataTable habitaciones;
         private string habilitacionString;
 
         public void Buscar()
         {
             ValidarErrores();
+            if (ubicacion != null)
+            {
+                if (ubicacion.Equals("Interior"))
+                    ubicacion = "N";
+                else if (ubicacion.Equals("Exterior"))
+                    ubicacion = "S";
+            }
             habitaciones = HomeHabitaciones.buscarHabitaciones(hotel, numero, piso, ubicacion, tipo, descripcion,habilitacionString);
+            bool vacia = false;
+            if (habitaciones.Rows.Count.Equals(0))
+                vacia = true;
             cargarGrilla(dataGridView1, habitaciones);
+            if(!vacia)
+            {
+                dataGridView1.Columns["id_hotel"].Visible = false;
+                dataGridView1.Columns["ID"].Visible = false;
+            }
         }
 
         public void EliminarHabitacion(DataGridView grilla, DataGridViewCellEventArgs e)
@@ -38,6 +53,10 @@ namespace FrbaHotel.ABM_de_Habitacion
             }
         }
 
+        public override void ValidarErroresConcretos()
+        {
+            ValidarNumericos(numero, piso) ;
+        }
 
     }
 }

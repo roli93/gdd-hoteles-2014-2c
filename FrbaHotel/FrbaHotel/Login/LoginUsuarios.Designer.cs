@@ -45,7 +45,7 @@
             // 
             // botonVolver
             // 
-            this.botonVolver.Location = new System.Drawing.Point(12, 131);
+            this.botonVolver.Location = new System.Drawing.Point(11, 148);
             this.botonVolver.Name = "botonVolver";
             this.botonVolver.Size = new System.Drawing.Size(118, 23);
             this.botonVolver.TabIndex = 7;
@@ -91,7 +91,7 @@
             // 
             // botonIniciarSesion
             // 
-            this.botonIniciarSesion.Location = new System.Drawing.Point(137, 131);
+            this.botonIniciarSesion.Location = new System.Drawing.Point(136, 148);
             this.botonIniciarSesion.Name = "botonIniciarSesion";
             this.botonIniciarSesion.Size = new System.Drawing.Size(118, 23);
             this.botonIniciarSesion.TabIndex = 8;
@@ -101,7 +101,7 @@
             // 
             // botonAcceder
             // 
-            this.botonAcceder.Location = new System.Drawing.Point(69, 131);
+            this.botonAcceder.Location = new System.Drawing.Point(68, 148);
             this.botonAcceder.Name = "botonAcceder";
             this.botonAcceder.Size = new System.Drawing.Size(118, 23);
             this.botonAcceder.TabIndex = 9;
@@ -144,12 +144,13 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Seleccione el rol con el que desea iniciar";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter_1);
             // 
             // LoginUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(265, 162);
+            this.ClientSize = new System.Drawing.Size(265, 192);
             this.Controls.Add(this.passTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);

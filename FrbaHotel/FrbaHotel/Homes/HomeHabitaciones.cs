@@ -15,9 +15,9 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.ejecutarProcedure("baja_logica_habitacion",unId);
         }
 
-        static public DataTable buscarHabitaciones(Hotel unHotel, int unNumero, int unPiso, string unaUbicacion, TipoHabitacion unTipo, string unaDescripcion, string unaHabilitacionString)
+        static public DataTable buscarHabitaciones(Hotel unHotel, string unNumero, string unPiso, string unaUbicacion, TipoHabitacion unTipo, string unaDescripcion, string unaHabilitacionString)
         {
-            return DatabaseAdapter.traerDataTable("buscar_habitaciones", idDe(unHotel), like(unNumero.ToString()), like(unPiso.ToString()), like(unaUbicacion), idDe(unTipo), like(unaDescripcion), like(unaHabilitacionString));
+            return DatabaseAdapter.traerDataTable("buscar_habitaciones", idDe(unHotel), like(unNumero), like(unPiso), like(unaUbicacion), idDe(unTipo), like(unaDescripcion), like(unaHabilitacionString));
          
         }
 

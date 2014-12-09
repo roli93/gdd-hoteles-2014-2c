@@ -42,6 +42,15 @@ namespace FrbaHotel.Login
                 control.Hide();
             foreach (Control control in secondSet)
                 control.Show();
+            if(Roles.Count.Equals(1))
+                SeleccionAutomaticaRol();
+        }
+
+        public void SeleccionAutomaticaRol()
+        {
+            rol = (Rol) Roles[0];
+            comboRoles.Hide();
+            groupBox1.Hide();
         }
 
         public void acceder()

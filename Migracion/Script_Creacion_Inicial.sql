@@ -1959,27 +1959,18 @@ AS
 								AND Per.id_hotel = H.id_hotel))
 GO
 
-CREATE PROCEDURE [MAX_POWER].[buscar_habitaciones](@idHotel BIGINT,@unNumero BIGINT, @unPiso BIGINT, @unaUbicacion VARCHAR(1), @idTipo BIGINT, @unaDescripcion VARCHAR(50), @Habilitada VARCHAR(1))
- 
+CREATE PROCEDURE [MAX_POWER].buscar_habitaciones(@idHotel BIGINT,@unNumero VARCHAR(10), @unPiso VARCHAR(10), @unaUbicacion CHAR(1), @idTipo BIGINT, @unaDescripcion VARCHAR(50), @Habilitada CHAR(1))
 AS 
-	SELECT id_habitacion as ID, id_hotel, id_tipo_habitacion,numero,piso,frente,descripcion
- 
-	FROM [MAX_POWER].Habitacion
-	
-	WHERE CAST(id_hotel as VARCHAR(50)) like (SELECT CASE WHEN  @idHotel = -1 THEN '%' ELSE CAST(@idHotel AS VARCHAR(50)) END)
-	
-		AND CAST(numero as VARCHAR(50)) like (SELECT CASE WHEN  @unNumero = -1 THEN '%' ELSE CAST(@unNumero AS VARCHAR(50)) END)
-	
-		AND CAST(piso as VARCHAR(50)) like (SELECT CASE WHEN  @unPiso= -1 THEN '%' ELSE CAST(@unPiso AS VARCHAR(50)) END)
-		
-		AND UPPER(frente) like UPPER(@unaUbicacion)
-
-		AND CAST(id_tipo_habitacion as VARCHAR(50)) like (SELECT CASE WHEN @idTipo = -1 THEN '%' ELSE CAST(@idTipo AS VARCHAR(50)) END)
-		
-		AND UPPER(descripcion) LIKE UPPER(@unaDescripcion)
-		
-		AND UPPER(habilitada) like UPPER(@Habilitada)
-
+	SELECT id_habitacion as ID, id_hotel,T.descripcion as 'Tipo de Habitación',Numero,Piso,
+			(CASE WHEN frente='S' THEN 'Exterior' ELSE 'Interior' END)AS 'Ubicación',H.Descripcion
+ 		FROM [MAX_POWER].Habitacion H INNER JOIN  MAX_POWER.Tipo_habitacion T ON T.id_tipo_habitacion=H.id_tipo_habitacion
+		WHERE CAST(id_hotel as VARCHAR(50)) like (SELECT CASE WHEN  @idHotel = -1 THEN '%' ELSE CAST(@idHotel AS VARCHAR(50)) END)
+			AND CAST(numero as VARCHAR(50)) like @unNumero
+			AND CAST(piso as VARCHAR(50)) like	@unPiso 
+			AND UPPER(frente) like UPPER(@unaUbicacion)
+			AND CAST(H.id_tipo_habitacion as VARCHAR(50)) like (SELECT CASE WHEN @idTipo = -1 THEN '%' ELSE CAST(@idTipo AS VARCHAR(50)) END)
+			AND UPPER(H.descripcion) LIKE UPPER(@unaDescripcion)
+			AND UPPER(habilitada) like UPPER(@Habilitada)
 GO
 
 CREATE PROCEDURE [MAX_POWER].ciudades_disponibles

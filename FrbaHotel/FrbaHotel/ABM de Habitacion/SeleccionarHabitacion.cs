@@ -46,12 +46,12 @@ namespace FrbaHotel.ABM_de_Habitacion
 
         private void _numero_TextChanged(object sender, EventArgs e)
         {
-            numero = Convert.ToInt32(_numero.Text);
+            numero = _numero.Text;
         }
 
         private void _piso_TextChanged(object sender, EventArgs e)
         {
-            piso = Convert.ToInt32(_piso.Text);
+            piso = _piso.Text;
         }
 
         private void _descripcion_TextChanged(object sender, EventArgs e)

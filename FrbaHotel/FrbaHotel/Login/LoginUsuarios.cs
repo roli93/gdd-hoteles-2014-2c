@@ -87,6 +87,11 @@ namespace FrbaHotel.Login
             username = userTextBox.Text;
         }
 
+        private void groupBox1_Enter_1(object sender, EventArgs e)
+        {
+
+        }
+
  
     }
 }
