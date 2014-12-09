@@ -68,3 +68,15 @@ tiró excepción "error de aplicacion". CUando abrí la app de nuevo, figuraba u
 y cuando apreto editar me seguía diciendo que había mails duplicados y si quería solucionarlo.
 Me mostraba a un solo jose, pero cuando apreto de solucionar la inconsistencia volvian a aparecer
 los tres y al apretar listo volvía a tirar la excepción.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Nuevos %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Peligro de apunamiento!! puedo meter 10 personas en una habitación simple! (O sea, no hay tope en la cantidad de
+acompañantes por habitación).
+
+El check out permite ingresar fecha de salida anterior a la de inicio.
+
+Tanto para el ingreso como para el egreso, deberá registrarse en qué fecha ocurrieron dichos
+eventos y qué usuario se encargó de dichas operaciones. No se registran los usuarios.
