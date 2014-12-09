@@ -71,21 +71,25 @@ namespace FrbaHotel.Homes
             DatabaseAdapter.ejecutarProcedure("baja_cliente_repetido", idCliente);
         }
 
-        public static void repararClienteRepetido(int idCliente, TipoDocumento tipoID, string nroID)
+        public static void repararClienteRepetido(int idCliente, TipoDocumento tipoID, string nroID,string mail)
         {
-            DatabaseAdapter.ejecutarProcedure("reparar_cliente_repetido", idCliente, tipoID.Id, nroID);
+            DatabaseAdapter.ejecutarProcedure("reparar_cliente_repetido", idCliente, tipoID.Id, nroID, mail);
         }
 
-        public static void limpiarExRepetidos(TipoDocumento tipoID, string nroID)
+        public static void limpiarExRepetidos(TipoDocumento tipoID, string nroID,string mail)
         {
-            DatabaseAdapter.ejecutarProcedure("limpiar_repetidos", tipoID.Id, nroID);
+            DatabaseAdapter.ejecutarProcedure("limpiar_repetidos", tipoID.Id, nroID, mail);
         }
 
-        public static int validarUnicidadClienteAReparar(int idCliente, TipoDocumento tipoID, string nroID)
+        public static int validarUnicidadClienteARepararID(int idCliente, TipoDocumento tipoID, string nroID)
         {
-            return DatabaseAdapter.ejecutarProcedureWithReturnValue("validar_unicidad_cliente", idCliente, tipoID.Id, nroID);
+            return DatabaseAdapter.ejecutarProcedureWithReturnValue("validar_unicidad_cliente_ID", idCliente, tipoID.Id, nroID);
         }
 
+        public static int validarUnicidadClienteARepararMail(int idCliente, string mail)
+        {
+            return DatabaseAdapter.ejecutarProcedureWithReturnValue("validar_unicidad_cliente_mail", idCliente, mail);
+        }
 
     }
 }

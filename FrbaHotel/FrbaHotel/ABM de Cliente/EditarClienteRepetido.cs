@@ -14,6 +14,9 @@ namespace FrbaHotel.ABM_de_Cliente
     public partial class EditarClienteRepetido : Alta
     {
         Cliente cliente;
+        string nroId;
+        TipoDocumento tipoID;
+        string mail;
 
         public EditarClienteRepetido()
         {
@@ -28,12 +31,12 @@ namespace FrbaHotel.ABM_de_Cliente
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cliente.TipoIdentificacion = (TipoDocumento)comboBox1.SelectedItem;
+            tipoID = (TipoDocumento)comboBox1.SelectedItem;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            cliente.NumeroId = textBox1.Text;
+            nroId = textBox1.Text;
         }
 
         private void EditarClienteRepetido_Load(object sender, EventArgs e)
@@ -41,17 +44,21 @@ namespace FrbaHotel.ABM_de_Cliente
             textBox1.Text = cliente.NumeroId;
             bindCombo<TipoDocumento>(comboBox1, Sesion.TiposDocumentoDisponibles);
             comboBox1.SelectedIndex = comboBox1.FindStringExact(cliente.TipoIdentificacion.Descripcion, 0);
+            textBox2.Text = cliente.Mail;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+            cliente.TipoIdentificacion = tipoID;
+            cliente.NumeroId = nroId;
+            cliente.Mail = mail;
             ((AsistenteClientesRepetidos)Owner).ActualizarGrilla();
             Close();
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            cliente.Mail = textBox2.Text;
+            mail = textBox2.Text;
         }
 
 

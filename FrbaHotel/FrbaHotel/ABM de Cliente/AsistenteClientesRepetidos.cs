@@ -20,7 +20,7 @@ namespace FrbaHotel.ABM_de_Cliente
         Action<DataGridViewCellCollection> gridAction;
         DataGridViewCellEventArgs clienteSeleccionado;
         TipoDocumento tipoID;
-        string nroID;
+        string nroID,Mail;
 
         public AsistenteClientesRepetidos()
         {
@@ -38,6 +38,7 @@ namespace FrbaHotel.ABM_de_Cliente
             clientes = HomeClientes.clientesRepetidos(idCliente);
             tipoID=clientes[0].TipoIdentificacion;
             nroID = clientes[0].NumeroId;
+            Mail = clientes[0].Mail;
             ActualizarGrilla();
         }
 
@@ -129,15 +130,20 @@ namespace FrbaHotel.ABM_de_Cliente
             {
                 int error = 0;
                 if (cliente.NumeroId != nroID || !cliente.TipoIdentificacion.Equals(tipoID))
-                    error = HomeClientes.validarUnicidadClienteAReparar(cliente.Id, cliente.TipoIdentificacion, cliente.NumeroId);
+                    error = HomeClientes.validarUnicidadClienteARepararID(cliente.Id, cliente.TipoIdentificacion, cliente.NumeroId);
                 if (error == 1)
                     throw new ExcepcionFrbaHoteles("El numero de identificación " + cliente.NumeroId +
-                                                    " y el tipo de identificación " + cliente.TipoIdentificacion.Descripcion +
+                                                    " y el tipo de identificación  " + cliente.TipoIdentificacion.Descripcion +
                                                     "\n ya han sido utilizados por otro cliente almacenado. Por favor, cámbielos");
+                if (!cliente.Mail.Equals(Mail))
+                    error = HomeClientes.validarUnicidadClienteARepararMail(cliente.Id, cliente.Mail);
+                if (error == 1)
+                    throw new ExcepcionFrbaHoteles("El mail " + cliente.Mail +
+                                                   "\n ya ha sido utilizado por otro cliente almacenado.\nPor favor, cámbielo");
             }
             foreach (Cliente cliente in clientes)
-                HomeClientes.repararClienteRepetido(cliente.Id,cliente.TipoIdentificacion,cliente.NumeroId);
-            HomeClientes.limpiarExRepetidos(tipoID,nroID);
+                HomeClientes.repararClienteRepetido(cliente.Id,cliente.TipoIdentificacion,cliente.NumeroId,cliente.Mail);
+            HomeClientes.limpiarExRepetidos(tipoID,nroID,Mail);
             ((SeleccionarCliente)Owner).Buscar();
             Close();
         }

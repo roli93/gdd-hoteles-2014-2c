@@ -12,11 +12,12 @@ namespace FrbaHotel.ABM_de_Rol
        {
    
         private string nombre;
-        private List<Funcionalidad> Funcionalidades =new List<Funcionalidad>();
+        protected List<Funcionalidad> Funcionalidades =new List<Funcionalidad>();
         private bool EstaActivo;
 
         protected virtual void Guardar()
         {
+          Funcionalidades = CheckListToList<Funcionalidad>(_funcionalidadesCLB);  
           ValidarErrores();
           HomeRoles.registrarRol(nombre, Funcionalidades, EstaActivo);
         }

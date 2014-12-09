@@ -30,8 +30,10 @@ namespace FrbaHotel.ABM_de_Rol
         }
 
         private void _funcionalidadesCLB_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Funcionalidades = CheckListToList<Funcionalidad>(_funcionalidadesCLB);
+        {/*
+            List<Funcionalidad> anterior = new List<Funcionalidad>();
+            anterior.AddRange(Funcionalidades);
+            Funcionalidades = CheckListToList<Funcionalidad>(_funcionalidadesCLB,anterior);*/
         }
 
         private void _habilitado_CheckedChanged(object sender, EventArgs e)

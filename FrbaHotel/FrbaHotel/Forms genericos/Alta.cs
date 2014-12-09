@@ -137,6 +137,31 @@ namespace FrbaHotel.Forms_genericos
             return lista;
         }
 
+        public List<T> CheckListToList<T>(CheckedListBox checkedList,List<T> anterior)
+        {
+            List<T> lista = new List<T>();
+            foreach (T elemento in checkedList.CheckedItems)
+                lista.Add(elemento);
+            if (!(lista.All<T>(e => anterior.Contains(e))&&anterior.All<T>(e => lista.Contains(e))))
+                checkedList.ClearSelected();
+            /*MessageBox.Show(listar<T>(anterior, lista));*/
+            return lista;
+        }
+
+        public String listar<T>(List<T> anterior, List<T> lista)
+        {
+            string s = "";
+            s += "Anterior:\n";
+            foreach (T e in anterior)
+                s += e.ToString() + "\n";
+            s += "Lista:\n";
+            foreach (T e in lista)
+                s += e.ToString() + "\n";
+            return s;
+        }
+
+
+
         public static void ClearItems(CheckedListBox checkedListBox)
         {
             object[] items = new object[checkedListBox.Items.Count];

@@ -17,6 +17,7 @@ namespace FrbaHotel.ABM_de_Rol
         public void CargarRol()
         {
             HomeRoles.buscarPorId(IdRol, out nombre, out estaActivo, out funcOriginales);
+            Funcionalidades.AddRange(funcOriginales);
             
             _nombre.Text = nombre;
             _habilitado.Checked= estaActivo;
@@ -25,8 +26,8 @@ namespace FrbaHotel.ABM_de_Rol
 
         protected override void Guardar()
         {
+            Funcionalidades = CheckListToList<Funcionalidad>(_funcionalidadesCLB);  
             ValidarErrores();
-            List<Funcionalidad> Funcionalidades = CheckListToList<Funcionalidad>(_funcionalidadesCLB);
             HomeRoles.actualizarRol(IdRol,nombre,estaActivo,funcOriginales,Funcionalidades);
             }
 

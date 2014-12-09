@@ -1881,15 +1881,25 @@ BEGIN
 END 
 GO
 
-CREATE PROCEDURE [MAX_POWER].limpiar_repetidos(@id_tipo_id BIGINT, @nro_id VARCHAR(50))AS
+CREATE PROCEDURE [MAX_POWER].limpiar_repetidos(@id_tipo_id BIGINT, @nro_id VARCHAR(50),@mail VARCHAR(50))AS
 BEGIN 
-	UPDATE MAX_POWER.Clientes_Repetidos SET habilitado='N',controlado='S' WHERE id_tipo_identificacion=@id_tipo_id AND numero_identificacion=@nro_id
+	UPDATE MAX_POWER.Clientes_Repetidos SET habilitado='N',controlado='S' 
+		WHERE (id_tipo_identificacion=@id_tipo_id AND numero_identificacion=@nro_id)OR mail=@mail
 END 
 GO
 
-CREATE PROCEDURE [MAX_POWER].validar_unicidad_cliente(@id_cliente BIGINT,@id_tipo_id BIGINT, @nro_id VARCHAR(50))AS
+CREATE PROCEDURE [MAX_POWER].validar_unicidad_cliente_ID(@id_cliente BIGINT,@id_tipo_id BIGINT, @nro_id VARCHAR(50))AS
 BEGIN 
-	IF(EXISTS(SELECT 1 FROM MAX_POWER.Cliente WHERE id_tipo_identificacion=@id_tipo_id AND numero_identificacion=@nro_id AND id_cliente!=@id_cliente))
+	IF(EXISTS(SELECT 1 FROM MAX_POWER.Cliente WHERE (id_tipo_identificacion=@id_tipo_id AND numero_identificacion=@nro_id) AND id_cliente!=@id_cliente))
+		RETURN (1)
+	ELSE 
+		RETURN(0)
+END 
+GO
+
+CREATE PROCEDURE [MAX_POWER].validar_unicidad_cliente_mail(@id_cliente BIGINT, @mail VARCHAR(50))AS
+BEGIN 
+	IF(EXISTS(SELECT 1 FROM MAX_POWER.Cliente WHERE mail=@mail AND id_cliente!=@id_cliente))
 		RETURN (1)
 	ELSE 
 		RETURN(0)
