@@ -75,9 +75,9 @@ los tres y al apretar listo volvía a tirar la excepción. APARENTEMENTE CORREGI
 
 
 Peligro de apunamiento!! puedo meter 10 personas en una habitación simple! (O sea, no hay tope en la cantidad de
-acompañantes por habitación).
+acompañantes por habitación). ESTA FLEXIBLE ADREDE, NO TENGO ENTENDIDO Q SEA UNA RESTRICCION NECESARIA
 
-El check out permite ingresar fecha de salida anterior a la de inicio.
+El check out permite ingresar fecha de salida anterior a la de inicio. YA FUNCIONA BIEN
 
 Tanto para el ingreso como para el egreso, deberá registrarse en qué fecha ocurrieron dichos
-eventos y qué usuario se encargó de dichas operaciones. No se registran los usuarios.
+eventos y qué usuario se encargó de dichas operaciones. No se registran los usuarios. SE REGISTRA AUTOMATICAMENTE
