@@ -141,6 +141,7 @@ namespace FrbaHotel.Homes
         public static void ingresarReserva(int idReserva)
         {
             DatabaseAdapter.ejecutarProcedure("registrar_ingreso_reserva", idReserva);
+            DatabaseAdapter.insertarDatosEnTabla("modificacion", Sesion.FechaActual, idReserva, Sesion.Usuario.Id, "Check in", 2);
         }
 
         public static void agregarConsumible(Habitacion habitacion, Producto producto, int cantidad)
@@ -158,6 +159,7 @@ namespace FrbaHotel.Homes
             int error = 0;
             error= DatabaseAdapter.ejecutarProcedureWithReturnValue("registrar_egreso", idReserva, fechaSalida);
             DatabaseAdapter.CheckExcepcionPara(error);
+            DatabaseAdapter.insertarDatosEnTabla("modificacion", Sesion.FechaActual, idReserva, Sesion.Usuario.Id, "Check out", 3);
         }
 
         public static void facturar(int idReserva,ModoPago mp,string nombre, string apellido, string codigo)
