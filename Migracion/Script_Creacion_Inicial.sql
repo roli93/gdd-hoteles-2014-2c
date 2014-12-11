@@ -2453,6 +2453,10 @@ AS BEGIN
 			INSERT INTO [MAX_POWER].Modificacion (fecha, id_reserva, id_usuario, motivo, id_tipo_modificacion) VALUES (@fecha, @id_reserva, @ide_usuario, @motivo, (SELECT id_tipo_modificacion FROM [MAX_POWER].Tipo_modificacion WHERE descripcion LIKE '%modifica%'))
 		IF @tipo = 1
 			INSERT INTO [MAX_POWER].Modificacion (fecha, id_reserva, id_usuario, motivo, id_tipo_modificacion) VALUES (@fecha, @id_reserva, @ide_usuario, @motivo, (SELECT id_tipo_modificacion FROM [MAX_POWER].Tipo_modificacion WHERE descripcion LIKE '%cancela%'))
+		IF @tipo = 2
+			INSERT INTO [MAX_POWER].Modificacion (fecha, id_reserva, id_usuario, motivo, id_tipo_modificacion) VALUES (@fecha, @id_reserva, @ide_usuario, @motivo, (SELECT id_tipo_modificacion FROM [MAX_POWER].Tipo_modificacion WHERE descripcion LIKE '%check%in%'))
+		IF @tipo = 3
+			INSERT INTO [MAX_POWER].Modificacion (fecha, id_reserva, id_usuario, motivo, id_tipo_modificacion) VALUES (@fecha, @id_reserva, @ide_usuario, @motivo, (SELECT id_tipo_modificacion FROM [MAX_POWER].Tipo_modificacion WHERE descripcion LIKE '%check%out%'))
 	END TRY
 	BEGIN CATCH
 		--raiseError
@@ -3128,6 +3132,8 @@ GO
 
 insert into MAX_POWER.Tipo_modificacion (descripcion) values ('Modificacion')
 insert into MAX_POWER.Tipo_modificacion (descripcion) values ('Cancelacion')
+insert into MAX_POWER.Tipo_modificacion (descripcion) values ('Check in')
+insert into MAX_POWER.Tipo_modificacion (descripcion) values ('Check out')
 
 /*Renombra los hoteles migrados para que no aparezcan en blanco en la app*/
 
