@@ -38,7 +38,7 @@ namespace FrbaHotel.ABM_de_Cliente
         {
             idClienteAManejar= Convert.ToInt32(celdas["ID"].Value);
             if (celdas["correcto"].Value.ToString() == "N")
-                corregirClienteRepetido(idClienteAManejar);
+                corregirClienteRepetido(idClienteAManejar, celdas["mail"].Value.ToString());
             else if (accion.Equals("Rehabilitar"))
             {
                 if (MessageBox.Show("¿Confirma que desea vovler a dar de alta al cliente?", "Confirmar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -54,7 +54,7 @@ namespace FrbaHotel.ABM_de_Cliente
             Buscar();
         }
 
-        public void corregirClienteRepetido(int IdClienteRepetido)
+        public void corregirClienteRepetido(int IdClienteRepetido, string mail)
         {
             string mensaje =
                 "El sistema ha detectado una inconsistencia de datos\n" +
@@ -63,7 +63,7 @@ namespace FrbaHotel.ABM_de_Cliente
                 "¿Desea comenzar el asistente y solucionar la inconsistencia ahora?";                            
             if (MessageBox.Show(mensaje, "Inconsistencia de datos", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                new AsistenteClientesRepetidos(this, IdClienteRepetido).StandaloneOpen();
+                new AsistenteClientesRepetidos(this, IdClienteRepetido,mail).StandaloneOpen();
             }
         }
 

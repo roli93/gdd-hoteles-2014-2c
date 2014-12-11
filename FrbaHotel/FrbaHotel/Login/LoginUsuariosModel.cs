@@ -42,6 +42,11 @@ namespace FrbaHotel.Login
                 control.Hide();
             foreach (Control control in secondSet)
                 control.Show();
+            if (Roles.Count.Equals(0))
+            {
+                MessageBox.Show("Usted no tiene roles asignados disponibles");
+                Close();
+            }
             if(Roles.Count.Equals(1))
                 SeleccionAutomaticaRol();
         }

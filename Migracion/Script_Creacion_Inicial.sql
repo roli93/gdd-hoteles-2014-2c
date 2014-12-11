@@ -2520,9 +2520,9 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].insertar_cliente(@nombre VARCHAR(50), @apellido VARCHAR(50), @id_tipo_identificacion BIGINT, @nroId BIGINT, @mail VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50),@altura VARCHAR(10),@piso VARCHAR(10),@depto VARCHAR(50), @localidad VARCHAR(50), @fechaNacimiento DATETIME,@id_pais BIGINT)
 AS BEGIN
-	IF (SELECT COUNT (mail) FROM [MAX_POWER].Cliente WHERE mail = @mail) > 0
+	IF (SELECT COUNT (mail) FROM [MAX_POWER].Cliente WHERE mail = @mail and habilitado='S') > 0
 		RETURN (-5)
-	IF (EXISTS (SELECT 1 FROM MAX_POWER.Cliente WHERE id_tipo_identificacion=@id_tipo_identificacion AND numero_identificacion=@nroId))
+	IF (EXISTS (SELECT 1 FROM MAX_POWER.Cliente WHERE id_tipo_identificacion=@id_tipo_identificacion AND numero_identificacion=@nroId and habilitado='S'))
 		RETURN (-6)
 	INSERT INTO [MAX_POWER].Cliente (nombre, apellido, id_tipo_identificacion, numero_identificacion, mail, telefono, calle,altura,piso,departamento, localidad, fecha_nacimiento, id_pais, habilitado) 
 	VALUES (@nombre, @apellido, @id_tipo_identificacion, @nroId, @mail, @telefono, @calle,CAST(@altura AS BIGINT),CASE WHEN @piso=-1 THEN NULL ELSE CAST(@piso AS BIGINT) END,CASE WHEN @depto='-' THEN NULL ELSE @depto END, @localidad, @fechaNacimiento,@id_pais, 'S')
@@ -2531,9 +2531,9 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].actualizar_cliente(@id BIGINT, @nombre VARCHAR(50), @apellido VARCHAR(50), @id_tipo_identificacion BIGINT, @nroId BIGINT, @mail VARCHAR(50), @telefono VARCHAR(50), @calle VARCHAR(50),@altura VARCHAR(10),@piso VARCHAR(10),@depto VARCHAR(50), @localidad VARCHAR(50), @fechaNacimiento DATETIME, @habilitado CHAR(1))
 AS BEGIN
-	IF EXISTS(SELECT 1 FROM [MAX_POWER].Cliente WHERE mail = @mail AND id_cliente!=@id)
+	IF EXISTS(SELECT 1 FROM [MAX_POWER].Cliente WHERE mail = @mail AND id_cliente!=@id and habilitado='S')
 		RETURN (-5)
-	IF (EXISTS (SELECT 1 FROM MAX_POWER.Cliente WHERE id_tipo_identificacion=@id_tipo_identificacion AND numero_identificacion=@nroId AND id_cliente!=@id))
+	IF (EXISTS (SELECT 1 FROM MAX_POWER.Cliente WHERE id_tipo_identificacion=@id_tipo_identificacion AND numero_identificacion=@nroId AND id_cliente!=@id and habilitado='S'))
 		RETURN (-6)
 	UPDATE [MAX_POWER].Cliente SET
 	nombre = @nombre,

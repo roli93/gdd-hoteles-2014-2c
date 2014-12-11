@@ -27,9 +27,10 @@ namespace FrbaHotel.ABM_de_Cliente
             InitializeComponent();
         }
 
-        public AsistenteClientesRepetidos(NavegableForm o, int idCliente):base(o)
+        public AsistenteClientesRepetidos(NavegableForm o, int idCliente, string mail):base(o)
         {
             this.idCliente=idCliente;
+            this.Mail=mail;
             InitializeComponent();
         }
 
@@ -38,7 +39,6 @@ namespace FrbaHotel.ABM_de_Cliente
             clientes = HomeClientes.clientesRepetidos(idCliente);
             tipoID=clientes[0].TipoIdentificacion;
             nroID = clientes[0].NumeroId;
-            Mail = clientes[0].Mail;
             ActualizarGrilla();
         }
 
