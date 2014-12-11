@@ -51,6 +51,7 @@ namespace FrbaHotel.Registrar_Estadia
 
         public void Registrarlo()
         {
+            ValidarErrores();
             HomeReservas.registrarEgreso(idReserva, dateTimePicker1.Value);
             MessageBox.Show("Se realizó el check-out con éxito");
             if (MessageBox.Show("¿Desea emitir la factura ahora?", "Facturar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
@@ -69,6 +70,12 @@ namespace FrbaHotel.Registrar_Estadia
                 HomeReservas.facturar(idReserva, modoPago,nombre,apellido,codigo);
                 new Factura(owner, HomeReservas.idUltimaFactura(),idReserva).FinalStandaloneOpen();
             }
+        }
+
+        public override void ValidarErroresConcretos()
+        {
+            if (dateTimePicker1.Value < Sesion.FechaActual)
+                errorMessage += "No se puede registrar un egreso en el pasado\n";
         }
 
     }

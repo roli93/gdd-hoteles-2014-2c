@@ -49,7 +49,12 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             Hotel = (Hotel)_hotel.SelectedItem;
-            _seleccionarRegimen.Enabled = true;
+            _regimen.Text = null;
+            Regimen = null;
+            if(_hotel.SelectedIndex.Equals(-1))
+                _seleccionarRegimen.Enabled = false;
+            else
+                _seleccionarRegimen.Enabled = true;
         }
 
         private void button1_Click(object sender, EventArgs e)

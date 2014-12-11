@@ -2854,7 +2854,9 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].baja_reservas_viejas(@fecha_sistema datetime) AS
 UPDATE MAX_POWER.Reserva SET id_estado=(SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%no%show%'))
-	WHERE fecha_inicio<@fecha_sistema AND id_estado != (SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%ingres%'))
+	WHERE fecha_inicio<@fecha_sistema 
+		AND (id_estado != (SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%ingres%'))
+			OR id_estado not in (SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%cancel%')))
 GO
 
 CREATE PROCEDURE [MAX_POWER].proximo_id_reserva AS

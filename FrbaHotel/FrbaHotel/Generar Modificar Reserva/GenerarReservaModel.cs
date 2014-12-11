@@ -27,6 +27,7 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         public virtual void Guardar()
         {
             ValidarErrores();
+            ValidarHabitacionesOriginalesDisponibles();
             ObtenerCliente();
         }
 
@@ -130,6 +131,35 @@ namespace FrbaHotel.Generar_Modificar_Reserva
         public override void gridClickAction(DataGridViewCellCollection celdas)
         {
             Habitaciones.RemoveAll(h => h.tipo.Descripcion.Equals(celdas["tipo"].Value.ToString()));
+            ActualizarHabitaciones();
+        }
+
+        public void ValidarHabitacionesOriginalesDisponibles()
+        {
+            List<Habitacion> habitacionesElegidas = new List<Habitacion>();
+            habitacionesElegidas.AddRange(Habitaciones);
+            Habitaciones = new List<Habitacion>();
+            Agregar_Habitación agregador = new Agregar_Habitación(this);
+            agregador.informar = false;
+            foreach (Habitacion habitacion in habitacionesElegidas)
+            {
+                agregador.hotel = Hotel;
+                agregador.fechaFin = FechaFin;
+                agregador.fechaInicio = FechaInicio;
+                agregador.cantidad = 1;
+                agregador.tipoHabitacion = habitacion.tipo;
+                try
+                {
+                    agregador.Agregar();
+                }
+                catch (ExcepcionFrbaHoteles e)
+                {
+                    Habitaciones = new List<Habitacion>();
+                    Habitaciones.AddRange(habitacionesElegidas);
+                    ActualizarHabitaciones();
+                    throw e;
+                }
+            }
             ActualizarHabitaciones();
         }
 
