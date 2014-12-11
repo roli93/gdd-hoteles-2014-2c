@@ -1539,11 +1539,22 @@ GO
 CREATE PROCEDURE [MAX_POWER].IMP_Estadia
 AS 
 declare @ahora as date
+create table #lista (codigo bigint)
+insert into #lista (codigo) SELECT DISTINCT 
+									Reserva_Codigo AS Codigo
+								FROM gd_esquema.Maestra
+								group by Reserva_Codigo
+								having count(Estadia_Fecha_Inicio) = 0
 set @ahora = GETDATE()
+
 insert into MAX_POWER.estadia (fecha_ingreso, fecha_egreso, id_reserva, valida)
 	select fecha_inicio, fecha_fin, id_reserva,
 		case when fecha_inicio > @ahora then 'N' else 'S' end as valida
 	from MAX_POWER.Reserva
+	
+	where not id_reserva in	(select codigo from #lista)
+	
+drop table #lista
 GO
 
 /* SP - FACTURAS */
@@ -3013,15 +3024,6 @@ EXEC [MAX_POWER].REGIMEN_HOTEL
 GO
 PRINT 'Importado: Regimenes por Hotel.'
 
-delete from MAX_POWER.Estadia where id_reserva in ( 
-	SELECT DISTINCT 
-		Reserva_Codigo AS Codigo
-	FROM gd_esquema.Maestra
-	group by Reserva_Codigo
-	having count(Estadia_Fecha_Inicio) = 0)
-	
-GO
-
 update MAX_POWER.Reserva set MAX_POWER.Reserva.id_estado = 6
 from MAX_POWER.Reserva
 join MAX_POWER.Estadia on MAX_POWER.Estadia.id_reserva = MAX_POWER.Reserva.id_reserva
@@ -3068,9 +3070,11 @@ exec MAX_POWER.insertar_funcionalidad_X_rol 1, 6
 exec MAX_POWER.insertar_funcionalidad_X_rol 1, 7
 exec MAX_POWER.insertar_funcionalidad_X_rol 1, 8
 exec MAX_POWER.insertar_funcionalidad_X_rol 1, 9
-exec MAX_POWER.insertar_funcionalidad_X_rol 2, 2
 exec MAX_POWER.insertar_funcionalidad_X_rol 2, 3
-exec MAX_POWER.insertar_funcionalidad_X_rol 2, 4
+exec MAX_POWER.insertar_funcionalidad_X_rol 2, 5
+exec MAX_POWER.insertar_funcionalidad_X_rol 2, 6
+exec MAX_POWER.insertar_funcionalidad_X_rol 2, 7
+exec MAX_POWER.insertar_funcionalidad_X_rol 2, 9
 exec MAX_POWER.insertar_funcionalidad_X_rol 3, 6
 go
 
