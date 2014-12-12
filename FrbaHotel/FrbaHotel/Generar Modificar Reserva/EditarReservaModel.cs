@@ -15,13 +15,13 @@ namespace FrbaHotel.Generar_Modificar_Reserva
     public partial class EditarReserva : GenerarReserva
     {
         protected int idReserva;
+        protected Regimen regimen;
 
         List<Habitacion> habitacionesOriginales;
 
         public void CargarReserva()
         {
             Hotel hotel;
-            Regimen regimen;
             DateTime finicio, ffin;
             HomeReservas.buscarReservaPorId(idReserva,out hotel, out regimen,out finicio, out ffin, out habitacionesOriginales);
             Hotel=hotel;

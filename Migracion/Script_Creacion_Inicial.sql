@@ -2636,6 +2636,7 @@ DECLARE @esta_libre INT
 	IF ((SELECT COUNT (*) FROM [MAX_POWER].Habitacion_reservada HR 
 		JOIN [MAX_POWER].reserva R ON HR.id_reserva = R.id_reserva 
 			WHERE HR.id_habitacion = @id_habitacion 
+			AND R.id_estado not in (SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%cancel%'))
 			AND (@fecha_inicio BETWEEN R.fecha_inicio AND R.fecha_fin
 				OR @fecha_fin BETWEEN R.fecha_inicio AND R.fecha_fin
 				OR R.fecha_inicio BETWEEN @fecha_inicio AND @fecha_fin

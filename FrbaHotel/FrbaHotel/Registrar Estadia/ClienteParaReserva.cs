@@ -28,9 +28,27 @@ namespace FrbaHotel.Registrar_Estadia
 
         public override void  gridClickAction(DataGridViewCellCollection celdas)
         {
- 	         HomeReservas.agregarClienteHabitacion(idhabitacion,Convert.ToInt32(celdas["id"].Value));
-             ((RegistrarIngreso)this.Owner).ActualizarGrilla();
-             Close();
+            if (celdas["correcto"].Value.ToString() == "N")
+                MessageBox.Show("Existen varios clientes con el tipo\n" +
+                                "y número de identificacion del cliente\n" +
+                                "seleccionado. Por favor corriga esto desde\n" +
+                                "el Administrador de Clientes o contáctese\n" +
+                                "con el personal de la compañía para que\n" +
+                                "resuelvan esta inconsistencia", "Error");
+            else
+            {
+                try
+                {
+                    HomeReservas.agregarClienteHabitacion(idhabitacion, Convert.ToInt32(celdas["id"].Value));
+                    ((RegistrarIngreso)this.Owner).ActualizarGrilla();
+                    Close();
+                }
+                catch (ExcepcionFrbaHoteles e)
+                {
+                    MessageBox.Show(e.Message, "Error");
+                }
+            }
+ 	         
         }
 
         private void ClienteParaReserva_Load(object sender, EventArgs e)
