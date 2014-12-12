@@ -43,7 +43,6 @@ namespace FrbaHotel.Registrar_Estadia
             if(!consumiblesRegistrados)
                 if (MessageBox.Show("Está a punto de finalizar el check-out y generar la factura sin haber editado los consumibles\n¿Desea continuar?", "Continuar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
                 {
-                    Close();
                     return;
                 }
             Execute(Registrarlo);

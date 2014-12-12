@@ -2324,9 +2324,21 @@ GO
 CREATE PROCEDURE [MAX_POWER].items_factura(@id_reserva BIGINT, @id_factura BIGINT) AS
 BEGIN
 	DECLARE @costo DECIMAL
-	SELECT @costo= MAX_POWER.costo_diario_habitacion(H.id_hotel,H.id_habitacion,R.id_regimen)
+	DECLARE @costo_parcial DECIMAL
+	DECLARE cur_costos CURSOR FOR (
+	SELECT MAX_POWER.costo_diario_habitacion(H.id_hotel,H.id_habitacion,R.id_regimen)
 		FROM MAX_POWER. Reserva R, MAX_POWER.Habitacion H,	MAX_POWER.Habitacion_reservada HR
-		WHERE HR.id_reserva=R.id_reserva AND H.id_habitacion=HR.id_habitacion AND R.id_reserva=@id_reserva
+		WHERE HR.id_reserva=R.id_reserva AND H.id_habitacion=HR.id_habitacion AND R.id_reserva=@id_reserva)
+	SET @costo=0
+	OPEN cur_costos 
+	FETCH NEXT FROM cur_costos INTO @costo_parcial
+	WHILE (@@FETCH_STATUS = 0)
+	BEGIN
+		SET @costo = @costo + @costo_parcial
+		FETCH NEXT FROM cur_costos INTO @costo_parcial
+	END
+	CLOSE cur_costos
+	DEALLOCATE cur_costos
 	DECLARE @diasA INT
 	SELECT @diasA=DATEDIFF(DAY, E.fecha_ingreso,E.fecha_egreso)
 		FROM MAX_POWER.Estadia E, MAX_POWER. Reserva R
