@@ -21,7 +21,7 @@ namespace FrbaHotel.Homes
 
         public static void bajaReservasViejas()
         {
-            DatabaseAdapter.ejecutarProcedure("baja_reservas_viejas",Sesion.FechaActual);
+            DatabaseAdapter.ejecutarProcedure("baja_reservas_viejas",Sesion.FechaActual,Sesion.Usuario.Id);
         }
 
         public static void buscarReservaPorId(int id, out Hotel hotel, out Regimen regimen, out DateTime fechaInicio, out DateTime fechaFin, out List<Habitacion> habitaciones)

@@ -2801,7 +2801,7 @@ order by dias_inactivo desc
 
 GO
 
-CREATE PROCEDURE [MAX_POWER].top5estadistico_habitaciones_mas_ocupadas(@trimestre as bigint, @anio as bigint) as
+create PROCEDURE [MAX_POWER].top5estadistico_habitaciones_mas_ocupadas(@trimestre as bigint, @anio as bigint) as
 select top 5
 	hot.nombre, th.descripcion, hab.numero, hab.piso, hab.frente, 
 	hab.descripcion, hab.habilitada, cantidad_dias, cantidad_veces
@@ -2880,11 +2880,19 @@ AS SELECT id_habitacion,MAX_POWER.costo_diario_habitacion(@id_hotel,id_habitacio
 												AND MAX_POWER.habitacion_libre(id_habitacion,	@fecha_inicio,@fecha_fin)=1
 GO
 
-CREATE PROCEDURE [MAX_POWER].baja_reservas_viejas(@fecha_sistema datetime) AS
+CREATE PROCEDURE [MAX_POWER].baja_reservas_viejas(@fecha_sistema datetime,@id_usuario BIGINT) AS
+BEGIN
+INSERT INTO [MAX_POWER].Modificacion (fecha, id_reserva, id_usuario, motivo, id_tipo_modificacion) 
+	select @fecha_sistema, id_reserva, @id_usuario, 'Cancelacion automática por no-show', (SELECT id_tipo_modificacion FROM [MAX_POWER].Tipo_modificacion WHERE descripcion LIKE '%cancela%')
+	from MAX_POWER.Reserva
+	WHERE cast(fecha_inicio as date)<cast(@fecha_sistema as date)
+		AND (id_estado != (SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%ingres%'))
+			AND id_estado not in (SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%cancel%')))
 UPDATE MAX_POWER.Reserva SET id_estado=(SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%no%show%'))
 	WHERE cast(fecha_inicio as date)<cast(@fecha_sistema as date)
 		AND (id_estado != (SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%ingres%'))
 			AND id_estado not in (SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%cancel%')))
+END
 GO
 
 CREATE PROCEDURE [MAX_POWER].proximo_id_reserva AS
