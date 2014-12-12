@@ -2827,7 +2827,7 @@ order by cantidad_veces desc, cantidad_dias desc
 
 GO
 
-CREATE PROCEDURE [MAX_POWER].top5estadistico_clientes_por_puntaje(@trimestre as bigint, @anio as bigint) as
+create PROCEDURE [MAX_POWER].top5estadistico_clientes_por_puntaje(@trimestre as bigint, @anio as bigint) as
 select top 5
 floor(precio_estadia/10) + floor(
 (select SUM(p.precio * phr.cantidad) as precio_producto 
@@ -2840,7 +2840,7 @@ floor(precio_estadia/10) + floor(
 from (select 
 		r.id_cliente_titular as cliente,
 		e.id_estadia as estadia, 
-		(select DATEDIFF(D,r.fecha_inicio, r.fecha_fin ) * ( reg.precio_base * th.porcentual + hot.recarga_estrellas * hot.estrellas) as cantidad
+		(select DATEDIFF(D,r.fecha_inicio, r.fecha_fin ) * ( reg.precio_base * sum(th.porcentual) + min(hot.recarga_estrellas) * min(hot.estrellas)*count(th.porcentual)) as cantidad
 		from MAX_POWER.Reserva r2
 		join MAX_POWER.Habitacion_reservada hr on hr.id_reserva = r2.id_reserva
 		join MAX_POWER.Habitacion h on h.id_habitacion = hr.id_habitacion
@@ -2882,7 +2882,7 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].baja_reservas_viejas(@fecha_sistema datetime) AS
 UPDATE MAX_POWER.Reserva SET id_estado=(SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%no%show%'))
-	WHERE fecha_inicio<@fecha_sistema 
+	WHERE cast(fecha_inicio as date)<cast(@fecha_sistema as date)
 		AND (id_estado != (SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%ingres%'))
 			AND id_estado not in (SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%cancel%')))
 GO
