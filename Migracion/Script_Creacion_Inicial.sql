@@ -1850,7 +1850,7 @@ END
 GO
 
 CREATE PROCEDURE [MAX_POWER].buscar_clientes(@nombre VARCHAR(50), @apellido VARCHAR(50), @email VARCHAR(50), @nroId VARCHAR(50), @Id_tipo_identificacion BIGINT)
-AS SELECT DISTINCT C.id_cliente as ID,Nombre,Apellido,Mail,descripcion as 'Tipo de Identificacion' ,numero_identificacion as 'Número de Identificación', MAX_POWER.es_valido(D.id_tipo_documento,C.numero_identificacion) as Correcto
+AS SELECT DISTINCT C.id_cliente as ID,Nombre,Apellido,Mail,descripcion as 'Tipo de Identificacion' ,numero_identificacion as 'NÃºmero de IdentificaciÃ³n', MAX_POWER.es_valido(D.id_tipo_documento,C.numero_identificacion) as Correcto
 	FROM MAX_POWER.Cliente C
 		JOIN MAX_POWER.Tipo_documento D ON C.id_tipo_identificacion=D.id_tipo_documento
 	WHERE habilitado='S'
@@ -1862,7 +1862,7 @@ AS SELECT DISTINCT C.id_cliente as ID,Nombre,Apellido,Mail,descripcion as 'Tipo 
 GO
 
 CREATE PROCEDURE [MAX_POWER].buscar_clientes_inhabilitados(@nombre VARCHAR(50), @apellido VARCHAR(50), @email VARCHAR(50), @nroId VARCHAR(50), @Id_tipo_identificacion BIGINT)
-AS SELECT DISTINCT C.id_cliente as ID,Nombre,Apellido,Mail,descripcion as 'Tipo de Identificacion' ,numero_identificacion as 'Número de Identificación', MAX_POWER.es_valido(D.id_tipo_documento,C.numero_identificacion) as Correcto
+AS SELECT DISTINCT C.id_cliente as ID,Nombre,Apellido,Mail,descripcion as 'Tipo de Identificacion' ,numero_identificacion as 'NÃºmero de IdentificaciÃ³n', MAX_POWER.es_valido(D.id_tipo_documento,C.numero_identificacion) as Correcto
 	FROM MAX_POWER.Cliente C
 		JOIN MAX_POWER.Tipo_documento D ON C.id_tipo_identificacion=D.id_tipo_documento
 	WHERE habilitado='N'
@@ -1972,8 +1972,8 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].buscar_habitaciones(@idHotel BIGINT,@unNumero VARCHAR(10), @unPiso VARCHAR(10), @unaUbicacion CHAR(1), @idTipo BIGINT, @unaDescripcion VARCHAR(50), @Habilitada CHAR(1))
 AS 
-	SELECT id_habitacion as ID, id_hotel,T.descripcion as 'Tipo de Habitación',Numero,Piso,
-			(CASE WHEN frente='S' THEN 'Exterior' ELSE 'Interior' END)AS 'Ubicación',H.Descripcion
+	SELECT id_habitacion as ID, id_hotel,T.descripcion as 'Tipo de HabitaciÃ³n',Numero,Piso,
+			(CASE WHEN frente='S' THEN 'Exterior' ELSE 'Interior' END)AS 'UbicaciÃ³n',H.Descripcion
  		FROM [MAX_POWER].Habitacion H INNER JOIN  MAX_POWER.Tipo_habitacion T ON T.id_tipo_habitacion=H.id_tipo_habitacion
 		WHERE CAST(id_hotel as VARCHAR(50)) like (SELECT CASE WHEN  @idHotel = -1 THEN '%' ELSE CAST(@idHotel AS VARCHAR(50)) END)
 			AND CAST(numero as VARCHAR(50)) like @unNumero
@@ -2012,7 +2012,7 @@ AS INSERT INTO MAX_POWER.Funcionalidad_X_Rol(id_rol,id_funcionalidad) VALUES (@i
 GO
 
 CREATE PROCEDURE [MAX_POWER].obtener_regimenes(@id_hotel BIGINT)
-AS SELECT R.id_regimen as ID, R.descripcion as Descripción
+AS SELECT R.id_regimen as ID, R.descripcion as DescripciÃ³n
 	FROM MAX_POWER.Regimen_X_Hotel RH join MAX_POWER.Regimen R on RH.id_regimen = R.id_regimen
 	WHERE RH.id_hotel = @id_hotel AND R.habilitado = 'S'
 GO
@@ -2213,10 +2213,10 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].habitaciones_de_reserva(@id_reserva BIGINT) AS
 BEGIN
-	SELECT  HR.id_habitacion_reservada as ID,H.numero as 'Número de Habitación',H.piso as Piso,
-				CASE WHEN C.nombre IS NULL THEN 'Nadie aún' ELSE C.nombre END AS 'Nombre del cliente',
+	SELECT  HR.id_habitacion_reservada as ID,H.numero as 'NÃºmero de HabitaciÃ³n',H.piso as Piso,
+				CASE WHEN C.nombre IS NULL THEN 'Nadie aÃºn' ELSE C.nombre END AS 'Nombre del cliente',
 				CASE WHEN C.apellido IS NULL THEN '-' ELSE C.apellido END AS 'Apellido del cliente',
-				CASE WHEN C.numero_identificacion IS NULL THEN '-' ELSE cast(C.numero_identificacion as varchar) END AS 'Identificación del cliente'
+				CASE WHEN C.numero_identificacion IS NULL THEN '-' ELSE cast(C.numero_identificacion as varchar) END AS 'IdentificaciÃ³n del cliente'
 			FROM MAX_POWER.Habitacion_reservada HR 
 			INNER JOIN MAX_POWER.Habitacion H
 				ON HR.id_habitacion=H.id_habitacion
@@ -2262,7 +2262,7 @@ GO
 
 CREATE PROCEDURE [MAX_POWER].consumibles_de_reserva(@id_reserva BIGINT)AS
 BEGIN
-SELECT  PHR.id_producto as ID, HR.id_habitacion_reservada as IDHR, P.descripcion as Descripción,H.numero as 'Número de Habitación',P.precio as ' Precio Unitario',PHR.Cantidad, PHR.cantidad*P.precio AS Total
+SELECT  PHR.id_producto as ID, HR.id_habitacion_reservada as IDHR, P.descripcion as DescripciÃ³n,H.numero as 'NÃºmero de HabitaciÃ³n',P.precio as ' Precio Unitario',PHR.Cantidad, PHR.cantidad*P.precio AS Total
 		FROM MAX_POWER.Habitacion_reservada HR, MAX_POWER.Producto_X_Habitacion_reservada PHR, MAX_POWER.Producto P,MAX_POWER.Habitacion H
 		WHERE @id_reserva=HR.id_reserva AND HR.id_habitacion_reservada=PHR.id_habitacion_reservada 
 			AND PHR.id_producto=P.id_producto AND H.id_habitacion=HR.id_habitacion
@@ -2347,17 +2347,17 @@ BEGIN
 	SELECT @diasNA=DATEDIFF(DAY, E.fecha_egreso,R.fecha_fin)
 		FROM MAX_POWER.Estadia E, MAX_POWER. Reserva R
 		WHERE E.id_reserva=R.id_reserva AND R.id_reserva=@id_reserva
-	SELECT P.descripcion AS Descripción, SUM(PHR.cantidad) AS  Cantidad,P.precio AS 'Precio Unitario', (P.precio*SUM(PHR.cantidad)) AS Total
+	SELECT P.descripcion AS DescripciÃ³n, SUM(PHR.cantidad) AS  Cantidad,P.precio AS 'Precio Unitario', (P.precio*SUM(PHR.cantidad)) AS Total
 		FROM MAX_POWER.Producto_X_Habitacion_reservada PHR, MAX_POWER.Producto P
 		WHERE P.id_producto=PHR.id_producto AND id_factura=@id_factura
 		GROUP BY P.descripcion,P.precio
 	UNION
-	SELECT '*Días Alojado' as Descripción, 
+	SELECT '*DÃ­as Alojado' as DescripciÃ³n, 
 			@diasA AS Cantidad,
 			@costo AS 'Precio Unitario',
 			@costo*@diasA AS Total
 	UNION
-	SELECT '*Días No Alojado' as Descripción, 
+	SELECT '*DÃ­as No Alojado' as DescripciÃ³n, 
 			@diasNA AS Cantidad,
 			@costo AS 'Precio Unitario',
 			@costo*@diasNA AS Total
@@ -2730,13 +2730,11 @@ AS BEGIN
 END		
 GO
 
-/*  S I N   V E R I F I C A R  -  ESTAN EN ARCHIVO APARTE */
-
 /*   L I S T A D O S   */
 CREATE PROCEDURE [MAX_POWER].top5estadistico_hoteles_mas_reservas_canceladas(@trimestre as bigint, @anio as bigint) as
 select top 5
 	hot.nombre, hot.mail, hot.telefono, hot.calle, hot.altura, hot.fecha_creacion, 
-	hot.estrellas, hot.recarga_estrellas, hot.ciudad, p.nombre, canceladas
+	hot.estrellas, hot.recarga_estrellas, hot.ciudad, p.nombre as pais, canceladas
 from (select 
 		h.id_hotel,
 		COUNT(h.id_hotel) as canceladas
@@ -2759,7 +2757,7 @@ GO
 CREATE PROCEDURE [MAX_POWER].top5estadistico_hoteles_mas_consumibles_facturados(@trimestre as bigint, @anio as bigint) as
 select top 5
 	hot.nombre, hot.mail, hot.telefono, hot.calle, hot.altura, hot.fecha_creacion, 
-	hot.estrellas, hot.recarga_estrellas, hot.ciudad, p.nombre, consumibles
+	hot.estrellas, hot.recarga_estrellas, hot.ciudad, p.nombre as pais, consumibles
 from (select 
 		h.id_hotel,
 		sum(prod.cantidad) as consumibles
@@ -2784,7 +2782,7 @@ GO
 CREATE PROCEDURE [MAX_POWER].top5estadistico_hoteles_con_mas_periodo_inactivo(@trimestre as bigint, @anio as bigint) as
 select top 5
 	hot.nombre, hot.mail, hot.telefono, hot.calle, hot.altura, hot.fecha_creacion, 
-	hot.estrellas, hot.recarga_estrellas, hot.ciudad, p.nombre, dias_inactivo
+	hot.estrellas, hot.recarga_estrellas, hot.ciudad, p.nombre as pais, dias_inactivo
 from (select 
 		pc.id_hotel,
 		sum( DATEDIFF(DAY,pc.fecha_inicio,coalesce(pc.fecha_fin,getdate())) ) as dias_inactivo
@@ -2803,7 +2801,7 @@ GO
 
 create PROCEDURE [MAX_POWER].top5estadistico_habitaciones_mas_ocupadas(@trimestre as bigint, @anio as bigint) as
 select top 5
-	hot.nombre, th.descripcion, hab.numero, hab.piso, hab.frente, 
+	hot.nombre as nombre_hotel, th.descripcion as tipo_habitacion, hab.numero, hab.piso, hab.frente, 
 	hab.descripcion, hab.habilitada, cantidad_dias, cantidad_veces
 from (select 
 		h.id_habitacion,
@@ -2834,7 +2832,7 @@ floor(precio_estadia/10) + floor(
 	from MAX_POWER.Producto_X_Habitacion_reservada phr
 	join MAX_POWER.Producto p on p.id_producto = phr.id_producto
 	where phr.id_factura = tabla.factura ) /5) as puntos,
-	c.numero_identificacion, td.descripcion, c.apellido, c.nombre, 
+	c.numero_identificacion, td.descripcion as tipo_documento, c.apellido, c.nombre, 
 	c.fecha_nacimiento, c.mail, c.calle, c.altura, c.piso, c.departamento, 
 	c.telefono, c.localidad, p.nombre, c.habilitado
 from (select 
@@ -2883,7 +2881,7 @@ GO
 CREATE PROCEDURE [MAX_POWER].baja_reservas_viejas(@fecha_sistema datetime,@id_usuario BIGINT) AS
 BEGIN
 INSERT INTO [MAX_POWER].Modificacion (fecha, id_reserva, id_usuario, motivo, id_tipo_modificacion) 
-	select @fecha_sistema, id_reserva, @id_usuario, 'Cancelacion automática por no-show', (SELECT id_tipo_modificacion FROM [MAX_POWER].Tipo_modificacion WHERE descripcion LIKE '%cancela%')
+	select @fecha_sistema, id_reserva, @id_usuario, 'Cancelacion automÃ¡tica por no-show', (SELECT id_tipo_modificacion FROM [MAX_POWER].Tipo_modificacion WHERE descripcion LIKE '%cancela%')
 	from MAX_POWER.Reserva
 	WHERE cast(fecha_inicio as date)<cast(@fecha_sistema as date)
 		AND (id_estado != (SELECT id_estado FROM MAX_POWER.Estado WHERE UPPER(descripcion) LIKE UPPER('%ingres%'))
@@ -3075,8 +3073,8 @@ insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Hoteles')
 insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Habitaciones')
 insert into MAX_POWER.Funcionalidad (descripcion) values ('Administrar Reservas')
 insert into MAX_POWER.Funcionalidad (descripcion) values ('Check in/out')
-insert into MAX_POWER.Funcionalidad (descripcion) values ('Listado Estadístico')
-insert into MAX_POWER.Funcionalidad (descripcion) values ('Facturar Estadías')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Listado EstadÃ­stico')
+insert into MAX_POWER.Funcionalidad (descripcion) values ('Facturar EstadÃ­as')
 
 
 exec MAX_POWER.insertar_rol 'Administrador General', 'S'
@@ -3166,10 +3164,10 @@ UPDATE MAX_POWER.Pais SET nombre='Argentina' where nombre='ARGENTINO'
 
 INSERT INTO MAX_POWER.Pais (nombre) VALUES ('Brasil')
 INSERT INTO MAX_POWER.Pais (nombre) VALUES ('Estados Unidos')
-INSERT INTO MAX_POWER.Pais (nombre) VALUES ('Canadá')
-INSERT INTO MAX_POWER.Pais (nombre) VALUES ('España')
-INSERT INTO MAX_POWER.Pais (nombre) VALUES ('Perú')
-INSERT INTO MAX_POWER.Pais (nombre) VALUES ('Sudáfrica')
+INSERT INTO MAX_POWER.Pais (nombre) VALUES ('CanadÃ¡')
+INSERT INTO MAX_POWER.Pais (nombre) VALUES ('EspaÃ±a')
+INSERT INTO MAX_POWER.Pais (nombre) VALUES ('PerÃº')
+INSERT INTO MAX_POWER.Pais (nombre) VALUES ('SudÃ¡frica')
 INSERT INTO MAX_POWER.Pais (nombre) VALUES ('India')
 
 INSERT INTO MAX_POWER.Tipo_documento (descripcion) VALUES ('LC')
