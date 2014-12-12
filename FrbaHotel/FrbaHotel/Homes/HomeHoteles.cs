@@ -38,7 +38,7 @@ namespace FrbaHotel.Homes
 
         static public DataTable buscarHoteles(string nombre,int estrellas,Pais pais,string ciudad) 
         {
-           return DatabaseAdapter.traerDataTable("buscar_hoteles", like(nombre), estrellas, pais.Id, like(ciudad),Sesion.FechaActual);
+           return DatabaseAdapter.traerDataTable("buscar_hoteles", like(nombre), estrellas, idDe(pais), like(ciudad),Sesion.FechaActual);
         }
 
         static public void bajaLogica(int idHotel,string fechaDesde,string fechaHasta)

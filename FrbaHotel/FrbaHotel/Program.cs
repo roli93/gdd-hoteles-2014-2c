@@ -66,7 +66,7 @@ namespace FrbaHotel
             DatabaseAdapter.Excepciones.Add(-22, new ExcepcionFrbaHoteles("Aún no se ha realizado el check-out sobre la reserva indicada"));
             DatabaseAdapter.Excepciones.Add(-23, new ExcepcionFrbaHoteles("La reserva ya ha sido facturada"));
             DatabaseAdapter.Excepciones.Add(-24, new ExcepcionFrbaHoteles("La reserva ha sido invalidada dado que el titular fue inhabilitado"));
-            DatabaseAdapter.Excepciones.Add(-25, new ExcepcionFrbaHoteles("Ya se ha registrado una habitacion con esa configuración de hotel, piso y numero"));
+            DatabaseAdapter.Excepciones.Add(-25, new ExcepcionFrbaHoteles("Ya se ha registrado una habitacion con ese número de hotel"));
             DatabaseAdapter.Excepciones.Add(-26, new ExcepcionFrbaHoteles("No se puede cerrar el hotel en ese período dado que existen reservas que se superponen con él"));
             DatabaseAdapter.Excepciones.Add(-27, new ExcepcionFrbaHoteles("Imposible volver a habilitar al cliente dado que sus datos son inconsistentes (identificación o mail repetidos)"));
             DatabaseAdapter.Excepciones.Add(-28, new ExcepcionFrbaHoteles("Ya existe un período de cierre que se superpone con el indicado"));

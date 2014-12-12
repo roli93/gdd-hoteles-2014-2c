@@ -2685,7 +2685,7 @@ GO
 CREATE PROCEDURE [MAX_POWER].[insertar_habitacion](@idHotel BIGINT,@unNumero BIGINT, @unPiso BIGINT , @idTipo BIGINT, @frente VARCHAR(1), @unaDescripcion VARCHAR(50),@Habilitada VARCHAR(1))
 AS BEGIN
 	
-		IF (EXISTS(SELECT 1 FROM [MAX_POWER].Habitacion where id_hotel = @idHotel and piso=@unPiso and numero=@unNumero)) RETURN -25
+		IF (EXISTS(SELECT 1 FROM [MAX_POWER].Habitacion where id_hotel = @idHotel and numero=@unNumero)) RETURN -25
 	
 		INSERT INTO [MAX_POWER].Habitacion(id_hotel,numero,piso,id_tipo_habitacion,frente,descripcion,habilitada) VALUES (@idHotel,@unNumero,@unPiso,@idTipo,@frente,@unaDescripcion,@Habilitada)
 	

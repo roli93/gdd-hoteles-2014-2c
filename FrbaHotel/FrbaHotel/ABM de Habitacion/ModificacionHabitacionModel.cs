@@ -34,5 +34,12 @@ namespace FrbaHotel.ABM_de_Habitacion
             HomeHabitaciones.actualizarHabitacion(idHabitacion, hotel, Convert.ToInt32(numero), Convert.ToInt32(piso), tipo, ubicacion, descripcion,habilitada);
         }
 
+        public override void ValidarErroresConcretos()
+        {
+            ValidarVaciosYLongitud(new string[] { "Hotel", "Piso", "Numero", "Ubicacion", "Tipo", "Descripcion", "Habilitada" },
+                                   new object[] { hotel, piso, numero, ubicacion, tipo, descripcion, "S" });
+            ValidarNumericos(piso.ToString(), numero.ToString());
+        }
+
     }
 }
