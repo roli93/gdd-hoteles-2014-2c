@@ -83,6 +83,11 @@ namespace FrbaHotel.ABM_de_Habitacion
             bindCombo<Hotel>(_hotel, Sesion.HotelesDisponibles);
             bindCombo<TipoHabitacion>(_tipo, Sesion.TiposHabitacionDisponibles);
             bindCombo<string>(_ubicacion,new List<string>( new string[]{"Interior","Exterior"} ));
+            if (!Sesion.Usuario.esGuest())
+            {
+                _hotel.SelectedIndex = _hotel.FindStringExact(Sesion.Usuario.Hotel.Nombre);
+                _hotel.Enabled = false;
+            }
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)

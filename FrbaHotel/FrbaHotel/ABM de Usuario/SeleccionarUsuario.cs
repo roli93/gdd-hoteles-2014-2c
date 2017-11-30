@@ -82,6 +82,11 @@ namespace FrbaHotel.ABM_de_Usuario
             bindCombo<Rol>(comboBox1, Sesion.RolesDisponibles);
             bindCombo<Hotel>(comboBox2, Sesion.HotelesDisponibles);
             cargarBotonModificarDatos(dataGridView1, accion);
+            if (!Sesion.Usuario.esGuest())
+            {
+                comboBox2.SelectedIndex = comboBox2.FindStringExact(Sesion.Usuario.Hotel.Nombre);
+                comboBox2.Enabled = false;
+            }
         }
 
         private void label11_Click(object sender, EventArgs e)

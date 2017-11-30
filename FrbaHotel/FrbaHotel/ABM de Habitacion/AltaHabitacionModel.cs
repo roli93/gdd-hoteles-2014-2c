@@ -10,16 +10,16 @@ namespace FrbaHotel.ABM_de_Habitacion
     public partial class AltaHabitacion
     {
         protected Hotel hotel;
-        protected int piso;
-        protected int numero;
-        protected string ubicacion;
+        protected string piso="";
+        protected string numero = "";
+        protected string ubicacion = "";
         protected TipoHabitacion tipo;
-        protected string descripcion;
+        protected string descripcion = "";
 
         protected virtual void Guardar()
         {
             ValidarErrores();
-            HomeHabitaciones.agregarHabitacion(this.hotel,this.piso,this.numero,this.ubicacion,this.tipo,this.descripcion);
+            HomeHabitaciones.agregarHabitacion(this.hotel,Convert.ToInt32(this.piso),Convert.ToInt32(this.numero),this.ubicacion,this.tipo,this.descripcion);
         }
 
         public override void  ValidarErroresConcretos()

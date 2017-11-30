@@ -2082,6 +2082,8 @@ BEGIN
 		RETURN (-13)
 	ELSE IF ((SELECT fecha_inicio FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)!=CONVERT(DATE,GETDATE()))
 		RETURN (-15)
+	ELSE IF ((SELECT C.habilitado FROM MAX_POWER.Reserva R,MAX_POWER.Cliente C WHERE C.id_cliente=R.id_cliente_titular and id_reserva=@id_reserva)='N')
+		RETURN(-24)
 	ELSE IF(@id_hotel!=-1)
 		IF(MAX_POWER.reserva_es_de_hotel(@id_reserva, @id_hotel)=0)
 			RETURN (-14)
@@ -2781,18 +2783,10 @@ END
 GO
 
 CREATE PROCEDURE [MAX_POWER].insertar_habitacion_reservada(@id_reserva BIGINT, @id_habitacion BIGINT)
-AS BEGIN
-	DECLARE @fechaReservaInicial DATETIME
-	SET @fechaReservaInicial = (SELECT fecha_inicio FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)
-	DECLARE @fechaReservaFinal DATETIME
-	SET @fechaReservaFinal = (SELECT fecha_fin FROM [MAX_POWER].reserva WHERE id_reserva = @id_reserva)
-	IF (MAX_POWER.habitacion_libre(@id_habitacion,@fechaReservaInicial,@fechaReservaFinal)=0)
-		RETURN (-7)
-	ELSE
-		BEGIN
-		INSERT INTO [MAX_POWER].Habitacion_reservada (id_reserva, id_habitacion) VALUES (@id_reserva, @id_habitacion)
-		RETURN (0)
-		END
+AS
+BEGIN
+	INSERT INTO [MAX_POWER].Habitacion_reservada (id_reserva, id_habitacion) VALUES (@id_reserva, @id_habitacion)
+	RETURN (0)
 END
 GO
 
